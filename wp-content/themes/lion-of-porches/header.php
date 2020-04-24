@@ -18,6 +18,7 @@
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 
     <link rel="stylesheet" href="/wp-content/themes/lion-of-porches/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@1,700&display=swap" rel="stylesheet">
     <?php /* Все скрипты и стили теперь подключаются в functions.php */ ?>
 
     <!--[if lt IE 9]>
@@ -58,7 +59,7 @@
             <!-- logo -->
             <div class="col-md-2 col-sm-2 col-xs-6 logo">
                 <h1>
-                    <a href="#"><img class="logo-red hidden-xs" src="/wp-content/themes/lion-of-porches/img/lion-of-porches.png"><img class="logo-blue visible-xs" src="/wp-content/themes/lion-of-porches/img/lion-of-porches-blue.webp"></a>
+                    <a href="/"><img class="logo-red hidden-xs" src="/wp-content/themes/lion-of-porches/img/lion-of-porches.png"><img class="logo-blue visible-xs" src="/wp-content/themes/lion-of-porches/img/lion-of-porches-blue.webp"></a>
                 </h1>
             </div>
             <!-- /logo -->
@@ -72,13 +73,13 @@
                 </div>
                 <div class="top-menu-2 hidden-xs">
                     <ul>
-                        <li><a href="#">Каталоги</a></li><li><a href="#">Партнерам</a></li><li><a href="#">Войти</a></li><li><a class="cart-link" href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><span class="count">(0)</span></a></li>
+                        <li><a href="#">Каталоги</a></li><li><a href="#">Партнерам</a></li><li><a href="#">Войти</a></li><li><a class="cart-link" href="#"><i class="fa fa-shopping-bag" aria-hidden="true"></i>&nbsp;<span class="count">(0)</span></a></li>
                     </ul>
                 </div>
 
                 <div class="cart-mobile visible-xs">
                     <div>
-                        <a class="cart-link" href="#" ><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><span class="count">(0)</span></a>
+                        <a class="cart-link" href="#" ><i class="fa fa-shopping-bag" aria-hidden="true"></i>&nbsp;<span class="count">(0)</span></a>
                         <div class='threebar hamburger'>
                             <div class='bar'></div>
                             <div class='bar'></div>
@@ -96,8 +97,4 @@
     </div>
 </header>
 
-<div class="main container">
-    <div class="row">
-        text
-    </div>
-</div>
+
