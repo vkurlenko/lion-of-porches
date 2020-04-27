@@ -15,9 +15,14 @@
 
         <div class="row">
             <div class="col-xs-6">
-                <ul>
+                <?
+                $args = array(
+                    'menu'            => 'top-menu-1', // какое меню нужно вставить (по порядку: id, ярлык, имя)
+                );
+                wp_nav_menu($args);?>
+                <!--<ul>
                     <li><a href="/delivery/">Доставка</a></li><li><a href="/about/">О компании</a> </li>
-                </ul>
+                </ul>-->
             </div>
             <div class="col-xs-6">
                 <ul>

@@ -75,8 +75,7 @@ get_header(); // подключаем header.php ?>
 
             <div class="row">
                 <div class="page-sep col-xs-12">
-                    <p>See how others are living the <br>
-                        Lion of Porches lifestyle</p>
+                    <p>Lion of Porches lifestyle</p>
                 </div>
             </div>
 
