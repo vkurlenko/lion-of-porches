@@ -23,7 +23,7 @@ get_header(); // подключаем header.php ?>
 
                 <p><?=$post->post_content;?></p>
 
-                <img  class="hidden-xs" src="/temp/Screenshot_1.jpg">
+                <img  class="hidden-xs" src="/wp-content/themes/lion-of-porches/img/Screenshot_1.jpg">
 
             </div>
 
