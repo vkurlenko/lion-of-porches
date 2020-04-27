@@ -12,7 +12,7 @@ get_header(); // подключаем header.php ?>
         <?=get_the_post_thumbnail( $post->id, 'full', array('class' => 'alignleft') )?>
         </div>
         <div class="visible-xs">
-            <img src="/temp/Screenshot_1.jpg">
+            <img src="/wp-content/themes/lion-of-porches/img/Screenshot_1.jpg">
         </div>
     </div>
 
