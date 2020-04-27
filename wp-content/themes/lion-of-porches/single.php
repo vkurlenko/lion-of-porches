@@ -31,7 +31,7 @@ get_header(); // подключаем header.php ?>
 <section>
 	<div class="container">
 		<div class="row">
-            <div class="content">
+            <div class="col-md-12 content">
 
                 <?php
                /* $post = get_post();
