@@ -1,0 +1,25 @@
+.page-sep {
+    width: 100%;
+    text-align: center;
+    margin: 64px 0 36px;
+}
+
+.page-sep img {
+    max-width: 20px;
+}
+
+.page-sep, .page-sep:before {
+    float: left;
+}
+
+.page-sep:after {
+    float: right;
+}
+.page-sep:after, .page-sep:before {
+    content: '';
+    background: url(/wp-content/themes/lion-of-porches/img/brand-double-stripe.png) repeat-x;
+    height: 4px;
+    width: 48%;
+    margin-top: 6px;
+    vertical-align: middle;
+}

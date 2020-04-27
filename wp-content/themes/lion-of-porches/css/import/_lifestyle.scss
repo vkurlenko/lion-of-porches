@@ -1,0 +1,141 @@
+.lifestyle h2 {
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    font-weight: 700;
+    color: #00244b;
+    font-size: 50px;
+    /*float: left;*/
+    width: 100%;
+    margin: 60px 0 20px;
+}
+
+.lifestyle .page-sep {
+    position: relative;
+    text-align: center;
+    //width: 600px;
+    margin: 10px auto 30px;
+    float: none;
+
+    p {
+        background: #fff;
+        display: table;
+        margin: 0 auto;
+        z-index: 10;
+        position: relative;
+        font-size: 24px;
+        line-height: 30px;
+        padding: 0 20px;
+    }
+}
+
+.lifestyle .page-sep::before {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.lifestyle .page-sep::after, .lifestyle .page-sep::before {
+    content: '';
+    background: url(/wp-content/themes/lion-of-porches/img/brand-double-stripe.png) repeat-x;
+    height: 4px;
+    width: 48%;
+    margin-top: 6px;
+    vertical-align: middle;
+}
+
+.lifestyle .page-sep::after {
+    float: none;
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.lifestyle .page-sep, .page-sep::before {
+    /*float: left;*/
+}
+
+
+.instagram-gallery div {
+    height: 426px;
+    padding: 0;
+}
+
+.lifestyle .col {
+    /*background: #ccc;*/
+    width: 50%;
+    height: 100%;
+    /*margin: 0 5%;*/
+    float: left;
+}
+
+.lifestyle .col > div
+{
+    position: relative;
+    margin: 5%;
+    width: 90%;
+    height: 28%;
+    background-size: cover;
+    /*background-color: #efefef;*/
+    float: left;
+
+}
+
+.lifestyle .col > div.row-1 div,
+.lifestyle .col > div.row-2 div{
+    position: relative;
+    margin: 5%;
+    width: 90%;
+    height: 28%;
+    background-size: cover;
+    /*background-color: #efefef;*/
+    float: left;
+    /*background-image: url(/wp-content/themes/lion-of-porches/img/1.jpg);*/
+}
+
+.col-1 div:first-child,
+.col-2 div:last-child,
+.col-5 div:first-child,
+.col-4 div:last-child{
+    height: 55%;
+}
+.col-1 div:last-child,
+.col-2 div:first-child,
+.col-5 div:last-child,
+.col-4 div:first-child{
+    height: 30%;
+}
+
+.col-3 {
+    width: 100% !important;
+    /*background: #0e0e0e !important;*/
+}
+
+.col-3 .row-1 div {
+    margin: 2.5% !important;
+    float: left !important;
+    width: 45% !important;
+    height: 85% !important;
+}
+
+.col-3 .row-1{
+    margin: 0 !important;
+    width: 100% !important;
+    height: 35% !important;
+}
+
+.col-3 .row-2 {
+    margin: 0 !important;
+    width: 100% !important;
+    height: 65% !important;
+    /*background: red;*/
+}
+
+.col-3 .row-2 div {
+    margin: 3.5% 2.5% 0 !important;
+    width: 95% !important;
+    height: 85% !important;
+}

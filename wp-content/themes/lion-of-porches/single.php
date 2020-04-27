@@ -40,9 +40,6 @@ get_header(); // подключаем header.php ?>
 
 			<h2><?=$post->post_title;?></h2>
                 <?=$post->post_content;?>
-
-
-
             </div>
 		</div>
 	</div>

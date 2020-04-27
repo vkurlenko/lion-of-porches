@@ -20,16 +20,16 @@
 
 // ** Параметры MySQL: Эту информацию можно получить у вашего хостинг-провайдера ** //
 /** Имя базы данных для WordPress */
-define( 'DB_NAME', 'vinci-2_lip' );
+define( 'DB_NAME', 'lip' );
 
 /** Имя пользователя MySQL */
-define( 'DB_USER', 'vinci-2_mysql' );
+define( 'DB_USER', 'root' );
 
 /** Пароль к базе данных MySQL */
-define( 'DB_PASSWORD', 'sbanfy3e' );
+define( 'DB_PASSWORD', '' );
 
 /** Имя сервера MySQL */
-define( 'DB_HOST', 'vinci-2.mysql' );
+define( 'DB_HOST', 'localhost' );
 
 /** Кодировка базы данных для создания таблиц. */
 define( 'DB_CHARSET', 'utf8' );
@@ -83,6 +83,7 @@ $table_prefix = 'wp_';
  * @link https://codex.wordpress.org/Debugging_in_WordPress
  */
 define( 'WP_DEBUG', true );
+define ('WPCF7_LOAD_JS', false );
 
 /* Это всё, дальше не редактируем. Успехов! */
 

@@ -27,6 +27,7 @@ body {
 
 img {
   max-width: 100%;
+  height: auto;
 }
 
 .container {
@@ -302,38 +303,7 @@ a.cart-link:hover {
 /** /форма поиска */
 
 /* hamburger */
-.threebar {
-  cursor: pointer;
-  margin: 15px;
-
-  .bar {
-    width: 20px;
-    height: 2px;
-    background: #5b7a9c;
-    margin-bottom: 4px;
-    transition: all 0.5s ease;
-    &:nth-child(1) {
-      transform-origin: 16%;
-    }
-
-    &:nth-child(3) {
-      transform-origin: 21%;
-    }
-  }
-  &.cross {
-    .bar:nth-child(1) {
-      transform: translateY(75%)  rotate(45deg);
-    }
-    .bar:nth-child(2) {
-      opacity: 0;
-    }
-    .bar:nth-child(3) {
-      transform: translateY(-75%) rotate(-45deg);
-    }
-  }
-}
-/* /hamburger */
-
+@import 'css/import/_hamburger.scss';
 
 /*****************/
 /** MAIN SECTION */
@@ -391,32 +361,7 @@ a.cart-link:hover {
 }
 
 /* разделитель */
-.page-sep {
-  width: 100%;
-  text-align: center;
-  margin: 64px 0 36px;
-}
-
-.page-sep img {
-  max-width: 20px;
-}
-
-.page-sep, .page-sep:before {
-  float: left;
-}
-
-.page-sep:after {
-  float: right;
-}
-.page-sep:after, .page-sep:before {
-  content: '';
-  background: url(/wp-content/themes/lion-of-porches/img/brand-double-stripe.png) repeat-x;
-  height: 4px;
-  width: 48%;
-  margin-top: 6px;
-  vertical-align: middle;
-}
-/* .разделитель */
+@import 'css/import/_delimiter.scss';
 
 .product-category-list {
   > .row div:last-child {
@@ -424,316 +369,167 @@ a.cart-link:hover {
   }
 }
 
-/* instagram gallery */
-
- .lifestyle h2 {
-   font-family: 'Raleway', sans-serif;
-  text-align: center;
-  font-weight: 700;
-  color: #00244b;
-  font-size: 50px;
-  /*float: left;*/
-  width: 100%;
-  margin: 60px 0 20px;
-}
-
-.lifestyle .page-sep {
-  position: relative;
-  text-align: center;
-  //width: 600px;
-  margin: 10px auto 30px;
-  float: none;
-
-  p {
-    background: #fff;
-    display: table;
-    margin: 0 auto;
-    z-index: 10;
-    position: relative;
-    font-size: 24px;
-    line-height: 30px;
-    padding: 0 20px;
-  }
-}
-
-.lifestyle .page-sep::before {
-  position: absolute;
-  left: 0;
-  top: 10px;
-  width: 100%;
-  padding: 0 20px;
-}
-
-.lifestyle .page-sep::after, .lifestyle .page-sep::before {
-  content: '';
-  background: url(/wp-content/themes/lion-of-porches/img/brand-double-stripe.png) repeat-x;
-  height: 4px;
-  width: 48%;
-  margin-top: 6px;
-  vertical-align: middle;
-}
-
-.lifestyle .page-sep::after {
-  float: none;
-  position: absolute;
-  left: 0;
-  top: 10px;
-  width: 100%;
-  padding: 0 20px;
-}
-
-.lifestyle .page-sep, .page-sep::before {
-  /*float: left;*/
-}
-
-
-.instagram-gallery div {
-  height: 426px;
-  padding: 0;
-}
-
-.lifestyle .col {
-  /*background: #ccc;*/
-  width: 50%;
-  height: 100%;
-  /*margin: 0 5%;*/
-  float: left;
-}
-
-.lifestyle .col > div
-{
-  position: relative;
-  margin: 5%;
-  width: 90%;
-  height: 28%;
-  background-size: cover;
-  /*background-color: #efefef;*/
-  float: left;
-
-}
-
-.lifestyle .col > div.row-1 div,
-.lifestyle .col > div.row-2 div{
-  position: relative;
-  margin: 5%;
-  width: 90%;
-  height: 28%;
-  background-size: cover;
-  /*background-color: #efefef;*/
-  float: left;
-  /*background-image: url(/wp-content/themes/lion-of-porches/img/1.jpg);*/
-}
-
-.col-1 div:first-child,
-.col-2 div:last-child,
-.col-5 div:first-child,
-.col-4 div:last-child{
-  height: 55%;
-}
-.col-1 div:last-child,
-.col-2 div:first-child,
-.col-5 div:last-child,
-.col-4 div:first-child{
-  height: 30%;
-}
-
-.col-3 {
-  width: 100% !important;
-  /*background: #0e0e0e !important;*/
-}
-
-.col-3 .row-1 div {
-  margin: 2.5% !important;
-  float: left !important;
-  width: 45% !important;
-  height: 85% !important;
- }
-
-.col-3 .row-1{
-  margin: 0 !important;
-  width: 100% !important;
-  height: 35% !important;
-}
-
-.col-3 .row-2 {
-  margin: 0 !important;
-  width: 100% !important;
-  height: 65% !important;
-  /*background: red;*/
-}
-
-.col-3 .row-2 div {
-  margin: 3.5% 2.5% 0 !important;
-  width: 95% !important;
-  height: 85% !important;
-}
-/* .instagram gallery */
-
 .content {
   padding-top: 95px;
   padding-bottom: 95px;
 }
 
+.carreiras h2 {
+  z-index: 2;
+  position: relative;
+}
 
-/******************/
-/** .MAIN SECTION */
-/******************/
+.carreiras p {
+  font-size: 14px;
+  line-height: 1.8;
+  width: 90%;
+  color: #5b7a9c;
+  z-index: 2;
+  position: relative;
+}
 
-/**********/
-/* footer */
-/**********/
-footer {
-  background: $color-background-footer;
-  color: #fff;
-  font-size: .929em;
-  padding: 58px 0 16px;
+.carreiras .content {
+  padding-top: 0;
+}
 
-  ul {
-    line-height: 1.538em;
-    padding: 0;
-    margin: 0;
-  }
+.carreiras .content:before{
+  content: "";
+  width: 55%;
+  height: 275px;
+  background: #f9f6f3;
+  position: absolute;
+  top: -25px;
+  left: 30px;
+}
 
-  ul li {
-    list-style: none;
-  }
+.carreiras-form-wrapper h2{
+  font-size: 22px;
+  color: #e51937;
+  margin-bottom: 3px;
+  font-family: 'EB Garamond', serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-style: normal;
+  padding: 25px 0;
+}
 
-  a {
-    color: #b3bdc9;
-  }
+.carreiras-form-wrapper label {
+  /*height: 57px;*/
+  margin-bottom: 15px;
+  padding: 8px 0;
+  font-size: 12px;
+  position: relative;
+  color: #00244b;
+  width: 100%;
+  text-transform: uppercase;
+}
 
-  a:hover {
-    color: #fff;
-  }
+.carreiras-form-wrapper input,
+.carreiras-form-wrapper textarea {
+  -webkit-transition: all linear 0.2s;
+  -moz-transition: all linear 0.2s;
+  -ms-transition: all linear 0.2s;
+  -o-transition: all linear 0.2s;
+  transition: all linear 0.2s;
+  width: 100%;
+  padding: 18px 25px;
+  /*padding-bottom: 18px;/*
+  padding-bottom: 28px;*/
+  height: 60px;
+  font-size: 16px;
+  font-weight: normal;
+  color: #5b7a9c;
+  outline: none;
+}
 
-  h5 {
-    margin: 0 0 8px;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: .929em;
-  }
+.carreiras-form-wrapper textarea {
+  height: 80px;
+}
 
-  .copyright {
-    border-top: 1px solid #33506f;
-    margin-top: 24px;
-    padding-top: 20px;
-    color: #b3bdc9;
+.carreiras-form-wrapper .required {
+  color: #e51937;
+}
 
-    p {
-      margin: 0;
-      line-height: 1.9em;
-      span {
-        margin: 0 10px;
-        font-size: 20px;
-        line-height: .6em;
-        position: relative;
-        top: 2px;
-      }
-    }
-  }
-
-  .footer-item{
-    padding-bottom: 20px;
-  }
-
-  .footer-item.pagamento ul {
-    margin-bottom: 24px;
-  }
-
-  .footer-item.pagamento ul.delivery{
-    margin-bottom: 0;
-  }
-
-  .footer-item.pagamento img {
-    width: auto;
-    max-height: 23px;
-    height: auto;
-    max-width: 100%;
-  }
-
-  .pull-left {
-    float: left !important;
-  }
-
-  .list-inline {
-    margin-left: -5px;
-
-    > li {
-      display: inline-block;
-      padding-left: 5px;
-      padding-right: 5px;
-    }
-  }
-
-  .list-inline, .list-unstyled {
-    padding-left: 0;
-    list-style: none;
+.carreiras-form-wrapper {
+  input[type="email"],
+  input[type="number"],
+  input[type="text"],
+  input[type="tel"],
+  textarea {
+    line-height: 1.3em;
+    padding: 10px 24px;
+    border: 1px solid #eaedf0;
+    font-size: 1.077em;
   }
 }
-/***********/
-/* .footer */
-/***********/
 
 
+.carreiras-form-wrapper label > span {
+  /*position: absolute;*/
+  left: 26px;
+  /*top: 40px;*/
+  -webkit-transition: all linear 0.2s;
+  -moz-transition: all linear 0.2s;
+  -ms-transition: all linear 0.2s;
+  -o-transition: all linear 0.2s;
+  transition: all linear 0.2s;
+}
+
+.carreiras-form-wrapper input[type="submit"] {
+  border-color: #00244b;
+  background: none;
+  color: #00244b;
+  /*margin-top: 25px;*/
+  border-width: 1px;
+  padding: 12px 20px;
+  width: auto;
+  float: right;
+  height: auto;
+  font-weight: bold;
+}
+
+.carreiras-form-wrapper input[type="submit"]:hover {
+  border-color: #00244b;
+  background: #00244b;
+  color: #fff;
+
+}
+
+
+.carreiras-form-wrapper input {
+  -webkit-transition: all linear 0.2s;
+  -moz-transition: all linear 0.2s;
+  -ms-transition: all linear 0.2s;
+  -o-transition: all linear 0.2s;
+  transition: all linear 0.2s;
+  width: 100%;
+  padding: 18px 25px;
+  padding-bottom: 28px;
+  height: 60px;
+  font-size: 16px;
+  font-weight: normal;
+  color: #5b7a9c;
+  outline: none;
+}
+
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+
+/* instagram gallery */
+@import 'css/import/_lifestyle.scss';
+
+/* slick-slider-stores */
+@import 'css/import/_slick-slider.scss';
+
+/* stores-list */
+@import 'css/import/_stores-list.scss';
+
+/* footer */
+@import 'css/import/_footer.scss';
 
 /*********/
 /* MEDIA */
 /*********/
-
-// Extra small devices (portrait phones, less than 576px)
-@media (max-width: 575.98px) {
-  .footer-item{
-    width: 100%;
-  }
-}
-
-// Small devices (landscape phones, less than 768px)
-@media (max-width: 767.98px) {
-  .main-menu ul li {
-    display: block;
-  }
-
-  .logo h1 a {
-    left: 0;
-    margin-left: 0;
-  }
-
-  .product-category-list {
-    .row div {
-      text-align: center !important;
-    }
-  }
-
-  .page-sep {
-    margin: 36px 0;
-  }
-
-  .page-sep:after, .page-sep:before {
-    width: 37%;
-  }
-}
-
-// Medium devices (tablets, less than 992px)
-@media (max-width: 991.98px) {
-  .logo h1 a {
-    left: auto;
-    margin-left: auto;
-
-    img {
-      max-width: 100%;
-    }
-  }
-}
-
-// Large devices (desktops, less than 1200px)
-@media (max-width: 1199.98px) {
-
-}
-
-@media  (min-width: 768px) {
-  .container {
-    width: 100%;
-    max-width: 1600px;
-  }
-
-}
+@import 'css/import/_media.scss';

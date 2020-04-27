@@ -37,7 +37,7 @@
             <div class="col-md-5 col-sm-5 col-xs-5 header-left hidden-xs" style="/*background: #ccc*/">
                 <div class="main-menu">
                     <ul>
-                        <li><a href="#">Женщины</a></li><li><a href="#">Мужчины</a></li><li><a href="#">Девочки</a></li><li><a href="#">Мальчики</a></li>
+                        <li><a href="/catalog/">Женщины</a></li><li><a href="/catalog/">Мужчины</a></li><li><a href="/catalog/">Девочки</a></li><li><a href="/catalog/">Мальчики</a></li>
                     </ul>
                 </div>
 
@@ -67,13 +67,34 @@
             <!-- top-right-block -->
             <div class="col-md-5  col-sm-5  col-xs-6 header-right"  style="/*background: #00ff00*/">
                 <div class="top-menu-1 hidden-xs">
-                    <ul>
+                    <?
+                    $args = array(
+                        //'theme_location'  => , // область темы
+                        'menu'            => 'top-menu-1', // какое меню нужно вставить (по порядку: id, ярлык, имя)
+                        /*'container'       => 'div', // блок, в который нужно поместить меню, укажите false, чтобы не помещать в блок
+                        'container_class' => 'menu-{menu slug}-container', // css-класс блока
+                        'container_id'    => , // id блока
+                        'menu_class'      => 'menu', // css-класс меню
+                        'menu_id'         => , // id меню
+                        'echo'            => true, // вывести или записать в переменную
+                        'fallback_cb'     => 'wp_page_menu', // какую функцию использовать если меню не существует, укажите false, чтобы не использовать ничего
+                        'before'          => , // текст или html-код, который нужно вставить перед каждым <a>
+                        'after'           => , // после </a>
+                        'link_before'     => , // текст перед анкором ссылки
+                        'link_after'      => , // после анкора и перед </a>
+                        'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>', // HTML-шаблон
+                        'depth'           => 0 // количество уровней вложенности*/
+                    );
+                    wp_nav_menu($args);?>
+
+                    <!--<ul>
                         <li><a href="#">Доставка</a></li><li><a href="#">О компании</a> </li>
-                    </ul>
+                    </ul>-->
                 </div>
                 <div class="top-menu-2 hidden-xs">
+
                     <ul>
-                        <li><a href="#">Каталоги</a></li><li><a href="#">Партнерам</a></li><li><a href="#">Войти</a></li><li><a class="cart-link" href="#"><i class="fa fa-shopping-bag" aria-hidden="true"></i>&nbsp;<span class="count">(0)</span></a></li>
+                        <li><a href="/catalog/">Каталоги</a></li><li><a href="/forpartners/">Партнерам</a></li><li><a href="#">Войти</a></li><li><a class="cart-link" href="#"><i class="fa fa-shopping-bag" aria-hidden="true"></i>&nbsp;<span class="count">(0)</span></a></li>
                     </ul>
                 </div>
 

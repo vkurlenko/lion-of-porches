@@ -1,0 +1,56 @@
+.stores-qd-v1-wrapper .stores-qd-v1-geo-list {
+    margin-top: 72px;
+}
+
+
+.stores-qd-v1-wrapper .stores-qd-v1-filter-list, .stores-qd-v1-wrapper .stores-qd-v1-geo-list {
+    margin: 106px 5px 0 0;
+    border: 1px solid #d6dce2;
+}
+
+.stores-qd-v1-wrapper .stores-qd-v1-filter-list .storelocator-panel li.store, .stores-qd-v1-wrapper .stores-qd-v1-geo-list .storelocator-panel li.store {
+    display: inline-block;
+    width: 50%;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.stores-qd-v1-wrapper .stores-qd-v1-filter-list .stores-qd-v1-list-title, .stores-qd-v1-wrapper .stores-qd-v1-geo-list .stores-qd-v1-list-title {
+    position: relative;
+    top: -22px;
+    left: -1px;
+    display: inline-block;
+    padding-bottom: 16px;
+    padding-right: 25px;
+    margin-bottom: -15px;
+    background: #fff;
+}
+
+.stores-qd-v1-wrapper .stores-qd-v1-filter-list h4, .stores-qd-v1-wrapper .stores-qd-v1-geo-list h4 {
+    font-family: 'EB Garamond', serif;
+    font-size: 22px;
+    font-weight: bold;
+    color: #e51937;
+    margin-bottom: 0;
+}
+
+.stores-qd-v1-wrapper .stores-qd-v1-filter-list p, .stores-qd-v1-wrapper .stores-qd-v1-geo-list p {
+    font-size: 14px;
+    margin-top: 2px;
+}
+
+.stores-qd-v1-wrapper .stores-qd-v1-filter-list .storelocator-panel div.title, .stores-qd-v1-wrapper .stores-qd-v1-geo-list .storelocator-panel div.title {
+    color: #00244b;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 17px;
+    padding-bottom: 9px;
+    border-bottom: 1px solid #d6dce2;
+    margin: 0 13px 6px 0px;
+}
+
+.stores-qd-v1-wrapper .stores-qd-v1-filter-list .storelocator-panel div.address, .stores-qd-v1-wrapper .stores-qd-v1-geo-list .storelocator-panel div.address {
+    max-height: 45px;
+    margin-top: 8px;
+    margin-bottom: 6px;
+}

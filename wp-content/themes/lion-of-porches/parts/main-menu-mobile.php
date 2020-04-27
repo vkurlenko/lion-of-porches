@@ -2,7 +2,7 @@
     <div class="main-menu mobile hidden">
 
         <ul>
-            <li><a href="#">Женщины</a></li><li><a href="#">Мужчины</a></li><li><a href="#">Девочки</a></li><li><a href="#">Мальчики</a></li>
+            <li><a href="/catalog/">Женщины</a></li><li><a href="/catalog/">Мужчины</a></li><li><a href="/catalog/">Девочки</a></li><li><a href="/catalog/">Мальчики</a></li>
         </ul>
 
         <form>
@@ -16,12 +16,12 @@
         <div class="row">
             <div class="col-xs-6">
                 <ul>
-                    <li><a href="#">Доставка</a></li><li><a href="#">О компании</a> </li>
+                    <li><a href="/delivery/">Доставка</a></li><li><a href="/about/">О компании</a> </li>
                 </ul>
             </div>
             <div class="col-xs-6">
                 <ul>
-                    <li><a href="#">Каталоги</a></li><li><a href="#">Партнерам</a></li><li><a href="#">Войти</a></li>
+                    <li><a href="/catalog/">Каталоги</a></li><li><a href="/forpartners/">Партнерам</a></li><li><a href="#">Войти</a></li>
                 </ul>
             </div>
         </div>

@@ -1,0 +1,79 @@
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+    .footer-item{
+        width: 100%;
+    }
+}
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) {
+    .main-menu ul li {
+        display: block;
+    }
+
+    .logo h1 a {
+        left: 0;
+        margin-left: 0;
+    }
+
+    .product-category-list {
+        .row div {
+            text-align: center !important;
+        }
+    }
+
+    .page-sep {
+        margin: 36px 0;
+    }
+
+    .page-sep:after, .page-sep:before {
+        width: 37%;
+    }
+
+    .slider-stores .slick-arrow.slick-prev,
+    .slider-stores .slick-arrow.slick-next {
+        left: 0;
+        top: auto;
+        bottom: 50%;
+        margin-bottom: -44px;
+    }
+    .slider-stores .slick-arrow.slick-next {
+        left: 100%;
+        margin-left: -44px;
+    }
+
+    section.pitchbar .container>div {
+        padding: 0 20px;
+        border: none;
+        margin-bottom: 15px;
+    }
+
+    section.pitchbar {
+        margin-top: 0;
+    }
+}
+
+// Medium devices (tablets, less than 992px)
+@media (max-width: 991.98px) {
+    .logo h1 a {
+        left: auto;
+        margin-left: auto;
+
+        img {
+            max-width: 100%;
+        }
+    }
+}
+
+// Large devices (desktops, less than 1200px)
+@media (max-width: 1199.98px) {
+
+}
+
+@media  (min-width: 768px) {
+    .container {
+        width: 100%;
+        max-width: 1600px;
+    }
+
+}

@@ -1,0 +1,30 @@
+.threebar {
+    cursor: pointer;
+    margin: 15px;
+
+    .bar {
+        width: 20px;
+        height: 2px;
+        background: #5b7a9c;
+        margin-bottom: 4px;
+        transition: all 0.5s ease;
+        &:nth-child(1) {
+            transform-origin: 16%;
+        }
+
+        &:nth-child(3) {
+            transform-origin: 21%;
+        }
+    }
+    &.cross {
+        .bar:nth-child(1) {
+            transform: translateY(75%)  rotate(45deg);
+        }
+        .bar:nth-child(2) {
+            opacity: 0;
+        }
+        .bar:nth-child(3) {
+            transform: translateY(-75%) rotate(-45deg);
+        }
+    }
+}

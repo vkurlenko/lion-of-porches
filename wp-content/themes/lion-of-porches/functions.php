@@ -98,7 +98,8 @@ if (!function_exists('add_scripts')) { // если ф-я уже есть в до
 	    wp_deregister_script('jquery'); // выключаем стандартный jquery
 	    wp_enqueue_script('jquery','//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js','','',true); // добавляем свой
 	    wp_enqueue_script('bootstrap', get_template_directory_uri().'/js/bootstrap.min.js','','',true); // бутстрап
-	    wp_enqueue_script('main', get_template_directory_uri().'/js/main.js','','',true); // и скрипты шаблона
+        wp_enqueue_script('slick-slider', get_template_directory_uri() . '/js/slick/slick.min.js', '', '', true );
+	    wp_enqueue_script('main', get_template_directory_uri().'/js/main.js','jquery','',true); // и скрипты шаблона
 	}
 }
 
@@ -107,7 +108,10 @@ if (!function_exists('add_styles')) { // если ф-я уже есть в до�
 	function add_styles() { // добавление стилей
 	    if(is_admin()) return false; // если мы в админке - ничего не делаем
 	    wp_enqueue_style( 'bs', get_template_directory_uri().'/css/bootstrap.min.css' ); // бутстрап
+        //wp_enqueue_style( 'fontawesome', 'https://use.fontawesome.com/releases/v5.0.13/css/all.css' );
 		wp_enqueue_style( 'main', get_template_directory_uri().'/style.css' ); // основные стили шаблона
+        wp_enqueue_style( 'slick-style', get_template_directory_uri() . '/js/slick/slick.css' );
+        wp_enqueue_style( 'slick-style-theme', get_template_directory_uri() . '/js/slick/slick-theme.css' );
 	}
 }
 
@@ -155,6 +159,18 @@ if (!function_exists('content_class_by_sidebar')) { // если ф-я уже е�
 			echo 'col-sm-12'; // контент на всю ширину
 		}
 	}
+}
+
+// правильный способ подключить стили и скрипты темы
+//add_action( 'wp_enqueue_scripts', 'theme_add_scripts' );
+
+function theme_add_scripts() {
+    // подключаем файл стилей темы
+    /*wp_enqueue_style( 'slick-style', get_template_directory_uri() . '/js/slick/slick.css' );
+    wp_enqueue_style( 'slick-style-theme', get_template_directory_uri() . '/js/slick/slick-theme.css' );*/
+
+    // подключаем js файл темы
+    //wp_enqueue_script( 'slick-slider', get_template_directory_uri() . '/js/slick/slick.min.js', array('jquery'), '', true );
 }
 
 ?>
