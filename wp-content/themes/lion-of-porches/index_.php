@@ -1,6 +1,6 @@
 <?php
 /**
- * Главная страница (index.php)
+ * Главная страницаsdfsdfsdf (index.php)
  * @package WordPress
  * @subpackage LionOfPorches
  */

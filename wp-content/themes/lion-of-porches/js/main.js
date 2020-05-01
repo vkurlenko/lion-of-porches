@@ -1,5 +1,5 @@
 // custom scripts
-
+$ = jQuery.noConflict();
 $(document).on('click', '.hamburger', function() {
     $('.threebar')
         .removeClass('hamburger')

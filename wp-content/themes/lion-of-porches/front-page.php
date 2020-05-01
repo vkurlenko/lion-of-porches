@@ -4,7 +4,10 @@
  * @package WordPress
  * @subpackage LionOfPorches
  */
-get_header(); // подключаем header.php ?>
+get_header(); // подключаем header.php
+
+$product_categories = $helper->getTopCategory();
+?>
 <section>
     <div class="main">
 
@@ -16,14 +19,21 @@ get_header(); // подключаем header.php ?>
                     <img class="visible-xs" src="/wp-content/themes/lion-of-porches/img/promoOMEN2.jpg">
                 </div>
 
-                <div class="big-banner-text">
+                <?php
+                if($product_categories):?>
+                    <div class="big-banner-text">
                     <ul class="btn-list list-inline">
-                        <li><a class="btn-alt" href="#">Женщины</a></li>
-                        <li><a class="btn-alt" href="#">Мужчины</a></li>
-                        <li><a class="btn-alt" href="#">Девочки</a></li>
-                        <li><a class="btn-alt" href="#">Мальчики</a></li>
+                        <?php
+                        foreach ( $product_categories as $product_category ):?>
+                        <li><a class="btn-alt" href="<?= get_term_link($product_category) ?>"><?=$product_category->name?></a></li>
+                        <?php
+                        endforeach;
+                        ?>
                     </ul>
-                </div>
+                    </div>
+                <?
+                endif;
+                ?>
             </div>
         </div>
         <!-- /big banner -->
@@ -47,22 +57,33 @@ get_header(); // подключаем header.php ?>
         <!-- product category -->
         <div class="container product-category-list">
             <div class="row">
-                <div class="col-md-6 col-xs-12">
-                    <a href="#"><img src="/wp-content/themes/lion-of-porches/img/woman.jpg"></a>
-                </div>
-                <div class="col-md-6 col-xs-12">
-                    <a href="#"><img src="/wp-content/themes/lion-of-porches/img/man.jpg"></a>
-                </div>
-            </div>
+        <?php
+        if ( $product_categories ) {
+            $i = 0;
 
-            <div class="row">
+            foreach ( $product_categories as $product_category ) {
+                //$helper->dump($product_category);
+                $image = $helper->getCategoryImage($product_category, [500, 750]);
+                ?>
                 <div class="col-md-6 col-xs-12">
-                    <a href="#"><img src="/wp-content/themes/lion-of-porches/img/boy.jpg"></a>
+                    <a href="<?= get_term_link($product_category) ?>"><?= $image ?></a>
+                    <p class="category-name">
+                        <a href="<?= get_term_link($product_category) ?>"><?= $product_category->name ?></a>
+                    </p>
                 </div>
-                <div class="col-md-6 col-xs-12">
-                    <a href="#"><img src="/wp-content/themes/lion-of-porches/img/girl.jpg"></a>
+                <?php
+                $i++;
+
+                if($i > 1) {
+                    $i = 0;
+                ?>
                 </div>
-            </div>
+                <div class="row">
+                <?php
+                }
+            }
+        }
+        ?>
         </div>
         <!-- /product category -->
 

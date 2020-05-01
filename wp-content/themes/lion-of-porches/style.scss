@@ -11,18 +11,35 @@ Theme Name: LionOfPorches
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'DIN Pro';
+  src: url('/wp-content/themes/lion-of-porches/fonts/din-pro/DINPro-CondensedRegular.ttf') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'DIN Pro Bold';
+  src: url('/wp-content/themes/lion-of-porches/fonts/din-pro/DINPro-Bold.ttf') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
 $body-color: #5b7a9c; //#00244b;
 $color-deep-blue: #00244b;
 $logo-bg-red: #c90003;
 $color-text-red: #e11f26;
 $color-border: #d6dce2;
 $color-background-footer: #00244b;
+$color-border-product: #eaedf0;
 
 body {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'DIN Pro', sans-serif;
+  letter-spacing: .1em;
+  font-weight: 700;
   color: $body-color;
   /*background: #0eb5d6;*/
-  font-size: 14px/1.286em;
+  font-size: 18px;//14px/1.286em;
 }
 
 img {
@@ -46,8 +63,8 @@ header {
 }
 
 h2 {
-  font-family: 'EB Garamond', serif;
-  font-style: italic;
+  /*font-family: 'EB Garamond', serif;*/
+ /* font-style: italic;*/
   font-size: 50px;
   font-weight: 600;
   color: #00244b;
@@ -197,6 +214,8 @@ a.cart-link:hover {
   font-size: 1em;
   font-weight: 700;
   text-transform: uppercase;
+  /*font-family: 'DIN Pro Bold', sans-serif;
+  letter-spacing: normal;*/
 }
 
 .main-menu ul li a:hover {
@@ -221,7 +240,7 @@ a.cart-link:hover {
 
 .top-menu-1 ul li a {
   /*font-size: 12px;*/
-  padding: 0 7px;
+  padding: 0 10px;
 }
 
 .top-menu-2 {
@@ -367,9 +386,19 @@ a.cart-link:hover {
 @import 'css/import/_delimiter.scss';
 
 .product-category-list {
-  > .row div:last-child {
+  /*> .row div:last-child {
     text-align: right;
+  }*/
+
+  .row div {
+    text-align: center;
   }
+}
+
+.product-category-list .category-name {
+  font-size: 24px;
+  text-align: center;
+  padding: 20px 0;
 }
 
 .content {
@@ -409,7 +438,7 @@ a.cart-link:hover {
   font-size: 22px;
   color: #e51937;
   margin-bottom: 3px;
-  font-family: 'EB Garamond', serif;
+  /*font-family: 'EB Garamond', serif;*/
   font-weight: bold;
   text-transform: uppercase;
   font-style: normal;
@@ -495,7 +524,6 @@ a.cart-link:hover {
   border-color: #00244b;
   background: #00244b;
   color: #fff;
-
 }
 
 
@@ -519,6 +547,9 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   -webkit-appearance: button;
   cursor: pointer;
 }
+
+/* woocommerce */
+@import 'css/import/_woocommerce.scss';
 
 /* instagram gallery */
 @import 'css/import/_lifestyle.scss';

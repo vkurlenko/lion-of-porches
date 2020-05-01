@@ -51,6 +51,10 @@
     section.pitchbar {
         margin-top: 0;
     }
+
+    li.product {
+        width: 100% !important;
+    }
 }
 
 // Medium devices (tablets, less than 992px)
@@ -63,6 +67,10 @@
             max-width: 100%;
         }
     }
+
+    /*li.product {
+        width: 48%;
+    }*/
 }
 
 // Large devices (desktops, less than 1200px)

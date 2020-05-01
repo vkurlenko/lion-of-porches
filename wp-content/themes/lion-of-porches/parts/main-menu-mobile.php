@@ -1,9 +1,22 @@
 <div class="row visible-xs">
     <div class="main-menu mobile hidden">
 
-        <ul>
-            <li><a href="/catalog/">Женщины</a></li><li><a href="/catalog/">Мужчины</a></li><li><a href="/catalog/">Девочки</a></li><li><a href="/catalog/">Мальчики</a></li>
-        </ul>
+        <?php
+        $helper = new Helper();
+        $product_categories = $helper->getTopCategory();
+
+        if($product_categories):?>
+            <ul>
+                <?php
+                foreach ( $product_categories as $product_category ):?>
+                    <li><a class="btn-alt" href="<?= get_term_link($product_category) ?>"><?=$product_category->name?></a></li>
+                <?php
+                endforeach;
+                ?>
+            </ul>
+        <?
+        endif;
+        ?>
 
         <form>
             <div class="row open-search mobile">
@@ -17,12 +30,9 @@
             <div class="col-xs-6">
                 <?
                 $args = array(
-                    'menu'            => 'top-menu-1', // какое меню нужно вставить (по порядку: id, ярлык, имя)
+                    'menu' => 'top-menu-1', // какое меню нужно вставить (по порядку: id, ярлык, имя)
                 );
                 wp_nav_menu($args);?>
-                <!--<ul>
-                    <li><a href="/delivery/">Доставка</a></li><li><a href="/about/">О компании</a> </li>
-                </ul>-->
             </div>
             <div class="col-xs-6">
                 <ul>

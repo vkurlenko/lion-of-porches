@@ -5,7 +5,21 @@
  * @subpackage LionOfPorches
  */
 
+include 'Helper.php';
+$helper = new Helper();
+
 add_theme_support('title-tag'); // теперь тайтл управляется самим вп
+
+/** woocommerce */
+add_action( 'after_setup_theme', 'woocommerce_support' );
+function woocommerce_support() {
+    add_theme_support( 'woocommerce' );
+    add_theme_support( 'wc-product-gallery-zoom' );
+    add_theme_support( 'wc-product-gallery-lightbox' );
+    add_theme_support( 'wc-product-gallery-slider' );
+}
+//add_filter( 'woocommerce_enqueue_styles', '__return_false' );
+/** /woocommerce */
 
 register_nav_menus(array( // Регистрируем 2 меню
 	'top' => 'Верхнее', // Верхнее
@@ -172,5 +186,35 @@ function theme_add_scripts() {
     // подключаем js файл темы
     //wp_enqueue_script( 'slick-slider', get_template_directory_uri() . '/js/slick/slick.min.js', array('jquery'), '', true );
 }
+/******************/
+/* My Woocommerce */
+/******************/
+
+function woocommerce_template_loop_category_title($category ) {
+    ?>
+	<h2 class="woocommerce-loop-category__title">
+        <?php
+        echo esc_html( $category->name );
+
+        /*if ( $category->count > 0 ) {
+            echo apply_filters( 'woocommerce_subcategory_count_html', ' <mark class="count">(' . esc_html( $category->count ) . ')</mark>', $category ); // WPCS: XSS ok.
+        }*/
+        ?>
+	</h2>
+    <?php
+}
+
+add_filter( 'add_to_cart_text', 'woo_custom_single_add_to_cart_text' );                // < 2.1
+add_filter( 'woocommerce_product_single_add_to_cart_text', 'woo_custom_single_add_to_cart_text' );  // 2.1 +
+
+function woo_custom_single_add_to_cart_text() {
+
+    return __( "Купить", 'woocommerce' );
+
+}
+
+/*******************/
+/* /My Woocommerce */
+/*******************/
 
 ?>

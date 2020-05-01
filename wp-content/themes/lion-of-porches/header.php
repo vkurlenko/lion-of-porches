@@ -4,6 +4,8 @@
  * @package WordPress
  * @subpackage LionOfPorches
  */
+//include 'Helper.php';
+$helper = new Helper();
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); // вывод атрибутов языка ?>>
@@ -35,11 +37,28 @@
 
             <!-- top-left-block -->
             <div class="col-md-5 col-sm-5 col-xs-5 header-left hidden-xs" style="/*background: #ccc*/">
-                <div class="main-menu">
+                <?php
+                $product_categories = $helper->getTopCategory();
+                if($product_categories):?>
+                    <div class="main-menu">
+                        <ul>
+                            <?php
+                            foreach ( $product_categories as $product_category ):?>
+                                <li><a class="btn-alt" href="<?= get_term_link($product_category) ?>"><?=$product_category->name?></a></li>
+                            <?php
+                            endforeach;
+                            ?>
+                        </ul>
+                    </div>
+                <?
+                endif;
+                ?>
+
+                <!--<div class="main-menu">
                     <ul>
                         <li><a href="/catalog/">Женщины</a></li><li><a href="/catalog/">Мужчины</a></li><li><a href="/catalog/">Девочки</a></li><li><a href="/catalog/">Мальчики</a></li>
                     </ul>
-                </div>
+                </div>-->
 
                 <div class="open-search">
                     <form class="form-inline">
