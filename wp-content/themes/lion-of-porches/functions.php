@@ -213,6 +213,20 @@ function woo_custom_single_add_to_cart_text() {
 
 }
 
+remove_filter( 'woocommerce_product_tabs', 'woocommerce_default_product_tabs' );
+remove_filter( 'woocommerce_product_tabs', 'woocommerce_sort_product_tabs', 99 );
+
+
+/*add_filter('woocommerce_get_image_size_thumbnail','add_thumbnail_size',1,10);
+function add_thumbnail_size($size){
+
+    $size['width'] = 250;
+    $size['height'] = 300;
+    $size['crop']   = 0;
+    return $size;
+}*/
+
+
 /*******************/
 /* /My Woocommerce */
 /*******************/

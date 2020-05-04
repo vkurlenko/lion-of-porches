@@ -39,12 +39,16 @@ body {
   font-weight: 700;
   color: $body-color;
   /*background: #0eb5d6;*/
-  font-size: 18px;//14px/1.286em;
+  font-size: 20px;//14px/1.286em;
 }
 
 img {
   max-width: 100%;
   height: auto;
+}
+
+p {
+  line-height: 1.8;
 }
 
 .container {
@@ -62,6 +66,13 @@ header {
   }
 }
 
+h1 {
+  font-size: 50px;
+  font-weight: 600;
+  color: #00244b;
+  margin-bottom: 40px;
+}
+
 h2 {
   /*font-family: 'EB Garamond', serif;*/
  /* font-style: italic;*/
@@ -71,10 +82,21 @@ h2 {
   margin-bottom: 40px;
 }
 
+h3 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #00244b;
+  margin-bottom: 40px;
+}
+
 h4 {
   font-weight: 700;
   font-size: 16px;
   margin: 20px 0 5px;
+}
+
+textarea {
+  padding: 20px;
 }
 
 .btn-submit {
@@ -211,7 +233,7 @@ a.cart-link:hover {
   color: $color-deep-blue;
   padding: 3px 12px;
   display: block;
-  font-size: 1em;
+  font-size: 18px;
   font-weight: 700;
   text-transform: uppercase;
   /*font-family: 'DIN Pro Bold', sans-serif;
@@ -358,12 +380,13 @@ a.cart-link:hover {
 
 .btn-alt {
   display: inline-block;
-  color: #fff;
+  color: $color-deep-blue;
   border: 1px solid #fff;
   margin-top: 0;
   padding: 10px 16px;
   font-weight: bold;
   text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.6);
 }
 
 .btn-alt:hover {
@@ -412,7 +435,7 @@ a.cart-link:hover {
 }
 
 .carreiras p {
-  font-size: 14px;
+  /*font-size: 14px;*/
   line-height: 1.8;
   width: 90%;
   color: #5b7a9c;
@@ -449,7 +472,7 @@ a.cart-link:hover {
   /*height: 57px;*/
   margin-bottom: 15px;
   padding: 8px 0;
-  font-size: 12px;
+  /*font-size: 12px;*/
   position: relative;
   color: #00244b;
   width: 100%;
@@ -457,7 +480,9 @@ a.cart-link:hover {
 }
 
 .carreiras-form-wrapper input,
-.carreiras-form-wrapper textarea {
+.carreiras-form-wrapper textarea,
+.woocommerce-input-wrapper  input
+{
   -webkit-transition: all linear 0.2s;
   -moz-transition: all linear 0.2s;
   -ms-transition: all linear 0.2s;
@@ -468,7 +493,8 @@ a.cart-link:hover {
   /*padding-bottom: 18px;/*
   padding-bottom: 28px;*/
   height: 60px;
-  font-size: 16px;
+  font-size: 20px;
+  letter-spacing: .1em;
   font-weight: normal;
   color: #5b7a9c;
   outline: none;
@@ -491,7 +517,8 @@ a.cart-link:hover {
     line-height: 1.3em;
     padding: 10px 24px;
     border: 1px solid #eaedf0;
-    font-size: 1.077em;
+    font-size: 20px;
+    letter-spacing: .1em;
   }
 }
 

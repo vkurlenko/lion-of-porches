@@ -1,5 +1,6 @@
 // custom scripts
 $ = jQuery.noConflict();
+
 $(document).on('click', '.hamburger', function() {
     $('.threebar')
         .removeClass('hamburger')
@@ -45,3 +46,7 @@ $(document).ready(function() {
         ]
     });
 });
+
+$( 'body' ).on( 'change', '.qty', function() { // поле с количеством имеет класс .qty
+    $( '[name="update_cart"]' ).trigger( 'click' );
+} );

@@ -33,6 +33,12 @@ if ( post_password_required() ) {
 ?>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?>>
 
+    <div class="visible-xs">
+    <?php wc_get_template( 'single-product/title.php' );?>
+
+        <?php wc_get_template( 'single-product/price.php' );?>
+    </div>
+
 	<?php
 	/**
 	 * Hook: woocommerce_before_single_product_summary.
@@ -60,8 +66,23 @@ if ( post_password_required() ) {
 		 */
 		/* стоимость, выбор атрибутов, кнопка Купить */
 		do_action( 'woocommerce_single_product_summary' );
+
+        //$heading = apply_filters( 'woocommerce_product_description_heading', __( 'Description', 'woocommerce' ) );
 		?>
+        <?php /*if ( $heading ) : */?><!--
+            <h2><?php /*echo esc_html( $heading ); */?></h2>
+        --><?php /*endif; */?>
+
+        <p>
+        <?php the_content(); ?>
+        </p>
 	</div>
+
+    <!-- delimiter -->
+    <div class="page-sep col-xs-12">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAVCAMAAABxCz6aAAAAeFBMVEVMaXHeChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChpoOs6ZAAAAJ3RSTlMA8OCgMMBQEIBgcJALA0ywDHyXCIhAtQEuPeICavcYEnmHHg7ECqhJSmy5AAAAoklEQVR42m3Q2RKDIAwFUEpZq1ar3fc9//+HvYbMUGvvQyYcogwo5YkoVcQrTsbFPGNZE8X7Q2fkYNRx7fFijOEfXL8wovLojG7OYWFtA9RWMAUtMKj/OEFOv4i+LYqi7TEgtaCXK0iA2OyAXWBYYrlSnNcUGdw9fzvGGOORaF0maax90tvJns9jOHGM5izdrkpYyVtpvefBQQjZHsboN6n9AL9IGjFswE2+AAAAAElFTkSuQmCC" alt="Lion of Porches">
+    </div>
+    <!-- /delimiter -->
 
 	<?php
 	/**

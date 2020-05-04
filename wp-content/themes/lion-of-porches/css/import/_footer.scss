@@ -27,8 +27,9 @@ section.pitchbar .container > div h4 {
 }
 
 section.pitchbar .container > div p {
-    font-size: .929em;
+    font-size: 18px;
     margin: 0;
+    line-height: 1;
 }
 
 section.pitchbar .container>div h4:after {
@@ -46,7 +47,7 @@ section.pitchbar .container>div h4:after {
 footer {
     background: $color-background-footer;
     color: #fff;
-    font-size: .929em;
+    font-size: 18px;
     padding: 58px 0 16px;
 
     ul {

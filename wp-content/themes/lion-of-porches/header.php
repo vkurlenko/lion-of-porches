@@ -37,6 +37,8 @@ $helper = new Helper();
 
             <!-- top-left-block -->
             <div class="col-md-5 col-sm-5 col-xs-5 header-left hidden-xs" style="/*background: #ccc*/">
+
+                <!-- меню категорий товаров -->
                 <?php
                 $product_categories = $helper->getTopCategory();
                 if($product_categories):?>
@@ -53,13 +55,9 @@ $helper = new Helper();
                 <?
                 endif;
                 ?>
+                <!-- /меню категорий товаров -->
 
-                <!--<div class="main-menu">
-                    <ul>
-                        <li><a href="/catalog/">Женщины</a></li><li><a href="/catalog/">Мужчины</a></li><li><a href="/catalog/">Девочки</a></li><li><a href="/catalog/">Мальчики</a></li>
-                    </ul>
-                </div>-->
-
+                <!-- форма поиска -->
                 <div class="open-search">
                     <form class="form-inline">
                         <!--<input class="form-control" type="text" value="" placeholder="поиск">
@@ -72,6 +70,7 @@ $helper = new Helper();
 
                     </form>
                 </div>
+                <!-- /форма поиска -->
             </div>
             <!-- /top-left-block -->
 
@@ -113,13 +112,13 @@ $helper = new Helper();
                 <div class="top-menu-2 hidden-xs">
 
                     <ul>
-                        <li><a href="/catalog/">Каталоги</a></li><li><a href="/forpartners/">Партнерам</a></li><li><a href="#">Войти</a></li><li><a class="cart-link" href="#"><i class="fa fa-shopping-bag" aria-hidden="true"></i>&nbsp;<span class="count">(0)</span></a></li>
+                        <li><a href="/catalog/">Каталоги</a></li><li><a href="/forpartners/">Партнерам</a></li><li><a href="#">Войти</a></li><li><a class="cart-link" href="/cart/"><i class="fa fa-shopping-bag" aria-hidden="true"></i>&nbsp;<span class="count">(<?=count(WC()->cart->cart_contents)?>)</span></a></li>
                     </ul>
                 </div>
 
                 <div class="cart-mobile visible-xs">
                     <div>
-                        <a class="cart-link" href="#" ><i class="fa fa-shopping-bag" aria-hidden="true"></i>&nbsp;<span class="count">(0)</span></a>
+                        <a class="cart-link" href="/cart/" ><i class="fa fa-shopping-bag" aria-hidden="true"></i>&nbsp;<span class="count">(0)</span></a>
                         <div class='threebar hamburger'>
                             <div class='bar'></div>
                             <div class='bar'></div>
@@ -136,5 +135,16 @@ $helper = new Helper();
         <!-- /mobile menu -->
     </div>
 </header>
+
+<?php
+//$helper->createProduct2();
+/*$helper->dump(unserialize('a:2:{s:7:"pa_size";a:5:{s:4:"name";s:2:"xl";s:5:"value";s:0:"";s:10:"is_visible";s:1:"1";s:12:"is_variation";s:1:"1";s:11:"is_taxonomy";s:1:"1";}s:8:"pa_color";a:5:{s:4:"name";s:4:"blue";s:5:"value";s:0:"";s:10:"is_visible";s:1:"1";s:12:"is_variation";s:1:"1";s:11:"is_taxonomy";s:1:"1";}}'));
+$helper->dump(unserialize('a:2:{s:8:"pa_color";a:5:{s:4:"name";s:3:"red";s:5:"value";s:0:"";s:10:"is_visible";s:1:"1";s:12:"is_variation";s:1:"1";s:11:"is_taxonomy";s:1:"1";}s:7:"pa_size";a:5:{s:4:"name";s:2:"XL";s:5:"value";s:0:"";s:10:"is_visible";s:1:"1";s:12:"is_variation";s:1:"1";s:11:"is_taxonomy";s:1:"1";}}'));
+die;*/
+
+//$helper->createVarProduct();
+//$helper->getAttributes(); die;
+//$helper->createVarProductsFromFile(); //die;
+
 
 

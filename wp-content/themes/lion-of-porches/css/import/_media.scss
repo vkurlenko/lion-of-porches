@@ -16,6 +16,10 @@
         margin-left: 0;
     }
 
+    .content {
+        padding-top: 20px;
+    }
+
     .product-category-list {
         .row div {
             text-align: center !important;
@@ -54,6 +58,13 @@
 
     li.product {
         width: 100% !important;
+    }
+
+    .woocommerce form .form-row-first,
+    .woocommerce form .form-row-last,
+    .woocommerce-page form .form-row-first,
+    .woocommerce-page form .form-row-last {
+        width: 100%;
     }
 }
 

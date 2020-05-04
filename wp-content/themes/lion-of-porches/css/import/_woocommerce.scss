@@ -85,6 +85,8 @@
     position: absolute;
     top: 0;
     left: 10px;
+    width: 25%;
+    max-width: 100px;
 }
 
 .woocommerce div.product div.images .flex-control-thumbs li {
@@ -137,7 +139,10 @@
     font-size: 2em;
 }
 
-.single_add_to_cart_button {
+.single_add_to_cart_button,
+/*.wc-forward,*/
+button[name='woocommerce_checkout_place_order'],
+#submit_wc_robokassa_payment_form{
     background-color: $color-text-red !important;
     border-radius: 0 !important;
     text-align: center;
@@ -176,8 +181,16 @@
     color: $color-text-red;
 }
 
-.woocommerce-message {
+.woocommerce-info::before {
+    content: "\e028";
+    color: $color-text-red;
+}
+
+.woocommerce-message,
+.woocommerce-info,
+.woocommerce-error {
     border-top-color: $color-text-red !important;
+    background: #fff !important;
 }
 .woocommerce-message,
 .woocommerce-error,
@@ -197,10 +210,11 @@
 /*.woocommerce a.button,
 .woocommerce button.button,
 .woocommerce input.button,*/
-.wc-forward {
-    /*border-color: #00244b;*/
+.wc-forward,
+#wc_robokassa_payment_form .button.cancel{
+    border-color: #00244b;
     background: none !important;
-    color: #00244b;
+    color: $color-deep-blue !important;
     /* margin-top: 25px; */
     border: 1px solid $color-deep-blue  !important;
     border-radius: 0  !important;
@@ -214,6 +228,7 @@
     -ms-transition: all linear 0.2s;
     -o-transition: all linear 0.2s;
     transition: all linear 0.2s;
+    outline: none;
 }
 
 .woocommerce a.button:hover,
@@ -223,3 +238,88 @@
     background: $color-deep-blue !important;
     color: #fff !important;
 }
+
+/* картинка товара в корзине */
+.woocommerce-cart table.cart img,
+.woocommerce-checkout table.cart img,
+#add_payment_method table.cart img {
+    max-width: 100px;
+    width: 100%;
+}
+
+/* иконка Удалить из корзины */
+.woocommerce a.remove {
+    font-size: 1.5em;
+    text-align: center;
+    line-height: 1;
+    color: $color-deep-blue !important;
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: normal;
+    border-radius: 0;
+    padding: 3px 7px;
+    width: auto;
+    height: auto;
+    display: inline-block;
+    border: 1px solid $color-deep-blue;
+}
+
+.woocommerce a.remove:hover {
+    background: $color-deep-blue !important;
+    color: #fff !important;
+    -webkit-transition: all linear 0.2s;
+    -moz-transition: all linear 0.2s;
+    -ms-transition: all linear 0.2s;
+    -o-transition: all linear 0.2s;
+    transition: all linear 0.2s;
+}
+
+.product-remove {
+    text-align: center;
+}
+
+/* разделитель блоков в карточке товара */
+.product .page-sep {
+    padding: 0;
+}
+
+/* спрячем кнопку Обновить корзину */
+.woocommerce .cart .button[name = 'update_cart'] {
+    display: none;
+}
+
+/* подсветка валидных полей формы заказа */
+.woocommerce form .form-row.woocommerce-validated .select2-container,
+.woocommerce form .form-row.woocommerce-validated input.input-text,
+.woocommerce form .form-row.woocommerce-validated select {
+    border: 1px solid $color-deep-blue;
+}
+
+.woocommerce form .form-row.woocommerce-invalid .select2-container,
+.woocommerce form .form-row.woocommerce-invalid input.input-text,
+.woocommerce form .form-row.woocommerce-invalid select {
+    border: 1px solid red;
+}
+
+.woocommerce-cart #payment,
+.woocommerce-checkout #payment,
+#add_payment_method #payment {
+    background: none;
+    /*border-radius: 5px;*/
+}
+
+.woocommerce form .form-row input.input-text,
+.woocommerce form .form-row textarea,
+.woocommerce-cart table.cart input,
+.woocommerce-checkout table.cart input,
+#add_payment_method table.cart input{
+    border: 1px solid #eaedf0;
+}
+
+.woocommerce form .form-row label,
+.woocommerce-page form .form-row label,
+#order_review_heading {
+    font-weight: 700;
+   color: $color-deep-blue
+}
+
