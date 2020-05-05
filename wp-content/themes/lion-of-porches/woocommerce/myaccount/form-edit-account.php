@@ -51,11 +51,13 @@ do_action( 'woocommerce_before_edit_account_form' ); ?>
 			<label for="password_current"><?php esc_html_e( 'Current password (leave blank to leave unchanged)', 'woocommerce' ); ?></label>
 			<input type="password" class="woocommerce-Input woocommerce-Input--password input-text" name="password_current" id="password_current" autocomplete="off" />
 		</p>
-		<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+		<!--<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">-->
+        <p class="woocommerce-form-row woocommerce-form-row--first form-row form-row-first">
 			<label for="password_1"><?php esc_html_e( 'New password (leave blank to leave unchanged)', 'woocommerce' ); ?></label>
 			<input type="password" class="woocommerce-Input woocommerce-Input--password input-text" name="password_1" id="password_1" autocomplete="off" />
 		</p>
-		<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+		<!--<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">-->
+        <p class="woocommerce-form-row woocommerce-form-row--last form-row form-row-last">
 			<label for="password_2"><?php esc_html_e( 'Confirm new password', 'woocommerce' ); ?></label>
 			<input type="password" class="woocommerce-Input woocommerce-Input--password input-text" name="password_2" id="password_2" autocomplete="off" />
 		</p>

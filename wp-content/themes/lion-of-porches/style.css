@@ -164,11 +164,15 @@ a.cart-link:hover {
     .cart-mobile > div a {
       font-size: 20px; }
 
-.main-menu ul, .top-menu-1 ul, .top-menu-2 ul {
+.main-menu ul,
+.top-menu-1 ul,
+.top-menu-2 ul {
   padding-left: 0;
   margin-bottom: 0; }
 
-.main-menu ul li, .top-menu-1 ul li, .top-menu-2 ul li {
+.main-menu ul li,
+.top-menu-1 ul li,
+.top-menu-2 ul li {
   list-style: none;
   display: inline-block; }
 
@@ -402,22 +406,28 @@ a.cart-link:hover {
 
 .carreiras-form-wrapper input,
 .carreiras-form-wrapper textarea,
-.woocommerce-input-wrapper input {
+.woocommerce-input-wrapper input,
+.woocommerce-Input,
+.woocommerce-Button,
+.woocommerce-button {
   -webkit-transition: all linear 0.2s;
   -moz-transition: all linear 0.2s;
   -ms-transition: all linear 0.2s;
   -o-transition: all linear 0.2s;
   transition: all linear 0.2s;
   width: 100%;
-  padding: 18px 25px;
+  padding: 18px 25px !important;
   /*padding-bottom: 18px;/*
   padding-bottom: 28px;*/
   height: 60px;
-  font-size: 20px;
+  font-size: 20px !important;
   letter-spacing: .1em;
   font-weight: normal;
   color: #5b7a9c;
-  outline: none; }
+  outline: none;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important; }
 
 .carreiras-form-wrapper textarea {
   height: 80px; }
@@ -446,19 +456,23 @@ a.cart-link:hover {
   -o-transition: all linear 0.2s;
   transition: all linear 0.2s; }
 
-.carreiras-form-wrapper input[type="submit"] {
-  border-color: #00244b;
-  background: none;
+.carreiras-form-wrapper input[type="submit"],
+.woocommerce-Button,
+.woocommerce-button {
+  /*border-color: #00244b !important;*/
+  background: none !important;
   color: #00244b;
   /*margin-top: 25px;*/
-  border-width: 1px;
+  border: 1px solid #00244b !important;
   padding: 12px 20px;
   width: auto;
   float: right;
   height: auto;
   font-weight: bold; }
 
-.carreiras-form-wrapper input[type="submit"]:hover {
+.carreiras-form-wrapper input[type="submit"]:hover,
+.woocommerce-Button:hover,
+.woocommerce-button:hover {
   border-color: #00244b;
   background: #00244b;
   color: #fff; }
@@ -689,7 +703,8 @@ button[name='woocommerce_checkout_place_order'],
   -ms-transition: all linear 0.2s;
   -o-transition: all linear 0.2s;
   transition: all linear 0.2s;
-  outline: none; }
+  outline: none;
+  text-align: center; }
 
 .woocommerce a.button:hover,
 .woocommerce button.button:hover,
@@ -750,7 +765,7 @@ button[name='woocommerce_checkout_place_order'],
 .woocommerce form .form-row.woocommerce-invalid .select2-container,
 .woocommerce form .form-row.woocommerce-invalid input.input-text,
 .woocommerce form .form-row.woocommerce-invalid select {
-  border: 1px solid red; }
+  border: 1px solid #e11f26; }
 
 .woocommerce-cart #payment,
 .woocommerce-checkout #payment,
@@ -771,10 +786,50 @@ button[name='woocommerce_checkout_place_order'],
   font-weight: 700;
   color: #00244b; }
 
+/* символ рубля */
 .woocommerce-Price-currencySymbol {
   display: inline-block;
   width: 1em;
   text-align: left; }
+
+.woocommerce-MyAccount-navigation ul {
+  padding-left: 0;
+  margin-bottom: 0;
+  padding-bottom: 20px; }
+
+.woocommerce-MyAccount-navigation ul li {
+  list-style: none;
+  display: block;
+  padding: 10px;
+  border-top: 1px solid #d6dce2;
+  border-left: 4px solid #fff; }
+  .woocommerce-MyAccount-navigation ul li a {
+    display: block; }
+  .woocommerce-MyAccount-navigation ul li.is-active {
+    border-left: 4px solid #e11f26; }
+    .woocommerce-MyAccount-navigation ul li.is-active a {
+      color: #00244b; }
+
+.woocommerce-EditAccountForm fieldset {
+  margin-top: 20px; }
+
+.woocommerce table.shop_table {
+  border-radius: 0 !important; }
+
+#billing_phone_field,
+#billing_email_field {
+  width: 48%;
+  clear: none;
+  float: left; }
+
+#billing_email_field {
+  float: right; }
+
+.woocommerce ul.order_details li {
+  color: #00244b;
+  border-color: #d6dce2; }
+  .woocommerce ul.order_details li strong {
+    color: #e11f26; }
 
 /* instagram gallery */
 .lifestyle h2 {
@@ -1136,8 +1191,17 @@ footer {
   .woocommerce form .form-row-first,
   .woocommerce form .form-row-last,
   .woocommerce-page form .form-row-first,
-  .woocommerce-page form .form-row-last {
-    width: 100%; } }
+  .woocommerce-page form .form-row-last,
+  #billing_phone_field,
+  #billing_email_field {
+    width: 100%; }
+
+  .woocommerce-thankyou-order-details {
+    padding-left: 0; }
+    .woocommerce-thankyou-order-details li {
+      float: none !important;
+      margin-bottom: 10px;
+      border: 0 !important; } }
 @media (max-width: 991.98px) {
   .logo h1 a {
     left: auto;

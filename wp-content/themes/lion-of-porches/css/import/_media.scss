@@ -63,8 +63,20 @@
     .woocommerce form .form-row-first,
     .woocommerce form .form-row-last,
     .woocommerce-page form .form-row-first,
-    .woocommerce-page form .form-row-last {
+    .woocommerce-page form .form-row-last,
+    #billing_phone_field,
+    #billing_email_field {
         width: 100%;
+    }
+
+    .woocommerce-thankyou-order-details {
+        padding-left: 0;
+
+        li {
+            float: none !important;
+            margin-bottom: 10px;
+            border: 0 !important;
+        }
     }
 }
 

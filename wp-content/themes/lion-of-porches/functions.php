@@ -226,6 +226,36 @@ function add_thumbnail_size($size){
     return $size;
 }*/
 
+add_filter ( 'woocommerce_account_menu_items', 'my_account_links' );
+function my_account_links( $menu_links ){
+
+    //unset( $menu_links['edit-address'] ); // Addresses
+    unset( $menu_links['dashboard'] ); // Dashboard
+    //unset( $menu_links['payment-methods'] ); // Payment Methods
+    //unset( $menu_links['orders'] ); // Orders
+    unset( $menu_links['downloads'] ); // Downloads
+    //unset( $menu_links['edit-account'] ); // Account details
+    //unset( $menu_links['customer-logout'] ); // Logout
+
+    return $menu_links;
+}
+
+add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
+
+// Our hooked in function - $fields is passed via the filter!
+function custom_override_checkout_fields( $fields ) {
+
+    unset($fields['billing']['billing_company']); // удаляем Название компании
+    //unset($fields['billing']['billing_postcode']); // удаляем Индекс
+    //unset($fields['billing']['billing_city']); // удаляем Населённый пункт
+    unset($fields['billing']['billing_country']); // удаляем поле Страна
+    unset($fields['billing']['billing_address_2']); // удаляем второе поле Адрес
+
+    /*$fields['billing']['billing_address_1']['label'] = 'Номер отделения Новой Почты'; // меняем Адрес
+    $fields['billing']['billing_address_1']['placeholder'] = ' '; // в поле Адрес оставляем пустым*/
+    return $fields;
+}
+
 
 /*******************/
 /* /My Woocommerce */

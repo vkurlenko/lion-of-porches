@@ -229,6 +229,7 @@ button[name='woocommerce_checkout_place_order'],
     -o-transition: all linear 0.2s;
     transition: all linear 0.2s;
     outline: none;
+    text-align: center;
 }
 
 .woocommerce a.button:hover,
@@ -298,7 +299,7 @@ button[name='woocommerce_checkout_place_order'],
 .woocommerce form .form-row.woocommerce-invalid .select2-container,
 .woocommerce form .form-row.woocommerce-invalid input.input-text,
 .woocommerce form .form-row.woocommerce-invalid select {
-    border: 1px solid red;
+    border: 1px solid $color-text-red;
 }
 
 .woocommerce-cart #payment,
@@ -323,9 +324,65 @@ button[name='woocommerce_checkout_place_order'],
    color: $color-deep-blue
 }
 
+/* символ рубля */
 .woocommerce-Price-currencySymbol {
     display: inline-block;
     width: 1em;
     text-align: left;
 }
+
+.woocommerce-MyAccount-navigation ul {
+    padding-left: 0;
+    margin-bottom: 0;
+    padding-bottom: 20px;
+}
+
+.woocommerce-MyAccount-navigation ul li {
+    list-style: none;
+    display: block;
+    padding: 10px;
+    border-top: 1px solid $color-border;
+    border-left: 4px solid #fff;
+
+    a {
+        display: block;
+    }
+
+    &.is-active {
+        border-left: 4px solid $color-text-red;
+
+        a{
+            color: $color-deep-blue;
+        }
+    }
+}
+
+.woocommerce-EditAccountForm fieldset {
+    margin-top: 20px;
+}
+
+.woocommerce table.shop_table {
+    border-radius: 0 !important;
+}
+
+#billing_phone_field,
+#billing_email_field {
+    width: 48%;
+    clear: none;
+    float: left;
+}
+
+#billing_email_field {
+    float: right;
+}
+
+.woocommerce ul.order_details li {
+    color: $color-deep-blue;
+    border-color: $color-border;
+
+    strong {
+        color: $color-text-red;
+    }
+}
+
 
