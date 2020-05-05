@@ -771,6 +771,11 @@ button[name='woocommerce_checkout_place_order'],
   font-weight: 700;
   color: #00244b; }
 
+.woocommerce-Price-currencySymbol {
+  display: inline-block;
+  width: 1em;
+  text-align: left; }
+
 /* instagram gallery */
 .lifestyle h2 {
   font-family: 'Raleway', sans-serif;

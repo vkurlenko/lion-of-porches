@@ -323,3 +323,9 @@ button[name='woocommerce_checkout_place_order'],
    color: $color-deep-blue
 }
 
+.woocommerce-Price-currencySymbol {
+    display: inline-block;
+    width: 1em;
+    text-align: left;
+}
+
