@@ -224,7 +224,7 @@ textarea {
  }
 
 .btn-alt.active {
-  /*color: red;*/
+  color: $color-text-red;
 }
 .btn-alt.active::after {
   height: 35px;

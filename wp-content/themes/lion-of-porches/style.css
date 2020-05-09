@@ -169,7 +169,7 @@ textarea {
     position: relative; }
 
 .btn-alt.active {
-  /*color: red;*/ }
+  color: #e11f26; }
 
 .btn-alt.active::after {
   height: 35px;
