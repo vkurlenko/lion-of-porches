@@ -18,13 +18,14 @@
         endif;
         ?>
 
-        <form>
+        <!--<form>
             <div class="row open-search mobile">
                 <div class="col-xs-6"><input type="text" value="" placeholder="поиск"></div>
-                <div class="col-xs-6  btn-search"><input type="submit" value="Найти" class="btn btn-primary btn-submit"></div>
+                <div class="col-xs-6  btn-search"><input type="submit" value="Найти" class="btn btn-primary btn-submit"></div>-->
                 <!--<span class="glyphicon glyphicon-search" aria-hidden="true"></span>-->
-            </div>
-        </form>
+            <!--</div>
+        </form>-->
+        <?php echo do_shortcode('[wcas-search-form]'); ?>
 
         <div class="row">
             <div class="col-xs-6">

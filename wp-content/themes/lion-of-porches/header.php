@@ -86,16 +86,10 @@ $helper = new Helper();
 
                 <!-- форма поиска -->
                 <div class="open-search">
-                    <form class="form-inline">
-                        <!--<input class="form-control" type="text" value="" placeholder="поиск">
-                        <i class="fa fa-search" aria-hidden="true"></i>-->
-
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="" placeholder="поиск">
-                            <div class="input-group-addon"><button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button></div>
-                        </div>
-
-                    </form>
+                    <?php
+                    //get_search_form();
+                    ?>
+                    <?php echo do_shortcode('[wcas-search-form]'); ?>
                 </div>
                 <!-- /форма поиска -->
             </div>
@@ -172,7 +166,7 @@ die;*/
 
 //$helper->createVarProduct();
 //$helper->getAttributes(); die
-$helper->createVarProductsFromFile(); //die;
+//$helper->createVarProductsFromFile(); //die;
     ?>
     </div>
 
