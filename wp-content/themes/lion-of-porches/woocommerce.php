@@ -10,7 +10,9 @@ get_header(); // подключаем header.php ?>
 	<div class="container">
 		<div class="row">
             <div class="col-md-12 content">
-
+                <?php
+                woocommerce_breadcrumb();
+                ?>
                <?php woocommerce_content();?>
             </div>
 		</div>

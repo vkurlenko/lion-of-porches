@@ -6,6 +6,10 @@
  */
 //include 'Helper.php';
 $helper = new Helper();
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); // вывод атрибутов языка ?>>
@@ -46,8 +50,31 @@ $helper = new Helper();
                         <ul>
                             <?php
                             foreach ( $product_categories as $product_category ):?>
-                                <li><a class="btn-alt" href="<?= get_term_link($product_category) ?>"><?=$product_category->name?></a></li>
+                                <li><a class="btn-alt" data-subcategory="<?=$product_category->slug?>"  href="<?=get_term_link($product_category) ?>"><?=$product_category->name?></a>
+
+                                    <div class="container-fluid sub-menu ">
+                                        <!-- 121 38 39 40 -->
+                                        <!-- woman -->
+                                        <!--<div class="<?/*=$product_category->slug*/?> hidden container">-->
+                                        <div class="<?=$product_category->slug?> hidden container">
+                                            <?php
+                                            $helper->getSabCategoryTree($product_category->term_id);
+                                            ?>
+                                        </div>
+                                        <!-- /woman -->
+
+                                        <!-- man -->
+                                        <!--<div class="for-man ">
+                                            <?php
+/*                                            $helper->getSabCategoryTree(38);
+                                            */?>
+                                        </div>-->
+                                        <!-- /man -->
+
+                                    </div>
+                                </li>
                             <?php
+                            //break;
                             endforeach;
                             ?>
                         </ul>
@@ -136,6 +163,7 @@ $helper = new Helper();
     </div>
 </header>
 
+    <div style="font-size: 16px">
 <?php
 //$helper->createProduct2();
 /*$helper->dump(unserialize('a:2:{s:7:"pa_size";a:5:{s:4:"name";s:2:"xl";s:5:"value";s:0:"";s:10:"is_visible";s:1:"1";s:12:"is_variation";s:1:"1";s:11:"is_taxonomy";s:1:"1";}s:8:"pa_color";a:5:{s:4:"name";s:4:"blue";s:5:"value";s:0:"";s:10:"is_visible";s:1:"1";s:12:"is_variation";s:1:"1";s:11:"is_taxonomy";s:1:"1";}}'));
@@ -143,8 +171,10 @@ $helper->dump(unserialize('a:2:{s:8:"pa_color";a:5:{s:4:"name";s:3:"red";s:5:"va
 die;*/
 
 //$helper->createVarProduct();
-//$helper->getAttributes(); die;
-//$helper->createVarProductsFromFile(); //die;
+//$helper->getAttributes(); die
+$helper->createVarProductsFromFile(); //die;
+    ?>
+    </div>
 
 
 

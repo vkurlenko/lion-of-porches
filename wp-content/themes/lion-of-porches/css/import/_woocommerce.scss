@@ -20,6 +20,7 @@
 }
 
 .btn-quickview {
+    font-family: 'DIN Pro', sans-serif;
     display: block !important;
     opacity: 0;
     width: 50%;
@@ -68,6 +69,7 @@
 .woocommerce div.product div.images.woocommerce-product-gallery {
     padding: 20px;
     border: 1px solid $color-border-product;
+    overflow: hidden;
 }
 
 .woocommerce div.product div.images .woocommerce-product-gallery__trigger {
@@ -86,7 +88,7 @@
     top: 0;
     left: 10px;
     width: 25%;
-    max-width: 100px;
+    max-width: 60px;//100px;
 }
 
 .woocommerce div.product div.images .flex-control-thumbs li {
@@ -385,4 +387,10 @@ button[name='woocommerce_checkout_place_order'],
     }
 }
 
+.woocommerce-breadcrumb,
+.woocommerce-breadcrumb a {
+    font-family: "Raleway Light";
+    font-size: 12px !important;
+    color: $color-deep-blue !important;
+}
 
