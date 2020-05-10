@@ -39,6 +39,9 @@ body {
   /*background: #0eb5d6;*/
   font-size: 20px; }
 
+a {
+  outline: none !important; }
+
 img {
   max-width: 100%;
   height: auto; }
@@ -46,6 +49,9 @@ img {
 p {
   line-height: 1.8;
   font-size: 18px; }
+
+select {
+  font-size: 14px; }
 
 .container {
   /**/ }
@@ -650,7 +656,7 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   color: #0d2f54 !important;
   padding: 14px !important;
   position: absolute !important;
-  bottom: 30%;
+  bottom: 35%;
   left: 50% !important;
   text-transform: uppercase;
   cursor: pointer;
@@ -715,29 +721,48 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   color: #e11f26;
   font-size: 2em; }
 
+.flash-tags {
+  position: absolute;
+  text-align: center;
+  top: 0;
+  left: auto;
+  right: 0; }
+  .flash-tags a, .flash-tags a:hover {
+    text-decoration: none !important; }
+
 .woocommerce ul.products li.product .onsale {
   top: 0;
   right: 0;
   left: auto;
-  /*margin: 0;*/ }
+  margin: 0 !important; }
 
-.woocommerce span.onsale {
+.woocommerce span.onsale,
+.woocommerce span.new-arrival,
+.prod-tag {
   min-height: 3.236em;
   min-width: 3.236em;
   padding: 0.202em;
   font-size: 1em;
   font-weight: 700;
-  position: absolute;
+  position: unset !important;
   text-align: center;
   line-height: 3.236;
-  top: -0.5em;
-  left: -0.5em;
+  display: block;
+  /*top: -0.5em;
+  left: -0.5em;*/
   margin: 0;
   border-radius: 0;
   background-color: #e11f26;
   color: white;
-  font-size: 0.857em;
-  z-index: 9; }
+  z-index: 9;
+  font-family: "Raleway Light";
+  font-size: 12px; }
+
+.woocommerce span.new-arrival {
+  background-color: #00244b; }
+
+.woocommerce span.special-offer {
+  background-color: #5b7a9c; }
 
 .product-page .product-details .product-variations .buy-button-box {
   margin: 20px 0 50px;
@@ -966,8 +991,23 @@ button[name='woocommerce_checkout_place_order'],
 ul.products li.product a img {
   margin: 0 !important; }
 
+/* артикул на карточке товара */
 .woocommerce-LoopProduct-link span.art {
   font-size: 14px; }
+
+/* цена со скидкой */
+.woocommerce .price ins {
+  text-decoration: none; }
+
+/* старая цена */
+.woocommerce .price del {
+  opacity: 1 !important;
+  font-size: .7em;
+  color: #5b7a9c !important;
+  display: block !important; }
+
+.product img {
+  width: 100%; }
 
 /* instagram gallery */
 .lifestyle h2 {

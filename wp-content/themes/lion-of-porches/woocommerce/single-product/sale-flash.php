@@ -22,6 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $post, $product;
 
 ?>
+<div class="flash-tags">
 <?php if ( $product->is_on_sale() ) : ?>
 
 	<?php echo apply_filters( 'woocommerce_sale_flash', '<span class="onsale">' . esc_html__( 'Sale!', 'woocommerce' ) . '</span>', $post, $product ); ?>
@@ -30,3 +31,14 @@ global $post, $product;
 endif;
 
 /* Omit closing PHP tag at the end of PHP files to avoid "headers already sent" issues. */
+$posttags = get_the_terms( $product->get_id(), 'product_tag' );
+
+if($posttags) {
+    foreach($posttags as $tag) {
+        ?>
+        <?php echo apply_filters( 'woocommerce_sale_flash', '<a href="/product-tag/'.$tag->slug.'/"><span class="prod-tag '.$tag->slug.'">'.$tag->name.'</span></a>', $post, $product ); ?>
+        <?php
+    }
+}
+?>
+</div>

@@ -53,4 +53,8 @@ $wrapper_classes   = apply_filters(
 		do_action( 'woocommerce_product_thumbnails' );
 		?>
 	</figure>
+
+    <?php
+    wc_get_template( 'single-product/sale-flash.php' );
+    ?>
 </div>

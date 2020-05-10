@@ -58,6 +58,10 @@ body {
   font-size: 20px;//14px/1.286em;
 }
 
+a{
+  outline: none !important;
+}
+
 img {
   max-width: 100%;
   height: auto;
@@ -66,6 +70,10 @@ img {
 p {
   line-height: 1.8;
   font-size: 18px;
+}
+
+select {
+  font-size: 14px;
 }
 
 .container {
