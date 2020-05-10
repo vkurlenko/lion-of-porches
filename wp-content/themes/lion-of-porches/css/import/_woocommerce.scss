@@ -394,3 +394,11 @@ button[name='woocommerce_checkout_place_order'],
     color: $color-deep-blue !important;
 }
 
+ul.products li.product a img {
+     margin: 0 !important;
+}
+
+.woocommerce-LoopProduct-link span.art {
+    font-size: 14px;
+}
+

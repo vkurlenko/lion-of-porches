@@ -213,6 +213,13 @@ function woo_custom_single_add_to_cart_text() {
 
 }
 
+function woocommerce_template_loop_product_title() {
+    global $product;
+    //var_dump($product); die;
+    $sku = explode('.', $product->get_sku());
+    echo  '<span class="art">'.$sku[0].'</span>'.'<h1 class="' . esc_attr( apply_filters( 'woocommerce_product_loop_title_classes', 'woocommerce-loop-product__title' ) ) . '">' . get_the_title() . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+}
+
 remove_filter( 'woocommerce_product_tabs', 'woocommerce_default_product_tabs' );
 remove_filter( 'woocommerce_product_tabs', 'woocommerce_sort_product_tabs', 99 );
 

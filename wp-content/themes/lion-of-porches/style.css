@@ -963,6 +963,12 @@ button[name='woocommerce_checkout_place_order'],
   font-size: 12px !important;
   color: #00244b !important; }
 
+ul.products li.product a img {
+  margin: 0 !important; }
+
+.woocommerce-LoopProduct-link span.art {
+  font-size: 14px; }
+
 /* instagram gallery */
 .lifestyle h2 {
   font-family: 'Raleway', sans-serif;

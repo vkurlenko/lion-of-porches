@@ -101,6 +101,9 @@ class Helper
         return $arr;
     }
 
+    /**
+     *  Загрузка каталога товаров из текстового файла
+     */
     public function createVarProductsFromFile()
     {
         return;
@@ -113,24 +116,25 @@ class Helper
 
         foreach($f as $str) {
 
+            // пропустим пустые строки
             if(trim($str) == '') {
                 continue;
             }
 
             // разберем строку на элементы массива
             $item = explode('|', $str);
-            $item_data = explode(' ', $item[9]);
+            $item_data = explode(' ', $item[9]); // L101052038	 M	 580	 SS20
 
-            // с 0 по 3 элемент - дерево ID категорий
+            // с 0 по 3 элемент - дерево названий категорий
             $item_tree = array_slice($item, 0, 4);
 
-            // создадим дерево катгорий и получим ID категории вариативного товара
-            //echo $this->dump($item_tree).'<br>';
-            $parent_cat = $this->createCategoryTree($item_tree, 0);
+            // создадим дерево категорий и получим массив ID категорий товара
+            $parent_cats = $this->createCategoryTree($item_tree, 0);
+            $this->dump($parent_cats);
 
             // добавим позицию в массив с привязкой к артикулу
             $arr[$item[5]][] = [
-                'cat'           => $item_tree,
+                'cat'           => $parent_cats,//$item_tree,
                 //'sku'           => $item[5].'.'.$item_data[2],
                 'sku'           => $item[5],
                 'post_title'    => $item[7],
@@ -163,6 +167,7 @@ class Helper
 
         //$this->dump($arr); //die;
 
+        // создадим вариативные товары
         foreach($arr as $sku) {
             $this->createVarProduct($sku); //die;
         }
@@ -175,7 +180,7 @@ class Helper
     {
         global $wpdb;
 
-        //$this->dump($sku); return; //die;
+        //$this->dump($sku); //return; //die;
 
         $data = $sku[0];
         $cats = $data['cat'];
@@ -229,7 +234,8 @@ class Helper
         );
 
         update_post_meta( $new_post_id,'_product_attributes', $thedata);
-        update_post_meta( $new_post_id, '_sku', $data['sku'].'.'.$data['data'][2]);
+        //update_post_meta( $new_post_id, '_sku', $data['sku'].'.'.$data['data'][2]);
+        update_post_meta( $new_post_id, '_sku', $data['sku']);
         update_post_meta( $new_post_id, '_visibility', 'visible' );
 
         $i = 1;
@@ -304,6 +310,7 @@ class Helper
      */
     public function createCategoryTree($tree = [], $ParentCatID = 0)
     {
+        $arr_tree = [];
         foreach($tree as $level) {
             //echo $level.'<br>';
 //$this->dump($ParentCatID);
@@ -325,10 +332,11 @@ class Helper
             //echo '<br>';
 
             $ParentCatID = $cat_id;
+            $arr_tree[] = $ParentCatID;
             //echo $ParentCatID.'<br>';
         }
 
-        return $cat_id;
+        return $arr_tree;//$cat_id;
     }
 
     /**

@@ -158,15 +158,8 @@ $helper = new Helper();
 </header>
 
     <div style="font-size: 16px">
-<?php
-//$helper->createProduct2();
-/*$helper->dump(unserialize('a:2:{s:7:"pa_size";a:5:{s:4:"name";s:2:"xl";s:5:"value";s:0:"";s:10:"is_visible";s:1:"1";s:12:"is_variation";s:1:"1";s:11:"is_taxonomy";s:1:"1";}s:8:"pa_color";a:5:{s:4:"name";s:4:"blue";s:5:"value";s:0:"";s:10:"is_visible";s:1:"1";s:12:"is_variation";s:1:"1";s:11:"is_taxonomy";s:1:"1";}}'));
-$helper->dump(unserialize('a:2:{s:8:"pa_color";a:5:{s:4:"name";s:3:"red";s:5:"value";s:0:"";s:10:"is_visible";s:1:"1";s:12:"is_variation";s:1:"1";s:11:"is_taxonomy";s:1:"1";}s:7:"pa_size";a:5:{s:4:"name";s:2:"XL";s:5:"value";s:0:"";s:10:"is_visible";s:1:"1";s:12:"is_variation";s:1:"1";s:11:"is_taxonomy";s:1:"1";}}'));
-die;*/
-
-//$helper->createVarProduct();
-//$helper->getAttributes(); die
-//$helper->createVarProductsFromFile(); //die;
+    <?php
+    //$helper->createVarProductsFromFile(); //die;
     ?>
     </div>
 
