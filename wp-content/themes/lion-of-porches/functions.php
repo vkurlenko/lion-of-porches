@@ -113,7 +113,7 @@ if (!function_exists('add_scripts')) { // если ф-я уже есть в до
 	    wp_enqueue_script('jquery','//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js','','',true); // добавляем свой
 	    wp_enqueue_script('bootstrap', get_template_directory_uri().'/js/bootstrap.min.js','','',true); // бутстрап
         wp_enqueue_script('slick-slider', get_template_directory_uri() . '/js/slick/slick.min.js', '', '', true );
-	    wp_enqueue_script('main', get_template_directory_uri().'/js/main.js','jquery','',true); // и скрипты шаблона
+	    wp_enqueue_script('main', get_template_directory_uri().'/js/main.js','jquery','1',true); // и скрипты шаблона
 	}
 }
 
@@ -123,7 +123,7 @@ if (!function_exists('add_styles')) { // если ф-я уже есть в до�
 	    if(is_admin()) return false; // если мы в админке - ничего не делаем
 	    wp_enqueue_style( 'bs', get_template_directory_uri().'/css/bootstrap.min.css' ); // бутстрап
         //wp_enqueue_style( 'fontawesome', 'https://use.fontawesome.com/releases/v5.0.13/css/all.css' );
-		wp_enqueue_style( 'main', get_template_directory_uri().'/style.css' ); // основные стили шаблона
+		wp_enqueue_style( 'main', get_template_directory_uri().'/style.css', '', '1' ); // основные стили шаблона
         wp_enqueue_style( 'slick-style', get_template_directory_uri() . '/js/slick/slick.css' );
         wp_enqueue_style( 'slick-style-theme', get_template_directory_uri() . '/js/slick/slick-theme.css' );
 	}
@@ -267,5 +267,9 @@ function custom_override_checkout_fields( $fields ) {
 /*******************/
 /* /My Woocommerce */
 /*******************/
+
+function createuser() {
+    //$user_id = register_new_user( 'vkurlenko2', 'vkurlenko@ya2.ru' );
+}
 
 ?>
