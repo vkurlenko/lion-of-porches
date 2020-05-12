@@ -1253,7 +1253,7 @@ section.pitchbar .container > div p {
 
 section.pitchbar .container > div h4:after {
   content: '';
-  width: 6%;
+  width: 10%;
   height: 1px;
   background-color: #e11f26;
   display: block;
@@ -1325,7 +1325,10 @@ footer {
 /*********/
 @media (max-width: 575.98px) {
   .footer-item {
-    width: 100%; } }
+    width: 100%; }
+
+  .lifestyle h2 {
+    font-size: 36px; } }
 @media (max-width: 767.98px) {
   .main-menu ul li {
     display: block; }
