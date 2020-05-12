@@ -389,7 +389,7 @@ a.cart-link:hover {
 /* hamburger */
 .threebar {
   cursor: pointer;
-  margin: 15px; }
+  padding: 15px; }
   .threebar .bar {
     width: 20px;
     height: 2px;
