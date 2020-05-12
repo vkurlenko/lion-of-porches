@@ -169,21 +169,20 @@
 .single_add_to_cart_button,
 /*.wc-forward,*/
 button[name='woocommerce_checkout_place_order'],
-#submit_wc_robokassa_payment_form{
+#submit_wc_robokassa_payment_form {
     background-color: $color-text-red !important;
     border-radius: 0 !important;
     text-align: center;
     width: 100%;
     max-width: 300px;
     padding: 20px !important;
-    font-size: 0;
     text-transform: uppercase;
     font-weight: 600;
     -webkit-transition: all .3s ease;
     -moz-transition: all .3s ease;
     transition: all .3s ease;
     color: #fff;
-    font-size: 1.5em !important;
+    font-size: 1em !important;
     letter-spacing: .1em;
 }
 
@@ -444,4 +443,10 @@ ul.products li.product a img {
 .product img {
     width: 100%;
 }
+
+#wc_robokassa_payment_form {
+    text-align: center;
+}
+
+
 

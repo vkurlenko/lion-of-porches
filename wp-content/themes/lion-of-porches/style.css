@@ -783,14 +783,13 @@ button[name='woocommerce_checkout_place_order'],
   width: 100%;
   max-width: 300px;
   padding: 20px !important;
-  font-size: 0;
   text-transform: uppercase;
   font-weight: 600;
   -webkit-transition: all .3s ease;
   -moz-transition: all .3s ease;
   transition: all .3s ease;
   color: #fff;
-  font-size: 1.5em !important;
+  font-size: 1em !important;
   letter-spacing: .1em; }
 
 .woo-variation-swatches-stylesheet-enabled.woo-variation-swatches-style-squared .variable-items-wrapper .variable-item {
@@ -1009,6 +1008,9 @@ ul.products li.product a img {
 
 .product img {
   width: 100%; }
+
+#wc_robokassa_payment_form {
+  text-align: center; }
 
 /* instagram gallery */
 .lifestyle h2 {
@@ -1421,6 +1423,9 @@ footer {
       border: 0 !important; }
 
   .aws-container {
+    margin: 10px; }
+
+  #submit_wc_robokassa_payment_form {
     margin: 10px; } }
 @media (max-width: 991.98px) {
   .logo h1 a {
