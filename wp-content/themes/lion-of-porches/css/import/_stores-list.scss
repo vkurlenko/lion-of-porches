@@ -9,8 +9,8 @@
 }
 
 .stores-qd-v1-wrapper .stores-qd-v1-filter-list .storelocator-panel li.store, .stores-qd-v1-wrapper .stores-qd-v1-geo-list .storelocator-panel li.store {
-    display: inline-block;
-    width: 50%;
+    display: block;
+    /*width: 50%;*/
     margin-bottom: 15px;
     cursor: pointer;
 }
