@@ -73,7 +73,8 @@
         width: 100%;
     }
 
-    .woocommerce-thankyou-order-details {
+    .woocommerce-thankyou-order-details,
+    ul.order_details {
         padding-left: 0;
 
         li {

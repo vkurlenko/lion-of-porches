@@ -1415,9 +1415,11 @@ footer {
   #billing_email_field {
     width: 100%; }
 
-  .woocommerce-thankyou-order-details {
+  .woocommerce-thankyou-order-details,
+  ul.order_details {
     padding-left: 0; }
-    .woocommerce-thankyou-order-details li {
+    .woocommerce-thankyou-order-details li,
+    ul.order_details li {
       float: none !important;
       margin-bottom: 10px;
       border: 0 !important; }
