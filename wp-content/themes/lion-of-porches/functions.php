@@ -268,6 +268,12 @@ function custom_override_checkout_fields( $fields ) {
 /* /My Woocommerce */
 /*******************/
 
+function my_jpeg_quality($arg)
+{
+    return (int)100;
+}
+add_filter('jpeg_quality', 'my_jpeg_quality');
+
 function createuser() {
     //$user_id = register_new_user( 'vkurlenko2', 'vkurlenko@ya2.ru' );
 }
