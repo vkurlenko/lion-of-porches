@@ -108,22 +108,24 @@ if (!function_exists('pagination')) { // если ф-я уже есть в до�
 add_action('wp_footer', 'add_scripts'); // приклеем ф-ю на добавление скриптов в футер
 if (!function_exists('add_scripts')) { // если ф-я уже есть в дочерней теме - нам не надо её определять
 	function add_scripts() { // добавление скриптов
+        $version = '1.10';
 	    if(is_admin()) return false; // если мы в админке - ничего не делаем
 	    wp_deregister_script('jquery'); // выключаем стандартный jquery
 	    wp_enqueue_script('jquery','//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js','','',true); // добавляем свой
 	    wp_enqueue_script('bootstrap', get_template_directory_uri().'/js/bootstrap.min.js','','',true); // бутстрап
         wp_enqueue_script('slick-slider', get_template_directory_uri() . '/js/slick/slick.min.js', '', '', true );
-	    wp_enqueue_script('main', get_template_directory_uri().'/js/main.js','jquery','1',true); // и скрипты шаблона
+	    wp_enqueue_script('main', get_template_directory_uri().'/js/main.js','jquery', $version,true); // и скрипты шаблона
 	}
 }
 
 add_action('wp_print_styles', 'add_styles'); // приклеем ф-ю на добавление стилей в хедер
 if (!function_exists('add_styles')) { // если ф-я уже есть в дочерней теме - нам не надо её определять
 	function add_styles() { // добавление стилей
+        $version = '1.10';
 	    if(is_admin()) return false; // если мы в админке - ничего не делаем
 	    wp_enqueue_style( 'bs', get_template_directory_uri().'/css/bootstrap.min.css' ); // бутстрап
         //wp_enqueue_style( 'fontawesome', 'https://use.fontawesome.com/releases/v5.0.13/css/all.css' );
-		wp_enqueue_style( 'main', get_template_directory_uri().'/style.css', '', '1.5' ); // основные стили шаблона
+		wp_enqueue_style( 'main', get_template_directory_uri().'/style.css', '', $version ); // основные стили шаблона
         wp_enqueue_style( 'slick-style', get_template_directory_uri() . '/js/slick/slick.css' );
         wp_enqueue_style( 'slick-style-theme', get_template_directory_uri() . '/js/slick/slick-theme.css' );
 	}
