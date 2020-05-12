@@ -123,7 +123,7 @@ if (!function_exists('add_styles')) { // если ф-я уже есть в до�
 	    if(is_admin()) return false; // если мы в админке - ничего не делаем
 	    wp_enqueue_style( 'bs', get_template_directory_uri().'/css/bootstrap.min.css' ); // бутстрап
         //wp_enqueue_style( 'fontawesome', 'https://use.fontawesome.com/releases/v5.0.13/css/all.css' );
-		wp_enqueue_style( 'main', get_template_directory_uri().'/style.css', '', '1.1' ); // основные стили шаблона
+		wp_enqueue_style( 'main', get_template_directory_uri().'/style.css', '', '1.2' ); // основные стили шаблона
         wp_enqueue_style( 'slick-style', get_template_directory_uri() . '/js/slick/slick.css' );
         wp_enqueue_style( 'slick-style-theme', get_template_directory_uri() . '/js/slick/slick-theme.css' );
 	}

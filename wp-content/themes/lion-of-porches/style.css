@@ -40,7 +40,8 @@ body {
   font-size: 20px; }
 
 a {
-  outline: none !important; }
+  outline: none !important;
+  color: #5b7a9c; }
 
 img {
   max-width: 100%;
