@@ -1380,7 +1380,10 @@ footer {
     .woocommerce-thankyou-order-details li {
       float: none !important;
       margin-bottom: 10px;
-      border: 0 !important; } }
+      border: 0 !important; }
+
+  .aws-container {
+    margin: 10px; } }
 @media (max-width: 991.98px) {
   .logo h1 a {
     left: auto;
