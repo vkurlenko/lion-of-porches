@@ -131,13 +131,13 @@ $helper = new Helper();
                 <div class="top-menu-2 hidden-xs">
 
                     <ul>
-                        <li><a href="/shop/">Каталоги</a></li><li><a href="/forpartners/">Партнерам</a></li><li><?php get_template_part( 'parts/login-link');?></li><li><a class="cart-link" href="/cart/"><i class="fa fa-shopping-bag" aria-hidden="true"></i>&nbsp;<span class="count">(<?=count(WC()->cart->cart_contents)?>)</span></a></li>
+                        <li><a href="/shop/">Каталоги</a></li><li><a href="/forpartners/">Партнерам</a></li><li><?php get_template_part( 'parts/login-link');?></li><li><a class="cart-link" href="<?=wc_get_cart_url();?>"><i class="fa fa-shopping-bag" aria-hidden="true"></i>&nbsp;<span class="count">(<?=count(WC()->cart->cart_contents)?>)</span></a></li>
                     </ul>
                 </div>
 
                 <div class="cart-mobile visible-xs">
                     <div>
-                        <a class="cart-link" href="/cart/" ><i class="fa fa-shopping-bag" aria-hidden="true"></i>&nbsp;<span class="count">(<?=count(WC()->cart->cart_contents)?>)</span></a>
+                        <a class="cart-link" href="<?=wc_get_cart_url();?>" ><i class="fa fa-shopping-bag" aria-hidden="true"></i>&nbsp;<span class="count">(<?=count(WC()->cart->cart_contents)?>)</span></a>
                         <div class='threebar hamburger'>
                             <div class='bar'></div>
                             <div class='bar'></div>
