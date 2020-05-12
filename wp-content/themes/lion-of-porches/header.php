@@ -6,10 +6,6 @@
  */
 //include 'Helper.php';
 $helper = new Helper();
-
-
-
-
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); // вывод атрибутов языка ?>>
@@ -89,7 +85,9 @@ $helper = new Helper();
                     <?php
                     //get_search_form();
                     ?>
-                    <?php echo do_shortcode('[wcas-search-form]'); ?>
+                    <?php if ( function_exists( 'aws_get_search_form' ) ) { aws_get_search_form(); } ?>
+                    <?php /*echo do_shortcode('[yith_woocommerce_ajax_search]');*/?>
+                    <?php /*echo do_shortcode('[wcas-search-form]'); */?>
                 </div>
                 <!-- /форма поиска -->
             </div>
@@ -160,6 +158,11 @@ $helper = new Helper();
     <div style="font-size: 16px">
     <?php
     //$helper->createVarProductsFromFile(); //die;
+    /*include 'Crm.php';
+
+    $crm = new Crm();
+
+    $crm->createUser();*/
     ?>
     </div>
 

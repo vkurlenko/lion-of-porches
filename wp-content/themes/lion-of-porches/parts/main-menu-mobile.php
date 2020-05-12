@@ -25,7 +25,8 @@
                 <!--<span class="glyphicon glyphicon-search" aria-hidden="true"></span>-->
             <!--</div>
         </form>-->
-        <?php echo do_shortcode('[wcas-search-form]'); ?>
+        <?php if ( function_exists( 'aws_get_search_form' ) ) { aws_get_search_form(); } ?>
+        <?php /*echo do_shortcode('[wcas-search-form]'); */?>
 
         <div class="row">
             <div class="col-xs-6">
