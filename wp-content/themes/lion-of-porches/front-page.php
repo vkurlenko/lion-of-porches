@@ -102,7 +102,7 @@ $product_categories = $helper->getTopCategory();
 
             <?php echo do_shortcode('[instagram-feed]'); ?>
 
-            <div class="row instagram-gallery">
+            <!--<div class="row instagram-gallery">
                 <div class="col-md-4">
                     <div class="col col-1">
                         <div style="background-image: url(/wp-content/themes/lion-of-porches/img/1.jpg);"><a href="#"></a></div>
@@ -135,7 +135,7 @@ $product_categories = $helper->getTopCategory();
                         <div style="background-image: url(/wp-content/themes/lion-of-porches/img/1.jpg);"><a href="#"></a></div>
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
 
         <!-- /lifeStyle -->
