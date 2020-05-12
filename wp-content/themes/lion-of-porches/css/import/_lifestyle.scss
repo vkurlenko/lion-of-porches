@@ -114,7 +114,7 @@
     /*background: #0e0e0e !important;*/
 }
 
-.col-3 .row-1 div {
+.col-3 .row-1 > div {
     margin: 2.5% !important;
     float: left !important;
     width: 45% !important;
@@ -134,8 +134,46 @@
     /*background: red;*/
 }
 
-.col-3 .row-2 div {
+.col-3 .row-2 > div {
     margin: 3.5% 2.5% 0 !important;
     width: 95% !important;
     height: 85% !important;
+}
+
+.instagram-gallery-item > div {
+    display: block;
+    position: absolute;
+    background: $color-background-footer;
+    height: 100%;
+    text-align: center;
+    margin: 0 !important;
+    height: 100% !important;
+    width: 100% !important;
+    opacity: 0;
+    webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    transition: all .5s ease;
+    /*padding-top: 50%;*/
+
+    a {
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        margin-top: -25px;
+        left: 50%;
+        margin-left: -26px;
+        padding:20px;
+        color: #fff;
+    }
+}
+
+.instagram-gallery-item > div:hover {
+    opacity: .8;
+    /*webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;*/
 }

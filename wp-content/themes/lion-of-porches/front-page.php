@@ -100,6 +100,8 @@ $product_categories = $helper->getTopCategory();
                 </div>
             </div>
 
+            <?php echo do_shortcode('[instagram-feed]'); ?>
+
             <div class="row instagram-gallery">
                 <div class="col-md-4">
                     <div class="col col-1">
