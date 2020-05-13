@@ -5,7 +5,9 @@
  * @subpackage LionOfPorches
  */
 //include 'Helper.php';
+include 'WooHelper.php';
 $helper = new Helper();
+$woo = new WooHelper();
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); // вывод атрибутов языка ?>>
@@ -155,9 +157,9 @@ $helper = new Helper();
     </div>
 </header>
 
-    <div style="font-size: 16px">
+    <div style="font-size: 10px; font-family: arial">
     <?php
-    //$helper->createVarProductsFromFile(); //die;
+    //$woo->createVarProductsFromFile(); die;
     /*include 'Crm.php';
 
     $crm = new Crm();
