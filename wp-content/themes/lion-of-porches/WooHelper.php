@@ -33,7 +33,7 @@ class WooHelper
 
             // разберем строку на элементы массива
             //Женщины|Верхняя одежда|Блейзеры||5604205986388|L101052038|Blazer|Blazer|Блейзер|L101052038 M 580 SS20|M|синий|62% полиэстер 37% иск. шелк 1% эластан|Португалия|L101052038_580_1 (2)|23 290|Джинсовый .||
-            $item = explode('|', $str);
+            $item = explode(';', $str);
             $item_data = explode(' ', $item[9]); // L101052038	 M	 580	 SS20
 
             // с 0 по 3 элемент - дерево названий категорий
@@ -204,6 +204,7 @@ class WooHelper
             update_post_meta($variation_id, '_sku', $variation_sku);
             update_post_meta($variation_id, '_stock_status', 'instock');
             update_post_meta($variation_id, '_stock', $variation_stock);
+            update_post_meta($variation_id, '_manage_stock', 'yes');
 
             wp_set_object_terms($variation_id, $avail_attributes, 'pa_size');
 
