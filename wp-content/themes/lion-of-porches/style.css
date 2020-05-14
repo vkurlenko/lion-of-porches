@@ -1012,6 +1012,12 @@ ul.products li.product a img {
 #wc_robokassa_payment_form {
   text-align: center; }
 
+.woocommerce div.product .stock {
+  color: #00244b;
+  font-family: 'Raleway Light';
+  font-weight: 400;
+  font-size: 24px !important; }
+
 /* instagram gallery */
 .lifestyle h2 {
   font-family: 'Raleway', sans-serif;
