@@ -469,31 +469,61 @@ ul.products li.product a img {
     margin: 5px 2px;
 }
 
-.blue {background:#0000FF}
-.sinij {background:#0000FF}
-.serovato-sinij {background:#26252d}
-.gray {background:#BEBEBE}
-.seryj {background:#BEBEBE}
+.sinij,
+.blue {
+    background:#3B425B /*#0000FF*/
+}
+.serovato-sinij {
+    background:#26252d
+}
+.gray,
+.seryj{
+    background:#BEBEBE
+}
 .green,
 .zelenyj,
 .zeleonyj {
     background:#99CDB6
 }
-.red {background:#FF0000}
-.krasnyj {background:#ff0000}
-.yellow {background:#FFFF00}
-.bezhevyj {background:#f5f5dc}
-.belyj {background:#FFFFFF}
-.birjuzovyj {background:#30d5c8}
-.goluboj {background:#42aaff}
-.zheltyj {background:#FFFF00}
-.zheltyj-2 {background:#FFFF00}
-.karamelnyj {background:#af6f09}
-.korichnevyj {background:#964b00}
-.molochnyj {background:#fff6d4}
-.pesochnyj {background:#fcdd76}
-.rozovyj {background:#deb0cc /*#ffc0cb*/}
-.chjornyj {background:#000000}
+.red,
+.krasnyj{
+    background:#FF0000}
+
+.bezhevyj {
+    background: #e1dcd6/*#f5f5dc*/
+}
+.belyj {
+    background:#FFFFFF
+}
+.birjuzovyj {
+    background:#30d5c8
+}
+.goluboj {
+    background:#c4cddc/*#42aaff*/
+}
+.zheltyj,
+.zheltyj-2,
+.yellow {
+    background:#FFFF00
+}
+.karamelnyj
+{background:#af6f09
+}
+.korichnevyj {
+    background:#964b00
+}
+.molochnyj {
+    background:#f6f5f2/*#fff6d4*/
+}
+.pesochnyj {
+    background:#fcdd76
+}
+.rozovyj {
+    background:#deb0cc /*#ffc0cb*/
+}
+.chjornyj {
+    background:#000000
+}
 
 
 
