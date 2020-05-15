@@ -1045,14 +1045,10 @@ ul.products li.product a img {
 .seryj {
   background: #BEBEBE; }
 
-.green {
-  background: #00FF00; }
-
-.zelenyj {
-  background: #00FF00; }
-
+.green,
+.zelenyj,
 .zeleonyj {
-  background: #00FF00; }
+  background: #99CDB6; }
 
 .red {
   background: #FF0000; }
@@ -1094,7 +1090,7 @@ ul.products li.product a img {
   background: #fcdd76; }
 
 .rozovyj {
-  background: #ffc0cb; }
+  background: #deb0cc; }
 
 .chjornyj {
   background: #000000; }

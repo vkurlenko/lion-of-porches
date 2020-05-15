@@ -474,9 +474,11 @@ ul.products li.product a img {
 .serovato-sinij {background:#26252d}
 .gray {background:#BEBEBE}
 .seryj {background:#BEBEBE}
-.green {background:#00FF00}
-.zelenyj {background:#00FF00}
-.zeleonyj {background:#00FF00}
+.green,
+.zelenyj,
+.zeleonyj {
+    background:#99CDB6
+}
 .red {background:#FF0000}
 .krasnyj {background:#ff0000}
 .yellow {background:#FFFF00}
@@ -490,7 +492,7 @@ ul.products li.product a img {
 .korichnevyj {background:#964b00}
 .molochnyj {background:#fff6d4}
 .pesochnyj {background:#fcdd76}
-.rozovyj {background:#ffc0cb}
+.rozovyj {background:#deb0cc /*#ffc0cb*/}
 .chjornyj {background:#000000}
 
 
