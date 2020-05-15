@@ -359,4 +359,67 @@ class WooHelper
 
         return $arr;
     }
+
+    public function getColorTitles()
+    {
+        $arr = [];
+
+        $colors = $this->getAttributes()['color'];
+
+        foreach($colors as $title => $slug) {
+            $arr[$slug] = $title;
+        }
+
+        return $arr;
+    }
+
+    public function getColor($color)
+    {
+        /*$arrAttr = $this->getAttributes()['color'];
+        $arr = [];
+
+        foreach($arrAttr as $color => $value) {
+
+            $value = strtolower(trim($value));
+
+            if(!in_array($value, $arr)) {
+                $arr[] = $value;
+
+                echo $value.'<br>';
+            }
+        }*/
+
+        /*$colors = [
+            'blue' => ['#0000FF', 'Синий'],
+            'sinij' => ['#0000FF', 'Синий'],
+            'serovato-sinij' => ['#26252d', 'Серовато-синий'],
+            'gray' => ['#BEBEBE', 'Серый'],
+            'seryj' => ['#BEBEBE', 'Серый'],
+            'green' => ['#00FF00', 'Зелёный'],
+            'zelenyj' => ['#00FF00', 'Зелёный'],
+            'zeleonyj' => ['#00FF00', 'Зелёный'],
+            'red' => ['#FF0000', 'Красный'],
+            'krasnyj' => ['#ff0000', 'Красный'],
+            'yellow' => ['#FFFF00', 'Желтый'],
+            'bezhevyj' => ['#f5f5dc', 'Бежевый'],
+            'belyj' => ['#FFFFFF', 'Белый'],
+            'birjuzovyj' => ['#30d5c8', 'Бирюзовый'],
+            'goluboj' => ['#42aaff', 'Голубой'],
+            'zheltyj' => ['#FFFF00', 'Жёлтый'],
+            'zheltyj-2' => ['#FFFF00', 'Жёлтый'],
+            'karamelnyj' => ['#af6f09', 'Карамельный'],
+            'korichnevyj' => ['#964b00', 'Коричневый'],
+            'molochnyj' => ['#fff6d4', 'Молочный'],
+            'pesochnyj' => ['#fcdd76', 'Песочный'],
+            'rozovyj' => ['#ffc0cb', 'Розовый'],
+            'chjornyj' => ['#000000', 'Чёрный'],
+        ];
+
+        if(isset($colors[$color])) {
+            return $colors[$color];
+        } else {
+            return $colors['belyj'];
+        }*/
+    }
+
 }

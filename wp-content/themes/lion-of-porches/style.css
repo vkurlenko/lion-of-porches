@@ -1018,6 +1018,87 @@ ul.products li.product a img {
   font-weight: 400;
   font-size: 24px !important; }
 
+.colors-bar {
+  display: inline-block;
+  float: right; }
+
+.color {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  border: 1px solid #d6dce2;
+  margin: 5px 2px; }
+
+.blue {
+  background: #0000FF; }
+
+.sinij {
+  background: #0000FF; }
+
+.serovato-sinij {
+  background: #26252d; }
+
+.gray {
+  background: #BEBEBE; }
+
+.seryj {
+  background: #BEBEBE; }
+
+.green {
+  background: #00FF00; }
+
+.zelenyj {
+  background: #00FF00; }
+
+.zeleonyj {
+  background: #00FF00; }
+
+.red {
+  background: #FF0000; }
+
+.krasnyj {
+  background: #ff0000; }
+
+.yellow {
+  background: #FFFF00; }
+
+.bezhevyj {
+  background: #f5f5dc; }
+
+.belyj {
+  background: #FFFFFF; }
+
+.birjuzovyj {
+  background: #30d5c8; }
+
+.goluboj {
+  background: #42aaff; }
+
+.zheltyj {
+  background: #FFFF00; }
+
+.zheltyj-2 {
+  background: #FFFF00; }
+
+.karamelnyj {
+  background: #af6f09; }
+
+.korichnevyj {
+  background: #964b00; }
+
+.molochnyj {
+  background: #fff6d4; }
+
+.pesochnyj {
+  background: #fcdd76; }
+
+.rozovyj {
+  background: #ffc0cb; }
+
+.chjornyj {
+  background: #000000; }
+
 /* instagram gallery */
 .lifestyle h2 {
   font-family: 'Raleway', sans-serif;

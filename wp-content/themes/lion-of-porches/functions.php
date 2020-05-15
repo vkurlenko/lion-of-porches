@@ -6,7 +6,9 @@
  */
 
 include 'Helper.php';
+//include_once 'WooHelper.php';
 $helper = new Helper();
+
 
 add_theme_support('title-tag'); // теперь тайтл управляется самим вп
 
@@ -217,9 +219,54 @@ function woo_custom_single_add_to_cart_text() {
 
 function woocommerce_template_loop_product_title() {
     global $product;
+
+    $woo_helper = new WooHelper();
     //var_dump($product); die;
     $sku = explode('.', $product->get_sku());
-    echo  '<span class="art">'.$sku[0].'</span>'.'<h1 class="' . esc_attr( apply_filters( 'woocommerce_product_loop_title_classes', 'woocommerce-loop-product__title' ) ) . '">' . get_the_title() . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo  '<span class="art">'.$sku[0].'</span>';
+
+    echo '<div class="colors-bar">';
+    $args = array(
+        'post_type'     => 'product_variation',
+        'post_status'   => array( 'private', 'publish' ),
+        'numberposts'   => -1,
+        'orderby'       => 'menu_order',
+        'order'         => 'ASC',
+        'post_parent'   => get_the_ID() // get parent post-ID
+    );
+    $variations = get_posts( $args );
+
+    $colors = [];
+    $titles = $woo_helper->getColorTitles();
+
+    foreach ( $variations as $variation ) {
+
+        // get variation ID
+        $variation_ID = $variation->ID;
+
+        // get variations meta
+        $product_variation = new WC_Product_Variation( $variation_ID );
+
+        // get variation featured image
+        $variation_image = $product_variation->get_image();
+
+        // get variation price
+        $variation_price = $product_variation->get_price_html();
+
+        //get variation name
+        $variation_name = $product_variation->get_variation_attributes();
+
+        //var_dump($variation_name); die;
+
+        if(!in_array($variation_name [ 'attribute_pa_color'], $colors)) {
+            $colors[] = $variation_name [ 'attribute_pa_color'];
+            $color_title = isset($titles[$variation_name [ 'attribute_pa_color']]) ? $titles[$variation_name [ 'attribute_pa_color']] : '';
+            echo '<span class="color '.$variation_name [ 'attribute_pa_color'].'" title="'.$color_title.'"></span>';
+        }
+    }
+    echo '</div>';
+
+    echo '<h1 class="' . esc_attr( apply_filters( 'woocommerce_product_loop_title_classes', 'woocommerce-loop-product__title' ) ) . '">' . get_the_title() . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
 
 remove_filter( 'woocommerce_product_tabs', 'woocommerce_default_product_tabs' );

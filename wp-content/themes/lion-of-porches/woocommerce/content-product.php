@@ -15,6 +15,10 @@
  * @version 3.6.0
  */
 
+//echo $_SERVER['DOCUMENT_ROOT'].'/wp-content/themes/lion-of-porches/Hepler.php';
+include_once '/wp-content/themes/lion-of-porches/WooHelper.php';
+$helper = new WooHelper();
+
 defined( 'ABSPATH' ) || exit;
 
 global $product;
