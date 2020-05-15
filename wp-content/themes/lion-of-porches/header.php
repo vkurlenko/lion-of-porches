@@ -98,7 +98,7 @@ $woo = new WooHelper();
             <!-- logo -->
             <div class="col-md-2 col-sm-2 col-xs-6 logo">
                 <h1>
-                    <a href="/"><img class="logo-red hidden-xs" src="/wp-content/themes/lion-of-porches/img/lion-of-porches.png"><img class="logo-blue visible-xs" src="/wp-content/themes/lion-of-porches/img/lion-of-porches-blue.webp"></a>
+                    <a href="/"><img class="logo-red hidden-xs" src="/wp-content/themes/lion-of-porches/img/lion-of-porches-red.png"><img class="logo-blue visible-xs" src="/wp-content/themes/lion-of-porches/img/lion-of-porches-blue.png"></a>
                 </h1>
             </div>
             <!-- /logo -->
