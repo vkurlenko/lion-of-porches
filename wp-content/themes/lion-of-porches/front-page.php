@@ -15,8 +15,16 @@ $product_categories = $helper->getTopCategory();
         <div class="container-fluid">
             <div class="row">
                 <div class="big-banner">
-                    <img class="hidden-xs" src="/wp-content/themes/lion-of-porches/img/promoOPT3.jpg">
-                    <img class="visible-xs" src="/wp-content/themes/lion-of-porches/img/promoOMEN2.jpg">
+                    <!--<img class="hidden-xs" src="/wp-content/themes/lion-of-porches/img/promoOPT3.jpg">
+                    <img class="visible-xs" src="/wp-content/themes/lion-of-porches/img/promoOMEN2.jpg">-->
+
+                    <?php
+                    $full_banner = $helper->wp_get_post_by_slug( 'banner-dlja-polnoj-versii' );
+                    $mob_banner = $helper->wp_get_post_by_slug( 'banner-dlja-mob-versii' );
+                    ?>
+
+                    <?=get_the_post_thumbnail( $full_banner->ID, 'full', array('class' => 'hidden-xs') )?>
+                    <?=get_the_post_thumbnail( $mob_banner->ID, 'full', array('class' => 'visible-xs') )?>
                 </div>
 
                 <?php
