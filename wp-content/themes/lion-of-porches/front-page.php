@@ -19,8 +19,8 @@ $product_categories = $helper->getTopCategory();
                     <img class="visible-xs" src="/wp-content/themes/lion-of-porches/img/promoOMEN2.jpg">-->
 
                     <?php
-                    $full_banner = $helper->wp_get_post_by_slug( 'banner-dlja-polnoj-versii' );
-                    $mob_banner = $helper->wp_get_post_by_slug( 'banner-dlja-mob-versii' );
+                    $full_banner = $helper->wp_get_post_by_slug( 'banner-dlya-polnoj-versii' );
+                    $mob_banner = $helper->wp_get_post_by_slug( 'banner-dlya-mob-versii' );
                     ?>
 
                     <?=get_the_post_thumbnail( $full_banner->ID, 'full', array('class' => 'hidden-xs') )?>
