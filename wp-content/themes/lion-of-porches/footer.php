@@ -49,7 +49,7 @@
                     <li>Телефон: +7 495 123-45-67</li>
                     <li><a href="https://api.whatsapp.com/send?phone=351910046621%26text=%26source=%26data=">Whatsapp:
                             +7 903 123-45-67 (text)</a></li>
-                    <li>Рабочие дни пн-пт с 9.00 до 18.00</li>
+                    <li>Рабочие дни пн-пт с 10.00 до 22.00</li>
                 </ul>
             </div>
 

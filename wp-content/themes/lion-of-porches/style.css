@@ -168,7 +168,7 @@ textarea {
     transition: all .3s ease-in-out;
   }*/ }
   .main-menu ul {
-    text-align: center; }
+    /*text-align: center;*/ }
     .main-menu ul > li {
       /*background: #0cff40;*/ }
     .main-menu ul li:hover > .sub-menu {
@@ -292,7 +292,9 @@ a.cart-link:hover {
     justify-content: flex-end;
     align-items: center;
     height: 100%;
-    padding: 15px; }
+    padding: 15px;
+    z-index: 10000;
+    position: relative; }
     .cart-mobile > div a {
       font-size: 20px; }
 
@@ -1017,6 +1019,39 @@ ul.products li.product a img {
   color: #5b7a9c !important;
   display: block !important; }
 
+.summary > .discount-personal {
+  display: none; }
+
+.discount-personal {
+  font-size: 18px; }
+  .discount-personal p.price {
+    font-size: 18px !important;
+    color: #00244b;
+    margin: 0; }
+
+/*.woocommerce-variation-price p.price {
+    font-size: 18px !important;
+    color: $color-deep-blue;
+}*/
+.user-discount-level {
+  position: absolute;
+  top: -100px;
+  right: 0;
+  font-family: 'DIN Pro', sans-serif;
+  font-weight: 400;
+  font-size: 20px; }
+  .user-discount-level span {
+    display: block; }
+  .user-discount-level .user-level {
+    float: left;
+    font-weight: 700;
+    color: #e11f26;
+    font-size: 30px; }
+  .user-discount-level #user-level-label {
+    width: 100px;
+    display: inline-block;
+    float: right; }
+
 .product img {
   width: 100%; }
 
@@ -1443,12 +1478,34 @@ footer {
 /*********/
 /* MEDIA */
 /*********/
+@media (max-width: 360px) {
+  .user-discount-level {
+    font-size: 16px !important;
+    letter-spacing: .05em; }
+    .user-discount-level .user-level {
+      font-size: 18px; }
+
+  #user-level-label {
+    width: 30px !important;
+    float: left;
+    margin-left: 5px; } }
 @media (max-width: 575.98px) {
   .footer-item {
     width: 100%; }
 
   .lifestyle h2 {
-    font-size: 36px; } }
+    font-size: 36px; }
+
+  .user-discount-level {
+    font-size: 20px;
+    letter-spacing: .05em; }
+    .user-discount-level .user-level {
+      font-size: 18px; }
+
+  #user-level-label {
+    width: 30px !important;
+    float: left;
+    margin-left: 5px; } }
 @media (max-width: 767.98px) {
   .main-menu ul li {
     display: block; }
@@ -1512,7 +1569,19 @@ footer {
     margin: 10px; }
 
   #submit_wc_robokassa_payment_form {
-    margin: 10px; } }
+    margin: 10px; }
+
+  .user-discount-level {
+    position: absolute;
+    top: -150px;
+    right: 0;
+    font-family: 'DIN Pro', sans-serif;
+    font-weight: 400; }
+
+  #user-level-label {
+    width: 50px !important;
+    float: left !important;
+    margin-left: 10px; } }
 @media (max-width: 991.98px) {
   .logo h1 a {
     left: auto;

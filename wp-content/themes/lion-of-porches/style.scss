@@ -197,7 +197,7 @@ textarea {
    float: left;
 
    ul {
-     text-align: center;
+     /*text-align: center;*/
 
      > li {
        /*background: #0cff40;*/
@@ -372,6 +372,8 @@ a.cart-link:hover {
     align-items: center;
     height: 100%;
     padding: 15px;
+    z-index: 10000;
+    position: relative;
 
     a{
       font-size: 20px;
