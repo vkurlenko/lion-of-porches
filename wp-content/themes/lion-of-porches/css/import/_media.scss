@@ -1,3 +1,20 @@
+@media (max-width: 360px) {
+    .user-discount-level {
+        font-size: 16px !important;
+        letter-spacing: .05em;
+
+        .user-level {
+            font-size: 18px;
+        }
+    }
+
+    #user-level-label {
+        width: 30px !important;
+        float: left;
+        margin-left: 5px;
+    }
+}
+
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
     .footer-item{
@@ -7,12 +24,31 @@
     .lifestyle h2 {
         font-size: 36px;
     }
+
+    .user-discount-level {
+        font-size: 20px;
+        letter-spacing: .05em;
+
+        .user-level {
+            font-size: 18px;
+        }
+    }
+
+    #user-level-label {
+        width: 30px !important;
+        float: left;
+        margin-left: 5px;
+    }
 }
 
 // Small devices (landscape phones, less than 768px)
 @media (max-width: 767.98px) {
     .main-menu ul li {
         display: block;
+    }
+
+    .fixed {
+        position: unset;
     }
 
     .logo h1 a {
@@ -90,6 +126,20 @@
 
     #submit_wc_robokassa_payment_form {
         margin: 10px;
+    }
+
+    .user-discount-level{
+        position: absolute;
+        top: -150px;
+        right: 0;
+        font-family: 'DIN Pro', sans-serif;
+        font-weight: 400;
+    }
+
+    #user-level-label {
+        width: 50px !important;
+        float: left !important;;
+        margin-left: 10px;
     }
 }
 
