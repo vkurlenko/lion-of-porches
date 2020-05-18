@@ -740,7 +740,8 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   text-align: center;
   top: 0;
   left: auto;
-  right: 0; }
+  right: 0;
+  z-index: 2; }
   .flash-tags a, .flash-tags a:hover {
     text-decoration: none !important; }
 

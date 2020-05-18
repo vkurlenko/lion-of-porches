@@ -115,6 +115,7 @@
     top: 0;
     left: auto;
     right: 0;
+    z-index: 2;
 
     a, a:hover{
             text-decoration: none !important;
@@ -442,6 +443,49 @@ ul.products li.product a img {
     font-size: .7em;
     color: #5b7a9c !important;
     display: block !important;
+}
+
+.summary > .discount-personal {
+    display: none;
+}
+
+.discount-personal {
+    font-size: 18px;
+
+    p.price {
+        font-size: 18px !important;
+        color: $color-deep-blue;
+        margin: 0;
+    }
+}
+/*.woocommerce-variation-price p.price {
+    font-size: 18px !important;
+    color: $color-deep-blue;
+}*/
+.user-discount-level {
+    position: absolute;
+    top: -100px;
+    right: 0;
+    font-family: 'DIN Pro', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+
+    span {
+        display: block;
+    }
+
+    .user-level {
+        float: left;
+        font-weight: 700;
+        color: #e11f26;
+        font-size: 30px;
+    }
+
+    #user-level-label {
+        width: 100px;
+        display: inline-block;
+        float: right;
+    }
 }
 
 .product img {
