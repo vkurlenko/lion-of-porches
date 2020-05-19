@@ -140,6 +140,10 @@ class Crm
      */
     public function getUserDiscount($user_email)
     {
+        if(!$user_email) {
+            return false;
+        }
+
         global $wpdb;
 
         $sql = 'SELECT * FROM `data3` WHERE email="'.$user_email.'" limit 1';
@@ -161,12 +165,12 @@ class Crm
     public function getUserLevel()
     {
         $arr = [
-            5 => 'Basic',
-            10 => 'Silver',
-            15 => 'Gold',
-            20 => 'Platinum',
-            25 => 'Signiture',
-            30 => 'Ultra'
+            '5' => 'Basic',
+            '10' => 'Silver',
+            '15' => 'Gold',
+            '20' => 'Platinum',
+            '25' => 'Signiture',
+            '30' => 'Ultra'
         ];
 
         return $arr;
