@@ -779,6 +779,24 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   cursor: pointer;
 }
 
+table.tableizer-table {
+  font-size: 12px;
+  border: 1px solid $color-border;
+}
+.tableizer-table td,
+.tableizer-table th {
+  margin: 3px;
+  border: 1px solid $color-border;
+  font-family: 'Raleway Light', 'DIN Pro', sans-serif;
+  font-size: 16px;
+  padding: 10px;
+}
+.tableizer-table th {
+  background-color: $color-deep-blue;
+  color: #fff;
+  font-weight: bold;
+}
+
 /* woocommerce */
 @import 'css/import/_woocommerce.scss';
 

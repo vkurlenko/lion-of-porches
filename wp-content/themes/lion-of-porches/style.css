@@ -649,11 +649,32 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   -webkit-appearance: button;
   cursor: pointer; }
 
+table.tableizer-table {
+  font-size: 12px;
+  border: 1px solid #d6dce2; }
+
+.tableizer-table td,
+.tableizer-table th {
+  margin: 3px;
+  border: 1px solid #d6dce2;
+  font-family: 'Raleway Light', 'DIN Pro', sans-serif;
+  font-size: 16px;
+  padding: 10px; }
+
+.tableizer-table th {
+  background-color: #00244b;
+  color: #fff;
+  font-weight: bold; }
+
 /* woocommerce */
 .woocommerce .products ul li,
 .woocommerce ul.products li {
   border: 1px solid #eaedf0;
   padding: 5px !important; }
+
+.woocommerce ul.products li.product,
+.woocommerce-page ul.products li.product {
+  /*margin: 1%;*/ }
 
 .woocommerce ul.products li.product h3,
 .woocommerce ul.products li.product .woocommerce-loop-product__title,
