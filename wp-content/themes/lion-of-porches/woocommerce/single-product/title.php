@@ -23,9 +23,14 @@ the_title( '<h1 class="product_title entry-title">', '</h1>' );
 
 $current_user = wp_get_current_user();
 $user_discount = (new Crm())->getUserDiscount($current_user->user_email);
-$user_discount_level = (new Crm())->getUserLevel()[$user_discount];
 
-//(new Helper())->dump($current_user);
+if(!$user_discount) {
+    return false;
+}
+
+$user_discount_level = (new Crm())->getUserLevel()[$user_discount];
+/*echo 'level='.$user_discount_level;
+(new Helper())->dump($current_user);*/
 
 ?>
 
