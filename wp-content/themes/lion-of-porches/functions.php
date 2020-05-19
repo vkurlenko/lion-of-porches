@@ -6,6 +6,7 @@
  */
 
 include 'Helper.php';
+//include_once 'Crm.php';
 //include_once 'WooHelper.php';
 $helper = new Helper();
 
@@ -310,6 +311,128 @@ function custom_override_checkout_fields( $fields ) {
     /*$fields['billing']['billing_address_1']['label'] = 'Номер отделения Новой Почты'; // меняем Адрес
     $fields['billing']['billing_address_1']['placeholder'] = ' '; // в поле Адрес оставляем пустым*/
     return $fields;
+}
+
+
+/*  Персональная скидка */
+function woo_discount_total(WC_Cart $cart) {
+
+    if ( is_user_logged_in() ) {
+
+        $current_user = wp_get_current_user();
+
+        $discount = (new Crm())->getUserDiscount($current_user->user_email);
+
+        if($discount) {
+
+            $p = $discount / 100;
+
+            $discount_price = $cart->subtotal * $p;//0.05; // 0.05 - это 5%
+
+            $cart->add_fee("Персональная скидка в ".$discount."% ", -$discount_price);
+        }
+    }
+}
+
+add_action("woocommerce_cart_calculate_fees" , "woo_discount_total");
+
+// Добавляем значение сэкономленных процентов рядом с ценой у товаров
+/*add_filter( 'woocommerce_sale_price_html', 'woocommerce_custom_sales_price', 10, 2 );
+
+function woocommerce_custom_sales_price( $price, $product ) {
+    $percentage = round( ( ( $product->regular_price - $product->sale_price ) / $product->regular_price ) * 100 );
+    return $price . sprintf( __(' Экономия %s', 'woocommerce' ), $percentage . '%' );
+}*/
+/*  /Персональная скидка */
+
+// получаем массив всех вложенных категорий
+function hml_get_category_gender_line( $cat_parent ){
+    // get_term_children() accepts integer ID only
+    $line = get_term_children( (int) $cat_parent, 'product_cat');
+    $line[] = $cat_parent;
+    return $line;
+}
+
+// удаляем текущий вывод цены
+//add_filter( 'woocommerce_get_price_html', 'hide_all_wc_prices', 100, 2);
+
+// заменяем нашим фильтром
+add_filter( 'woocommerce_get_price_html', 'custom_price_html', 100, 2 );
+
+function custom_price_html( $price, $product ){
+
+    //echo $price; //die;
+
+    $discount_price = 0;
+    $is_variation_price = false;
+
+    if ( is_user_logged_in() ) {
+
+        $current_user = wp_get_current_user();
+
+        $discount = (int)(new Crm())->getUserDiscount($current_user->user_email);
+
+        if($discount) {
+
+            $p = $discount / 100;
+
+            if(null != get_post_meta( get_the_ID(), '_price', true)) {
+                $is_variation_price = true;
+                $regular_price = str_replace([' ', ' '], '', get_post_meta( get_the_ID(), '_price', true));
+            } else {
+                $regular_price = str_replace([' ', ' '], '', get_post_meta( get_the_ID(), '_regular_price', true));
+            }
+
+            if(null != get_post_meta( get_the_ID(), '_sale_price', true)) {
+                $regular_price = str_replace([' ', ' '], '', get_post_meta( get_the_ID(), '_sale_price', true));
+            }
+
+            //(new Helper())->dump( $product->get_variation_prices( false ) );
+
+            //echo get_the_ID();
+            //echo get_post_meta( get_the_ID(), '_price', true); //die;
+
+            $discount_price = $regular_price - $regular_price * $p; // 0.05 - это 5%
+
+            $s = $regular_price - $discount_price;
+        }
+
+        if($discount_price) {
+            $hidden = $is_variation_price ? '' : '';
+            $price .= '<div class="discount-personal" '.$hidden.'><div class="discount-value">Ваша персональная скидка - <span>'.$discount.'</span>%</div>';
+            $price .= '<p class="price">Стоимость с учётом Вашей скидки ' . wc_price( $discount_price ). '</p>';
+            $price .= '<p class="price s">Ваша экономия ' . wc_price( $s ). '</p></div>';
+        }
+    } else {
+        $price .= '<span class="symbol">' . sprintf(get_woocommerce_currency_symbol() ) . '</span>';
+    }
+
+    return apply_filters( 'woocommerce_get_price', $price );
+}
+
+//add_filter( 'woocommerce_product_get_sale_price', 'custom_dynamic_sale_price', 10, 2 );
+//add_filter( 'woocommerce_product_variation_get_sale_price', 'custom_dynamic_sale_price', 10, 2 );
+
+function custom_dynamic_sale_price( $sale_price, $product ) {
+    $rate = 0.8;
+    //if( empty($sale_price) || $sale_price == 0 )
+        return $sale_price+100;//$product->get_regular_price() * $rate;
+    //else
+        //return $sale_price;
+};
+
+//add_filter( 'woocommerce_get_variation_sale_price', 'filter_function_name_8880', 10, 4 );
+
+/*function filter_function_name_8880( $price, $product){
+
+    $price = 100;
+
+    return $price;
+}*/
+
+add_action( 'woocommerce_single_variation', 'action_function_name_7179' );
+function action_function_name_7179(){
+    echo 'test';
 }
 
 

@@ -6,8 +6,16 @@
  */
 //include 'Helper.php';
 include 'WooHelper.php';
+//include 'Crm.php';
 $helper = new Helper();
 $woo = new WooHelper();
+$crm = new Crm();
+
+/*$crm->importUsers();
+
+die;*/
+
+
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); // вывод атрибутов языка ?>>

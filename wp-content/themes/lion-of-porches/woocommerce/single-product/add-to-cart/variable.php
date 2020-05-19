@@ -20,7 +20,19 @@ defined( 'ABSPATH' ) || exit;
 global $product;
 
 $attribute_keys  = array_keys( $attributes );
+
+
+/*$i = 0;
+foreach ($available_variations as $variation) {
+    echo key($available_variations);
+    $available_variations[$i++]['display_price'] = 100;
+}*/
+
+//(new Helper())->dump($available_variations);
 $variations_json = wp_json_encode( $available_variations );
+
+
+
 $variations_attr = function_exists( 'wc_esc_json' ) ? wc_esc_json( $variations_json ) : _wp_specialchars( $variations_json, ENT_QUOTES, 'UTF-8', true );
 
 do_action( 'woocommerce_before_add_to_cart_form' ); ?>
