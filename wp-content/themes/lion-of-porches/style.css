@@ -1070,8 +1070,9 @@ ul.products li.product a img {
 }*/
 .user-discount-level {
   position: absolute;
-  top: -100px;
+  top: 5px;
   right: 0;
+  margin-right: 15px;
   font-family: 'DIN Pro', sans-serif;
   font-weight: 400;
   font-size: 20px; }
