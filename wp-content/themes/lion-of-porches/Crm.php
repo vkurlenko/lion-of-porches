@@ -8,8 +8,167 @@
 
 class Crm
 {
-    public function createUser($login = '', $pwd = '')
+    /**
+     * Создание нового пользователя из CRM
+     *
+     * @param $POST
+     */
+    public function createUser($POST)
     {
-        $user_id = register_new_user( 'vkurlenko', 'vkurlenko@ya.ru' );
+        //$user_id = register_new_user( $POST['login'], $POST['email'] );
+        $random_password = wp_generate_password( 12 );
+
+        //$user_id = wp_create_user( $POST['login'], $random_password, $POST['login'] );
+
+        $userdata = array(
+            //'ID'              => 0,  // когда нужно обновить пользователя
+            'user_pass'       => wp_hash_password($random_password), // обязательно
+            'user_login'      => $POST['login'], // обязательно
+            'user_nicename'   => $POST['login'],
+            'user_url'        => '',
+            'user_email'      => $POST['login'],
+            'display_name'    => $POST['user_name'],
+            'nickname'        => '',
+            'first_name'      => '',
+            'last_name'       => $POST['user_name'],
+            'description'     => '',
+            'rich_editing'    => 'false', // false - выключить визуальный редактор
+            'user_registered' => '', // дата регистрации (Y-m-d H:i:s) в GMT
+            'role'            => 'customer', // (строка) роль пользователя
+            'jabber'          => '',
+            'aim'             => '',
+            'yim'             => ''
+        );
+
+        $user_id = wp_insert_user( $userdata );
+
+        //$this->sendRegisterInfo($POST['login'], $POST['login'], $random_password);
+
+        /*$WC_API_Customers = new WC_API_Customers();
+        $customer = $WC_API_Customers->get_customer( $user_id );
+        $customer->set_billing_phone( $POST['phone'] );*/
+
+        wp_new_user_notification( $user_id, null, 'both' );
+    }
+
+    /*public function sendRegisterInfo($to, $login, $password)
+    {
+        $subject = sprintf('Регистрационные данные на сайте lion-of-porches.ru');
+
+        $message = sprintf('Ваш логин: %s \r\nПароль: %s', $login, $password);
+
+        wp_mail( $to, $subject, $message);
+    }*/
+
+    /**
+     *  Импорт учетных записей клиентов из CRM
+     */
+    public function importUsers()
+    {
+        global $wpdb;
+
+        $sql = 'SELECT * FROM `data3` limit 0, 2000';
+        $res = $wpdb->get_results($sql);
+
+        $errors = 0;
+        $i = 0;
+
+        foreach($res as $row) {
+            echo $i++.'   ';
+
+            $row = (array)$row;
+
+            if(trim($row['email']) == '') {
+                if(trim($row['phone']) != '') {
+                    $row['login'] = $row['phone'];
+                } else {
+                    echo $row['user_name'].' Email и телефон не указаны<br>';
+                    $errors++;
+                    continue;
+                }
+            } else {
+                $is_exists = $this->findUserByEmail($row['email']);
+
+                if($is_exists) {
+                    echo $row['user_name'].' уже существует<br>';
+                    $errors++;
+                    continue;
+                }
+
+                $row['login'] = $row['email'];
+            }
+
+            echo 'Создадим '.$row['user_name'].' '.$row['login'].'<br>';
+
+            $this->createUser($row);
+
+        }
+
+        echo 'Не импортировано '.$errors.' записей';
+
+        die;
+    }
+
+    /**
+     * Поиск уже зарегистированного пользователя по email
+     *
+     * @param $email
+     * @return bool
+     */
+    public function findUserByEmail($email)
+    {
+        global $wpdb;
+
+        $is_exists = false;
+
+        $sql = 'SELECT * FROM `wp_users` WHERE user_email="'.$email.'"';
+
+        $isset = $wpdb->get_results($sql);
+
+        if(!empty($isset)) {
+            $is_exists = true;
+        }
+
+        return $is_exists;
+    }
+
+    /**
+     * Получить размер скидки из CRM по email клиента
+     *
+     * @param $user_email
+     * @return bool
+     */
+    public function getUserDiscount($user_email)
+    {
+        global $wpdb;
+
+        $sql = 'SELECT * FROM `data3` WHERE email="'.$user_email.'" limit 1';
+
+        //echo $sql;
+
+        $res = $wpdb->get_results($sql);
+
+        //var_dump($res); //die;
+
+        if(!empty($res[0])) {
+            if($res[0]->discount) {
+                return $res[0]->discount;
+            }
+        }
+        return false;
+    }
+
+    public function getUserLevel()
+    {
+        $arr = [
+            5 => 'Basic',
+            10 => 'Silver',
+            15 => 'Gold',
+            20 => 'Platinum',
+            25 => 'Signiture',
+            30 => 'Ultra'
+        ];
+
+        return $arr;
     }
 }

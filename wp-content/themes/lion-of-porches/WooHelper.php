@@ -360,6 +360,82 @@ class WooHelper
         return $arr;
     }
 
+    /**
+     * Вывод в каталоге вариаций товара ка отдельных товаров
+     *
+     * @param $product
+     */
+    public function getVariationsAsProduct($product)
+    {
+        //(new Helper())->dump($product); die;
+
+        /*
+         * todo
+         * 1. классы в <li>
+         * 2. цена распродажи
+         * 3. размеры картинки
+         * 4. кол-во в остатке
+         * 5. flash теги
+         * */
+
+        $variations = $product->get_available_variations();
+        $image_size = [get_option('woocommerce_thumbnail_image_width'), get_option('woocommerce_thumbnail_image_width')];
+        $url = '/product/'.$product->get_slug().'/?';
+
+        $arr_pa_color = [];
+
+        foreach ($variations as $key => $value) {
+            //(new Helper())->dump($value); die;
+
+            if(!in_array($value['attributes']['attribute_pa_color'], $arr_pa_color)) {
+                $arr_pa_color[] = $value['attributes']['attribute_pa_color'];
+            } else {
+                continue;
+            }
+
+            $v_url = $url.'attribute_pa_size='.$value['attributes']['attribute_pa_size'].'&attribute_pa_color='.$value['attributes']['attribute_pa_color'];
+            ?>
+
+            <li class="product type-product post-19561 status-publish instock product_cat-mujchiny product_cat-topyfutbolki-mujchiny product_cat-futbolki-topyfutbolki-mujchiny shipping-taxable product-type-variable">
+
+                <a href="<?=$v_url?>" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+
+                    <div class="flash-tags">
+                    </div>
+
+                    <?php
+                    if(!get_the_post_thumbnail( $value['variation_id'])) {
+                        ?><img width="1" height="1" src="<?=wc_placeholder_img_src( $image_size )?>" class="woocommerce-placeholder wp-post-image" alt="Заполнитель"><?php
+                    } else {
+                        echo get_the_post_thumbnail( $value['variation_id'], $image_size);
+                    }
+                    ?>
+
+                    <span class="art"><?=$product->get_sku()?></span>
+
+                    <div class="colors-bar">
+                        <span><?=$this->getColorTitles()[$value['attributes']['attribute_pa_color']]?></span>
+                    </div>
+
+                    <h1 class="woocommerce-loop-product__title"><?=$product->get_name()?></h1>
+
+                    <span class="price"><?=wc_price( $value['display_price'] )?></span>
+
+                </a>
+
+                <a href="<?=$v_url?>" data-quantity="1" class="button box-item btn-quickview product_type_variable" data-product_id="19561" data-product_sku="P316072144V01" aria-label="Выбрать опции для &quot;Футболка&quot;" rel="nofollow">Подробнее</a>
+
+            </li>
+
+            <?php
+        }
+    }
+
+    /**
+     * Получить названия цветов по slug
+     *
+     * @return array
+     */
     public function getColorTitles()
     {
         $arr = [];
