@@ -435,33 +435,50 @@ function action_function_name_7179(){
     //echo 'test';
 }
 
-//New "Related Products" function for WooCommerce
-function get_related_custom( $id, $limit = 4 ) {
+
+/**
+ * Похожие товары (берутся из той же подкатегории, что и товар + с такими же метками (независимо от категории))
+ *
+ * @param $id
+ * @param int $limit
+ * @return array|int[]|WP_Post[]
+ */
+
+add_action('init','get_related_custom');
+
+function get_related_custom($id, $limit = 4 ) {
 
     global $woocommerce;
 
-// Related products are found from category and tag
+    // Related products are found from category and tag
     $tags_array = array(0);
     $cats_array = array(0);
 
-// Get tags
-    /*
+    // Get tags
     $terms = wp_get_post_terms($id, 'product_tag');
-    foreach ( $terms as $term ) $tags_array[] = $term->term_id;
-    */
-// Get categories (removed by NerdyMind)
 
+    foreach ( $terms as $term ) {
+        $tags_array[] = $term->term_id;
+    }
+
+    // Get categories (removed by NerdyMind)
     $terms = wp_get_post_terms($id, 'product_cat');
-    foreach ( $terms as $term ) $cats_array[] = $term->term_id;
-// Don't bother if none are set
-    if ( sizeof($cats_array)==1 && sizeof($tags_array)==1 ) return array();
 
-// Meta query
+    foreach ( $terms as $term ) {
+        $cats_array[] = $term->term_id;
+    }
+
+    // Don't bother if none are set
+    if ( sizeof($cats_array)==1 && sizeof($tags_array)==1 ) {
+        //return array();
+    }
+
+    // Meta query
     $meta_query = array();
     $meta_query[] = $woocommerce->query->visibility_meta_query();
     $meta_query[] = $woocommerce->query->stock_status_meta_query();
 
-// Get the posts
+    // Get the posts
     $related_posts = get_posts( apply_filters('woocommerce_product_related_posts', array(
         'orderby' => 'rand',
         'posts_per_page' => $limit,
@@ -473,7 +490,7 @@ function get_related_custom( $id, $limit = 4 ) {
             array(
                 'taxonomy' => 'product_cat',
                 'field' => 'id',
-                'terms' => $cats_array
+                'terms' => $cats_array[sizeof($cats_array) - 1] // текущая подкатегория
             ),
             array(
                 'taxonomy' => 'product_tag',
@@ -482,11 +499,14 @@ function get_related_custom( $id, $limit = 4 ) {
             )
         )
     ) ) );
+
     $related_posts = array_diff( $related_posts, array( $id ));
+
     return $related_posts;
 }
+/*************************************************************************************************************/
+/*************************************************************************************************************/
 
-add_action('init','get_related_custom');
 
 
 /*******************/
