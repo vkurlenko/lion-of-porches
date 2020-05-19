@@ -357,7 +357,7 @@ function hml_get_category_gender_line( $cat_parent ){
 //add_filter( 'woocommerce_get_price_html', 'hide_all_wc_prices', 100, 2);
 
 // заменяем нашим фильтром
-add_filter( 'woocommerce_get_price_html', 'custom_price_html', 100, 2 );
+//add_filter( 'woocommerce_get_price_html', 'custom_price_html', 100, 2 );
 
 function custom_price_html( $price, $product ){
 
@@ -434,6 +434,59 @@ add_action( 'woocommerce_single_variation', 'action_function_name_7179' );
 function action_function_name_7179(){
     //echo 'test';
 }
+
+//New "Related Products" function for WooCommerce
+function get_related_custom( $id, $limit = 4 ) {
+
+    global $woocommerce;
+
+// Related products are found from category and tag
+    $tags_array = array(0);
+    $cats_array = array(0);
+
+// Get tags
+    /*
+    $terms = wp_get_post_terms($id, 'product_tag');
+    foreach ( $terms as $term ) $tags_array[] = $term->term_id;
+    */
+// Get categories (removed by NerdyMind)
+
+    $terms = wp_get_post_terms($id, 'product_cat');
+    foreach ( $terms as $term ) $cats_array[] = $term->term_id;
+// Don't bother if none are set
+    if ( sizeof($cats_array)==1 && sizeof($tags_array)==1 ) return array();
+
+// Meta query
+    $meta_query = array();
+    $meta_query[] = $woocommerce->query->visibility_meta_query();
+    $meta_query[] = $woocommerce->query->stock_status_meta_query();
+
+// Get the posts
+    $related_posts = get_posts( apply_filters('woocommerce_product_related_posts', array(
+        'orderby' => 'rand',
+        'posts_per_page' => $limit,
+        'post_type' => 'product',
+        'fields' => 'ids',
+        'meta_query' => $meta_query,
+        'tax_query' => array(
+            'relation' => 'OR',
+            array(
+                'taxonomy' => 'product_cat',
+                'field' => 'id',
+                'terms' => $cats_array
+            ),
+            array(
+                'taxonomy' => 'product_tag',
+                'field' => 'id',
+                'terms' => $tags_array
+            )
+        )
+    ) ) );
+    $related_posts = array_diff( $related_posts, array( $id ));
+    return $related_posts;
+}
+
+add_action('init','get_related_custom');
 
 
 /*******************/
