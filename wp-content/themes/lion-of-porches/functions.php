@@ -500,6 +500,8 @@ function get_related_custom($id, $limit = 4 ) {
         )
     ) ) );
 
+    shuffle($related_posts);
+
     // исключается вывод этого же товара
     $related_posts = array_diff( $related_posts, array( $id ));
 
