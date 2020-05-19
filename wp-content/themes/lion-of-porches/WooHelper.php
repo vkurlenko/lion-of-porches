@@ -361,46 +361,84 @@ class WooHelper
     }
 
     /**
-     * Вывод в каталоге вариаций товара ка отдельных товаров
+     * Вывод в каталоге вариаций товара как отдельных товаров
      *
      * @param $product
      */
-    public function getVariationsAsProduct($product)
+    public function getVariationsAsProduct($product, $post)
     {
-        //(new Helper())->dump($product); die;
+        $terms = get_the_terms( $product->get_id(), 'product_cat' );
+        foreach ($terms as $term) {
+            $product_cat[] = 'product_cat-'.$term->slug;
+            //break;
+        }
 
+        /*echo implode(' ', $product_cat);
+
+        (new Helper())->dump($terms);
+        (new Helper())->dump($product->get_type());
+        die;*/
         /*
          * todo
-         * 1. классы в <li>
+         * 1. +классы в <li>
          * 2. цена распродажи
-         * 3. размеры картинки
-         * 4. кол-во в остатке
+         * 3. +размеры картинки
+         * 4. +кол-во в остатке
          * 5. flash теги
          * */
 
+        // получим все вариации товара
         $variations = $product->get_available_variations();
+
+        // размер картинки берем из настроек сайта
         $image_size = [get_option('woocommerce_thumbnail_image_width'), get_option('woocommerce_thumbnail_image_width')];
+
+        // ссылка на вариацию в карточке товара
         $url = '/product/'.$product->get_slug().'/?';
+
+        // классы тега <li>
+        $class_cats = implode(' ', $product_cat);
 
         $arr_pa_color = [];
 
         foreach ($variations as $key => $value) {
-            //(new Helper())->dump($value); die;
+            /*(new Helper())->dump($value); //die;
+            continue;*/
 
+            /* пропускаем повторяющиеся цвета товара */
             if(!in_array($value['attributes']['attribute_pa_color'], $arr_pa_color)) {
                 $arr_pa_color[] = $value['attributes']['attribute_pa_color'];
             } else {
                 continue;
             }
 
+            // к ссылке добавим get-параметры для перехода именно на вариацию
             $v_url = $url.'attribute_pa_size='.$value['attributes']['attribute_pa_size'].'&attribute_pa_color='.$value['attributes']['attribute_pa_color'];
             ?>
 
-            <li class="product type-product post-19561 status-publish instock product_cat-mujchiny product_cat-topyfutbolki-mujchiny product_cat-futbolki-topyfutbolki-mujchiny shipping-taxable product-type-variable">
+            <li class="product type-product post-<?=$product->get_id()?> status-<?=$product->get_status()?> <?=$value['is_in_stock'] ? 'instock' : ''?> <?=$class_cats?> shipping-<?=$product->get_tax_status()?> product-type-<?=$product->get_type()?>">
 
                 <a href="<?=$v_url?>" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
 
                     <div class="flash-tags">
+                        <?php if ( $product->is_on_sale() ) : ?>
+
+                            <?php echo apply_filters( 'woocommerce_sale_flash', '<span class="onsale">' . esc_html__( 'Sale!', 'woocommerce' ) . '</span>', $post, $product ); ?>
+
+                        <?php
+                        endif;
+
+                        /* Omit closing PHP tag at the end of PHP files to avoid "headers already sent" issues. */
+                        $posttags = get_the_terms( $product->get_id(), 'product_tag' );
+
+                        if($posttags) {
+                            foreach($posttags as $tag) {
+                                ?>
+                                <?php echo apply_filters( 'woocommerce_sale_flash', '<a href="/product-tag/'.$tag->slug.'/"><span class="prod-tag '.$tag->slug.'">'.$tag->name.'</span></a>', $post, $product ); ?>
+                                <?php
+                            }
+                        }
+                        ?>
                     </div>
 
                     <?php
@@ -423,7 +461,7 @@ class WooHelper
 
                 </a>
 
-                <a href="<?=$v_url?>" data-quantity="1" class="button box-item btn-quickview product_type_variable" data-product_id="19561" data-product_sku="P316072144V01" aria-label="Выбрать опции для &quot;Футболка&quot;" rel="nofollow">Подробнее</a>
+                <a href="<?=$v_url?>" data-quantity="<?=$value['max_qty']?>" class="button box-item btn-quickview product_type_variable" data-product_id="<?=$product->get_id()?>" data-product_sku="<?=$product->get_sku()?>" aria-label="Выбрать опции для &quot;<?=$product->get_name()?>&quot;" rel="nofollow">Подробнее</a>
 
             </li>
 
@@ -496,6 +534,21 @@ class WooHelper
         } else {
             return $colors['belyj'];
         }*/
+    }
+
+    public function getProductBreadcrumb($post)
+    {
+        $breadcrumb = [];
+
+        $terms = get_the_terms( $post->ID, 'product_cat' );
+        foreach ($terms as $term) {
+            $name = $term->name;
+            $link = get_term_link( $term->term_id, 'product_cat' );
+
+            $breadcrumb[] = [$name, $link];
+        }
+
+        return $breadcrumb;
     }
 
 }

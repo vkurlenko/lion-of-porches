@@ -1033,8 +1033,15 @@ button[name='woocommerce_checkout_place_order'],
 .woocommerce-breadcrumb,
 .woocommerce-breadcrumb a {
   font-family: "Raleway Light";
-  font-size: 12px !important;
-  color: #00244b !important; }
+  font-size: 14px !important;
+  color: #00244b !important;
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: 0; }
+
+.breadcrumb-delimiter {
+  display: inline-block;
+  padding: 0 20px; }
 
 ul.products li.product a img {
   margin: 0 !important; }
@@ -1070,8 +1077,9 @@ ul.products li.product a img {
 }*/
 .user-discount-level {
   position: absolute;
-  top: -100px;
+  top: 5px;
   right: 0;
+  margin-right: 15px;
   font-family: 'DIN Pro', sans-serif;
   font-weight: 400;
   font-size: 20px; }

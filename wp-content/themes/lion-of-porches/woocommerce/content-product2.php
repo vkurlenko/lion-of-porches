@@ -18,19 +18,16 @@
 
 defined( 'ABSPATH' ) || exit;
 
-global $product, $post;
+global $product;
+
+//echo 'tpl='.get_page_template_slug( get_the_ID() );
 
 // Ensure visibility.
 if ( empty( $product ) || ! $product->is_visible() ) {
-	return;
+    return;
 }
-//echo get_option('woocommerce_catalog_columns'); die;
-if( $product->is_type( 'variable' )  ) {
+?>
 
-    (new WooHelper())->getVariationsAsProduct($product, $post);
-
-} else {
-    ?>
     <li <?php wc_product_class('', $product); ?>>
         <?php
         /**
@@ -74,6 +71,3 @@ if( $product->is_type( 'variable' )  ) {
     </li>
     <div class="visible-xs" style="clear:both"></div>
 
-    <?php
-}
-?>
