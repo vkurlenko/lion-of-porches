@@ -32,5 +32,5 @@ $user_discount_level = (new Crm())->getUserLevel()[$user_discount];
 <div class="user-discount-level">
     <span class="user-name"><?=$current_user->display_name?></span>
     <span class="user-level"><?=$user_discount_level?></span>
-    <img id="user-level-label" src="/wp-content/themes/lion-of-porches/img/levels/<?=$user_discount_level?>.jpg">
+    <img id="user-level-label" src="/wp-content/themes/lion-of-porches/img/levels/<?=strtolower($user_discount_level)?>.jpg">
 </div>

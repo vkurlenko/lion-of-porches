@@ -432,7 +432,7 @@ function custom_dynamic_sale_price( $sale_price, $product ) {
 
 add_action( 'woocommerce_single_variation', 'action_function_name_7179' );
 function action_function_name_7179(){
-    echo 'test';
+    //echo 'test';
 }
 
 
