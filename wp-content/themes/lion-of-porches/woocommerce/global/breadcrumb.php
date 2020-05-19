@@ -20,6 +20,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+$delimiter = '<span class="breadcrumb-delimiter">|</span>';
+
+/* для страницы продукта переопределим крошки  */
+if(is_product()) {
+
+    global $post;
+
+    $breadcrumb = [$breadcrumb[0]];
+
+    $breadcrumb = array_merge($breadcrumb, (new WooHelper())->getProductBreadcrumb($post));
+}
+
+
 if ( ! empty( $breadcrumb ) ) {
 
 	echo $wrap_before;
@@ -28,10 +41,12 @@ if ( ! empty( $breadcrumb ) ) {
 
 		echo $before;
 
-		if ( ! empty( $crumb[1] ) && sizeof( $breadcrumb ) !== $key + 1 ) {
+		$n = is_product() ? 0 : 1;
+
+		if ( ! empty( $crumb[1] ) && sizeof( $breadcrumb ) !== $key + $n ) {
 			echo '<a href="' . esc_url( $crumb[1] ) . '">' . esc_html( $crumb[0] ) . '</a>';
 		} else {
-			echo esc_html( $crumb[0] );
+			echo '<strong>'.esc_html( $crumb[0] ).'</strong>';
 		}
 
 		echo $after;

@@ -536,4 +536,19 @@ class WooHelper
         }*/
     }
 
+    public function getProductBreadcrumb($post)
+    {
+        $breadcrumb = [];
+
+        $terms = get_the_terms( $post->ID, 'product_cat' );
+        foreach ($terms as $term) {
+            $name = $term->name;
+            $link = get_term_link( $term->term_id, 'product_cat' );
+
+            $breadcrumb[] = [$name, $link];
+        }
+
+        return $breadcrumb;
+    }
+
 }
