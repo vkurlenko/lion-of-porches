@@ -481,7 +481,7 @@ function get_related_custom($id, $limit = 4 ) {
     // Get the posts
     $related_posts = get_posts( apply_filters('woocommerce_product_related_posts', array(
         'orderby' => 'rand',
-        'posts_per_page' => $limit,
+        'posts_per_page' => $limit + 1,
         'post_type' => 'product',
         'fields' => 'ids',
         'meta_query' => $meta_query,
@@ -500,7 +500,10 @@ function get_related_custom($id, $limit = 4 ) {
         )
     ) ) );
 
+    // исключается вывод этого же товара
     $related_posts = array_diff( $related_posts, array( $id ));
+
+    $related_posts = array_slice($related_posts, 0, $limit);
 
     return $related_posts;
 }
