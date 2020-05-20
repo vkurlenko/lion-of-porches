@@ -29,6 +29,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 				<th class="product-thumbnail">&nbsp;</th>
 				<th class="product-name"><?php /*esc_html_e( 'Product', 'woocommerce' );*/ ?></th>
 				<th class="product-price"><?php esc_html_e( 'Price', 'woocommerce' ); ?></th>
+                <th class="product-price"></th>
 				<th class="product-quantity"><?php esc_html_e( 'Quantity', 'woocommerce' ); ?></th>
 				<th class="product-subtotal"><?php esc_html_e( 'Subtotal', 'woocommerce' ); ?></th>
 			</tr>
@@ -40,6 +41,12 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 			<?php
 			foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+
+			    $wh = new WooHelper();
+			    $cart_item_data = $wh->getCartItemData($cart_item);
+
+                //(new Helper())->dump($wh->getCartItemData($cart_item)); //die;
+
 				$_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 				$product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
 
@@ -97,10 +104,25 @@ do_action( 'woocommerce_before_cart' ); ?>
 						</td>
 
 						<td class="product-price" data-title="<?php esc_attr_e( 'Price', 'woocommerce' ); ?>">
+                            <?php
+                            if($cart_item_data['variation_regular_price'] != $cart_item_data['variation_price']){
+                                echo '<del>'.wc_price($cart_item_data['variation_regular_price']).'</del><br>';
+                            }
+                            ?>
+
 							<?php
 								echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
 							?>
 						</td>
+
+                        <td class="product-price">
+                            <?php
+                            if($cart_item_data['user_percent']):?>
+                                <span>-<?=$cart_item_data['user_sale_percent_final'] ? ''.$cart_item_data['user_sale_percent_html'].'' : $cart_item_data['user_percent']?>%</span>
+                            <?php
+                            endif;
+                            ?>
+                        </td>
 
 						<td class="product-quantity" data-title="<?php esc_attr_e( 'Quantity', 'woocommerce' ); ?>">
 						<?php
@@ -126,8 +148,17 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 						<td class="product-subtotal" data-title="<?php esc_attr_e( 'Subtotal', 'woocommerce' ); ?>">
 							<?php
+                            if($cart_item_data['is_discount_price']){
+                                echo '<del>';
+                            }
 								echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
+
+                            if($cart_item_data['is_discount_price']){
+                                echo '</del>';
+                                echo '<br>'.wc_price($cart_item_data['price_personal']);
+                            }
 							?>
+
 						</td>
 					</tr>
 					<?php
@@ -138,7 +169,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 			<?php do_action( 'woocommerce_cart_contents' ); ?>
 
 			<tr>
-				<td colspan="6" class="actions">
+				<td colspan="7" class="actions">
 
 					<?php if ( wc_coupons_enabled() ) { ?>
 						<div class="coupon">

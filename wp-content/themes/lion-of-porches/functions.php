@@ -314,8 +314,17 @@ function custom_override_checkout_fields( $fields ) {
 }
 
 
-/*  Персональная скидка */
+
+/**
+ * Пересчет стоимости корзины с учетом персональной скидки
+ *
+ * @param WC_Cart $cart
+ */
+add_action("woocommerce_cart_calculate_fees" , "woo_discount_total");
+
 function woo_discount_total(WC_Cart $cart) {
+
+    //(new Helper())->dump($cart); die;
 
     if ( is_user_logged_in() ) {
 
@@ -329,12 +338,16 @@ function woo_discount_total(WC_Cart $cart) {
 
             $discount_price = $cart->subtotal * $p;//0.05; // 0.05 - это 5%
 
-            $cart->add_fee("Персональная скидка в ".$discount."% ", -$discount_price);
+            $discount_price = (new WooHelper())->getCartSubTotal($cart);
+
+            //$cart->add_fee("Персональная скидка в ".$discount."% ", -$discount_price);
+            $cart->add_fee("Ваша скидка", -$discount_price);
         }
     }
 }
+/*****************************************************************/
 
-add_action("woocommerce_cart_calculate_fees" , "woo_discount_total");
+
 
 // Добавляем значение сэкономленных процентов рядом с ценой у товаров
 /*add_filter( 'woocommerce_sale_price_html', 'woocommerce_custom_sales_price', 10, 2 );

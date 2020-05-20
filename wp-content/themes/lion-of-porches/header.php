@@ -5,7 +5,7 @@
  * @subpackage LionOfPorches
  */
 //include 'Helper.php';
-include 'WooHelper.php';
+//include 'WooHelper.php';
 //include 'Crm.php';
 $helper = new Helper();
 $woo = new WooHelper();

@@ -162,6 +162,75 @@ class Crm
         return false;
     }
 
+    /**
+     * Получить размер персональной скидки для товаров распродажи
+     *
+     * @return array
+     */
+    public function getUserSaleDiscount($sale_discount = 0, $user_discount = 0)
+    {
+        if(!$sale_discount || !$user_discount || !is_user_logged_in()) {
+            return 0;
+        }
+
+        switch($sale_discount) {
+            case $sale_discount >= 30:
+                $sale_discount = 30;
+                break;
+
+            case $sale_discount >= 20:
+                $sale_discount = 20;
+                break;
+
+            case $sale_discount >= 10:
+                $sale_discount = 10;
+                break;
+
+            default:
+                $sale_discount = 0;
+        }
+
+        //echo $sale_discount;
+
+        $arr = [
+            10 => [
+                '5' => 0,
+                '10' => 1,
+                '15' => 7,
+                '20' => 13,
+                '25' => 19,
+                '30' => 25
+            ],
+            20 => [
+                '5' => 0,
+                '10' => 2,
+                '15' => 3,
+                '20' => 4,
+                '25' => 10,
+                '30' => 18
+            ],
+            30 => [
+                '5' => 2,
+                '10' => 3,
+                '15' => 4,
+                '20' => 6,
+                '25' => 7,
+                '30' => 8
+            ]
+        ];
+
+        if($sale_discount && $user_discount) {
+            return $arr[$sale_discount][$user_discount];
+        }
+
+        return 0;
+    }
+
+    /**
+     * Получим статус клиента в зависимости от размера скидки
+     *
+     * @return array
+     */
     public function getUserLevel()
     {
         $arr = [

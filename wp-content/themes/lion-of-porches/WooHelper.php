@@ -453,6 +453,7 @@ class WooHelper
 
                     <div class="colors-bar">
                         <span><?=$this->getColorTitles()[$value['attributes']['attribute_pa_color']]?></span>
+                        <!--<span class="color <?/*=$value['attributes']['attribute_pa_color']*/?>" title="<?/*=$this->getColorTitles()[$value['attributes']['attribute_pa_color']]*/?>"></span>-->
                     </div>
 
                     <h1 class="woocommerce-loop-product__title"><?=$product->get_name()?></h1>
@@ -536,6 +537,12 @@ class WooHelper
         }*/
     }
 
+    /**
+     * Крошки на странице продукта
+     *
+     * @param $post
+     * @return array
+     */
     public function getProductBreadcrumb($post)
     {
         $breadcrumb = [];
@@ -551,4 +558,223 @@ class WooHelper
         return $breadcrumb;
     }
 
+    /**
+     * Пересчет стоиомости корзины с учетом персональной скидки
+     *
+     * @param $cart
+     * @return bool
+     */
+    public function getCartSubTotal($cart)
+    {
+        $h = new Helper();
+        $crm = new Crm();
+
+        $discount_sum = 0;
+
+        $current_user = wp_get_current_user();
+
+        // персональный размер скидки на все товары по обычной цене (%)
+        $discount = (new Crm())->getUserDiscount($current_user->user_email);
+
+        // коэффициент для расчета цены со скидкой
+        //$p = $discount / 100;
+
+        foreach($cart->cart_contents as $hash => $item) {
+
+            $item_data = $this->getCartItemData($item);
+
+            /*// получим товар
+            $product = wc_get_product( $item['product_id'] );
+
+            // получим все вариации товара
+            $variations = $this->getVariation($product);
+
+            //$h->dump($variations); //die;
+
+            // цена вариации текущая
+            $variation_price = $variations[$item['variation_id']]['display_price'];
+
+            // цена вариации обычная
+            $variation_regular_price = $variations[$item['variation_id']]['display_regular_price'];
+
+            // является ли вариация распродажей
+            $is_sale = $variations[$item['variation_id']]['display_price'] != $variations[$item['variation_id']]['display_regular_price'] ? true : false;
+
+            // процент скидки по распродаже
+            $sale_percent = $this->getSalePercent($variation_price, $variation_regular_price);
+
+            // процент скидки по распродаже персональный
+            $user_sale_percent = $crm->getUserSaleDiscount($sale_percent, $discount);
+
+            $user_sale_percent_final = $sale_percent + $user_sale_percent;
+
+            // полная стоимость вариации по текущей цене (с учетом количества)
+            $variation_price_full = (int)$item['quantity'] * $variations[$item['variation_id']]['display_price'];
+
+            // полная стоимость вариации по персональной цене (с учетом количества)
+            if($is_sale) {
+                $variation_price_personal = $variation_price_full - ($variation_price_full * $user_sale_percent_final / 100);
+                $discount_sum += $variation_price_full * $user_sale_percent_final / 100;
+            } else {
+                $variation_price_personal = $variation_price_full - ($variation_price_full * $discount / 100);
+                $discount_sum += $variation_price_full * $discount / 100;
+            }*/
+
+            /*$h->dump([
+                'product_id'        => $item['product_id'],
+                'product_type'      => $product->get_type(),
+                'is_on_sale'        => $product->is_on_sale(),
+                'variation_id'      => $item['variation_id'],
+                'quantity'          => $item['quantity'],
+                'line_subtotal'     => $item['line_subtotal'],
+                'variation_price'   => $variation_price,
+                'variation_regular_price' => $variation_regular_price,
+                'is_sale'           => $is_sale,
+                'sale_percent'      => $sale_percent,
+                'user_sale_percent' => $user_sale_percent,
+                'user_sale_percent_final' => $user_sale_percent_final,
+                'price_full'        => $variation_price_full,
+                'price_personal'    => $variation_price_personal
+            ]);*/
+
+            //$h->dump($item); die;
+            //echo $item['line_subtotal'].'<br>';
+
+            if($item_data['is_sale']) {
+                $discount_sum += $item_data['variation_price_full'] * $item_data['user_sale_percent_final'] / 100;
+            } else {
+                $discount_sum += $item_data['variation_price_full'] * $discount / 100;
+            }
+        }
+
+        //echo sprintf('%s - %s = %s', $cart->subtotal, $discount_sum, ($cart->subtotal - $discount_sum));
+
+        //die;
+
+        return $discount_sum;
+    }
+
+    /**
+     * Пересчет стоимости товара в корзине с учетом персональных скидок
+     *
+     * @param $item
+     * @param $discount
+     * @return array
+     */
+    public function getCartItemData($item)
+    {
+        /*if(!is_user_logged_in()) {
+            //return [];
+        }*/
+
+        $h = new Helper();
+        $crm = new Crm();
+
+        // персональный размер скидки на все товары по обычной цене (%)
+        $current_user = wp_get_current_user();
+        $discount = (new Crm())->getUserDiscount($current_user->user_email);
+
+        // получим товар
+        $product = wc_get_product( $item['product_id'] );
+
+        // получим все вариации товара
+        $variations = $this->getVariation($product);
+
+        //$h->dump($variations); //die;
+
+        // цена вариации текущая
+        $variation_price = $variations[$item['variation_id']]['display_price'];
+
+        // цена вариации обычная
+        $variation_regular_price = $variations[$item['variation_id']]['display_regular_price'];
+
+        // является ли вариация распродажей
+        $is_sale = $variations[$item['variation_id']]['display_price'] != $variations[$item['variation_id']]['display_regular_price'] ? true : false;
+
+        // процент скидки по распродаже
+        $sale_percent = $this->getSalePercent($variation_price, $variation_regular_price);
+
+        // процент скидки по распродаже персональный
+        $user_sale_percent = $crm->getUserSaleDiscount($sale_percent, $discount);
+
+        // суммарная скидка (%распродажи + %персональный)
+        //$user_sale_percent_final = is_user_logged_in() ? ($sale_percent + $user_sale_percent) : 0;
+        $user_sale_percent_final = is_user_logged_in() ? ($user_sale_percent) : 0;
+
+        // полная стоимость вариации по текущей цене (с учетом количества)
+        $variation_price_full = (int)$item['quantity'] * $variations[$item['variation_id']]['display_price'];
+
+        // полная стоимость вариации по персональной цене (с учетом количества)
+        if($is_sale) {
+            $variation_price_personal = $variation_price_full - ($variation_price_full * $user_sale_percent_final / 100);
+            //$discount_sum += $variation_price_full * $user_sale_percent_final / 100;
+        } else {
+            $variation_price_personal = $variation_price_full - ($variation_price_full * $discount / 100);
+            //$discount_sum += $variation_price_full * $discount / 100;
+        }
+
+        $arr = [
+            'product_id'        => $item['product_id'],
+            'product_type'      => $product->get_type(),
+            'is_on_sale'        => $product->is_on_sale(),
+            'variation_id'      => $item['variation_id'],
+            'quantity'          => $item['quantity'],
+            'line_subtotal'     => $item['line_subtotal'],
+            'variation_price'   => $variation_price,
+            'variation_regular_price' => $variation_regular_price,
+            'is_sale'           => $is_sale,
+            'user_percent'      => $discount,
+            'sale_percent'      => $sale_percent,
+            'user_sale_percent' => $user_sale_percent,
+            'user_sale_percent_final' => $user_sale_percent_final,
+            'price_full'        => $variation_price_full,
+            'price_personal'    => $variation_price_personal,
+            'variation_price_full' => $variation_price_full,
+
+            //'user_sale_percent_html' => $sale_percent.' + '.$user_sale_percent.' = '.$user_sale_percent_final,
+            'user_sale_percent_html' => $user_sale_percent_final,
+            'is_discount_price' => ($variation_price_full != $variation_price_personal)
+        ];
+
+        //$h->dump($item); die;
+        //echo $item['line_subtotal'].'<br>';
+        return $arr;
+    }
+
+
+    /**
+     * Расчет процента скидки
+     *
+     * @param $sale_price
+     * @param $regular_price
+     * @return float|int
+     */
+    public function getSalePercent($sale_price, $regular_price)
+    {
+        $percent = 0;
+
+       /*
+        200 = 100%
+        70 = x%$cart->subtotal
+        x = 70 * 100 / 200
+       */
+
+        if($sale_price <  $regular_price) {
+            $percent = floor( 100 - ($sale_price * 100 / $regular_price));
+        }
+
+        return $percent;
+    }
+
+    public function getVariation($product)
+    {
+        $variations = [];
+
+        // получим все вариации товара
+        foreach($product->get_available_variations() as $variation) {
+            $variations[$variation['variation_id']] = $variation;
+        }
+
+        return $variations;
+    }
 }
