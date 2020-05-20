@@ -220,7 +220,7 @@ class Crm
         ];
 
         if($sale_discount && $user_discount) {
-            return $arr[$sale_discount][$user_discount];
+            return isset($arr[$sale_discount][$user_discount]) ? $arr[$sale_discount][$user_discount] : 0;
         }
 
         return 0;
