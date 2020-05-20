@@ -442,7 +442,7 @@ ul.products li.product a img {
 }
 
 /* артикул на карточке товара */
-.woocommerce-LoopProduct-link span.art {
+/*.woocommerce-LoopProduct-link */span.art {
     font-size: 14px;
 }
 
@@ -521,6 +521,8 @@ ul.products li.product a img {
 .colors-bar {
     display: inline-block;
     float: right;
+    font-size: 14px;
+    font-weight: 400;
 }
 
 .color{

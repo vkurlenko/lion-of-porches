@@ -1047,7 +1047,8 @@ ul.products li.product a img {
   margin: 0 !important; }
 
 /* артикул на карточке товара */
-.woocommerce-LoopProduct-link span.art {
+/*.woocommerce-LoopProduct-link */
+span.art {
   font-size: 14px; }
 
 /* цена со скидкой */
@@ -1109,7 +1110,9 @@ ul.products li.product a img {
 
 .colors-bar {
   display: inline-block;
-  float: right; }
+  float: right;
+  font-size: 14px;
+  font-weight: 400; }
 
 .color {
   display: inline-block;
