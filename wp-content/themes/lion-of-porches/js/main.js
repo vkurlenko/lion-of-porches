@@ -73,20 +73,27 @@ $(document).ready(function() {
 
 $('.button-variable-item').on('click', function() {
 
+    //alert($('.flex-control-thumbs li').height());
+
+    $('.flex-control-thumbs li img').removeClass('flex-active');
+
+    var h = $('.flex-control-thumbs li').height() + 10;
+
     var active = 0;
 
     window.setTimeout(function(){
 
         $('.flex-control-thumbs li').each(function(index, element){
             if($(this).find('img').hasClass('flex-active')) {
+                //$(this).addClass('flex-active-li');
                 active = index;
             }
         })
 
         $('.flex-control-thumbs').animate({
-            scrollTop: active * 65
-        }, 1000);
-    }, 1000);
+            scrollTop: active * h
+        }, 500);
+    }, 500);
 
 });
 

@@ -761,8 +761,12 @@ table.tableizer-table {
   width: 100%;
   float: none;
   margin: 10px 0;
-  border: 1px solid #4a4a4a;
+  /*border: 1px solid #4a4a4a;*/
   list-style: none; }
+  .woocommerce div.product div.images .flex-control-thumbs li img {
+    border: 1px solid #000; }
+  .woocommerce div.product div.images .flex-control-thumbs li img.flex-active {
+    border: 4px solid #e11f26 !important; }
 
 .woocommerce div.product span.price,
 .woocommerce div.product p.price {
