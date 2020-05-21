@@ -61,6 +61,28 @@ $(document).ready(function() {
         ]
     });
 
+    window.setTimeout(function() {
+
+        var active_slide = $('.flex-active-slide').data('thumb');
+
+        console.log(active_slide);
+
+        $('.flex-control-thumbs li').each(function(index, element) {
+
+            var img = $(this).find('img');
+
+            console.log($(img).attr('src'));
+
+            if($(img).attr('src') == active_slide) {
+                console.log('==');
+                $(img).addClass('flex-active');
+            }
+        })
+
+        activeThumb();
+    }, 1000);
+
+
     /*$('.woocommerce-product-gallery ol').slick({
         slidesToShow: 5,
         slidesToScroll: 1,
@@ -72,10 +94,13 @@ $(document).ready(function() {
 
 
 $('.button-variable-item').on('click', function() {
-
-    //alert($('.flex-control-thumbs li').height());
-
     $('.flex-control-thumbs li img').removeClass('flex-active');
+    activeThumb();
+});
+
+function activeThumb() {
+
+    //$('.flex-control-thumbs li img').removeClass('flex-active');
 
     var h = $('.flex-control-thumbs li').height() + 10;
 
@@ -85,17 +110,17 @@ $('.button-variable-item').on('click', function() {
 
         $('.flex-control-thumbs li').each(function(index, element){
             if($(this).find('img').hasClass('flex-active')) {
-                //$(this).addClass('flex-active-li');
                 active = index;
+                console.log(index)
             }
         })
 
         $('.flex-control-thumbs').animate({
             scrollTop: active * h
         }, 500);
-    }, 500);
 
-});
+    }, 500);
+}
 
 $( 'body' ).on( 'change', '.qty', function() { // поле с количеством имеет класс .qty
     $( '[name="update_cart"]' ).trigger( 'click' );
