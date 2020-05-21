@@ -69,6 +69,27 @@ $(document).ready(function() {
     })*/
 });
 
+
+
+$('.button-variable-item').on('click', function() {
+
+    var active = 0;
+
+    window.setTimeout(function(){
+
+        $('.flex-control-thumbs li').each(function(index, element){
+            if($(this).find('img').hasClass('flex-active')) {
+                active = index;
+            }
+        })
+
+        $('.flex-control-thumbs').animate({
+            scrollTop: active * 65
+        }, 1000);
+    }, 1000);
+
+});
+
 $( 'body' ).on( 'change', '.qty', function() { // поле с количеством имеет класс .qty
     $( '[name="update_cart"]' ).trigger( 'click' );
 } );
@@ -105,6 +126,10 @@ $('.sub-menu').on('mouseleave', function() {
     $('li a.btn-alt').removeClass('active');
 
 })
+
+
+
+
 
 $(window).load(function() {
     /*if($('.variations_form .woocommerce-Price-amount').length && $('.variations_form .woocommerce-Price-amount').text() != '') {
