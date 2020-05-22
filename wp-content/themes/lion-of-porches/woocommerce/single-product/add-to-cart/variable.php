@@ -28,6 +28,57 @@ foreach ($available_variations as $variation) {
     $available_variations[$i++]['display_price'] = 100;
 }*/
 
+//(new Helper())->dump($available_variations); //die;
+
+if ( is_user_logged_in() ) {
+
+    $current_user = wp_get_current_user();
+
+    // персональная скидка клиента (%)
+    $discount = (int)(new Crm())->getUserDiscount($current_user->user_email);
+
+    if($discount) {
+
+        // персональная скидка клиента (коэффициент)
+        $p = $discount / 100;
+
+        $i = 0;
+        foreach($available_variations as $variation) {
+
+            // если на вариацию нет скидки
+            if($variation['display_price'] === $variation['display_regular_price']) {
+
+                // цена на товар с учетом скидки
+                $discount_price = $variation['display_regular_price'] - $variation['display_regular_price'] * $p;
+
+                $available_variations[$i]['display_price'] = $discount_price;
+
+                $text = sprintf('<span class="price" style="display: block;"><del>%s</del></span>', wc_price( $variation['display_regular_price'] ));
+                $text .= sprintf('<span class="price" style="display: block;"><ins>%s</ins></span>', wc_price(  $discount_price  ));
+                $text .= '<div class="discount-personal"><div class="discount-value">Ваша персональная скидка: - <span>'.$discount.'</span>%</div>';
+                //$text .= '<p class="price">Стоимость с учётом Вашей скидки ' . wc_price( $discount_price ). '</p>';
+                $text .= '<p class="price s">Ваша экономия: ' . wc_price( +$variation['display_regular_price'] - $discount_price ). '</p></div>';
+
+                $available_variations[$i]['price_html'] = $text;
+            }
+            $i++;
+        }
+    }
+
+
+
+    /*if($discount_price) {
+        $hidden = $is_variation_price ? '' : '';
+        $price .= '<div class="discount-personal" '.$hidden.'><div class="discount-value">Ваша персональная скидка - <span>'.$discount.'</span>%</div>';
+        $price .= '<p class="price">Стоимость с учётом Вашей скидки ' . wc_price( $discount_price ). '</p>';
+        $price .= '<p class="price s">Ваша экономия ' . wc_price( $s ). '</p></div>';
+    }*/
+} /*else {
+    $price .= '<span class="symbol">' . sprintf(get_woocommerce_currency_symbol() ) . '</span>';
+}*/
+
+
+
 //(new Helper())->dump($available_variations);
 $variations_json = wp_json_encode( $available_variations );
 

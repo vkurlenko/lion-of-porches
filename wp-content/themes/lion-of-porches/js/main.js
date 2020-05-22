@@ -61,17 +61,24 @@ $(document).ready(function() {
         ]
     });
 
+    /*$('.woocommerce-product-gallery ol').slick({
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        vertical: true,
+        arrows: true,
+    })*/
+
     window.setTimeout(function() {
 
         var active_slide = $('.flex-active-slide').data('thumb');
 
-        console.log(active_slide);
+        //console.log(active_slide);
 
         $('.flex-control-thumbs li').each(function(index, element) {
 
             var img = $(this).find('img');
 
-            console.log($(img).attr('src'));
+            //console.log($(img).attr('src'));
 
             if($(img).attr('src') == active_slide) {
                 console.log('==');
@@ -82,13 +89,6 @@ $(document).ready(function() {
         activeThumb();
     }, 1000);
 
-
-    /*$('.woocommerce-product-gallery ol').slick({
-        slidesToShow: 5,
-        slidesToScroll: 1,
-        vertical: true,
-        arrows: true,
-    })*/
 });
 
 
@@ -164,28 +164,13 @@ $('.sub-menu').on('mouseleave', function() {
 
 
 $(window).load(function() {
-    /*if($('.variations_form .woocommerce-Price-amount').length && $('.variations_form .woocommerce-Price-amount').text() != '') {
-        window.setTimeout(function(){
-            $('p.price .woocommerce-Price-amount').html($('.variations_form .woocommerce-Price-amount').html());
-        }, 0);
-    }*/
 
-    /*console.log($('.variations_form .discount-personal .woocommerce-Price-amount'));*/
-    //console.log($('.single_variation .woocommerce-variation-price').html());
-
-    if($('.single_variation .woocommerce-variation-price').html() == undefined || $('.single_variation .woocommerce-variation-price').html() == '') {
+    /*if($('.single_variation .woocommerce-variation-price').html() == undefined || $('.single_variation .woocommerce-variation-price').html() == '') {
           $('.summary > .discount-personal').css('display', 'block');
     }
 
-    /*if($('.single_variation .woocommerce-variation-price').html() != undefined && $('.single_variation .woocommerce-variation-price').html() != '') {
-        $('.summary > .discount-personal').css('display', 'none');
-    }*/
-
-    //$('.variations_form select').trigger('click');
-
     $('.variations_form select').change(function() {
 
-        //console.log('change');
 
         if($('.variations_form .single_variation .woocommerce-Price-amount').length && $('.variations_form .single_variation .woocommerce-Price-amount').text() != '') {
             window.setTimeout(function(){
@@ -210,5 +195,5 @@ $(window).load(function() {
                 $('.woocommerce-variation-price .discount-personal, .woocommerce-variation-price .price').css('display', 'block');
             }, 0);
         }
-    });
+    });*/
 });

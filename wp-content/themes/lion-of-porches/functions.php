@@ -218,7 +218,12 @@ function woo_custom_single_add_to_cart_text() {
 
 }
 
+/**
+ * Вывод вариантов цветов товара на карточке товара в каталоге
+ *
+ */
 function woocommerce_template_loop_product_title() {
+
     global $product;
 
     $woo_helper = new WooHelper();
@@ -257,8 +262,6 @@ function woocommerce_template_loop_product_title() {
         //get variation name
         $variation_name = $product_variation->get_variation_attributes();
 
-        //var_dump($variation_name); die;
-
         if(!in_array($variation_name [ 'attribute_pa_color'], $colors)) {
             $colors[] = $variation_name [ 'attribute_pa_color'];
             $color_title = isset($titles[$variation_name [ 'attribute_pa_color']]) ? $titles[$variation_name [ 'attribute_pa_color']] : '';
@@ -269,6 +272,8 @@ function woocommerce_template_loop_product_title() {
 
     echo '<h1 class="' . esc_attr( apply_filters( 'woocommerce_product_loop_title_classes', 'woocommerce-loop-product__title' ) ) . '">' . get_the_title() . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
+/************************************************************/
+/************************************************************/
 
 remove_filter( 'woocommerce_product_tabs', 'woocommerce_default_product_tabs' );
 remove_filter( 'woocommerce_product_tabs', 'woocommerce_sort_product_tabs', 99 );
@@ -283,8 +288,14 @@ function add_thumbnail_size($size){
     return $size;
 }*/
 
+
+/**
+ * Меню в личном кабинете
+ *
+ */
 add_filter ( 'woocommerce_account_menu_items', 'my_account_links' );
-function my_account_links( $menu_links ){
+
+function my_account_links($menu_links ){
 
     //unset( $menu_links['edit-address'] ); // Addresses
     unset( $menu_links['dashboard'] ); // Dashboard
@@ -296,11 +307,19 @@ function my_account_links( $menu_links ){
 
     return $menu_links;
 }
+/******************************************/
+/******************************************/
 
+
+/**
+ * Our hooked in function - $fields is passed via the filter!
+ *
+ * @param $fields
+ * @return mixed
+ */
 add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
 
-// Our hooked in function - $fields is passed via the filter!
-function custom_override_checkout_fields( $fields ) {
+function custom_override_checkout_fields($fields ) {
 
     unset($fields['billing']['billing_company']); // удаляем Название компании
     //unset($fields['billing']['billing_postcode']); // удаляем Индекс
@@ -336,7 +355,7 @@ function woo_discount_total(WC_Cart $cart) {
 
             $p = $discount / 100;
 
-            $discount_price = $cart->subtotal * $p;//0.05; // 0.05 - это 5%
+            //$discount_price = $cart->subtotal * $p;//0.05; // 0.05 - это 5%
 
             $discount_price = (new WooHelper())->getCartSubTotal($cart);
 
@@ -345,8 +364,16 @@ function woo_discount_total(WC_Cart $cart) {
         }
     }
 }
-/*****************************************************************/
 
+/*add_action('woocommerce_format_sale_price', 'ss_format_sale_price');
+
+function ss_format_sale_price( $regular_price, $sale_price ) {
+
+    $sale_price = (new WooHelper())->getPersonalSalePrice($regular_price, $sale_price);
+
+    $price = '<del>' . ( is_numeric( $regular_price ) ? wc_price( $regular_price ) : $regular_price ) . '</del> <ins>' . ( is_numeric( $sale_price ) ? wc_price( $sale_price ) : $sale_price ) . '</ins>';
+    return apply_filters( 'woocommerce_format_sale_price', $price, $regular_price, $sale_price );
+}*/
 
 
 // Добавляем значение сэкономленных процентов рядом с ценой у товаров
@@ -359,14 +386,16 @@ function woocommerce_custom_sales_price( $price, $product ) {
 /*  /Персональная скидка */
 
 // получаем массив всех вложенных категорий
-function hml_get_category_gender_line( $cat_parent ){
+function hml_get_category_gender_line( $cat_parent ) {
     // get_term_children() accepts integer ID only
     $line = get_term_children( (int) $cat_parent, 'product_cat');
     $line[] = $cat_parent;
     return $line;
 }
 
+
 // удаляем текущий вывод цены
+//
 //add_filter( 'woocommerce_get_price_html', 'hide_all_wc_prices', 100, 2);
 
 // заменяем нашим фильтром
@@ -374,9 +403,12 @@ function hml_get_category_gender_line( $cat_parent ){
 
 function custom_price_html( $price, $product ){
 
+    //global $product;
+    //(new Helper())->dump((new WooHelper())->getVariation($product)); die;
     //echo $price; //die;
 
     $discount_price = 0;
+
     $is_variation_price = false;
 
     if ( is_user_logged_in() ) {
@@ -392,12 +424,14 @@ function custom_price_html( $price, $product ){
             if(null != get_post_meta( get_the_ID(), '_price', true)) {
                 $is_variation_price = true;
                 $regular_price = str_replace([' ', ' '], '', get_post_meta( get_the_ID(), '_price', true));
+
             } else {
                 $regular_price = str_replace([' ', ' '], '', get_post_meta( get_the_ID(), '_regular_price', true));
             }
 
             if(null != get_post_meta( get_the_ID(), '_sale_price', true)) {
                 $regular_price = str_replace([' ', ' '], '', get_post_meta( get_the_ID(), '_sale_price', true));
+                echo $regular_price;
             }
 
             //(new Helper())->dump( $product->get_variation_prices( false ) );
@@ -420,32 +454,9 @@ function custom_price_html( $price, $product ){
         $price .= '<span class="symbol">' . sprintf(get_woocommerce_currency_symbol() ) . '</span>';
     }
 
+
+
     return apply_filters( 'woocommerce_get_price', $price );
-}
-
-//add_filter( 'woocommerce_product_get_sale_price', 'custom_dynamic_sale_price', 10, 2 );
-//add_filter( 'woocommerce_product_variation_get_sale_price', 'custom_dynamic_sale_price', 10, 2 );
-
-function custom_dynamic_sale_price( $sale_price, $product ) {
-    $rate = 0.8;
-    //if( empty($sale_price) || $sale_price == 0 )
-        return $sale_price+100;//$product->get_regular_price() * $rate;
-    //else
-        //return $sale_price;
-};
-
-//add_filter( 'woocommerce_get_variation_sale_price', 'filter_function_name_8880', 10, 4 );
-
-/*function filter_function_name_8880( $price, $product){
-
-    $price = 100;
-
-    return $price;
-}*/
-
-add_action( 'woocommerce_single_variation', 'action_function_name_7179' );
-function action_function_name_7179(){
-    //echo 'test';
 }
 
 
@@ -525,7 +536,30 @@ function get_related_custom($id, $limit = 4 ) {
 /*************************************************************************************************************/
 /*************************************************************************************************************/
 
+//add_filter( 'woocommerce_product_get_sale_price', 'custom_dynamic_sale_price', 10, 2 );
+//add_filter( 'woocommerce_product_variation_get_sale_price', 'custom_dynamic_sale_price', 10, 2 );
 
+/*function custom_dynamic_sale_price( $sale_price, $product ) {
+    $rate = 0.8;
+    //if( empty($sale_price) || $sale_price == 0 )
+        return $sale_price+100;//$product->get_regular_price() * $rate;
+    //else
+        //return $sale_price;
+};*/
+
+//add_filter( 'woocommerce_get_variation_sale_price', 'filter_function_name_8880', 10, 4 );
+
+/*function filter_function_name_8880( $price, $product){
+
+    $price = 100;
+
+    return $price;
+}*/
+
+/*add_action( 'woocommerce_single_variation', 'action_function_name_7179' );
+function action_function_name_7179(){
+    //echo 'test';
+}*/
 
 /*******************/
 /* /My Woocommerce */

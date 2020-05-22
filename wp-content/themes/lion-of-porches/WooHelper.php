@@ -766,11 +766,73 @@ class WooHelper
         return $percent;
     }
 
+
+    /**
+     * Расчет цены акционного товара с учетом персональной скидки
+     *
+     * @param $regular_price
+     * @param $sale_price
+     * @return float|int
+     */
+    public function getPersonalSalePrice($regular_price, $sale_price)
+    {
+        $current_user = wp_get_current_user();
+
+        $user_discount = (new Crm())->getUserDiscount($current_user->user_email);
+
+        $sale_percent = $this->getSalePercent($sale_price, $regular_price);
+
+        if($sale_percent) {
+
+            $p = (new Crm())->getUserSaleDiscount($sale_percent, $user_discount);
+
+            $sale_price = $sale_price - ($sale_price * $p / 100);
+        }
+
+        return $sale_price;
+    }
+
+
+    /**
+     * Вывод акционной цены вариации в карточке товара с учетом персональной скидки
+     *
+     * @param $sale_price
+     * @param $regular_price
+     * @return string
+     */
+    public function getVariationPriceTextSale($sale_price, $regular_price)
+    {
+        $crm = new Crm();
+
+        $current_user = wp_get_current_user();
+        $user_discount = $crm->getUserDiscount($current_user->user_email);
+        $sale_discount = $this->getSalePercent($sale_price, $regular_price);
+
+        $lp_sale_price = $this->getPersonalSalePrice($regular_price, $sale_price);
+
+        if ($lp_sale_price) {
+            $text = sprintf('%s', is_numeric($lp_sale_price) ? wc_price($lp_sale_price) : $lp_sale_price);
+            //$text .= sprintf('<div class="discount-personal"><div class="discount-value">Cкидка на товар: -%s %%</div></div>', $sale_discount);
+            $text .= sprintf('<div class="discount-personal"><div class="discount-value">Ваша дополнительная скидка: -%s%% (от акционной цены)</div></div>', $crm->getUserSaleDiscount($sale_discount, $user_discount));
+            //$text .= sprintf('<div class="discount-personal"><div class="discount-value">Ваша экономия: %s</div></div>', wc_price($regular_price - $lp_sale_price));
+            $text .= sprintf('<div class="discount-personal"><div class="discount-value">Ваша дополнительная экономия: %s</div></div>', wc_price($sale_price - $lp_sale_price));
+
+            $sale_price = $text;
+        }
+
+        return $sale_price;
+    }
+
+    /**
+     * Получим все вариации товара
+     *
+     * @param $product
+     * @return array
+     */
     public function getVariation($product)
     {
         $variations = [];
 
-        // получим все вариации товара
         foreach($product->get_available_variations() as $variation) {
             $variations[$variation['variation_id']] = $variation;
         }
