@@ -526,6 +526,14 @@ ul.products li.product a img {
     font-size: 24px !important;
 }
 
+.variable-item-span-button {
+    text-transform: lowercase;
+}
+
+.button-variable-wrapper[data-attribute_name='attribute_pa_size'] .variable-item-span-button {
+    text-transform: uppercase;
+}
+
 .colors-bar {
     display: inline-block;
     float: right;

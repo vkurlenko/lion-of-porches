@@ -141,6 +141,33 @@
         float: left !important;;
         margin-left: 10px;
     }
+
+    .woocommerce div.product .product_title {
+        margin: 0;
+        font-size: 30px;
+    }
+
+    .woocommerce div.product span.price,
+    .woocommerce div.product p.price,
+    .woocommerce div.product form.cart .variations label{
+        font-size: 1em;
+    }
+
+    .woocommerce-variation.single_variation .price{
+        font-size: 2em !important;
+    }
+
+    .product_meta {
+        font-size: 16px;
+
+        div {
+            margin-bottom: 10px;
+        }
+    }
+
+    .entry-summary p:not([class='price']) {
+        font-size: 12px;
+    }
 }
 
 // Medium devices (tablets, less than 992px)
