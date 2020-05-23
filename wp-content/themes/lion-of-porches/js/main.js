@@ -93,7 +93,7 @@ $(document).ready(function() {
 
 
 
-$('.button-variable-item').on('click', function() {
+$('.button-variable-wrapper[data-attribute_name="attribute_pa_color"] .button-variable-item').on('click', function() {
     $('.flex-control-thumbs li img').removeClass('flex-active');
     activeThumb();
 });
