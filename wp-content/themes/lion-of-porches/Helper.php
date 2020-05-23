@@ -114,8 +114,40 @@ class Helper
         return false;
     }
 
+    public function getSizeGuideTab($category)
+    {
+        $posts = query_posts('category_name='.$category);
+
+        $html = '<div class="vertical-tab" role="tabpanel"><ul class="nav nav-tabs" role="tablist">';
+
+        $i = 0;
+        foreach($posts as $post) {
+            $html .= sprintf('<li class="%s"><a data-toggle="tab" href="#%s">%s</a></li>', (!$i ? 'active' : ''), $post->post_name, $post->post_title);
+            $i++;
+        }
+
+        $html .= '</ul>';
+
+        $html .= '<div class="tab-content">';
+
+        $i = 0;
+        foreach($posts as $post) {
+            $html .= sprintf('<div id="%s" class="tab-pane fade %s">', $post->post_name, (!$i ? 'in active' : ''));
+            //$html .= sprintf('<h3>%s</h3>', $post->post_title);
+            $html .= $post->post_content;
+            $html .= '</div>';
+            $i++;
+        }
+
+        $html .= '</div></div>';
+
+        return $html;
+        
+    }
+
     public function dump($obj)
     {
         echo "<pre>".print_r((object)$obj, true)."</pre>";
     }
+
 }

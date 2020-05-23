@@ -7,9 +7,7 @@ $(document).on('click', '.hamburger', function() {
         .removeClass('hamburger')
         .addClass('cross');
     toggleMobileMenu();
-
 });
-
 
 $(document).on('click', '.cross', function() {
     $('.threebar')
@@ -68,16 +66,14 @@ $(document).ready(function() {
         arrows: true,
     })*/
 
+    /* прокрутка до активной картинки в карточке товара сразу после загрузки страницы */
     window.setTimeout(function() {
-
         var active_slide = $('.flex-active-slide').data('thumb');
-
         //console.log(active_slide);
 
         $('.flex-control-thumbs li').each(function(index, element) {
 
             var img = $(this).find('img');
-
             //console.log($(img).attr('src'));
 
             if($(img).attr('src') == active_slide) {
@@ -88,7 +84,7 @@ $(document).ready(function() {
 
         activeThumb();
     }, 1000);
-
+    /* /прокрутка до активной картинки в карточке товара сразу после загрузки страницы */
 });
 
 
@@ -98,6 +94,7 @@ $('.button-variable-wrapper[data-attribute_name="attribute_pa_color"] .button-va
     activeThumb();
 });
 
+/* прокрутка до активной картинки в карточке товара */
 function activeThumb() {
 
     //$('.flex-control-thumbs li img').removeClass('flex-active');
@@ -121,6 +118,7 @@ function activeThumb() {
 
     }, 500);
 }
+/* /прокрутка до активной картинки в карточке товара */
 
 $( 'body' ).on( 'change', '.qty', function() { // поле с количеством имеет класс .qty
     $( '[name="update_cart"]' ).trigger( 'click' );
