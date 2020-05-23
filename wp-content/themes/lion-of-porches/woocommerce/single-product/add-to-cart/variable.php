@@ -108,7 +108,7 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 										'product'   => $product,
 									)
 								);
-								echo end( $attribute_keys ) === $attribute_name ? wp_kses_post( apply_filters( 'woocommerce_reset_variations_link', '<a class="reset_variations" href="#">' . esc_html__( 'Clear', 'woocommerce' ) . '</a>' ) ) : '';
+								//echo end( $attribute_keys ) === $attribute_name ? wp_kses_post( apply_filters( 'woocommerce_reset_variations_link', '<a class="reset_variations" href="#">' . esc_html__( 'Clear', 'woocommerce' ) . '</a>' ) ) : '';
 							?>
 						</td>
 					</tr>
@@ -120,6 +120,9 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
                         <div class="sizeguide-link">
                             <a href="/shop/sizeguide/" target="_blank"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAW0lEQVRYhWNgGAWjYBSMdMDIoOL9fyAdwDSQljMwMDCwwFl3tjLC2bBQgYlRm48kNuAhMOoAFsJKGFDjjsryAx4CA+4ARqxZhB5gNBuOOgAKRmvDUTAKRsEoAAAo2iEi024MXwAAAABJRU5ErkJggg==">Размерная сетка</a>
                         </div>
+                        <?php
+                        echo end( $attribute_keys ) === $attribute_name ? wp_kses_post( apply_filters( 'woocommerce_reset_variations_link', '<a class="reset_variations" href="#"><i class="fa fa-undo" aria-hidden="true"></i>' . esc_html__( 'Clear', 'woocommerce' ) . '</a>' ) ) : '';
+                        ?>
                     </td>
                 </tr>
 
