@@ -1571,6 +1571,20 @@ span.art {
   /*text-transform: uppercase;*/
   margin: 0 0 7px 0; }
 
+.sizeguide-link a {
+  font-family: "DIN Pro";
+  color: #7d7d7d;
+  letter-spacing: normal;
+  text-decoration: underline;
+  /*font-size: 16px;*/
+  font-weight: 400; }
+.sizeguide-link a:hover {
+  color: #00244b;
+  text-decoration: none; }
+.sizeguide-link img {
+  width: 32px;
+  margin-right: 10px; }
+
 @media only screen and (max-width: 479px) {
   .vertical-tab .nav-tabs {
     display: block;
