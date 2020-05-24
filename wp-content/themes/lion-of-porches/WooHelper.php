@@ -15,10 +15,12 @@ class WooHelper
      */
     public function createVarProductsFromFile()
     {
-        //return;
+       /* $this->create_attribute( $raw_name = 'pa_color', $terms = array( 'хаки' ) );
+        return;*/
 
         //$f = file($_SERVER['DOCUMENT_ROOT'].'/temp/catalog_full.txt');
-        $f = file($_SERVER['DOCUMENT_ROOT'].'/temp/catalog_mini.txt');
+        //$f = file($_SERVER['DOCUMENT_ROOT'].'/temp/catalog_mini.txt');
+        $f = file($_SERVER['DOCUMENT_ROOT'].'/temp/NomenclaturaSS19_edit.csv');
         //$f = file($_SERVER['DOCUMENT_ROOT'].'/temp/catalog_full_2.txt');
 
         // создадим массив артикулов
@@ -34,7 +36,7 @@ class WooHelper
             // разберем строку на элементы массива
             //Женщины|Верхняя одежда|Блейзеры||5604205986388|L101052038|Blazer|Blazer|Блейзер|L101052038 M 580 SS20|M|синий|62% полиэстер 37% иск. шелк 1% эластан|Португалия|L101052038_580_1 (2)|23 290|Джинсовый .||
             $item = explode(';', $str);
-            $item_data = explode(' ', $item[9]); // L101052038	 M	 580	 SS20
+            $item_data = explode(',', $item[9]); // L101052038	 M	 580	 SS20
 
             // с 0 по 3 элемент - дерево названий категорий
             $item_tree = array_slice($item, 0, 4);
@@ -118,7 +120,7 @@ class WooHelper
 
         echo $data['sku'];
 
-        var_dump(wc_get_product_id_by_sku('L101052038'));// попробуем найти товар по его артикулу
+        //var_dump(wc_get_product_id_by_sku('L101052038'));// попробуем найти товар по его артикулу
 
 
         if(!wc_get_product_id_by_sku($data['sku'])) {
@@ -173,6 +175,24 @@ class WooHelper
             }
 
             $variation_size = $attr['size'][mb_strtolower($variation['size'])];
+
+            /*if(!isset($attr['color'][mb_strtolower($variation['color'])])) {
+                $new_attr_color = mb_strtolower($variation['color']);
+
+                echo 'нет атрибута '.$new_attr_color.'<br>';
+
+                //$this->create_attribute( $raw_name = 'pa_color', $terms = array( $new_attr_color ) );
+
+                $args = [
+                    'name' => $new_attr_color,
+                    'slug' => (new Helper())->translit($new_attr_color)
+                ];
+
+                wc_create_attribute( $args );
+
+                $attr = $this->getAttributes();
+            }*/
+
             $variation_color = $attr['color'][mb_strtolower($variation['color'])];
             $variation_sku = $variation['sku'].'.'.$variation['data'][2];
             $variation_descr = sprintf ('Страна производства: %s<br>Материал: %s<br>%s', $variation['vendor'], $variation['material'], $variation['post_content']);
@@ -407,7 +427,7 @@ class WooHelper
 
             /* пропускаем повторяющиеся цвета товара */
             if(!in_array($value['attributes']['attribute_pa_color'], $arr_pa_color)) {
-                $arr_pa_color[] = $value['attributes']['attribute_pa_color'];
+                $arr_pa_color[] = (new Helper())->translit($value['attributes']['attribute_pa_color']);
             } else {
                 continue;
             }
@@ -812,9 +832,9 @@ class WooHelper
 
         if ($lp_sale_price) {
             $text = sprintf('%s', is_numeric($lp_sale_price) ? wc_price($lp_sale_price) : $lp_sale_price);
-            //$text .= sprintf('<div class="discount-personal"><div class="discount-value">Cкидка на товар: -%s %%</div></div>', $sale_discount);
+            $text .= sprintf('<div class="discount-personal"><div class="discount-value">Cкидка на товар: -%s %%</div></div>', $sale_discount);
             $text .= sprintf('<div class="discount-personal"><div class="discount-value">Ваша дополнительная скидка: -%s%% (от акционной цены)</div></div>', $crm->getUserSaleDiscount($sale_discount, $user_discount));
-            //$text .= sprintf('<div class="discount-personal"><div class="discount-value">Ваша экономия: %s</div></div>', wc_price($regular_price - $lp_sale_price));
+            $text .= sprintf('<div class="discount-personal"><div class="discount-value">Ваша экономия: %s</div></div>', wc_price($regular_price - $lp_sale_price));
             $text .= sprintf('<div class="discount-personal"><div class="discount-value">Ваша дополнительная экономия: %s</div></div>', wc_price($sale_price - $lp_sale_price));
 
             $sale_price = $text;
