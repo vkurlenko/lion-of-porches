@@ -15,6 +15,10 @@
     text-align: center;
 }
 
+.woocommerce div.product .product_title {
+    margin-bottom: 0;
+}
+
 .woocommerce ul.products li.product .price {
     color: $color-text-red;
     display: block;
@@ -119,7 +123,12 @@
 .woocommerce div.product span.price,
 .woocommerce div.product p.price {
     color: $color-text-red;
-    font-size: 2em;
+    font-size: 1.5em;//2em;
+    //font-family: 'arial';
+}
+
+.woocommerce-Price-amount {
+    //font-family:  sans-serif;
 }
 
 .flash-tags {
@@ -181,7 +190,7 @@
 .woocommerce div.product form.cart .variations label {
     font-weight: 900;
     color: $color-deep-blue;
-    font-size: 2em;
+    //font-size: 2em;
 }
 
 .single_add_to_cart_button,

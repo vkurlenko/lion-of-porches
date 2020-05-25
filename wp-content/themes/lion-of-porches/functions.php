@@ -227,7 +227,7 @@ function woocommerce_template_loop_product_title() {
     global $product;
 
     $woo_helper = new WooHelper();
-    //var_dump($product); die;
+    //(new Helper())->dump($product); die;
     $sku = explode('.', $product->get_sku());
     echo  '<span class="art">'.$sku[0].'</span>';
 
@@ -265,7 +265,7 @@ function woocommerce_template_loop_product_title() {
         if(!in_array($variation_name [ 'attribute_pa_color'], $colors)) {
             $colors[] = $variation_name [ 'attribute_pa_color'];
             $color_title = isset($titles[$variation_name [ 'attribute_pa_color']]) ? $titles[$variation_name [ 'attribute_pa_color']] : '';
-            echo '<span class="color '.$variation_name [ 'attribute_pa_color'].'" title="'.$color_title.'"></span>';
+            //echo '<span class="color '.$variation_name [ 'attribute_pa_color'].'" title="'.$color_title.'"></span>';
         }
     }
     echo '</div>';

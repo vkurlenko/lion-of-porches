@@ -21,6 +21,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 the_title( '<h1 class="product_title entry-title">', '</h1>' );
 
+
+
 /*$current_user = wp_get_current_user();
 $user_discount = (new Crm())->getUserDiscount($current_user->user_email);
 
@@ -39,3 +41,13 @@ $user_discount_level = (new Crm())->getUserLevel()[$user_discount];
     <span class="user-level"><?=$user_discount_level?></span>
     <img id="user-level-label" src="/wp-content/themes/lion-of-porches/img/levels/<?=strtolower($user_discount_level)?>.jpg">
 </div>-->
+
+<?php
+
+
+global $product;
+if ( wc_product_sku_enabled() && ( $product->get_sku() || $product->is_type( 'variable' ) ) ) : ?>
+
+    <div class="sku_wrapper">арт: <span class="sku"><?php echo ( $sku = $product->get_sku() ) ? $sku : esc_html__( 'N/A', 'woocommerce' ); ?></span></div>
+
+<?php endif; ?>

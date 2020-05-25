@@ -27,7 +27,7 @@ global $product;
 
 	<?php if ( wc_product_sku_enabled() && ( $product->get_sku() || $product->is_type( 'variable' ) ) ) : ?>
 
-		<div class="sku_wrapper"><?php esc_html_e( 'SKU:', 'woocommerce' ); ?> <span class="sku"><?php echo ( $sku = $product->get_sku() ) ? $sku : esc_html__( 'N/A', 'woocommerce' ); ?></span></div>
+		<!--<div class="sku_wrapper"><?php /*esc_html_e( 'SKU:', 'woocommerce' ); */?> <span class="sku"><?php /*echo ( $sku = $product->get_sku() ) ? $sku : esc_html__( 'N/A', 'woocommerce' ); */?></span></div>-->
 
 	<?php endif; ?>
 
