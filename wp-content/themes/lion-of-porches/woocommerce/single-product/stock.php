@@ -21,6 +21,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $arr = explode(' ', $availability);
 
-$text = $arr[0] == 1 ? 'Последний товар' : '';
+switch ($arr[0]) {
+
+    case 0: $text = wp_kses_post( $availability );
+    break;
+
+    case 1: $text = 'Последний товар';
+    break;
+
+    default: $text = '';
+    break;
+}
+
 ?>
 <p class="stock <?php echo esc_attr( $class ); ?>"><?php echo $text /*wp_kses_post( $availability )*/; ?></p>
