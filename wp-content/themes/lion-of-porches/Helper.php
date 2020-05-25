@@ -14,7 +14,7 @@ class Helper
             'taxonomy' => 'product_cat',
             'orderby'    => 'term_order',// ‘orderby’ => ‘term_order’
             'order'      => 'ASC',
-            'hide_empty' => false,
+            'hide_empty' => true,
             'hierarchical' => false,
             'parent' => $parent,
             'exclude' => 22

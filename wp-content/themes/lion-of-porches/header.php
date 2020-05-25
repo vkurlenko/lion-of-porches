@@ -47,7 +47,7 @@ die;*/
         <div class="row">
 
             <!-- top-left-block -->
-            <div class="col-md-5 col-sm-5 col-xs-5 header-left hidden-xs" style="/*background: #ccc*/">
+            <div class="col-md-5 col-sm-4 col-xs-5 header-left hidden-xs" style="/*background: #ccc*/">
 
                 <!-- меню категорий товаров -->
                 <?php
@@ -105,7 +105,7 @@ die;*/
             <!-- /top-left-block -->
 
             <!-- logo -->
-            <div class="col-md-2 col-sm-2 col-xs-6 logo">
+            <div class="col-md-2 col-sm-4 col-xs-6 logo">
                 <h1>
                     <a href="/"><img class="logo-red hidden-xs" src="/wp-content/themes/lion-of-porches/img/lion-of-porches-red.png"><img class="logo-blue visible-xs" src="/wp-content/themes/lion-of-porches/img/lion-of-porches-blue.png"></a>
                 </h1>
@@ -113,7 +113,7 @@ die;*/
             <!-- /logo -->
 
             <!-- top-right-block -->
-            <div class="col-md-5  col-sm-5  col-xs-6 header-right"  style="/*background: #00ff00*/">
+            <div class="col-md-5  col-sm-4  col-xs-6 header-right"  style="/*background: #00ff00*/">
                 <div class="top-menu-1 hidden-xs">
                     <?
                     $args = array(
@@ -133,7 +133,7 @@ die;*/
                         'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>', // HTML-шаблон
                         'depth'           => 0 // количество уровней вложенности*/
                     );
-                    wp_nav_menu($args);?>
+                    //wp_nav_menu($args);?>
 
                     <!--<ul>
                         <li><a href="#">Доставка</a></li><li><a href="#">О компании</a> </li>
@@ -141,9 +141,33 @@ die;*/
                 </div>
                 <div class="top-menu-2 hidden-xs">
 
-                    <ul>
-                        <li><a href="/shop/">Каталоги</a></li><li><a href="/forpartners/">Партнерам</a></li><li><?php get_template_part( 'parts/login-link');?></li><li><a class="cart-link" href="<?=wc_get_cart_url();?>"><i class="fa fa-shopping-bag" aria-hidden="true"></i>&nbsp;<span class="count">(<?=count(WC()->cart->cart_contents)?>)</span></a></li>
-                    </ul>
+                    <?
+                    $login = '<a href="'.get_permalink( get_option('woocommerce_myaccount_page_id')).'">'.(is_user_logged_in() ? 'Личный кабинет' : 'Вход').'</a>';
+
+                    $args = array(
+                        //'theme_location'  => , // область темы
+                        'menu'            => 'top-menu-2', // какое меню нужно вставить (по порядку: id, ярлык, имя)
+                        /*'container'       => 'div', // блок, в который нужно поместить меню, укажите false, чтобы не помещать в блок
+                        'container_class' => 'menu-{menu slug}-container', // css-класс блока
+                        'container_id'    => , // id блока
+                        'menu_class'      => 'menu', // css-класс меню
+                        'menu_id'         => , // id меню
+                        'echo'            => true, // вывести или записать в переменную
+                        'fallback_cb'     => 'wp_page_menu', // какую функцию использовать если меню не существует, укажите false, чтобы не использовать ничего
+                        'before'          => , // текст или html-код, который нужно вставить перед каждым <a>
+                        'after'           => , // после </a>
+                        'link_before'     => , // текст перед анкором ссылки
+                        'link_after'      => , // после анкора и перед </a>
+                        'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>', // HTML-шаблон
+                        'depth'           => 0 // количество уровней вложенности*/
+                        'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s<li class="menu-item">'.$login.'</li><li><a class="cart-link" href="'.wc_get_cart_url().'"><i class="fa fa-shopping-bag" aria-hidden="true"></i>&nbsp;<span class="count">('.count(WC()->cart->cart_contents).')</span></a></li></ul>', // HTML-шаблон
+                    );
+                    wp_nav_menu($args);?>
+
+
+                    <!--<ul>
+                        <li><a href="/shop/">Доставка</a></li><li><a href="/shop/">О бренде</a></li><li><a href="/shop/">Каталоги</a></li><li><a href="/forpartners/">Партнерам</a></li><li><?php /*get_template_part( 'parts/login-link');*/?></li><li><a class="cart-link" href="<?/*=wc_get_cart_url();*/?>"><i class="fa fa-shopping-bag" aria-hidden="true"></i>&nbsp;<span class="count">(<?/*=count(WC()->cart->cart_contents)*/?>)</span></a></li>
+                    </ul>-->
                 </div>
 
                 <div class="cart-mobile visible-xs">
