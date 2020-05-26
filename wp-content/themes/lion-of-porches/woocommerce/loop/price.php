@@ -27,11 +27,11 @@ $personal_price = (new WooHelper())->getPersonalPrice($p);
 
 <?php
 if($personal_price):?>
-        <span class="price"><?php echo wc_price($personal_price) ?>
-            <?php if ( $price_html = $product->get_price() ? $product->get_price() : $product->get_price_html() ) : ?>
-                <del class="inline"><?=$price_html;?></del>
-            <?php endif; ?>
-        </span>
+    <span class="price"><?php echo wc_price($personal_price) ?>
+        <?php if ( $price_html = $product->get_price() ? $product->get_price() : $product->get_price_html() ) : ?>
+            <del class="inline"><?=$price_html;?></del>
+        <?php endif; ?>
+    </span>
 <?php
 else:?>
     <?php if ( $price_html = $product->get_price_html() ) : ?>

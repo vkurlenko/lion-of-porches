@@ -486,7 +486,7 @@ class WooHelper
                        // $p = $this->getPriceFromHtml($product);
                         $personal_price = $this->getPersonalPrice($value['display_price']);
 
-                        if($personal_price):?>
+                        if($personal_price && ($personal_price != $value['display_price'])):?>
                         <span class="price"><?=wc_price( $personal_price )?>
                             <del class="inline"><?=wc_price($value['display_price'])?></del>
                         </span>
@@ -798,9 +798,10 @@ class WooHelper
      */
     public function getPersonalPrice($regular_price = 0)
     {
-        $personal_price = $regular_price;
+        $personal_price = false;//$regular_price;
 
         $user_discount = (new Crm())->getCurrentUserDiscount();
+        //echo $user_discount;
 
         if($user_discount) {
             $personal_price = $regular_price - ($regular_price * $user_discount / 100);
