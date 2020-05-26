@@ -26,6 +26,21 @@
     margin-bottom: 0.5em;
     font-size: 1.5em;
     text-align: center;
+    font-family: 'Butik Sans Bold';
+}
+
+.product_meta {
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.personal-discount {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: $color-text-red;
+    font-family: 'Butik Sans Bold';
+
 }
 
 .btn-quickview {
@@ -124,7 +139,13 @@
 .woocommerce div.product p.price {
     color: $color-text-red;
     font-size: 1.5em;//2em;
+    font-family: 'Butik Sans Bold';
     //font-family: 'arial';
+}
+
+.woocommerce .price del.inline {
+    display: inline-block !important;
+    font-family: 'Butik Sans Medium';
 }
 
 .woocommerce-Price-amount {

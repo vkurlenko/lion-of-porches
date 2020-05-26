@@ -270,6 +270,15 @@ function woocommerce_template_loop_product_title() {
     }
     echo '</div>';
 
+
+    if((new Crm())->getCurrentUserDiscount()) {
+        $discount = sprintf('-%s%%', (new Crm())->getCurrentUserDiscount());
+    } else {
+        $discount = '';
+    }
+
+    echo '<span class="personal-discount">'.$discount.'</span>';
+
     echo '<h1 class="' . esc_attr( apply_filters( 'woocommerce_product_loop_title_classes', 'woocommerce-loop-product__title' ) ) . '">' . get_the_title() . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
 /************************************************************/

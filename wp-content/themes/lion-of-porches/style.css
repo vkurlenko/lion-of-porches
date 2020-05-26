@@ -31,6 +31,21 @@ Theme Name: LionOfPorches
   src: url("/wp-content/themes/lion-of-porches/fonts/din-pro/DINPro-CondensedLight.ttf") format("woff");
   font-weight: bold;
   font-style: normal; }
+@font-face {
+  font-family: 'Butik Sans Bold';
+  src: url("/wp-content/themes/lion-of-porches/fonts/butik-sans/ButikSans-Bold.ttf") format("woff");
+  font-weight: bold;
+  font-style: normal; }
+@font-face {
+  font-family: 'Butik Sans Medium';
+  src: url("/wp-content/themes/lion-of-porches/fonts/butik-sans/ButikSans-Medium.ttf") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: 'Butik Sans Regular';
+  src: url("/wp-content/themes/lion-of-porches/fonts/butik-sans/ButikSans-Regular.ttf") format("woff");
+  font-weight: normal;
+  font-style: normal; }
 ::-webkit-scrollbar {
   /* chrome based */
   width: 0px;
@@ -712,7 +727,19 @@ table.tableizer-table {
   font-weight: normal;
   margin-bottom: 0.5em;
   font-size: 1.5em;
-  text-align: center; }
+  text-align: center;
+  font-family: 'Butik Sans Bold'; }
+
+.product_meta {
+  font-weight: 400;
+  font-size: 16px; }
+
+.personal-discount {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: #e11f26;
+  font-family: 'Butik Sans Bold'; }
 
 .btn-quickview {
   font-family: 'DIN Pro', sans-serif;
@@ -796,7 +823,12 @@ table.tableizer-table {
 .woocommerce div.product span.price,
 .woocommerce div.product p.price {
   color: #e11f26;
-  font-size: 1.5em; }
+  font-size: 1.5em;
+  font-family: 'Butik Sans Bold'; }
+
+.woocommerce .price del.inline {
+  display: inline-block !important;
+  font-family: 'Butik Sans Medium'; }
 
 .flash-tags {
   position: absolute;

@@ -163,7 +163,30 @@ class Crm
     }
 
     /**
-     * Получить размер персональной скидки для товаров распродажи
+     * Персональная скидка текущего пользователя (%)
+     *
+     * @return bool|int
+     */
+    public function getCurrentUserDiscount()
+    {
+        if ( is_user_logged_in() ) {
+
+            $current_user = wp_get_current_user();
+
+            $discount = $this->getUserDiscount($current_user->user_email);
+
+            //echo $discount; die;
+
+            if($discount) {
+                return $discount;
+            }
+        }
+
+        return 0;
+    }
+
+    /**
+     * Получить размер персональной скидки для товаров распродажи (%)
      *
      * @return array
      */

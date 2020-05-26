@@ -41,6 +41,27 @@ Theme Name: LionOfPorches
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Butik Sans Bold';
+  src: url('/wp-content/themes/lion-of-porches/fonts/butik-sans/ButikSans-Bold.ttf') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Butik Sans Medium';
+  src: url('/wp-content/themes/lion-of-porches/fonts/butik-sans/ButikSans-Medium.ttf') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Butik Sans Regular';
+  src: url('/wp-content/themes/lion-of-porches/fonts/butik-sans/ButikSans-Regular.ttf') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 $body-color: #5b7a9c; //#00244b;
 $color-deep-blue: #00244b;
 $logo-bg-red: #c90003;
