@@ -20,7 +20,8 @@ class WooHelper
 
         //$f = file($_SERVER['DOCUMENT_ROOT'].'/temp/catalog_full.txt');
         //$f = file($_SERVER['DOCUMENT_ROOT'].'/temp/catalog_mini.txt');
-        $f = file($_SERVER['DOCUMENT_ROOT'].'/temp/NomenclaturaSS19_edit.csv');
+        $f = file($_SERVER['DOCUMENT_ROOT'].'/temp/Nomenklatura3.csv');
+        echo $_SERVER['DOCUMENT_ROOT'].'/temp/Nomenclatura3.csv';
         //$f = file($_SERVER['DOCUMENT_ROOT'].'/temp/catalog_full_2.txt');
 
         // создадим массив артикулов
@@ -32,6 +33,9 @@ class WooHelper
             if(trim($str) == '') {
                 continue;
             }
+
+            echo $str.'<br>';
+            //continue;
 
             // разберем строку на элементы массива
             //Женщины|Верхняя одежда|Блейзеры||5604205986388|L101052038|Blazer|Blazer|Блейзер|L101052038 M 580 SS20|M|синий|62% полиэстер 37% иск. шелк 1% эластан|Португалия|L101052038_580_1 (2)|23 290|Джинсовый .||
@@ -478,7 +482,29 @@ class WooHelper
 
                     <h1 class="woocommerce-loop-product__title"><?=$product->get_name()?></h1>
 
-                    <span class="price"><?=wc_price( $value['display_price'] )?></span>
+                        <?php
+                       // $p = $this->getPriceFromHtml($product);
+                        $personal_price = $this->getPersonalPrice($value['display_price']);
+
+                        if($personal_price):?>
+                        <span class="price"><?=wc_price( $personal_price )?>
+                            <del class="inline"><?=wc_price($value['display_price'])?></del>
+                        </span>
+                        <?php
+                        else:?>
+                            <span class="price"><?=wc_price( $value['display_price'] )?></span>
+                        <?php endif;
+                        ?>
+
+                    <?php
+                    if((new Crm())->getCurrentUserDiscount()) {
+                        $discount = sprintf('-%s%%', (new Crm())->getCurrentUserDiscount());
+                    } else {
+                        $discount = '';
+                    }
+                    ?>
+
+                    <span class="personal-discount"><?=$discount?></span>
 
                 </a>
 
@@ -508,54 +534,6 @@ class WooHelper
         return $arr;
     }
 
-    public function getColor($color)
-    {
-        /*$arrAttr = $this->getAttributes()['color'];
-        $arr = [];
-
-        foreach($arrAttr as $color => $value) {
-
-            $value = strtolower(trim($value));
-
-            if(!in_array($value, $arr)) {
-                $arr[] = $value;
-
-                echo $value.'<br>';
-            }
-        }*/
-
-        /*$colors = [
-            'blue' => ['#0000FF', 'Синий'],
-            'sinij' => ['#0000FF', 'Синий'],
-            'serovato-sinij' => ['#26252d', 'Серовато-синий'],
-            'gray' => ['#BEBEBE', 'Серый'],
-            'seryj' => ['#BEBEBE', 'Серый'],
-            'green' => ['#00FF00', 'Зелёный'],
-            'zelenyj' => ['#00FF00', 'Зелёный'],
-            'zeleonyj' => ['#00FF00', 'Зелёный'],
-            'red' => ['#FF0000', 'Красный'],
-            'krasnyj' => ['#ff0000', 'Красный'],
-            'yellow' => ['#FFFF00', 'Желтый'],
-            'bezhevyj' => ['#f5f5dc', 'Бежевый'],
-            'belyj' => ['#FFFFFF', 'Белый'],
-            'birjuzovyj' => ['#30d5c8', 'Бирюзовый'],
-            'goluboj' => ['#42aaff', 'Голубой'],
-            'zheltyj' => ['#FFFF00', 'Жёлтый'],
-            'zheltyj-2' => ['#FFFF00', 'Жёлтый'],
-            'karamelnyj' => ['#af6f09', 'Карамельный'],
-            'korichnevyj' => ['#964b00', 'Коричневый'],
-            'molochnyj' => ['#fff6d4', 'Молочный'],
-            'pesochnyj' => ['#fcdd76', 'Песочный'],
-            'rozovyj' => ['#ffc0cb', 'Розовый'],
-            'chjornyj' => ['#000000', 'Чёрный'],
-        ];
-
-        if(isset($colors[$color])) {
-            return $colors[$color];
-        } else {
-            return $colors['belyj'];
-        }*/
-    }
 
     /**
      * Крошки на странице продукта
@@ -810,6 +788,59 @@ class WooHelper
         }
 
         return $sale_price;
+    }
+
+    /**
+     * Расчет цены обычного товара с учетом персональной скидки
+     *
+     * @param int $regular_price
+     * @return float|int
+     */
+    public function getPersonalPrice($regular_price = 0)
+    {
+        $personal_price = $regular_price;
+
+        $user_discount = (new Crm())->getCurrentUserDiscount();
+
+        if($user_discount) {
+            $personal_price = $regular_price - ($regular_price * $user_discount / 100);
+        }
+
+        return $personal_price;
+    }
+
+    /**
+     * Получим цену товара из $product->get_price_html()
+     *
+     * @param $product
+     * @return mixed
+     */
+    public function getPriceFromHtml($product)
+    {
+        //(new Helper())->dump($product);
+        $re = '/(\d)|(\.)*/mu';
+
+        if($product->get_price()) {
+            return $product->get_price();
+        }
+
+        $str = strip_tags($product->get_price_html());//'₽7 490.50';
+
+        //echo $str; //die;
+
+        preg_match_all($re, $str, $matches, PREG_SET_ORDER, 0);
+
+        $p = '';
+
+        foreach($matches as $m) {
+            if(is_numeric($m[0]) || $m[0] == '.') {
+                $p .= $m[0];
+            }
+        }
+
+        $price = str_replace('8381', '', $p);
+
+        return $price;
     }
 
 
