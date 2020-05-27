@@ -728,7 +728,7 @@ table.tableizer-table {
   margin-bottom: 0.5em;
   font-size: 1.5em;
   text-align: center;
-  font-family: 'Butik Sans Bold'; }
+  font-family: 'Butik Sans Medium'; }
 
 .product_meta {
   font-weight: 400;
@@ -739,7 +739,7 @@ table.tableizer-table {
   top: 20px;
   left: 20px;
   color: #e11f26;
-  font-family: 'Butik Sans Bold'; }
+  font-family: 'Butik Sans Medium'; }
 
 .btn-quickview {
   font-family: 'DIN Pro', sans-serif;
@@ -824,7 +824,12 @@ table.tableizer-table {
 .woocommerce div.product p.price {
   color: #e11f26;
   font-size: 1.5em;
-  font-family: 'Butik Sans Bold'; }
+  font-family: 'Butik Sans Medium';
+  letter-spacing: 0;
+  font-weight: 400; }
+  .woocommerce div.product span.price ins,
+  .woocommerce div.product p.price ins {
+    font-weight: 400; }
 
 .woocommerce .price del.inline {
   display: inline-block !important;
@@ -1142,7 +1147,8 @@ span.art {
   opacity: 1 !important;
   font-size: .7em;
   color: #5b7a9c !important;
-  display: block !important; }
+  display: block !important;
+  font-weight: 400; }
 
 .summary > .discount-personal {
   display: none; }
