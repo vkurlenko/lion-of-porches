@@ -463,8 +463,6 @@ function custom_price_html( $price, $product ){
         $price .= '<span class="symbol">' . sprintf(get_woocommerce_currency_symbol() ) . '</span>';
     }
 
-
-
     return apply_filters( 'woocommerce_get_price', $price );
 }
 
