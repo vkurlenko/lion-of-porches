@@ -450,6 +450,7 @@ button[name='woocommerce_checkout_place_order'],
 .cart_totals .woocommerce-Price-amount{
     font-family: "Butik Sans Medium";
     color: $color-text-red;
+    letter-spacing: 0;
 
     del {
         color: $body-color;
