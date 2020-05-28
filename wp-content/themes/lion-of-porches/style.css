@@ -17,6 +17,13 @@ Theme Name: LionOfPorches
   font-weight: normal;
   font-style: normal; }
 @font-face {
+  font-family: 'Raleway Black';
+  /*src: url('/wp-content/themes/lion-of-porches/fonts/raleway-cyrillic/fonts/Raleway-v4020-Black.ttf') format('woff');*/
+  /*src: url('/wp-content/themes/lion-of-porches/fonts/raleway-cyrillic/fonts/Raleway-v4020-Medium.ttf') format('woff');*/
+  src: url("/wp-content/themes/lion-of-porches/fonts/raleway-cyrillic/fonts/Raleway-v4020-Black.ttf") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
   font-family: 'DIN Pro';
   src: url("/wp-content/themes/lion-of-porches/fonts/din-pro/DINPro-CondensedRegular.ttf") format("woff");
   font-weight: normal;
@@ -704,6 +711,18 @@ table.tableizer-table {
   font-weight: bold; }
 
 /* woocommerce */
+.product-card-entry > div {
+  border: 0px solid #d6dce2;
+  border-radius: 5px;
+  /*margin-right:5px;*/
+  padding: 5px; }
+
+.product-card-personal > div {
+  border: 1px solid #d6dce2;
+  border-radius: 5px;
+  /*margin-right:5px;*/
+  padding: 20px; }
+
 .woocommerce .products ul li,
 .woocommerce ul.products li {
   border: 1px solid #eaedf0;
@@ -716,19 +735,70 @@ table.tableizer-table {
 .woocommerce ul.products li.product h3,
 .woocommerce ul.products li.product .woocommerce-loop-product__title,
 .woocommerce ul.products li.product .woocommerce-loop-category__title {
-  text-align: center; }
+  text-align: center;
+  font-size: .8em; }
 
 .woocommerce div.product .product_title {
-  margin-bottom: 0; }
+  margin-bottom: 0;
+  font-size: 20px; }
+
+.summary.entry-summary .sku_wrapper {
+  font-size: 12px;
+  margin-top: 10px; }
+
+.summary.entry-summary > .price {
+  display: none; }
+
+.summary.entry-summary p,
+.summary.entry-summary .product_meta,
+.button-variable-item {
+  letter-spacing: 0; }
+
+.product-card-personal-inner {
+  font-size: 16px;
+  color: #00244b;
+  letter-spacing: 0; }
+  .product-card-personal-inner .user-name {
+    color: #00244b;
+    font-family: 'Raleway Black';
+    font-weight: 700; }
+  .product-card-personal-inner .user-discount-level {
+    position: unset;
+    margin: 20px 0; }
+  .product-card-personal-inner .special-price {
+    margin: 20px 0; }
+    .product-card-personal-inner .special-price div {
+      margin: 5px 0; }
+  .product-card-personal-inner .level-name {
+    color: #e11f26; }
+  .product-card-personal-inner div.status > span {
+    display: block;
+    margin: 10px 0; }
+  .product-card-personal-inner span > span {
+    color: #e11f26;
+    font-family: 'Butik Sans Medium'; }
+  .product-card-personal-inner .user-level {
+    color: #00244b;
+    font-family: 'Raleway Black';
+    font-weight: 700; }
+  .product-card-personal-inner .user-level-img {
+    max-width: 100px;
+    margin: 10px auto; }
+  .product-card-personal-inner .data-personal-price {
+    font-size: 1.5em; }
+
+.variations_form.cart {
+  margin-top: 20px; }
 
 .woocommerce ul.products li.product .price {
   color: #e11f26;
   display: block;
   font-weight: normal;
   margin-bottom: 0.5em;
-  font-size: 1.5em;
+  font-size: 21px;
   text-align: center;
-  font-family: 'Butik Sans Medium'; }
+  font-family: 'Butik Sans Medium';
+  letter-spacing: -1px; }
 
 .product_meta {
   font-weight: 400;
@@ -739,7 +809,9 @@ table.tableizer-table {
   top: 20px;
   left: 20px;
   color: #e11f26;
-  font-family: 'Butik Sans Medium'; }
+  font-family: 'Butik Sans Medium';
+  font-size: 16px;
+  letter-spacing: -1px; }
 
 .btn-quickview {
   font-family: 'DIN Pro', sans-serif;
@@ -1006,6 +1078,14 @@ button[name='woocommerce_checkout_place_order'],
   max-width: 100px;
   width: 100%; }
 
+.woocommerce-cart table.cart .product-price,
+.product-subtotal {
+  font-family: "Butik Sans Medium";
+  color: #e11f26; }
+  .woocommerce-cart table.cart .product-price del,
+  .product-subtotal del {
+    color: #5b7a9c; }
+
 /* иконка Удалить из корзины */
 .woocommerce a.remove {
   font-size: 1.5em;
@@ -1140,15 +1220,17 @@ span.art {
 
 /* цена со скидкой */
 .woocommerce .price ins {
-  text-decoration: none; }
+  text-decoration: none;
+  display: inline-block; }
 
 /* старая цена */
 .woocommerce .price del {
   opacity: 1 !important;
   font-size: .7em;
   color: #5b7a9c !important;
-  display: block !important;
-  font-weight: 400; }
+  display: inline-block !important;
+  font-weight: 400;
+  margin-left: 10px; }
 
 .summary > .discount-personal {
   display: none; }
@@ -1194,7 +1276,14 @@ span.art {
   color: #00244b;
   font-family: 'Raleway Light';
   font-weight: 400;
-  font-size: 24px !important; }
+  font-size: 18px !important;
+  text-transform: lowercase; }
+
+.sale-percent {
+  display: block;
+  font-family: 'Butik Sans Medium';
+  font-size: 16px;
+  letter-spacing: -1px; }
 
 .variable-item-span-button {
   text-transform: lowercase; }

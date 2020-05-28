@@ -277,7 +277,7 @@ function woocommerce_template_loop_product_title() {
         $discount = '';
     }
 
-    echo '<span class="personal-discount">'.$discount.'</span>';
+    //echo '<span class="personal-discount">'.$discount.'</span>';
 
     echo '<h1 class="' . esc_attr( apply_filters( 'woocommerce_product_loop_title_classes', 'woocommerce-loop-product__title' ) ) . '">' . get_the_title() . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
@@ -455,9 +455,9 @@ function custom_price_html( $price, $product ){
 
         if($discount_price) {
             $hidden = $is_variation_price ? '' : '';
-            $price .= '<div class="discount-personal" '.$hidden.'><div class="discount-value">Ваша персональная скидка - <span>'.$discount.'</span>%</div>';
+            /*$price .= '<div class="discount-personal" '.$hidden.'><div class="discount-value">Ваша персональная скидка - <span>'.$discount.'</span>%</div>';
             $price .= '<p class="price">Стоимость с учётом Вашей скидки ' . wc_price( $discount_price ). '</p>';
-            $price .= '<p class="price s">Ваша экономия ' . wc_price( $s ). '</p></div>';
+            $price .= '<p class="price s">Ваша экономия ' . wc_price( $s ). '</p></div>';*/
         }
     } else {
         $price .= '<span class="symbol">' . sprintf(get_woocommerce_currency_symbol() ) . '</span>';
@@ -544,6 +544,14 @@ function get_related_custom($id, $limit = 4 ) {
 }
 /*************************************************************************************************************/
 /*************************************************************************************************************/
+
+
+/* цену вариации в карточке товара поднял выше атрибутов */
+
+remove_action( 'woocommerce_single_variation', 'woocommerce_single_variation', 10);
+add_action( 'woocommerce_before_variations_form', 'woocommerce_single_variation', 20);
+
+/* /цену вариации в карточке товара поднял выше атрибутов */
 
 add_filter( 'woocommerce_variable_sale_price_html', 'my_variation_price_format', 10, 2 );
 

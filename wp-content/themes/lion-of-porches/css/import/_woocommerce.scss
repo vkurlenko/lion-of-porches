@@ -1,3 +1,17 @@
+.product-card-entry > div {
+    border: 0px solid $color-border;
+    border-radius: 5px;
+    /*margin-right:5px;*/
+    padding: 5px;
+}
+
+.product-card-personal > div {
+    border: 1px solid $color-border;
+    border-radius: 5px;
+    /*margin-right:5px;*/
+    padding: 20px;
+}
+
 .woocommerce .products ul li,
 .woocommerce ul.products li {
     border: 1px solid $color-border-product;
@@ -13,10 +27,85 @@
 .woocommerce ul.products li.product .woocommerce-loop-product__title,
 .woocommerce ul.products li.product .woocommerce-loop-category__title {
     text-align: center;
+    font-size: .8em;
 }
 
 .woocommerce div.product .product_title {
     margin-bottom: 0;
+    font-size: 20px;
+}
+
+.summary.entry-summary .sku_wrapper {
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.summary.entry-summary > .price {
+    display: none;
+}
+
+.summary.entry-summary p,
+.summary.entry-summary .product_meta,
+.button-variable-item{
+    letter-spacing: 0;
+}
+
+.product-card-personal-inner {
+    font-size: 16px;
+    color: $color-deep-blue;
+    letter-spacing: 0;
+
+    .user-name {
+        color: $color-deep-blue;
+        font-family: 'Raleway Black';
+        font-weight: 700;
+    }
+
+    .user-discount-level{
+        position: unset;
+        margin: 20px 0;
+    }
+
+    .special-price {
+        margin: 20px 0;
+
+        div {
+            margin: 5px 0;
+        }
+    }
+
+    .level-name {
+        color: $color-text-red;
+    }
+
+    div.status > span {
+        display: block;
+        margin: 10px 0;
+    }
+
+    span > span {
+        color: $color-text-red;
+        font-family: 'Butik Sans Medium';
+    }
+
+    .user-level {
+        color: $color-deep-blue;
+        font-family: 'Raleway Black';
+        font-weight: 700;
+    }
+
+    .user-level-img {
+        max-width: 100px;
+        margin: 10px auto;
+    }
+
+    .data-personal-price {
+        font-size: 1.5em;
+    }
+}
+
+.variations_form.cart {
+    margin-top: 20px;
 }
 
 .woocommerce ul.products li.product .price {
@@ -24,9 +113,10 @@
     display: block;
     font-weight: normal;
     margin-bottom: 0.5em;
-    font-size: 1.5em;
+    font-size: 21px;
     text-align: center;
     font-family: 'Butik Sans Medium';
+    letter-spacing: -1px;
 }
 
 .product_meta {
@@ -40,7 +130,8 @@
     left: 20px;
     color: $color-text-red;
     font-family: 'Butik Sans Medium';
-
+    font-size: 16px;
+    letter-spacing: -1px;
 }
 
 .btn-quickview {
@@ -354,6 +445,16 @@ button[name='woocommerce_checkout_place_order'],
     width: 100%;
 }
 
+.woocommerce-cart table.cart .product-price,
+.product-subtotal {
+    font-family: "Butik Sans Medium";
+    color: $color-text-red;
+
+    del {
+        color: $body-color;
+    }
+}
+
 /* иконка Удалить из корзины */
 .woocommerce a.remove {
     font-size: 1.5em;
@@ -519,15 +620,18 @@ ul.products li.product a img {
 /* цена со скидкой */
 .woocommerce .price ins {
     text-decoration: none;
+    display: inline-block;
 }
+
 
 /* старая цена */
 .woocommerce .price del {
     opacity: 1 !important;
     font-size: .7em;
     color: #5b7a9c !important;
-    display: block !important;
+    display: inline-block !important;
     font-weight: 400;
+    margin-left: 10px;
 }
 
 .summary > .discount-personal {
@@ -586,7 +690,15 @@ ul.products li.product a img {
     color: $color-deep-blue;
     font-family: 'Raleway Light';
     font-weight: 400;
-    font-size: 24px !important;
+    font-size: 18px !important;
+    text-transform: lowercase;
+}
+
+.sale-percent {
+    display: block;
+    font-family: 'Butik Sans Medium';
+    font-size: 16px;
+    letter-spacing: -1px;
 }
 
 .variable-item-span-button {

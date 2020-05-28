@@ -163,6 +163,52 @@ class Crm
     }
 
     /**
+     * Получим данные текущего авторизованного клиента из CRM
+     *
+     * @return array
+     */
+    public function getCrmUser()
+    {
+        /*
+    [id] => 576
+    [code] => 0
+    [name] => 0
+    [card] => 52936
+    [activation_date] => 2019-11-06
+    [discount] => 30
+    [user_name] => Виктор
+    [gender] => 1
+    [age] => 0
+    [born_year] => 0
+    [born_date] => 2019-11-01
+    [email] => vkurlenko@yandex.ru
+    [phone] => 234234
+    [comment] => qwe
+    [subscribe] => 1
+    [sms] => 0
+    [send_status] => 0
+        */
+
+        global $wpdb;
+
+        if ( is_user_logged_in() ) {
+
+            $current_user = wp_get_current_user();
+
+            if($current_user->user_email) {
+                $sql = 'SELECT * FROM `data3` WHERE email="'.$current_user->user_email.'" limit 1';
+                $res = $wpdb->get_results($sql);
+
+                if(!empty($res[0])) {
+                    return $res[0];
+                }
+            }
+        }
+
+        return [];
+    }
+
+    /**
      * Персональная скидка текущего пользователя (%)
      *
      * @return bool|int
@@ -267,4 +313,59 @@ class Crm
 
         return $arr;
     }
+
+    /**
+     * Сумма покупок для каждого уровня клиента
+     *
+     * @return array
+     */
+    public function getLevelLimits()
+    {
+        $arr = [
+            '5' => 10000,
+            '10' => 70000,
+            '15' => 15000,
+            '20' => 250000,
+            '25' => 350000,
+            '30' => 500000
+        ];
+
+        return $arr;
+    }
+
+    public function getNextLevelUpSum($current_sum)
+    {
+        $next_sum = 0;
+
+        foreach($this->getLevelLimits() as $level => $sum) {
+            if($current_sum < $sum) {
+                $next_sum = $sum;
+
+                return $next_sum;
+            }
+        }
+
+        return $next_sum;
+    }
+
+    public function getLevelBySum($current_sum = 0)
+    {
+        $levels = $this->getLevelLimits();
+
+        foreach($levels as $level => $sum) {
+            if($current_sum == $sum) {
+                return $level;
+            }
+        }
+
+        return 0;
+    }
+
+/*Limits	Discription	Discounts
+10,000 ₽	Basic	5%
+70,000 ₽	Silver	10%
+150,000 ₽	Gold	15%
+250,000 ₽	Platinum	20%
+350,000 ₽	Signiture	25%
+500,000 ₽	Ultra	30%*/
 }
