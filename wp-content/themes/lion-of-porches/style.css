@@ -1082,7 +1082,8 @@ button[name='woocommerce_checkout_place_order'],
 .woocommerce-cart table.cart td.product-subtotal,
 .cart_totals .woocommerce-Price-amount {
   font-family: "Butik Sans Medium";
-  color: #e11f26; }
+  color: #e11f26;
+  letter-spacing: 0; }
   .woocommerce-cart table.cart td.product-price del,
   .woocommerce-cart table.cart td.product-subtotal del,
   .cart_totals .woocommerce-Price-amount del {
