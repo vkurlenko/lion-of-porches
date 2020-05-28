@@ -445,14 +445,20 @@ button[name='woocommerce_checkout_place_order'],
     width: 100%;
 }
 
-.woocommerce-cart table.cart .product-price,
-.product-subtotal {
+.woocommerce-cart table.cart td.product-price,
+.woocommerce-cart table.cart td.product-subtotal,
+.cart_totals .woocommerce-Price-amount{
     font-family: "Butik Sans Medium";
     color: $color-text-red;
 
     del {
         color: $body-color;
     }
+}
+
+.shop_table tr th {
+    text-align: center !important;
+    font-size: 16px;
 }
 
 /* иконка Удалить из корзины */
