@@ -28,7 +28,7 @@ foreach ($available_variations as $variation) {
     $available_variations[$i++]['display_price'] = 100;
 }*/
 
-//(new Helper())->dump($available_variations); //die;
+//(new Helper())->dump($available_variations); die;
 
 if ( is_user_logged_in() ) {
 
@@ -36,7 +36,7 @@ if ( is_user_logged_in() ) {
 
     // персональная скидка клиента (%)
     $discount = (int)(new Crm())->getUserDiscount($current_user->user_email);
-
+    //$discount = false;
     if($discount) {
 
         // персональная скидка клиента (коэффициент)
@@ -50,22 +50,28 @@ if ( is_user_logged_in() ) {
 
                 // цена на товар с учетом скидки
                 $discount_price = $variation['display_regular_price'] - $variation['display_regular_price'] * $p;
+                $economy = +$variation['display_regular_price'] - $discount_price;
 
                 $available_variations[$i]['display_price'] = $discount_price;
 
-                $text = sprintf('<span class="price" style="display: block;"><del>%s</del></span>', wc_price( $variation['display_regular_price'] ));
-                $text .= sprintf('<span class="price" style="display: block;"><ins>%s</ins></span>', wc_price(  $discount_price  ));
-                $text .= '<div class="discount-personal"><div class="discount-value">Ваша персональная скидка: - <span>'.$discount.'</span>%</div>';
-                //$text .= '<p class="price">Стоимость с учётом Вашей скидки ' . wc_price( $discount_price ). '</p>';
-                $text .= '<p class="price s">Ваша экономия: ' . wc_price( +$variation['display_regular_price'] - $discount_price ). '</p></div>';
+                $text = sprintf('<span class="price" ><ins>%s</ins></span>', wc_price(  $discount_price  ));
+                $text .= sprintf('<span class="price" ><del>%s</del></span>', wc_price( $variation['display_regular_price'] ));
 
-                $available_variations[$i]['price_html'] = $text;
+                /*$text = '<div class="discount-personal" style="border: 1px solid red"><div class="discount-value">Ваша персональная скидка: - <span>'.$discount.'</span>%</div>';
+                $text .= '<p class="price">Стоимость с учётом Вашей скидки ' . wc_price( $discount_price ). '</p>';
+                $text .= '<p class="price s">Ваша экономия: ' . wc_price( $economy ). '</p></div>';*/
+
+                $data = sprintf('<span class="personal-data" data-personal-discount="%s" data-personal-price="%s" data-personal-economy="%s"></span>',
+                    $discount, ceil($discount_price), ceil($economy));
+
+                //$text .= 'Ваша персональная скидка: - <span>'.$discount.'</span>%'
+
+                //$available_variations[$i]['price_html'] .= $text.$data;
+                $available_variations[$i]['price_html'] .= $data;
             }
             $i++;
         }
     }
-
-
 
     /*if($discount_price) {
         $hidden = $is_variation_price ? '' : '';
@@ -150,7 +156,7 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 				/**
 				 * Hook: woocommerce_after_single_variation.
 				 */
-				do_action( 'woocommerce_after_single_variation' );
+				//do_action( 'woocommerce_after_single_variation' );
 			?>
 		</div>
 	<?php endif; ?>
