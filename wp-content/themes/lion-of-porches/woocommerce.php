@@ -10,7 +10,7 @@ get_header(); // подключаем header.php ?>
 	<div class="container">
 		<div class="row">
             <div class="col-md-12 content">
-                <?php get_template_part( 'parts/user-level-block');?>
+                <?php /*get_template_part( 'parts/user-level-block');*/?>
 
 
 

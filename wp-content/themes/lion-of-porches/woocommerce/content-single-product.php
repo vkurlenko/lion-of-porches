@@ -34,49 +34,69 @@ if ( post_password_required() ) {
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?>>
 
     <div class="visible-xs">
-    <?php wc_get_template( 'single-product/title.php' );?>
+        <?php /*wc_get_template( 'single-product/title.php' );*/?>
 
-        <?php wc_get_template( 'single-product/price.php' );?>
+        <?php /*wc_get_template( 'single-product/price.php' );*/?>
     </div>
 
-	<?php
-	/**
-	 * Hook: woocommerce_before_single_product_summary.
-	 *
-	 * @hooked woocommerce_show_product_sale_flash - 10
-	 * @hooked woocommerce_show_product_images - 20
-	 */
-	/* картинка товара */
-	do_action( 'woocommerce_before_single_product_summary' );
-	?>
+    <div class="row">
 
-	<div class="summary entry-summary">
-		<?php
-		/**
-		 * Hook: woocommerce_single_product_summary.
-		 *
-		 * @hooked woocommerce_template_single_title - 5
-		 * @hooked woocommerce_template_single_rating - 10
-		 * @hooked woocommerce_template_single_price - 10
-		 * @hooked woocommerce_template_single_excerpt - 20
-		 * @hooked woocommerce_template_single_add_to_cart - 30
-		 * @hooked woocommerce_template_single_meta - 40
-		 * @hooked woocommerce_template_single_sharing - 50
-		 * @hooked WC_Structured_Data::generate_product_data() - 60
-		 */
-		/* стоимость, выбор атрибутов, кнопка Купить */
-		do_action( 'woocommerce_single_product_summary' );
+        <!-- карточка товара -->
+        <div class="product-card-entry col-md-9">
+            <div>
 
-        //$heading = apply_filters( 'woocommerce_product_description_heading', __( 'Description', 'woocommerce' ) );
-		?>
-        <?php /*if ( $heading ) : */?><!--
-            <h2><?php /*echo esc_html( $heading ); */?></h2>
-        --><?php /*endif; */?>
+            <?php
+            /**
+             * Hook: woocommerce_before_single_product_summary.
+             *
+             * @hooked woocommerce_show_product_sale_flash - 10
+             * @hooked woocommerce_show_product_images - 20
+             */
+            /* картинка товара */
+            do_action( 'woocommerce_before_single_product_summary' );
+            ?>
 
-        <p>
-        <?php the_content(); ?>
-        </p>
-	</div>
+            <div class="summary entry-summary">
+                <?php
+                /**
+                 * Hook: woocommerce_single_product_summary.
+                 *
+                 * @hooked woocommerce_template_single_title - 5
+                 * @hooked woocommerce_template_single_rating - 10
+                 * @hooked woocommerce_template_single_price - 10
+                 * @hooked woocommerce_template_single_excerpt - 20
+                 * @hooked woocommerce_template_single_add_to_cart - 30
+                 * @hooked woocommerce_template_single_meta - 40
+                 * @hooked woocommerce_template_single_sharing - 50
+                 * @hooked WC_Structured_Data::generate_product_data() - 60
+                 */
+                /* стоимость, выбор атрибутов, кнопка Купить */
+                do_action( 'woocommerce_single_product_summary' );
+
+                //$heading = apply_filters( 'woocommerce_product_description_heading', __( 'Description', 'woocommerce' ) );
+                ?>
+                <?php /*if ( $heading ) : */?><!--
+                    <h2><?php /*echo esc_html( $heading ); */?></h2>
+                --><?php /*endif; */?>
+
+                <p>
+                <?php the_content(); ?>
+                </p>
+            </div>
+
+            <div style="clear: both"></div>
+            </div>
+        </div>
+        <!-- /карточка товара -->
+
+        <!-- информация о персональной скидке -->
+        <div class="product-card-personal col-md-3">
+            <div>
+                <?php get_template_part( 'parts/product-card-personal');?>
+            </div>
+        </div>
+        <!-- /информация о персональной скидке -->
+    </div>
 
     <!-- delimiter -->
     <div class="page-sep col-xs-12">

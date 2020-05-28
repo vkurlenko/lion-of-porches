@@ -21,6 +21,15 @@ Theme Name: LionOfPorches
 }
 
 @font-face {
+  font-family: 'Raleway Black';
+  /*src: url('/wp-content/themes/lion-of-porches/fonts/raleway-cyrillic/fonts/Raleway-v4020-Black.ttf') format('woff');*/
+  /*src: url('/wp-content/themes/lion-of-porches/fonts/raleway-cyrillic/fonts/Raleway-v4020-Medium.ttf') format('woff');*/
+  src: url('/wp-content/themes/lion-of-porches/fonts/raleway-cyrillic/fonts/Raleway-v4020-Black.ttf') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'DIN Pro';
   src: url('/wp-content/themes/lion-of-porches/fonts/din-pro/DINPro-CondensedRegular.ttf') format('woff');
   font-weight: normal;

@@ -69,20 +69,19 @@ $(document).ready(function() {
     /* прокрутка до активной картинки в карточке товара сразу после загрузки страницы */
     window.setTimeout(function() {
         var active_slide = $('.flex-active-slide').data('thumb');
-        //console.log(active_slide);
 
         $('.flex-control-thumbs li').each(function(index, element) {
 
             var img = $(this).find('img');
-            //console.log($(img).attr('src'));
 
             if($(img).attr('src') == active_slide) {
-                console.log('==');
                 $(img).addClass('flex-active');
             }
         })
 
         activeThumb();
+        setPersonalWindow();
+
     }, 1000);
     /* /прокрутка до активной картинки в карточке товара сразу после загрузки страницы */
 });
@@ -93,6 +92,26 @@ $('.button-variable-wrapper[data-attribute_name="attribute_pa_color"] .button-va
     $('.flex-control-thumbs li img').removeClass('flex-active');
     activeThumb();
 });
+
+$('.button-variable-wrapper .button-variable-item').on('click', function() {
+    setPersonalWindow();
+});
+
+/* подстановка пересчета цен в персональном блоке  */
+function setPersonalWindow() {
+    window.setTimeout(function(){
+
+        var personal_discount = $('.personal-data').data('personal-discount');
+        var personal_price = $('.personal-data').data('personal-price');
+        var personal_economy = $('.personal-data').data('personal-economy');
+
+        $('.data-personal-discount').text(personal_discount);
+        $('.data-personal-price .val').text(personal_price);
+        $('.data-personal-economy .val').text(personal_economy);
+
+    }, 500);
+}
+/* /подстановка пересчета цен в персональном блоке  */
 
 /* прокрутка до активной картинки в карточке товара */
 function activeThumb() {
@@ -108,7 +127,7 @@ function activeThumb() {
         $('.flex-control-thumbs li').each(function(index, element){
             if($(this).find('img').hasClass('flex-active')) {
                 active = index;
-                console.log(index)
+                //console.log(index)
             }
         })
 

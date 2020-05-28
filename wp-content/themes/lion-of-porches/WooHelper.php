@@ -445,7 +445,7 @@ class WooHelper
                 <a href="<?=$v_url?>" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
 
                     <div class="flash-tags">
-                        <?php if ( $product->is_on_sale() ) : ?>
+                        <?php if ( $product->is_on_sale() && ($value['display_price'] != $value['display_regular_price'])) : ?>
 
                             <?php echo apply_filters( 'woocommerce_sale_flash', '<span class="onsale">' . esc_html__( 'Sale!', 'woocommerce' ) . '</span>', $post, $product ); ?>
 
@@ -484,27 +484,54 @@ class WooHelper
 
                         <?php
                        // $p = $this->getPriceFromHtml($product);
-                        $personal_price = $this->getPersonalPrice($value['display_price']);
 
-                        if($personal_price && ($personal_price != $value['display_price'])):?>
-                        <span class="price"><?=wc_price( $personal_price )?>
-                            <del class="inline"><?=wc_price($value['display_price'])?></del>
-                        </span>
-                        <?php
-                        else:?>
-                            <span class="price"><?=wc_price( $value['display_price'] )?></span>
-                        <?php endif;
-                        ?>
+                            ?>
+                            <span class="price"><?=wc_price( $value['display_price'] )?>
 
-                    <?php
-                    if((new Crm())->getCurrentUserDiscount()) {
-                        $discount = sprintf('-%s%%', (new Crm())->getCurrentUserDiscount());
-                    } else {
-                        $discount = '';
-                    }
-                    ?>
+                                <?php
+                                /************************************************/
+                                /* указание на карточке общей скидки */
+                                /************************************************/
+                                $discount = '';
+                                if($value['display_price'] != $value['display_regular_price']) {
+                                    $discount = $this->getSalePercent($value['display_price'], $value['display_regular_price']);
+                                    $discount = sprintf('-%s%%', $discount);
 
-                    <span class="personal-discount"><?=$discount?></span>
+                                    ?><del class="inline"><?=wc_price($value['display_regular_price'])?></del><?php
+                                }
+                                /************************************************/
+                                ?>
+
+                            </span>
+                            <?php
+                            /************************************************/
+                            /*  указание на карточке персональной скидки */
+                            /************************************************/
+
+                            /*
+                            $personal_price = $this->getPersonalPrice($value['display_price']);
+
+                            if($personal_price && ($personal_price != $value['display_price'])):*/?><!--
+                            <span class="price"><?/*=wc_price( $personal_price )*/?>
+                                <del class="inline"><?/*=wc_price($value['display_price'])*/?></del>
+                            </span>
+                            <?php
+                            /* else:*/?>
+                                <span class="price"><?/*=wc_price( $value['display_price'] )*/?></span>
+                            --><?php /*endif;
+                            */?>
+
+                            <?php
+                            /*if((new Crm())->getCurrentUserDiscount()) {
+                                $discount = sprintf('-%s%%', (new Crm())->getCurrentUserDiscount());
+                            } else {
+                                $discount = '';
+                            }
+                            */
+                            /************************************************/
+                            ?>
+
+                            <span class="personal-discount"><?=$discount?></span>
 
                 </a>
 
@@ -860,6 +887,7 @@ class WooHelper
         $user_discount = $crm->getUserDiscount($current_user->user_email);
         $sale_discount = $this->getSalePercent($sale_price, $regular_price);
 
+        $sale_price = '';
         $lp_sale_price = $this->getPersonalSalePrice($regular_price, $sale_price);
 
         if ($lp_sale_price) {
