@@ -481,6 +481,7 @@ function custom_price_html( $price, $product ){
 function get_featured_custom($id, $limit = 4) {
 
     global $woocommerce;
+
     $h = new Helper();
     $wh = new WooHelper();
 
@@ -488,22 +489,17 @@ function get_featured_custom($id, $limit = 4) {
     $tags_array = array(0);
     //$cats_array = array(0);
 
+    // получим родительские категории товара
     $args = array( 'taxonomy' => 'product_cat',);
     $terms = wp_get_post_terms($id,'product_cat', $args);
 
     //$h->dump($terms);
 
-
+    // текущая категория товара
     $this_category = $terms[count($terms) - 1]->slug;
+
+    // категория товара на уровень выше
     $parent_category = $terms[count($terms) - 2]->slug;
-
-    /*foreach($terms as $term) {
-        //echo $term->slug.'<br>';
-        $this_category = $term->slug;
-    }*/
-
-    $h->dump($this_category);
-    $h->dump($parent_category);
 
     // Get tags
     $terms = wp_get_post_terms($id, 'product_tag');
@@ -519,23 +515,23 @@ function get_featured_custom($id, $limit = 4) {
     $meta_query[] = $woocommerce->query->visibility_meta_query();
     $meta_query[] = $woocommerce->query->stock_status_meta_query();
 
+    // товары для завершения образа
     $related_posts = [];
 
+    // массив соответствий категорий для завершения образа
     $arr_related_products = $wh->getRelatedProducts();
 
-
-
     if(isset($arr_related_products[$this_category])) {
+        // если есть описание для текущей категории
         $cats_array = $arr_related_products[$this_category];
         $related_posts = getFeaturedItemQuery($cats_array, $meta_query);
     } else {
+        // если есть описание для родительской категории
         if(isset($arr_related_products[$parent_category])) {
             $cats_array = $arr_related_products[$parent_category];
             $related_posts = getFeaturedItemQuery($cats_array, $meta_query);
         }
     }
-
-    //(new Helper())->dump($related_posts);
 
     // исключается вывод этого же товара
     //$related_posts = array_diff( $related_posts, array( $id ));
@@ -545,6 +541,14 @@ function get_featured_custom($id, $limit = 4) {
     return $related_posts;
 }
 
+
+/**
+ * Получим массив товаров для завершения образа
+ *
+ * @param $arr
+ * @param $meta_query
+ * @return array|int[]|WP_Post[]
+ */
 function getFeaturedItemQuery($arr, $meta_query) {
 
     foreach($arr as $cat_name) {
@@ -558,6 +562,13 @@ function getFeaturedItemQuery($arr, $meta_query) {
     return $related_posts;
 }
 
+/**
+ * Получим товар для блока Заверши образ (случайный из сопутствующей категории)
+ *
+ * @param $meta_query
+ * @param $slug
+ * @return int[]|WP_Post[]
+ */
 function getFeaturedItem($meta_query, $slug) {
 
     $related_posts = get_posts( apply_filters('woocommerce_product_related_posts', array(
