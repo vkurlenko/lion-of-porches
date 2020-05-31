@@ -21,9 +21,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 //(new Helper())->dump($related_products);
 global $product;
+/*(new Helper())->dump(get_terms('product_tag' ));
+(new Helper())->dump($product->get_tag_ids()); //die;*/
 //echo $product->get_id();
 
-$featured_products = get_featured_custom($product->get_id());
+$featured_products = get_featured_custom($product);
 
 
 if ( $featured_products ) : ?>

@@ -478,15 +478,19 @@ function custom_price_html( $price, $product ){
 
 //add_action('init','get_featured_custom');
 
-function get_featured_custom($id, $limit = 4) {
+function get_featured_custom($product, $limit = 4) {
 
     global $woocommerce;
+    global $product;
+
+    $id = $product->get_id();
+    $tags = $product->get_tag_ids();
 
     $h = new Helper();
     $wh = new WooHelper();
 
     // Related products are found from category and tag
-    $tags_array = array(0);
+    $tags_array = [];
     //$cats_array = array(0);
 
     // получим родительские категории товара
@@ -501,12 +505,14 @@ function get_featured_custom($id, $limit = 4) {
     // категория товара на уровень выше
     $parent_category = $terms[count($terms) - 2]->slug;
 
-    // Get tags
+    // метки товара
     $terms = wp_get_post_terms($id, 'product_tag');
 
     foreach ( $terms as $term ) {
         $tags_array[] = $term->term_id;
     }
+
+    //$h->dump($tags_array);
 
     //echo $this_category;
 
@@ -524,12 +530,12 @@ function get_featured_custom($id, $limit = 4) {
     if(isset($arr_related_products[$this_category])) {
         // если есть описание для текущей категории
         $cats_array = $arr_related_products[$this_category];
-        $related_posts = getFeaturedItemQuery($cats_array, $meta_query);
+        $related_posts = getFeaturedItemQuery($cats_array, $meta_query, $tags_array);
     } else {
         // если есть описание для родительской категории
         if(isset($arr_related_products[$parent_category])) {
             $cats_array = $arr_related_products[$parent_category];
-            $related_posts = getFeaturedItemQuery($cats_array, $meta_query);
+            $related_posts = getFeaturedItemQuery($cats_array, $meta_query, $tags_array);
         }
     }
 
@@ -549,13 +555,23 @@ function get_featured_custom($id, $limit = 4) {
  * @param $meta_query
  * @return array|int[]|WP_Post[]
  */
-function getFeaturedItemQuery($arr, $meta_query) {
+function getFeaturedItemQuery($arr, $meta_query, $tags_array) {
 
     foreach($arr as $cat_name) {
         if(!isset($related_posts)) {
-            $related_posts = getFeaturedItem($meta_query, $cat_name);
+            $related_posts = getFeaturedItem($meta_query, $cat_name, $tags_array);
+
+            if(empty($related_posts)) {
+                $related_posts = getFeaturedItem($meta_query, $cat_name, []);
+            }
         } else {
-            $related_posts = array_merge($related_posts, getFeaturedItem($meta_query, $cat_name));
+            $a = getFeaturedItem($meta_query, $cat_name, $tags_array);
+
+            if(empty($a)) {
+                $a = getFeaturedItem($meta_query, $cat_name, []);
+            }
+
+            $related_posts = array_merge($related_posts, $a);
         }
     }
 
@@ -569,7 +585,26 @@ function getFeaturedItemQuery($arr, $meta_query) {
  * @param $slug
  * @return int[]|WP_Post[]
  */
-function getFeaturedItem($meta_query, $slug) {
+function getFeaturedItem($meta_query, $slug, $tags_array) {
+
+    $tax_query = [
+        [
+            'taxonomy' => 'product_cat',
+            'field' => 'slug',
+            'terms' => $slug,
+        ]
+    ];
+
+    // если у товара есть метки, то подберем товары с такими же метками
+    if(!empty($tags_array)) {
+        $tax_query['relation'] =  'AND';
+
+        $tax_query[] = [
+            'taxonomy' => 'product_tag',
+            'field' => 'id',
+            'terms' => $tags_array
+        ];
+    }
 
     $related_posts = get_posts( apply_filters('woocommerce_product_related_posts', array(
         'orderby' => 'rand',
@@ -577,14 +612,7 @@ function getFeaturedItem($meta_query, $slug) {
         'post_type' => 'product',
         'fields' => 'ids',
         'meta_query' => $meta_query,
-        'tax_query' => array(
-            'relation' => 'OR',
-            array(
-                'taxonomy' => 'product_cat',
-                'field' => 'slug',
-                'terms' => $slug,
-            )
-        )
+        'tax_query' => $tax_query
     ) ) );
 
     return $related_posts;
