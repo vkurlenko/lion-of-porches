@@ -1037,7 +1037,8 @@ class WooHelper
     public function getRelatedProducts()
     {
         $arr = array(
-                /*woman*/
+
+            /*woman*/
             'bleyzery'  => ['kurtki', 'tolstovkisvitshotyhudi', 'rubashki', 'bryukishorty'],
             'kurtki'    => ['bleyzery', 'tolstovkisvitshotyhudi', 'rubashki', 'bryukishorty'],
             'plashhi'   => ['plashchi', 'tolstovkisvitshotyhudi', 'rubashki', 'bryukishorty'],
@@ -1068,13 +1069,17 @@ class WooHelper
 
             'aksessuary' => ['kosmetichki', ['sharfy', 'galstuki'], 'sumkiryukzaki', 'koshelki-aksessuary'],
 
-            
-            '' => ['', '', '', ''],
-            '' => ['', '', '', ''],
-            '' => ['', '', '', ''],
-            '' => ['', '', '', ''],
-            '' => ['', '', '', ''],
-            '' => ['', '', '', ''],
+            /* man */
+            'verhnyaya-odejda-mujchiny' => ['verhnyaya-odejda-mujchiny', 'trikotaj-mujchiny', 'rubashki-mujchiny', 'bryukishorty-mujchiny'],
+
+            'trikotaj-mujchiny' => ['verhnyaya-odejda-mujchiny', 'trikotaj-mujchiny', 'bryukishorty-mujchiny', 'obuv-man'],
+
+            'rubashki-mujchiny' => ['verhnyaya-odejda-mujchiny', ['kardigany-trikotaj-mujchiny','puloverydjempery-trikotaj-mujchiny'], 'bryukishorty-mujchiny', 'obuv-man'],
+
+            'bryukishorty-mujchiny' => ['verhnyaya-odejda-mujchiny', 'trikotaj-mujchiny', 'rubashki-mujchiny', 'obuv-man'],
+
+            'obuv-man' => ['verhnyaya-odejda-mujchiny', 'trikotaj-mujchiny', 'rubashki-mujchiny', 'bryukishorty-mujchiny'],
+            'aksessuary-mujchiny' => [['koshelki','derjateli-dlya-kart'], 'kepki', 'remni', 'galstuki-aksessuary-mujchiny'],
             '' => ['', '', '', ''],
             '' => ['', '', '', ''],
             '' => ['', '', '', ''],

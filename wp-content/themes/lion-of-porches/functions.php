@@ -491,7 +491,7 @@ function get_featured_custom($id, $limit = 4) {
     $args = array( 'taxonomy' => 'product_cat',);
     $terms = wp_get_post_terms($id,'product_cat', $args);
 
-    $h->dump($terms);
+    //$h->dump($terms);
 
 
     $this_category = $terms[count($terms) - 1]->slug;
