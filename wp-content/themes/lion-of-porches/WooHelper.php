@@ -1038,10 +1038,10 @@ class WooHelper
     {
         $arr = array(
                 /*woman*/
-            'bleyzery'  => ['kurtki', 'tolstovkisvitshotyhudi', 'rubashki', 'bryuki'],
-            'kurtki'    => ['bleyzery', 'tolstovkisvitshotyhudi', 'rubashki', 'bryuki'],
-            'plashhi'   => ['kurtki', 'tolstovkisvitshotyhudi', 'rubashki', 'bryuki'],
-            'plashchi'  => ['plashhi', 'tolstovkisvitshotyhudi', 'rubashki', 'bryuki'],
+            'bleyzery'  => ['kurtki', 'tolstovkisvitshotyhudi', 'rubashki', 'bryukishorty'],
+            'kurtki'    => ['bleyzery', 'tolstovkisvitshotyhudi', 'rubashki', 'bryukishorty'],
+            'plashhi'   => ['kurtki', 'tolstovkisvitshotyhudi', 'rubashki', 'bryukishorty'],
+            'plashchi'  => ['plashhi', 'tolstovkisvitshotyhudi', 'rubashki', 'bryukishorty'],
 
             'kardigany'         => ['verhnyaya-odejda', 'tolstovkisvitshotyhudi', 'bryukishorty', 'tolstovkisvitshotyhudi'],
             'puloverydjempery'  => ['verhnyaya-odejda', 'kardigany', 'bryukishorty', 'tolstovkisvitshotyhudi'],
