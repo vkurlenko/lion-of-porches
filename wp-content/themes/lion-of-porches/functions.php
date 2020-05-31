@@ -467,6 +467,114 @@ function custom_price_html( $price, $product ){
 }
 
 
+
+/**
+ * Заверши свой образ ()
+ *
+ * @param $id
+ * @param int $limit
+ * @return array|int[]|WP_Post[]
+ */
+
+//add_action('init','get_featured_custom');
+
+function get_featured_custom($id, $limit = 4) {
+
+    global $woocommerce;
+    $h = new Helper();
+    $wh = new WooHelper();
+
+    // Related products are found from category and tag
+    $tags_array = array(0);
+    //$cats_array = array(0);
+
+    $args = array( 'taxonomy' => 'product_cat',);
+    $terms = wp_get_post_terms($id,'product_cat', $args);
+
+    //$h->dump($terms);
+
+    foreach($terms as $term) {
+        //echo $term->slug.'<br>';
+        $this_category = $term->slug;
+    }
+
+    //$h->dump($this_category);
+
+    // Get tags
+    $terms = wp_get_post_terms($id, 'product_tag');
+
+    foreach ( $terms as $term ) {
+        $tags_array[] = $term->term_id;
+    }
+
+    //echo $this_category;
+
+    // Meta query
+    $meta_query = array();
+    $meta_query[] = $woocommerce->query->visibility_meta_query();
+    $meta_query[] = $woocommerce->query->stock_status_meta_query();
+
+    $related_posts = [];
+
+    $arr_related_products = $wh->getRelatedProducts();
+
+    if(isset($arr_related_products[$this_category])) {
+        $cats_array = $arr_related_products[$this_category];
+        $related_posts = getFeaturedItemQuery($cats_array, $meta_query);
+    }
+
+    /*switch($this_category) {
+        case 'oblegayushchiy-kroy-rubashki-mujchiny':
+            $cats_array = ['kurtki','tolstovkisvitshotyhudi','bryuki','puloverydjempery'];
+
+            $related_posts = getFeaturedItemQuery($cats_array, $meta_query);
+            break;
+    }*/
+
+    //(new Helper())->dump($related_posts);
+
+    // исключается вывод этого же товара
+    $related_posts = array_diff( $related_posts, array( $id ));
+
+    $related_posts = array_slice($related_posts, 0, $limit);
+
+    return $related_posts;
+}
+
+function getFeaturedItemQuery($arr, $meta_query) {
+
+    foreach($arr as $cat_name) {
+        if(!isset($related_posts)) {
+            $related_posts = getFeaturedItem($meta_query, $cat_name);
+        } else {
+            $related_posts = array_merge($related_posts, getFeaturedItem($meta_query, $cat_name));
+        }
+    }
+
+    return $related_posts;
+}
+
+function getFeaturedItem($meta_query, $slug) {
+
+    $related_posts = get_posts( apply_filters('woocommerce_product_related_posts', array(
+        'orderby' => 'rand',
+        'posts_per_page' => 1,//$limit + 1,
+        'post_type' => 'product',
+        'fields' => 'ids',
+        'meta_query' => $meta_query,
+        'tax_query' => array(
+            'relation' => 'OR',
+            array(
+                'taxonomy' => 'product_cat',
+                'field' => 'slug',
+                'terms' => $slug,
+            )
+        )
+    ) ) );
+
+    return $related_posts;
+}
+
 /**
  * Похожие товары (берутся из той же подкатегории, что и товар + с такими же метками (независимо от категории))
  *
@@ -474,9 +582,7 @@ function custom_price_html( $price, $product ){
  * @param int $limit
  * @return array|int[]|WP_Post[]
  */
-
 add_action('init','get_related_custom');
-
 function get_related_custom($id, $limit = 4 ) {
 
     global $woocommerce;

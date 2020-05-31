@@ -1033,4 +1033,62 @@ class WooHelper
 
         return $variations;
     }
+
+    public function getRelatedProducts()
+    {
+        $arr = array(
+                /*woman*/
+            'bleyzery'  => ['kurtki', 'tolstovkisvitshotyhudi', 'rubashki', 'bryuki'],
+            'kurtki'    => ['bleyzery', 'tolstovkisvitshotyhudi', 'rubashki', 'bryuki'],
+            'plashhi'   => ['kurtki', 'tolstovkisvitshotyhudi', 'rubashki', 'bryuki'],
+            'plashchi'  => ['plashhi', 'tolstovkisvitshotyhudi', 'rubashki', 'bryuki'],
+
+            'kardigany'         => ['verhnyaya-odejda', 'tolstovkisvitshotyhudi', 'bryukishorty', 'tolstovkisvitshotyhudi'],
+            'puloverydjempery'  => ['verhnyaya-odejda', 'kardigany', 'bryukishorty', 'tolstovkisvitshotyhudi'],
+            'futbolki'          => ['verhnyaya-odejda', 'puloverydjempery', 'bryukishorty', 'tolstovkisvitshotyhudi'],
+            'tolstovkisvitshotyhudi' => ['verhnyaya-odejda', 'puloverydjempery', 'bryukishorty', 'tolstovkisvitshotyhudi'],
+            'kurtki-trikotaj'   => ['verhnyaya-odejda', 'polo-trikotaj', 'bryukishorty', 'tolstovkisvitshotyhudi'],
+            'polo-trikotaj'     => ['verhnyaya-odejda', 'kurtki-trikotaj', 'bryukishorty', 'tolstovkisvitshotyhudi'],
+
+            //'platyayubki'       => ['verhnyaya-odejda', '', '', ''],
+            'platya'            => ['verhnyaya-odejda', 'trikotaj', 'obuv', 'aksessuary'],
+            'yubki'             => ['verhnyaya-odejda', 'tolstovkisvitshotyhudi', 'polo-trikotaj', 'obuv'],
+
+            //'rubashki'          => ['', '', '', ''],
+            'oblegayushchiy-kroy' => ['verhnyaya-odejda', 'puloverydjempery', 'bryukishorty', 'tolstovkisvitshotyhudi'],
+            'bluzki'            => ['verhnyaya-odejda', 'puloverydjempery', 'bryukishorty', 'tolstovkisvitshotyhudi'],
+
+            //'bryukishorty'      => ['verhnyaya-odejda', 'tolstovkisvitshotyhudi', ['polo-trikotaj', 'rubashki', 'futbolki'], 'obuv'],
+            'bryuki-bryukishorty'       => ['verhnyaya-odejda', 'tolstovkisvitshotyhudi', ['polo-trikotaj', 'rubashki', 'futbolki'], 'obuv'],
+            'djinsy'                    => ['verhnyaya-odejda', 'tolstovkisvitshotyhudi', ['polo-trikotaj', 'rubashki', 'futbolki'], 'obuv'],
+
+            '' => ['', '', '', ''],
+            '' => ['', '', '', ''],
+            '' => ['', '', '', ''],
+            '' => ['', '', '', ''],
+            '' => ['', '', '', ''],
+            '' => ['', '', '', ''],
+            '' => ['', '', '', ''],
+            '' => ['', '', '', ''],
+            '' => ['', '', '', ''],
+            '' => ['', '', '', ''],
+            '' => ['', '', '', ''],
+            '' => ['', '', '', ''],
+            '' => ['', '', '', ''],
+            '' => ['', '', '', ''],
+
+            /*man*/
+            '' => ['', '', '', ''],
+            '' => ['', '', '', ''],
+            '' => ['', '', '', ''],
+            '' => ['', '', '', ''],
+            '' => ['', '', '', ''],
+            '' => ['', '', '', ''],
+
+        );
+
+
+
+        return $arr;
+    }
 }

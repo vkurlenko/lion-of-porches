@@ -23,40 +23,91 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $product;
 //echo $product->get_id();
 
-$related_products = get_related_custom($product->get_id());
+$featured_products = get_featured_custom($product->get_id());
 
-/*(new Helper())->dump($related_products); die;*/
 
-if ( $related_products ) : ?>
+if ( $featured_products ) : ?>
+
+    <section class="related products" style="clear: both">
+
+        <?php
+        $heading = 'Заверши свой образ';//apply_filters( 'woocommerce_product_related_products_heading', __( 'Related products', 'woocommerce' ) );
+
+        if ( $heading ) :
+            ?>
+            <h2><?php echo esc_html( $heading ); ?></h2>
+        <?php endif; ?>
+
+        <?php woocommerce_product_loop_start(); ?>
+
+        <?php foreach ( $featured_products as $related_product ) : ?>
+
+            <?php
+            $post_object = get_post( $related_product );//get_post( $related_product->get_id() );
+
+            setup_postdata( $GLOBALS['post'] =& $post_object ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
+
+            wc_get_template_part( 'content', 'product2' );
+            ?>
+
+        <?php endforeach; ?>
+
+        <?php woocommerce_product_loop_end(); ?>
+
+    </section>
+<?php
+endif;
+
+wp_reset_postdata();
+
+
+/*$featured_products = get_featured_custom($product->get_id());//get_related_custom($product->get_id());
+$heading = 'Заверши свой образ';//apply_filters( 'woocommerce_product_related_products_heading', __( 'Related products', 'woocommerce' ) );
+
+*/?><!--
+    <section class="related products" style="clear: both">
+    <h2><?php /*echo esc_html( $heading ); */?></h2>
+
+        <?/*= $featured_products*/?>
+
+    </section>
+
+--><?php
+
+
+/*$related_products = get_related_custom($product->get_id());
+
+
+if ( $related_products ) : */?><!--
 
 	<section class="related products" style="clear: both">
 
 		<?php
-		$heading = apply_filters( 'woocommerce_product_related_products_heading', __( 'Related products', 'woocommerce' ) );
+/*		$heading = 'Заверши свой образ';//apply_filters( 'woocommerce_product_related_products_heading', __( 'Related products', 'woocommerce' ) );
 
 		if ( $heading ) :
-			?>
-			<h2><?php echo esc_html( $heading ); ?></h2>
-		<?php endif; ?>
+			*/?>
+			<h2><?php /*echo esc_html( $heading ); */?></h2>
+		<?php /*endif; */?>
 		
-		<?php woocommerce_product_loop_start(); ?>
+		<?php /*woocommerce_product_loop_start(); */?>
 
-			<?php foreach ( $related_products as $related_product ) : ?>
+			<?php /*foreach ( $related_products as $related_product ) : */?>
 
 					<?php
-					$post_object = get_post( $related_product );//get_post( $related_product->get_id() );
+/*					$post_object = get_post( $related_product );//get_post( $related_product->get_id() );
 
 					setup_postdata( $GLOBALS['post'] =& $post_object ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
 
 					wc_get_template_part( 'content', 'product2' );
-					?>
+					*/?>
 
-			<?php endforeach; ?>
+			<?php /*endforeach; */?>
 
-		<?php woocommerce_product_loop_end(); ?>
+		<?php /*woocommerce_product_loop_end(); */?>
 
 	</section>
-	<?php
-endif;
+	--><?php
+/*endif;
 
-wp_reset_postdata();
+wp_reset_postdata();*/
