@@ -498,7 +498,7 @@ function get_featured_custom($id, $limit = 4) {
         $this_category = $term->slug;
     }
 
-    //$h->dump($this_category);
+    $h->dump($this_category);
 
     // Get tags
     $terms = wp_get_post_terms($id, 'product_tag');
