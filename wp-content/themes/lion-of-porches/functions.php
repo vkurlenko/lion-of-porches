@@ -491,14 +491,19 @@ function get_featured_custom($id, $limit = 4) {
     $args = array( 'taxonomy' => 'product_cat',);
     $terms = wp_get_post_terms($id,'product_cat', $args);
 
-    //$h->dump($terms);
+    $h->dump($terms);
 
-    foreach($terms as $term) {
+
+    $this_category = $terms[count($terms) - 1]->slug;
+    $parent_category = $terms[count($terms) - 2]->slug;
+
+    /*foreach($terms as $term) {
         //echo $term->slug.'<br>';
         $this_category = $term->slug;
-    }
+    }*/
 
     $h->dump($this_category);
+    $h->dump($parent_category);
 
     // Get tags
     $terms = wp_get_post_terms($id, 'product_tag');
@@ -518,23 +523,22 @@ function get_featured_custom($id, $limit = 4) {
 
     $arr_related_products = $wh->getRelatedProducts();
 
+
+
     if(isset($arr_related_products[$this_category])) {
         $cats_array = $arr_related_products[$this_category];
         $related_posts = getFeaturedItemQuery($cats_array, $meta_query);
-    }
-
-    /*switch($this_category) {
-        case 'oblegayushchiy-kroy-rubashki-mujchiny':
-            $cats_array = ['kurtki','tolstovkisvitshotyhudi','bryuki','puloverydjempery'];
-
+    } else {
+        if(isset($arr_related_products[$parent_category])) {
+            $cats_array = $arr_related_products[$parent_category];
             $related_posts = getFeaturedItemQuery($cats_array, $meta_query);
-            break;
-    }*/
+        }
+    }
 
     //(new Helper())->dump($related_posts);
 
     // исключается вывод этого же товара
-    $related_posts = array_diff( $related_posts, array( $id ));
+    //$related_posts = array_diff( $related_posts, array( $id ));
 
     $related_posts = array_slice($related_posts, 0, $limit);
 
