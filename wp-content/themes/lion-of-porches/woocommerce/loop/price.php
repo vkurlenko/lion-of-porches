@@ -43,6 +43,14 @@ else:?>
     </span>
     <?php endif; ?>
 <?endif;
+
+echo '<div class="sizes-bar">';
+$sizes = (new WooHelper())->getProductVariationsAttributes($product);
+
+foreach($sizes as $size) {
+    echo '<span>'.$size.'</span>';
+}
+echo '</div>';
 ?>
 
 

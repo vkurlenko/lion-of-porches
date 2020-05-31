@@ -385,6 +385,108 @@ class WooHelper
     }
 
     /**
+     * Получим все доступные для заказа размеры товара
+     *
+     * @param $product
+     * @return array
+     */
+    public function getProductVariationsAttributes($product)
+    {
+        $arr = [];
+
+        if($product) {
+            $variations = $product->get_available_variations();
+
+            foreach($variations as $v) {
+                $attr_color = $v['attributes']['attribute_pa_color'];
+                $attr_size = $v['attributes']['attribute_pa_size'];
+                $is_in_stock = $v['is_in_stock'];
+
+                /*if(!isset($arr[$attr_color])) {
+                    $arr[$attr_color] = [];
+                }
+
+                $arr[$attr_color][] = [
+                        'size' => $attr_size,
+                        'is_in_stock' => $is_in_stock
+                ];*/
+
+                if($is_in_stock) {
+                    if(!in_array($attr_size, $arr)) {
+                        $arr[] = strtolower($attr_size);
+                    }
+                }
+            }
+        }
+
+        sort($arr);
+
+        $arr = $this->sortSize($arr);
+
+        return $arr;
+    }
+
+    /**
+     * Получим все доступные для заказа размеры товара в этом цвете
+     *
+     * @param $product
+     * @param null $color
+     * @return array
+     */
+    public function getVariationSizesByColor($product, $color = null)
+    {
+        $arr = [];
+
+        if($product && $color) {
+            $variations = $product->get_available_variations();
+
+            foreach($variations as $v) {
+
+                if($color == $v['attributes']['attribute_pa_color']) {
+                    $attr_color = $v['attributes']['attribute_pa_color'];
+                    $attr_size = $v['attributes']['attribute_pa_size'];
+                    $is_in_stock = $v['is_in_stock'];
+
+                    if($is_in_stock) {
+                        if(!in_array($attr_size, $arr)) {
+                            $arr[] = strtolower($attr_size);
+                        }
+                    }
+                }
+            }
+        }
+
+        sort($arr);
+
+        $arr = $this->sortSize($arr);
+
+        return $arr;
+    }
+
+    /**
+     * Сортировка размеров
+     *
+     * @param $arr
+     * @return array
+     */
+    public function sortSize($arr)
+    {
+        $sort = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'];
+
+        $newArr = [];
+
+        foreach($sort as $item) {
+
+            if(in_array(strtolower($item), $arr)) {
+               //echo $item;
+                $newArr[] = $item;
+            }
+        }
+
+        return !(empty($newArr)) ? $newArr : $arr;
+    }
+
+    /**
      * Вывод в каталоге вариаций товара как отдельных товаров
      *
      * @param $product
@@ -537,6 +639,18 @@ class WooHelper
 
                 <a href="<?=$v_url?>" data-quantity="<?=$value['max_qty']?>" class="button box-item btn-quickview product_type_variable" data-product_id="<?=$product->get_id()?>" data-product_sku="<?=$product->get_sku()?>" aria-label="Выбрать опции для &quot;<?=$product->get_name()?>&quot;" rel="nofollow">Подробнее</a>
 
+                <!-- доступные для заказа размеры -->
+                <div class="sizes-bar">
+                    <?php
+                    $sizes = $this->getVariationSizesByColor($product, $value['attributes']['attribute_pa_color']);
+
+                    foreach($sizes as $size) {
+                        echo '<span>'.$size.'</span>';
+                    }
+
+                    ?>
+                </div>
+                <!-- /доступные для заказа размеры -->
             </li>
 
             <?php
