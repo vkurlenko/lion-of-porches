@@ -369,7 +369,7 @@ function woo_discount_total(WC_Cart $cart) {
             $discount_price = (new WooHelper())->getCartSubTotal($cart);
 
             //$cart->add_fee("Персональная скидка в ".$discount."% ", -$discount_price);
-            $cart->add_fee("Ваша скидка", -$discount_price);
+            $cart->add_fee("Ваша&nbsp;экономия", $discount_price);
         }
     }
 }
