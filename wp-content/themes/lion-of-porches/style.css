@@ -747,9 +747,6 @@ table.tableizer-table {
   font-size: 12px;
   margin-top: 10px; }
 
-.summary.entry-summary > .price {
-  display: none; }
-
 .summary.entry-summary p,
 .summary.entry-summary .product_meta,
 .button-variable-item {
