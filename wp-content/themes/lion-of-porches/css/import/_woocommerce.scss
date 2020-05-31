@@ -35,7 +35,8 @@
     font-size: 20px;
 }
 
-.summary.entry-summary .sku_wrapper {
+.summary.entry-summary .sku_wrapper,
+.woocommerce-cart-form__cart-item .sku_wrapper {
     font-size: 12px;
     margin-top: 10px;
 }
@@ -447,7 +448,7 @@ button[name='woocommerce_checkout_place_order'],
 
 .woocommerce-cart table.cart td.product-price,
 .woocommerce-cart table.cart td.product-subtotal,
-.cart_totals .woocommerce-Price-amount{
+.cart_totals .woocommerce-Price-amount {
     font-family: "Butik Sans Medium";
     color: $color-text-red;
     letter-spacing: 0;
@@ -527,7 +528,7 @@ button[name='woocommerce_checkout_place_order'],
 .woocommerce form .form-row textarea,
 .woocommerce-cart table.cart input,
 .woocommerce-checkout table.cart input,
-#add_payment_method table.cart input{
+#add_payment_method table.cart input {
     border: 1px solid #eaedf0;
 }
 
@@ -565,7 +566,7 @@ button[name='woocommerce_checkout_place_order'],
     &.is-active {
         border-left: 4px solid $color-text-red;
 
-        a{
+        a {
             color: $color-deep-blue;
         }
     }
@@ -617,6 +618,49 @@ button[name='woocommerce_checkout_place_order'],
 
 ul.products li.product a img {
      margin: 0 !important;
+}
+
+/* корзина */
+.woocommerce table.shop_table {
+    border-left: 1px solid rgba(0, 0, 0, 0.1) ;
+    border-right: 1px solid rgba(0, 0, 0, 0.1) ;
+    border-top:0;
+    border-bottom:0;
+}
+
+/*.woocommerce table.shop_table tr {
+    border-left: 1px solid red;
+}*/
+
+.woocommerce table.shop_table tr th {
+    border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+.woocommerce table.shop_table tr td
+{
+    border-top:0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+#td-invisible {
+    min-width:20px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1) ;
+    border-right: 1px solid rgba(0, 0, 0, 0.1) ;
+    border-top: 0 !important;
+    border-bottom: 0 !important;
+}
+
+#lp-cart_totals table {
+    width: max-content;
+}
+
+#lp-cart_totals table,
+#lp-cart_totals table tr,
+#lp-cart_totals table tr th,
+#lp-cart_totals table tr td{
+    //border: 0 !important;
+    border-color: #fff !important;
 }
 
 /* артикул на карточке товара */

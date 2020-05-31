@@ -18,18 +18,20 @@
 defined( 'ABSPATH' ) || exit;
 
 ?>
-<div class="cart_totals <?php echo ( WC()->customer->has_calculated_shipping() ) ? 'calculated_shipping' : ''; ?>">
+<div id="lp-cart_totals" class="cart_totals <?php echo ( WC()->customer->has_calculated_shipping() ) ? 'calculated_shipping' : ''; ?>">
 
 	<?php do_action( 'woocommerce_before_cart_totals' ); ?>
 
-	<h2><?php esc_html_e( 'Cart totals', 'woocommerce' ); ?></h2>
+	<!--<h2><?php /*esc_html_e( 'Cart totals', 'woocommerce' ); */?></h2>-->
 
-	<table cellspacing="0" class="shop_table shop_table_responsive">
+	<table cellspacing="0" class="shop_table shop_table_responsive" align="right">
 
-		<tr class="cart-subtotal">
-			<th><?php esc_html_e( 'Subtotal', 'woocommerce' ); ?></th>
-			<td data-title="<?php esc_attr_e( 'Subtotal', 'woocommerce' ); ?>"><?php wc_cart_totals_subtotal_html(); ?></td>
-		</tr>
+        <!-- подытог -->
+		<!--<tr class="cart-subtotal">
+			<th><?php /*esc_html_e( 'Subtotal', 'woocommerce' ); */?></th>
+			<td data-title="<?php /*esc_attr_e( 'Subtotal', 'woocommerce' ); */?>"><?php /*wc_cart_totals_subtotal_html(); */?></td>
+		</tr>-->
+        <!-- /подытог -->
 
 		<?php foreach ( WC()->cart->get_coupons() as $code => $coupon ) : ?>
 			<tr class="cart-discount coupon-<?php echo esc_attr( sanitize_title( $code ) ); ?>">
@@ -102,6 +104,8 @@ defined( 'ABSPATH' ) || exit;
 		<?php do_action( 'woocommerce_cart_totals_after_order_total' ); ?>
 
 	</table>
+
+    <div style="clear: both"></div>
 
 	<div class="wc-proceed-to-checkout">
 		<?php do_action( 'woocommerce_proceed_to_checkout' ); ?>
