@@ -44,11 +44,22 @@ $card_exists = !empty((new Crm())->getCrmUser());
 //echo 'card_exists='.$card_exists;
 ?>
 
+<?php
+if(!$card_exists):?>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+
+<?php
+endif;
+?>
+
 <form class="woocommerce-cart-form" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
 	<?php do_action( 'woocommerce_before_cart_table' ); ?>
 
     <div class="row">
-        <div class="col-md-12">
+        <div>
             <table class="shop_table shop_table_responsive cart woocommerce-cart-form__contents" cellspacing="0">
                 <!--<thead>-->
                 <tr>
@@ -224,6 +235,8 @@ $card_exists = !empty((new Crm())->getCrmUser());
 
         </div>
 
+
+
     </div>
 
     <!-- обновление корзины -->
@@ -249,7 +262,8 @@ $card_exists = !empty((new Crm())->getCrmUser());
 
 <?php do_action( 'woocommerce_before_cart_collaterals' ); ?>
 
-<div class="cart-collaterals">
+
+<div class="cart-collaterals ">
 	<?php
 		/**
 		 * Cart collaterals hook.
@@ -261,4 +275,34 @@ $card_exists = !empty((new Crm())->getCrmUser());
 	?>
 </div>
 
+
 <?php do_action( 'woocommerce_after_cart' ); ?>
+
+<?php
+if(!$card_exists):
+?>
+        </div>
+
+        <div class="col-md-3 col-md-offset-1 product-card-personal">
+            <div>
+                <div class="product-card-personal-inner">
+                    <?=get_template_part( 'parts/guest-block');?>
+
+                    <div class="product">
+                        <div class="page-sep">
+                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAVCAMAAABxCz6aAAAAeFBMVEVMaXHeChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChpoOs6ZAAAAJ3RSTlMA8OCgMMBQEIBgcJALA0ywDHyXCIhAtQEuPeICavcYEnmHHg7ECqhJSmy5AAAAoklEQVR42m3Q2RKDIAwFUEpZq1ar3fc9//+HvYbMUGvvQyYcogwo5YkoVcQrTsbFPGNZE8X7Q2fkYNRx7fFijOEfXL8wovLojG7OYWFtA9RWMAUtMKj/OEFOv4i+LYqi7TEgtaCXK0iA2OyAXWBYYrlSnNcUGdw9fzvGGOORaF0maax90tvJns9jOHGM5izdrkpYyVtpvefBQQjZHsboN6n9AL9IGjFswE2+AAAAAElFTkSuQmCC" alt="Lion of Porches">
+                        </div>
+                    </div>
+                    <div class="offerta">
+                        <a href="#">Условия и лимиты программы лояльности</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php
+endif;
+?>
+
+
