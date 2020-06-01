@@ -19,6 +19,26 @@ defined( 'ABSPATH' ) || exit;
 
 do_action( 'woocommerce_before_cart' );
 
+$current_user = wp_get_current_user();
+$user_discount = (new Crm())->getUserDiscount($current_user->user_email);
+
+if($user_discount) {
+    $levels = (new Crm())->getUserLevel();
+
+    $user_discount_level = isset($levels[$user_discount]) ? $levels[$user_discount] : 0;
+
+    /*if($user_discount_level):
+    */?><!--
+
+    <div class="user-discount-level">
+        <span class="user-name"><?/*=$current_user->display_name*/?></span>
+        <span class="user-level"><?/*=$user_discount_level*/?></span>
+        <img id="user-level-label" src="/wp-content/themes/lion-of-porches/img/levels/<?/*=strtolower($user_discount_level)*/?>.jpg">
+    </div>
+    --><?php
+/*    endif;*/
+}
+
 // у клиента есть карта (учетная запись в CRM)
 $card_exists = !empty((new Crm())->getCrmUser());
 //echo 'card_exists='.$card_exists;
@@ -39,9 +59,25 @@ $card_exists = !empty((new Crm())->getCrmUser());
                     <th class="product-price"><?php esc_html_e( 'Price', 'woocommerce' ); ?></th>
 
                     <?php if($card_exists):?>
+
                     <th id="td-invisible" rowspan="0"></th>
-                    <th class="product-price">Ваша скидка</th>
-                    <th class="product-subtotal">Сумма <br>с учетом Вашей скидки</th>
+
+                    <th class="product-price" style="">
+                        <div class="user-discount-level" style="">
+                            <span class="user-level"><?=isset($user_discount_level) ? $user_discount_level : ''?></span>
+                        </div>Ваша скидка
+                    </th>
+
+                    <th class="product-subtotal" style="">
+                        <?php
+                        if(isset($user_discount_level)):
+                        ?>
+                            <img id="user-level-label" style="" src="/wp-content/themes/lion-of-porches/img/levels/<?=strtolower($user_discount_level)?>.jpg">
+                        <?php
+                        endif;
+                        ?>
+                        Сумма <br>с учетом Вашей скидки</th>
+
                     <?php endif;?>
                 </tr>
                 <!--</thead>

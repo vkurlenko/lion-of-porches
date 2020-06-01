@@ -35,7 +35,7 @@
     }
     ?>
 
-    <span class="user-name"><?=$arr['user_name']?>,</span>
+
 
     <?php
     // текущий уровень клиента
@@ -54,6 +54,7 @@
 
     if($user_discount_level):
         ?>
+        <span class="user-name"><?=$arr['user_name']?>,</span>
         <!--<div class="user-discount-level">
             <span class="user-level"><?/*=$user_discount_level*/?></span>
             <img id="user-level-label" src="/wp-content/themes/lion-of-porches/img/levels/<?/*=strtolower($user_discount_level)*/?>.jpg">
@@ -77,10 +78,19 @@
             <!--<div><?/*=sprintf('Ваша экономия <span class="level-name"><span class="data-personal-economy">'.$price_tpl.'</span></span>', '' )*/?></div>-->
         </div>
 
-        <div class="offerta">
-            <a href="#">Условия и лимиты программы лояльности</a>
-        </div>
+
+    <?php
+    else:?>
+        <?=get_template_part( 'parts/guest-block');?>
     <?php
     endif;
     ?>
+    <div class="product">
+        <div class="page-sep">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAVCAMAAABxCz6aAAAAeFBMVEVMaXHeChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChreChpoOs6ZAAAAJ3RSTlMA8OCgMMBQEIBgcJALA0ywDHyXCIhAtQEuPeICavcYEnmHHg7ECqhJSmy5AAAAoklEQVR42m3Q2RKDIAwFUEpZq1ar3fc9//+HvYbMUGvvQyYcogwo5YkoVcQrTsbFPGNZE8X7Q2fkYNRx7fFijOEfXL8wovLojG7OYWFtA9RWMAUtMKj/OEFOv4i+LYqi7TEgtaCXK0iA2OyAXWBYYrlSnNcUGdw9fzvGGOORaF0maax90tvJns9jOHGM5izdrkpYyVtpvefBQQjZHsboN6n9AL9IGjFswE2+AAAAAElFTkSuQmCC" alt="Lion of Porches">
+        </div>
+    </div>
+    <div class="offerta">
+        <a href="#">Условия и лимиты программы лояльности</a>
+    </div>
 </div>

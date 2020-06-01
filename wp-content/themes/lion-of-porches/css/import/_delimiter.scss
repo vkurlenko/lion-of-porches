@@ -23,3 +23,9 @@
     margin-top: 6px;
     vertical-align: middle;
 }
+
+.product-card-personal-inner {
+    .page-sep:after, .page-sep:before {
+        width: 40%;
+    }
+}
