@@ -747,6 +747,14 @@ function action_function_name_7179(){
     //echo 'test';
 }*/
 
+add_filter('gettext', 'translate_text');
+add_filter('ngettext', 'translate_text');
+
+function translate_text($translated) {
+    $translated = str_ireplace('Товары с меткой &ldquo;%s&rdquo;', '%s', $translated);
+    return $translated;
+}
+
 /*******************/
 /* /My Woocommerce */
 /*******************/

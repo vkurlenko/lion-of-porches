@@ -68,8 +68,4 @@ $h = new Helper();
     </div>
 </section>
 
-<style>
-
-</style>
-
 <?php get_footer();

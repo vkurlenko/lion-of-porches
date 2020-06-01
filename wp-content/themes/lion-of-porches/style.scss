@@ -451,6 +451,23 @@ a.cart-link:hover {
   margin-bottom: 0;
 }
 
+.main-menu ul li:last-child {
+  position: relative;
+
+  .sub-menu {
+    /*height: 100px;*/
+    /*visibility: hidden;
+    opacity: 0;*/
+    //position: relative;
+    width: 200px;
+    left: -50px;
+
+    ul li:last-child {
+      padding-right: 0;
+    }
+  }
+}
+
 .main-menu ul li,
 .top-menu-1 ul li,
 .top-menu-2 ul li {

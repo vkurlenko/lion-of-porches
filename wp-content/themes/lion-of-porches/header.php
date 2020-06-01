@@ -83,6 +83,33 @@ die;*/
                             <?php
                             //break;
                             endforeach;
+
+                            ?>
+                            <li>
+                                <a class="btn-alt" data-subcategory="new-arrival" href="javascript: return false;">New arrival</a>
+                                <div class="container-fluid sub-menu ">
+
+                                    <div class="new-arrival hidden container">
+                                        <ul>
+                                            <li class="cat-item">
+                                                <a href="/shop/new-arrival/?tag=woman">Женщины</a>
+                                                <ul class="children">
+                                                    <li class="cat-item"></li>
+                                                </ul>
+                                            </li>
+                                            <li class="cat-item">
+                                                <a href="/shop/new-arrival/?tag=man">Мужчины</a>
+                                                <ul class="children">
+                                                    <li class="cat-item"></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </li>
+                            <?php
+
                             ?>
                         </ul>
                     </div>
