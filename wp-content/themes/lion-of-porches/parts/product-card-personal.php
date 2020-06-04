@@ -28,8 +28,14 @@
         $arr['user_name'] = $current_user->user_firstname.' '.$current_user->user_lastname;
 
         $crm_user = $crm->getCrmUser();
-        $arr['user_level'] = $crm_user->discount;
-        $arr['user_sum'] = (int)$crm_user->comment;
+
+        if($crm_user) {
+            $arr['user_level'] = isset($crm_user->discount) ? $crm_user->discount : 0;
+            $arr['user_sum'] = (int)$crm_user->comment;
+        } else {
+            $arr['user_level'] = 0;
+            $arr['user_sum'] = '';
+        }
 
         //$h->dump($crm->getCrmUser());
     }

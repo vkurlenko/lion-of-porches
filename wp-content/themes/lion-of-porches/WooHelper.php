@@ -559,6 +559,9 @@ class WooHelper
 
                         if($posttags) {
                             foreach($posttags as $tag) {
+                                if(!in_array($tag->slug, (new WooHelper())->getVisibleTags())) {
+                                    continue;
+                                }
                                 ?>
                                 <?php echo apply_filters( 'woocommerce_sale_flash', '<a href="/product-tag/'.$tag->slug.'/"><span class="prod-tag '.$tag->slug.'">'.$tag->name.'</span></a>', $post, $product ); ?>
                                 <?php
@@ -1032,6 +1035,13 @@ class WooHelper
         }
 
         return $variations;
+    }
+
+    public function getVisibleTags()
+    {
+        return [
+            'new-arrival'
+        ];
     }
 
     public function getRelatedProducts()
