@@ -758,6 +758,23 @@ function translate_text($translated) {
 /*******************/
 /* /My Woocommerce */
 /*******************/
+$tag             = 'woocommerce_save_account_details';
+$function_to_add = 'my_save_account';
+$priority        = 10;
+$accepted_args   = 1;
+add_action( $tag, $function_to_add, $priority, $accepted_args );
+
+function my_save_account($user_id) {
+
+    $subscribe  = !empty( $_POST[ 'subscribe' ] ) ? true : false;
+    $sms  = !empty( $_POST[ 'sms' ] ) ? true : false;
+
+    update_user_meta($user_id, 'subscribe', (int)$subscribe);
+    update_user_meta($user_id, 'sms', (int)$sms);
+
+    (new Crm())->setSubscribeStatus('subscribe', (int)$subscribe);
+    (new Crm())->setSubscribeStatus('sms', (int)$sms);
+}
 
 function my_jpeg_quality($arg)
 {

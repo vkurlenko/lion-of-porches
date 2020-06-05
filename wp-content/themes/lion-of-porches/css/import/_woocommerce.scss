@@ -573,7 +573,8 @@ button[name='woocommerce_checkout_place_order'],
 .woocommerce-page form .form-row label,
 #order_review_heading {
     font-weight: 700;
-   color: $color-deep-blue
+    color: $color-deep-blue;
+    letter-spacing: 0;
 }
 
 /* символ рубля */

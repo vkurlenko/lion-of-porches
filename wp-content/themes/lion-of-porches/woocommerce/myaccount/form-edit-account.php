@@ -62,7 +62,18 @@ do_action( 'woocommerce_before_edit_account_form' ); ?>
 			<input type="password" class="woocommerce-Input woocommerce-Input--password input-text" name="password_2" id="password_2" autocomplete="off" />
 		</p>
 	</fieldset>
-	<div class="clear"></div>
+
+    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-first">
+    <label for="subscribe" style="display: inline-block">Согласен на email рассылку</label>
+        <input type="checkbox" class="input-checkbox" name="subscribe" id="subscribe" <?=(new Crm())->getSubscribeStatus('subscribe') ? 'checked' : ''?> />
+        <br>
+        <label for="sms" style="display: inline-block">Согласен на SMS рассылку</label>
+        <input type="checkbox" class="input-checkbox" name="sms" id="sms" <?=(new Crm())->getSubscribeStatus('sms') ? 'checked' : ''?> />
+    </p>
+
+
+
+    <div class="clear"></div>
 
 	<?php do_action( 'woocommerce_edit_account_form' ); ?>
 

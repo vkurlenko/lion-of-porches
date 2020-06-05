@@ -1191,7 +1191,8 @@ button[name='woocommerce_checkout_place_order'],
 .woocommerce-page form .form-row label,
 #order_review_heading {
   font-weight: 700;
-  color: #00244b; }
+  color: #00244b;
+  letter-spacing: 0; }
 
 /* символ рубля */
 .woocommerce-Price-currencySymbol {

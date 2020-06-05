@@ -366,6 +366,58 @@ class Crm
         return 0;
     }
 
+    public function getSubscribeStatus($type = 'subscribe')
+    {
+        global $wpdb;
+
+        $crm_user = $this->getCrmUser();
+
+        if($crm_user) {
+            $sql = "SELECT * FROM `data3` WHERE id = ".$crm_user->id;
+
+            $res = $wpdb->get_results($sql);
+
+            switch($type) {
+                case 'sms': $field = $res[0]->sms;
+                    break;
+
+                default: $field = $res[0]->subscribe;
+                    break;
+            }
+
+            return $field;
+        }
+
+        return false;
+
+    }
+
+    public function setSubscribeStatus($type = 'subscribe', $status = null)
+    {
+        global $wpdb;
+
+        if($status !== null) {
+            $crm_user = $this->getCrmUser();
+
+            if($crm_user) {
+
+                switch($type) {
+                    case 'sms': $field = 'sms';
+                    break;
+
+                    default: $field = 'subscribe';
+                        break;
+                }
+
+                $sql = "UPDATE `data3` SET ".$field."='".(int)$status."' WHERE id = ".$crm_user->id;
+
+                $wpdb->query($sql);
+            }
+
+            //(new Helper())->dump($crm_user); die;
+        }
+    }
+
 /*Limits	Discription	Discounts
 10,000 ₽	Basic	5%
 70,000 ₽	Silver	10%
