@@ -369,7 +369,7 @@ function woo_discount_total(WC_Cart $cart) {
             $discount_price = (new WooHelper())->getCartSubTotal($cart);
 
             //$cart->add_fee("Персональная скидка в ".$discount."% ", -$discount_price);
-            $cart->add_fee("Ваша&nbsp;экономия", $discount_price);
+            $cart->add_fee("Ваша&nbsp;экономия", -$discount_price);
         }
     }
 }
@@ -758,6 +758,9 @@ function translate_text($translated) {
 /*******************/
 /* /My Woocommerce */
 /*******************/
+
+
+/* добавлены поля в профиль пользователя */
 $tag             = 'woocommerce_save_account_details';
 $function_to_add = 'my_save_account';
 $priority        = 10;
