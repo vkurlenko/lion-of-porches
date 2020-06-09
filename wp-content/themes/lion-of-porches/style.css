@@ -1465,6 +1465,10 @@ span.art {
 .chjornyj {
   background: #000000; }
 
+#delivery_points,
+.select2-result-point {
+  font-size: 16px; }
+
 /* instagram gallery */
 .lifestyle h2 {
   font-family: 'Raleway', sans-serif;
