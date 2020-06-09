@@ -66,7 +66,7 @@ body {
   font-weight: 700;
   color: #5b7a9c;
   /*background: #0eb5d6;*/
-  font-size: 20px; }
+  font-size: 16px; }
 
 a {
   outline: none !important;
@@ -750,7 +750,7 @@ table.tableizer-table {
 .woocommerce ul.products li.product .woocommerce-loop-product__title,
 .woocommerce ul.products li.product .woocommerce-loop-category__title {
   text-align: center;
-  font-size: .8em; }
+  font-size: 1em; }
 
 .woocommerce div.product .product_title {
   margin-bottom: 0;
