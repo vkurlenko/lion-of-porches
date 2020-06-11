@@ -76,7 +76,7 @@ img {
   max-width: 100%;
   height: auto; }
 
-p {
+p, li {
   line-height: 2em;
   font-size: 16px;
   font-weight: 400; }
@@ -606,6 +606,7 @@ a.cart-link:hover {
 
 .carreiras-form-wrapper input,
 .carreiras-form-wrapper textarea,
+.carreiras-form-wrapper select,
 .woocommerce-input-wrapper input,
 .woocommerce-Input,
 .woocommerce-Button,
@@ -630,7 +631,7 @@ a.cart-link:hover {
   border-radius: 0 !important; }
 
 .carreiras-form-wrapper textarea {
-  height: 80px; }
+  height: 100px; }
 
 .carreiras-form-wrapper .required {
   color: #e51937; }
@@ -723,6 +724,11 @@ table.tableizer-table {
   background-color: #00244b;
   color: #fff;
   font-weight: bold; }
+
+.wpcf7-response-output {
+  clear: both;
+  margin-top: 10px;
+  width: 100%; }
 
 /* woocommerce */
 .product-card-entry > div {

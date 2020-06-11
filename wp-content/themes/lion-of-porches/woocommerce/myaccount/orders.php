@@ -53,6 +53,8 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 								<time datetime="<?php echo esc_attr( $order->get_date_created()->date( 'c' ) ); ?>"><?php echo esc_html( wc_format_datetime( $order->get_date_created() ) ); ?></time>
 
 							<?php elseif ( 'order-status' === $column_id ) : ?>
+                            <?=$order->get_status()?>
+
 								<?php echo esc_html( wc_get_order_status_name( $order->get_status() ) ); ?>
 
 							<?php elseif ( 'order-total' === $column_id ) : ?>
@@ -70,6 +72,10 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 										echo '<a href="' . esc_url( $action['url'] ) . '" class="woocommerce-button button ' . sanitize_html_class( $key ) . '">' . esc_html( $action['name'] ) . '</a>';
 									}
 								}
+
+								if($order->get_status() == 'completed') {
+                                    echo '<a href="#" class="woocommerce-button button ' . sanitize_html_class( $key ) . '">' . esc_html( 'Возврат' ) . '</a>';
+                                }
 								?>
 							<?php endif; ?>
 						</td>

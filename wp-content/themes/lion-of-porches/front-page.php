@@ -110,40 +110,6 @@ $product_categories = $helper->getTopCategory();
 
             <?php echo do_shortcode('[instagram-feed]'); ?>
 
-            <!--<div class="row instagram-gallery">
-                <div class="col-md-4">
-                    <div class="col col-1">
-                        <div style="background-image: url(/wp-content/themes/lion-of-porches/img/1.jpg);"><a href="#"></a></div>
-                        <div style="background-image: url(/wp-content/themes/lion-of-porches/img/1.jpg);"><a href="#"></a></div>
-                    </div>
-                    <div class="col col-2">
-                        <div style="background-image: url(/wp-content/themes/lion-of-porches/img/1.jpg);"><a href="#"></a></div>
-                        <div style="background-image: url(/wp-content/themes/lion-of-porches/img/1.jpg);"><a href="#"></a></div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="col col-3">
-                        <div class="row-1">
-                            <div style="background-image: url(/wp-content/themes/lion-of-porches/img/1.jpg);"><a href="#"></a></div>
-                            <div style="background-image: url(/wp-content/themes/lion-of-porches/img/1.jpg);"><a href="#"></a></div>
-                        </div>
-
-                        <div class="row-2">
-                            <div style="background-image: url(/wp-content/themes/lion-of-porches/img/1.jpg);"><a href="#"></a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="col col-4">
-                        <div style="background-image: url(/wp-content/themes/lion-of-porches/img/1.jpg);"><a href="#"></a></div>
-                        <div style="background-image: url(/wp-content/themes/lion-of-porches/img/1.jpg);"><a href="#"></a></div>
-                    </div>
-                    <div class="col col-5">
-                        <div style="background-image: url(/wp-content/themes/lion-of-porches/img/1.jpg);"><a href="#"></a></div>
-                        <div style="background-image: url(/wp-content/themes/lion-of-porches/img/1.jpg);"><a href="#"></a></div>
-                    </div>
-                </div>
-            </div>-->
         </div>
 
         <!-- /lifeStyle -->

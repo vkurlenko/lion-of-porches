@@ -105,7 +105,7 @@ img {
   height: auto;
 }
 
-p {
+p, li {
   line-height: 2em;
   font-size: 16px;//18px;
   font-weight: 400;
@@ -745,6 +745,7 @@ a.cart-link:hover {
 
 .carreiras-form-wrapper input,
 .carreiras-form-wrapper textarea,
+.carreiras-form-wrapper select,
 .woocommerce-input-wrapper  input,
 .woocommerce-Input,
 .woocommerce-Button,
@@ -771,7 +772,7 @@ a.cart-link:hover {
 }
 
 .carreiras-form-wrapper textarea {
-  height: 80px;
+  height: 100px;
 }
 
 .carreiras-form-wrapper .required {
@@ -879,6 +880,13 @@ table.tableizer-table {
   background-color: $color-deep-blue;
   color: #fff;
   font-weight: bold;
+}
+
+
+.wpcf7-response-output {
+  clear: both;
+  margin-top:10px;
+  width: 100%;
 }
 
 /* woocommerce */
