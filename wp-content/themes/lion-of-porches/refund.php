@@ -26,7 +26,7 @@ get_header(); // подключаем header.php ?>
 
                         </div>
 
-                        <div class="col-md-6 carreiras-form-wrapper">
+                        <div class="col-md-5 col-md-offset-1 carreiras-form-wrapper">
 
                             <h2>Вернуть товар</h2>
 
