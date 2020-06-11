@@ -16,7 +16,7 @@ get_header(); // подключаем header.php ?>
                 ?>
 
                 <div class="container">
-                    <div class="row  stores-qd-v1-wrapper carreiras">
+                    <div class="row  stores-qd-v1-wrapper">
                         <div class="col-md-6 content">
                             <h2><?=$post->post_title;?></h2>
 
