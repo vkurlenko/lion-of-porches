@@ -902,6 +902,16 @@ table.tableizer-table {
   //color: $color-text-red;
 }
 
+.acceptance label {
+  font-weight: 400;
+  text-transform: unset;
+}
+.acceptance input {
+  display: inline;
+  width: auto;
+  height: auto;
+}
+
 /* woocommerce */
 @import 'css/import/_woocommerce.scss';
 

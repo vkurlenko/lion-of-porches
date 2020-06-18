@@ -739,6 +739,15 @@ table.tableizer-table {
   background: #fff;
   border-color: #e11f26; }
 
+.acceptance label {
+  font-weight: 400;
+  text-transform: unset; }
+
+.acceptance input {
+  display: inline;
+  width: auto;
+  height: auto; }
+
 /* woocommerce */
 .product-card-entry > div {
   border: 0px solid #d6dce2;
