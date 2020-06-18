@@ -889,6 +889,19 @@ table.tableizer-table {
   width: 100%;
 }
 
+.lwpcngNotice-light .lwpcngNotice_accept {
+  border-color: $color-text-red;
+  background: #fff;
+  color: $color-text-red;
+}
+
+.lwpcngNotice-light .lwpcngNotice_accept:hover {
+  //border-color: $color-text-red;
+  background: #fff;
+  border-color: $color-text-red;
+  //color: $color-text-red;
+}
+
 /* woocommerce */
 @import 'css/import/_woocommerce.scss';
 

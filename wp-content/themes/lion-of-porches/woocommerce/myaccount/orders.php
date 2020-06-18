@@ -53,7 +53,6 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 								<time datetime="<?php echo esc_attr( $order->get_date_created()->date( 'c' ) ); ?>"><?php echo esc_html( wc_format_datetime( $order->get_date_created() ) ); ?></time>
 
 							<?php elseif ( 'order-status' === $column_id ) : ?>
-                            <?=$order->get_status()?>
 
 								<?php echo esc_html( wc_get_order_status_name( $order->get_status() ) ); ?>
 
@@ -74,7 +73,7 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 								}
 
 								if($order->get_status() == 'completed') {
-                                    echo '<a href="/vozvrat-tovara/" class="woocommerce-button button ' . sanitize_html_class( $key ) . '">' . esc_html( 'Возврат' ) . '</a>';
+                                    echo '<a href="/vozvrat-tovara/?order-number='.$order->get_order_number().'" class="woocommerce-button button ' . sanitize_html_class( $key ) . '">' . esc_html( 'Возврат' ) . '</a>';
                                 }
 								?>
 							<?php endif; ?>

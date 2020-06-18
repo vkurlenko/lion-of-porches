@@ -730,6 +730,15 @@ table.tableizer-table {
   margin-top: 10px;
   width: 100%; }
 
+.lwpcngNotice-light .lwpcngNotice_accept {
+  border-color: #e11f26;
+  background: #fff;
+  color: #e11f26; }
+
+.lwpcngNotice-light .lwpcngNotice_accept:hover {
+  background: #fff;
+  border-color: #e11f26; }
+
 /* woocommerce */
 .product-card-entry > div {
   border: 0px solid #d6dce2;
