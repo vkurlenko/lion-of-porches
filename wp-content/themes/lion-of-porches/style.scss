@@ -100,6 +100,16 @@ a{
   color: $body-color;
 }
 
+.content a{
+  outline: none !important;
+  color: $color-deep-blue;
+  text-decoration: underline;
+}
+
+.content a:hover {
+  text-decoration: none;
+}
+
 img {
   max-width: 100%;
   height: auto;

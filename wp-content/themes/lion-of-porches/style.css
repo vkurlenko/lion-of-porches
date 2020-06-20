@@ -72,6 +72,14 @@ a {
   outline: none !important;
   color: #5b7a9c; }
 
+.content a {
+  outline: none !important;
+  color: #00244b;
+  text-decoration: underline; }
+
+.content a:hover {
+  text-decoration: none; }
+
 img {
   max-width: 100%;
   height: auto; }
