@@ -169,7 +169,8 @@ die;*/
                 <div class="top-menu-2 hidden-xs">
 
                     <?
-                    $login = '<a href="'.get_permalink( get_option('woocommerce_myaccount_page_id')).'">'.(is_user_logged_in() ? 'Личный кабинет' : 'Вход').'</a>';
+                    //$login = '<a href="'.get_permalink( get_option('woocommerce_myaccount_page_id')).'">'.(is_user_logged_in() ? 'Личный кабинет' : 'Вход').'</a>';
+                    $login = '<a href="'.get_permalink( get_option('woocommerce_myaccount_page_id')).'">'.(is_user_logged_in() ? 'Личный кабинет' : 'Личный кабинет').'</a>';
 
                     $args = array(
                         //'theme_location'  => , // область темы

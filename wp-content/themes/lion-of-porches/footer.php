@@ -22,45 +22,41 @@
 
             </div>
 
-            <div class="footer-item loja col-xs-6 col-md-2"><h5>Онлайн магазин</h5>
+            <div class="footer-item loja col-xs-6 col-md-2"><h5>Покупателям</h5>
                 <?php get_template_part( 'parts/bottom-menu-2');?>
             </div>
 
-            <div class="footer-item pagamento col-xs-6 col-md-3">
+            <div class="footer-item pagamento col-xs-6 col-md-2">
                 <h5>Способы оплаты</h5>
                 <ul class="gateways list-inline">
-                    <li><img src="/wp-content/themes/lion-of-porches/img/visa.png" alt="Visa"></li>
-                    <li><img src="/wp-content/themes/lion-of-porches/img/mastercard.png" alt="Master Card"></li>
-                    <li><img src="/wp-content/themes/lion-of-porches/img/multibanco.png" alt="Multibanco"></li>
-                    <li><img src="/wp-content/themes/lion-of-porches/img/paypal.png" alt="PayPal"></li>
-                    <li><img src="/wp-content/themes/lion-of-porches/img/amex.png" alt="Amex"></li>
+                    <li><img src="/wp-content/themes/lion-of-porches/img/icons8-apple-pay-128-2.png" alt="Apple Pay"></li>
+                    <li><img src="/wp-content/themes/lion-of-porches/img/samsung-pay-2.png" alt="Samsung Pay"></li>
+                    <li><img src="/wp-content/themes/lion-of-porches/img/logo-mir.png" alt="МИР"></li>
+                    <!--<li><img src="/wp-content/themes/lion-of-porches/img/paypal.png" alt="PayPal"></li>
+                    <li><img src="/wp-content/themes/lion-of-porches/img/amex.png" alt="Amex"></li>-->
                 </ul>
 
                 <h5>Доставка</h5>
                 <ul class="gateways list-inline delivery">
-                    <li><img src="/wp-content/themes/lion-of-porches/img/dhl.png" alt="DHL"></li>
-                    <li><img src="/wp-content/themes/lion-of-porches/img/chronopost.png" alt="Chronopost"></li>
+                    <li><img src="/wp-content/themes/lion-of-porches/img/sdek.png" alt="СДЭК"></li>
                 </ul>
             </div>
 
             <div class="footer-item apoio col-xs-6 col-md-2"><h5>Поддержка</h5>
                 <ul class="gateways list-inline">
-                    <li><a href="mailto:mail@lion-of-porches.ru">Email: mail@lion-of-porches.ru</a></li>
-                    <li>Телефон: +7 495 123-45-67</li>
-                    <li><a href="https://api.whatsapp.com/send?phone=351910046621%26text=%26source=%26data=">Whatsapp:
-                            +7 903 123-45-67 (text)</a></li>
+                    <li><a href="mailto:mail@lion-of-porches.ru">Email: online@lion-of-porches.ru</a></li>
+                    <li>Телефон: +7 (499) 376 66 36</li>
+                    <li><a href="https://api.whatsapp.com/send?phone=74993766636%26text=%26source=%26data=">Whatsapp: +7 (499) 376 66 36</a></li>
                     <li>Рабочие дни пн-пт с 10.00 до 22.00</li>
                 </ul>
             </div>
 
-            <div class="footer-item medias col-xs-12 col-md-3"><h5>Присоединяйтесь к нам</h5>
+            <div class="footer-item medias col-xs-12 col-md-2"><h5>Присоединяйтесь к нам</h5>
                 <ul class="list-inline">
                     <li><a href="#" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                    <li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#" target="_blank"><i class="fa fa-youtube"></i></a></li>
-                    <li><a href="#" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-                    <li><a href="#" target="_blank"><i class="fa fa-pinterest"></i></a></li>
                     <li><a href="#" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                    <li><a href="#" target="_blank"><i class="fa fa-youtube"></i></a></li>
+                    <li><a href="#" target="_blank"><i class="fa fa-vk"></i></a></li>
                 </ul>
                 <!--<div class="newsletter"><a href="#"><i class="fa fa-envelope-o"></i>Subscribe our newsletter</a></div>-->
             </div>
