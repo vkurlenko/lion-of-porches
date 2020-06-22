@@ -1,0 +1,184 @@
+.loyalty section {
+    margin: 20px 0;
+    padding: 20px 0;
+    color: $color-deep-blue;
+    position: relative;
+}
+
+.loyalty h3 {
+    font-family: Raleway;
+    font-size: 48px;
+    letter-spacing: 1px;
+}
+
+.loyalty h3.left {
+    text-align: left;
+}
+
+.loyalty h3.right {
+    text-align: right;
+}
+
+.loyalty .block-2 table {
+    background: #fff;
+
+    th, td {
+        background: #5b9bd4;
+        padding: 5px;
+        text-align: center;
+    }
+
+    tr:nth-child(even) td {
+        background: #d2deee
+    }
+
+    tr:nth-child(odd) td {
+        background: #eaeef7
+    }
+
+    tr td:first-child {
+        color: #fff;
+        background: #5b9bd4;
+        font-weight: bold;
+    }
+
+    th {
+        color: #fff;
+    }
+
+    td {
+        font-size: 14px;
+    }
+}
+
+.block-1 {
+    text-align: center;
+}
+
+.block-2 {
+    position: relative;
+    font-weight: bold;
+    font-size: 13px;
+
+    p {
+        font-weight: bold;
+        font-size: 13px;
+    }
+
+    .bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: .15;
+        background: url("/wp-content/themes/lion-of-porches/img/Untitled emblem.jpg") no-repeat;
+        background-position: left;
+        background-size: contain;
+    }
+}
+
+.block-3 {
+
+    > div {
+        padding-top: 20%;
+        p {
+            font-weight: bold;
+        }
+    }
+
+    .bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: .2;
+        background: url("/wp-content/themes/lion-of-porches/img/roof.png") no-repeat;
+        background-position: left;
+        background-size: contain;
+    }
+}
+
+.block-31 {
+    table {
+        width: 100%;
+        background: #fff;
+    }
+
+    th {
+        text-align: center;
+    }
+
+    th, td {
+        background: #eaeef7;
+        padding: 5px;
+        font-size: 13px;
+    }
+
+    tr td:first-child {
+        text-align: center;
+    }
+
+    tr td:last-child {
+        text-align: right;
+    }
+
+    .bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: .3;
+        background: url("/wp-content/themes/lion-of-porches/img/Entrance_Braga.jpg") no-repeat;
+        background-position: left;
+        background-size: contain;
+    }
+}
+
+.block-4 {
+      .bg {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          opacity: 1;
+          background: url("/wp-content/themes/lion-of-porches/img/bg.jpg") no-repeat;
+          background-position: right;
+          background-size: contain;
+      }
+  }
+
+.block-5 {
+    p {
+        font-size: 30px;
+    }
+}
+
+.block-6 {
+
+    * {
+        color: #fff !important;
+    }
+
+    .over {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        padding-top: 10%;
+
+        h3{
+            margin-right: 20px;
+        }
+
+        p {
+            font-weight: 700;
+        }
+    }
+}
+

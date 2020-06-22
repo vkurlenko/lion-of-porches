@@ -168,6 +168,22 @@
     .entry-summary p:not([class='price']) {
         font-size: 12px;
     }
+
+    .loyalty h3 {
+        font-size: 32px;
+    }
+
+    .block-4 .bg {
+        display: none;
+    }
+
+    .block-6 .over {
+        position: relative;
+    }
+
+    .block-6 * {
+        color: $color-deep-blue !important;
+    }
 }
 
 // Medium devices (tablets, less than 992px)
