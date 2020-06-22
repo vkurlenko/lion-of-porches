@@ -30,7 +30,7 @@ get_header(); // подключаем header.php ?>
 
                             <h2>Вернуть товар</h2>
 
-                            <?=do_shortcode('[contact-form-7 id="21308" title="Untitled"]');?>
+                            <?=do_shortcode('[contact-form-7 id="17191" title="Возврат товара"]');?>
                         </div>
                     </div>
                 </div>
