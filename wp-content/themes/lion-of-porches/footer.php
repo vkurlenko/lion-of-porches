@@ -42,7 +42,7 @@
                 </ul>
             </div>
 
-            <div class="footer-item apoio col-xs-6 col-md-2"><h5>Поддержка</h5>
+            <div class="footer-item apoio col-xs-6 col-md-3"><h5>Поддержка</h5>
                 <ul class="gateways list-inline">
                     <li><a href="mailto:mail@lion-of-porches.ru">Email: online@lion-of-porches.ru</a></li>
                     <li>Телефон: +7 (499) 376 66 36</li>
