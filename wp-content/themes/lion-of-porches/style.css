@@ -85,9 +85,10 @@ img {
   height: auto; }
 
 p {
-  line-height: 2em;
+  line-height: 1.5em;
   font-size: 16px;
-  font-weight: 400; }
+  font-weight: 400;
+  letter-spacing: 1px; }
 
 select {
   font-size: 14px; }
@@ -1940,11 +1941,17 @@ section.pitchbar .container > div h4:after {
   bottom: 0;
   margin-left: -5%; }
 
+section.pitchbar a {
+  text-decoration: underline; }
+
+section.pitchbar a:hover {
+  text-decoration: none; }
+
 footer {
   background: #00244b;
   color: #fff;
   font-size: 18px;
-  padding: 58px 0 16px;
+  padding: 25px 0 16px;
   font-family: 'DIN Pro', sans-serif; }
   footer ul {
     line-height: 1.538em;
@@ -1963,7 +1970,6 @@ footer {
     font-size: .929em; }
   footer .copyright {
     border-top: 1px solid #33506f;
-    margin-top: 24px;
     padding-top: 20px;
     color: #b3bdc9; }
     footer .copyright p {

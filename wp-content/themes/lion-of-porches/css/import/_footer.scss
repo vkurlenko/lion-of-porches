@@ -42,6 +42,14 @@ section.pitchbar .container>div h4:after {
     margin-left: -5%;
 }
 
+section.pitchbar a {
+    text-decoration: underline;
+}
+
+section.pitchbar a:hover {
+    text-decoration: none;
+}
+
 footer {
     background: $color-background-footer;
     color: #fff;
