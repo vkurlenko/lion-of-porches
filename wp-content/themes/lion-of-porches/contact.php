@@ -17,14 +17,14 @@ get_header(); // подключаем header.php ?>
 
                 <div class="container">
                     <div class="row  stores-qd-v1-wrapper">
-                        <div class="col-md-6 content">
-                            <!--<h2><?/*=$post->post_title;*/?></h2>-->
+                        <!--<div class="col-md-6 content">
+                            <!--<h2><?/*/*=$post->post_title;*/*/?></h2>-->
 
-                            <!--<p><?/*=$post->post_content;*/?></p>-->
+                            <!--<p><?/*/*=$post->post_content;*/*/?></p>-->
 
                             <!--<img  class="hidden-xs" src="/wp-content/themes/lion-of-porches/img/Screenshot_1.jpg">-->
 
-                        </div>
+                        </div>-->
 
                         <div class="col-md-5 col-md-offset-1 carreiras-form-wrapper">
 
