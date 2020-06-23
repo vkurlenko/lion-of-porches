@@ -2125,8 +2125,7 @@ span.art {
 .stores-qd-v1-wrapper .stores-qd-v1-locator p {
   margin-bottom: 10px;
   color: #fff;
-  font-size: 14px;
-  line-height: 26px; }
+  font-size: 14px; }
 
 .stores-qd-v1-wrapper .stores-qd-v1-locator .stores-qd-v1-subtitle::before {
   content: '';
@@ -2150,8 +2149,7 @@ span.art {
 
 .stores-qd-v1-wrapper .stores-qd-v1-locator p {
   color: #fff;
-  font-size: 14px;
-  line-height: 26px; }
+  font-size: 14px; }
 
 .stores-qd-v1-wrapper .stores-qd-v1-locator h3 span:last-child {
   font-size: 100px;
