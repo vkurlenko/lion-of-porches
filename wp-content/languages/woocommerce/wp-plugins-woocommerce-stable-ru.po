@@ -2,14 +2,17 @@
 # This file is distributed under the same license as the Plugins - WooCommerce - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-03-25 00:54:12+0000\n"
+"PO-Revision-Date: 2020-06-23 19:23+0300\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: GlotPress/2.4.0-alpha\n"
+"X-Generator: Poedit 2.3.1\n"
 "Language: ru\n"
 "Project-Id-Version: Plugins - WooCommerce - Stable (latest release)\n"
+"POT-Creation-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
 
 #: packages/woocommerce-admin/dist/app/index.js:27
 msgid "Get in front of new customers on Google and secure $150 in ads credit with Kliken’s integration."
@@ -11335,7 +11338,7 @@ msgstr "правила и условия"
 
 #: includes/wc-template-functions.php:905
 msgid "privacy policy"
-msgstr "политика конфиденциальности"
+msgstr "политика приватности"
 
 #: includes/wc-core-functions.php:485
 msgid "United States (US) dollar"
@@ -12006,7 +12009,7 @@ msgstr "Вы можете добавить текст о политике кон
 
 #: includes/admin/settings/class-wc-settings-accounts.php:164
 msgid "Checkout privacy policy"
-msgstr "Политика конфиденциальности при оформлении заказа"
+msgstr "Политика приватности при оформлении заказа"
 
 #. translators: %s privacy policy page name and link
 #: includes/wc-template-functions.php:817
@@ -12020,11 +12023,11 @@ msgstr "Вы можете добавить текст о политике кон
 
 #: includes/admin/settings/class-wc-settings-accounts.php:154
 msgid "Registration privacy policy"
-msgstr "Политика конфиденциальности при регистрации"
+msgstr "Политика приватности при регистрации"
 
 #: includes/admin/settings/class-wc-settings-accounts.php:144
 msgid "Choose a page to act as your privacy policy."
-msgstr "Выберите страницу, на которой будет отображаться ваша политика конфиденциальности"
+msgstr "Выберите страницу, на которой будет отображаться ваша политика приватности"
 
 #: includes/admin/settings/class-wc-settings-accounts.php:143
 msgid "Privacy page"
@@ -12038,7 +12041,7 @@ msgstr "В этом разделе можно настроить отображ�
 #: includes/customizer/class-wc-shop-customizer.php:811
 #: includes/admin/settings/class-wc-settings-accounts.php:136
 msgid "Privacy policy"
-msgstr "Политика конфиденциальности"
+msgstr "Политика приватности"
 
 #: includes/admin/settings/class-wc-settings-accounts.php:101
 msgid "Account erasure requests"
