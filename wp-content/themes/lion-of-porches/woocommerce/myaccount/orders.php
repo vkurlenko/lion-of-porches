@@ -73,7 +73,7 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 								}
 
 								if($order->get_status() == 'completed') {
-                                    echo '<a href="/vozvrat-tovara/?order-number='.$order->get_order_number().'" class="woocommerce-button button ' . sanitize_html_class( $key ) . '">' . esc_html( 'Возврат' ) . '</a>';
+                                    echo '<a href="/shop/vozvrat-tovara/?order-number='.$order->get_order_number().'" class="woocommerce-button button ' . sanitize_html_class( $key ) . '">' . esc_html( 'Возврат' ) . '</a>';
                                 }
 								?>
 							<?php endif; ?>
