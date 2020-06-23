@@ -6,6 +6,10 @@
  */
 get_header(); // подключаем header.php ?>
 
+<?php
+$content = $post->post_content;
+?>
+
 
 <section class="stores-qd-v1-wrapper">
     <!-- slick-slider-stores -->
@@ -31,7 +35,7 @@ get_header(); // подключаем header.php ?>
                 <span>British Style</span>
             </h3>
             <p class="stores-qd-v1-subtitle">концепт</p>
-            <?=$post->post_content;?>
+            <?=$content;?>
         </div>
 
     </div>
