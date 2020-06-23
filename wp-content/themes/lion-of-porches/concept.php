@@ -31,10 +31,7 @@ get_header(); // подключаем header.php ?>
                 <span>British Style</span>
             </h3>
             <p class="stores-qd-v1-subtitle">концепт</p>
-            <p>Aware of the constant changes in the modern era, Lion of Porches arises, renewed based on a sense of liberty and innovation.
-                The brand gives privilege to the connection between traditional and contemporary. Settled on this premise, Lion of Porches reflects a new coolness through a modern design and a product development which follow tradition and British values, transforming simplicity into sophistication.
-            </p>
-            <p>The goal is clear: take over the world, being responsible for your own choices and for the conquest of a lifestyle that promotes a better quality of life, self-esteem, union and happiness.</p>
+            <?=$post->post_content;?>
         </div>
 
     </div>
