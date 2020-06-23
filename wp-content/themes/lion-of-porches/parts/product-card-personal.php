@@ -97,6 +97,6 @@
         </div>
     </div>
     <div class="offerta">
-        <a href="#">Условия и лимиты программы привилегий</a>
+        <a href="/programma-privilegij/" target="_blank">Условия и лимиты программы привилегий</a>
     </div>
 </div>
