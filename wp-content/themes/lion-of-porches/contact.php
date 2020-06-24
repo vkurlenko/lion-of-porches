@@ -6,33 +6,38 @@
  */
 get_header(); // подключаем header.php ?>
 
-<section>
+
+<section class="carreiras">
+    <div class="container-fluid">
+        <div class="hidden-xs">
+            <?=get_the_post_thumbnail( $post->id, 'full', array('class' => 'alignleft') )?>
+        </div>
+        <div class="visible-xs">
+            <img src="/wp-content/themes/lion-of-porches/img/Screenshot_1.jpg">
+        </div>
+    </div>
+
     <div class="container">
-        <div class="row">
-            <div class="col-md-12 content">
+        <div class="row  stores-qd-v1-wrapper">
+            <div class="col-md-6 content">
+                <h2><?=$post->post_title;?></h2>
 
-                <?php
-                get_template_part( 'parts/user-level-block');
-                ?>
+                <p><?=$post->post_content;?></p>
 
-                <div class="container">
-                    <div class="row  stores-qd-v1-wrapper">
-                        <h2><?=$post->post_title;?></h2>
+                <img  class="hidden-xs" src="/wp-content/themes/lion-of-porches/img/Screenshot_1.jpg">
 
+            </div>
 
-                        <div class="col-md-5 col-md-offset-1 carreiras-form-wrapper">
+            <div class="col-md-6 carreiras-form-wrapper">
 
-                            <h2>Контактная форма</h2>
+                <h2>Контактная форма</h2>
 
-                            <?=do_shortcode('[contact-form-7 id="17259" title="Контактная форма"]');?>
-                        </div>
-                    </div>
-                </div>
-
-
+                <?=do_shortcode('[contact-form-7 id="17259" title="Контактная форма"]');?>
             </div>
         </div>
     </div>
+
+
 </section>
 
 
