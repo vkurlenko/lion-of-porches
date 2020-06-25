@@ -310,7 +310,7 @@ class Crm
             '10' => 'Silver',
             '15' => 'Gold',
             '20' => 'Platinum',
-            '25' => 'Signiture',
+            '25' => 'Signature',
             '30' => 'Infinity',
             '50' => 'Infinity'
         ];
