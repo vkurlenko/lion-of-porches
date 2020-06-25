@@ -120,7 +120,7 @@ get_header(); // подключаем header.php ?>
                                         <td>19%</td>
                                     </tr>
                                     <tr>
-                                        <td>Ultra</td>
+                                        <td>Infinity</td>
                                         <td>25%</td>
                                     </tr>
 
@@ -146,7 +146,7 @@ get_header(); // подключаем header.php ?>
                                         <td>10%</td>
                                     </tr>
                                     <tr>
-                                        <td>Ultra</td>
+                                        <td>Infinity</td>
                                         <td>18%</td>
                                     </tr>
 
@@ -172,7 +172,7 @@ get_header(); // подключаем header.php ?>
                                         <td>7%</td>
                                     </tr>
                                     <tr>
-                                        <td>Ultra</td>
+                                        <td>Infinity</td>
                                         <td>8%</td>
                                     </tr>
                                 </table>

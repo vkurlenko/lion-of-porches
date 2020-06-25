@@ -311,8 +311,8 @@ class Crm
             '15' => 'Gold',
             '20' => 'Platinum',
             '25' => 'Signiture',
-            '30' => 'Ultra',
-            '50' => 'Ultra'
+            '30' => 'Infinity',
+            '50' => 'Infinity'
         ];
 
         return $arr;
