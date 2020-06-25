@@ -63,12 +63,14 @@ do_action( 'woocommerce_before_edit_account_form' ); ?>
 		</p>
 	</fieldset>
 
-    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-first">
+    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
     <label for="subscribe" style="display: inline-block">Согласен на email рассылку</label>
         <input type="checkbox" class="input-checkbox" name="subscribe" id="subscribe" <?=(new Crm())->getSubscribeStatus('subscribe') ? 'checked' : ''?> />
         <br>
         <label for="sms" style="display: inline-block">Согласен на SMS рассылку</label>
         <input type="checkbox" class="input-checkbox" name="sms" id="sms" <?=(new Crm())->getSubscribeStatus('sms') ? 'checked' : ''?> />
+        <label for="agreement" style="display: inline-block"><input type="checkbox" class="input-checkbox" name="agreement" id="agreement" required /> Настоящим я даю свое согласие ООО "Дом Луи" на обработку персональных данных в соответствии с <a href="/politika-privatnosti/">Политикой приватности</a> и подтверждаю ознакомление с условиями <a href="/offerta/">Публичной оферты</a></label>
+
     </p>
 
 
