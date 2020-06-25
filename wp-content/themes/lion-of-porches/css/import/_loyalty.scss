@@ -75,6 +75,7 @@
         background: url("/wp-content/themes/lion-of-porches/img/Untitled emblem.jpg") no-repeat;
         background-position: left;
         background-size: contain;
+        z-index: -1;
     }
 }
 
@@ -97,6 +98,7 @@
         background: url("/wp-content/themes/lion-of-porches/img/roof.png") no-repeat;
         background-position: left;
         background-size: contain;
+        z-index: -1;
     }
 }
 
@@ -134,6 +136,7 @@
         background: url("/wp-content/themes/lion-of-porches/img/Entrance_Braga.jpg") no-repeat;
         background-position: left;
         background-size: contain;
+        z-index: -1;
     }
 }
 
@@ -148,6 +151,7 @@
           background: url("/wp-content/themes/lion-of-porches/img/bg.jpg") no-repeat;
           background-position: right;
           background-size: contain;
+          z-index: -1;
       }
   }
 
