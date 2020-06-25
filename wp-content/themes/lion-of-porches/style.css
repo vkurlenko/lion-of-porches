@@ -1958,7 +1958,8 @@ span.art {
     opacity: .15;
     background: url("/wp-content/themes/lion-of-porches/img/Untitled emblem.jpg") no-repeat;
     background-position: left;
-    background-size: contain; }
+    background-size: contain;
+    z-index: -1; }
 
 .block-3 > div {
   padding-top: 20%; }
@@ -1973,7 +1974,8 @@ span.art {
   opacity: .2;
   background: url("/wp-content/themes/lion-of-porches/img/roof.png") no-repeat;
   background-position: left;
-  background-size: contain; }
+  background-size: contain;
+  z-index: -1; }
 
 .block-31 table {
   width: 100%;
@@ -1997,7 +1999,8 @@ span.art {
   opacity: .3;
   background: url("/wp-content/themes/lion-of-porches/img/Entrance_Braga.jpg") no-repeat;
   background-position: left;
-  background-size: contain; }
+  background-size: contain;
+  z-index: -1; }
 
 .block-4 .bg {
   position: absolute;
@@ -2008,7 +2011,8 @@ span.art {
   opacity: 1;
   background: url("/wp-content/themes/lion-of-porches/img/bg.jpg") no-repeat;
   background-position: right;
-  background-size: contain; }
+  background-size: contain;
+  z-index: -1; }
 
 .block-5 p {
   font-size: 30px; }
