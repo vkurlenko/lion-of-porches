@@ -755,6 +755,25 @@ function translate_text($translated) {
     return $translated;
 }
 
+add_action('woocommerce_checkout_after_order_review', 'my_order_fields', 99);
+function my_order_fields($checkout) {
+    echo '<div id="custom_checkout_field">';
+
+    echo '<label for="agreement" style="display: inline-block"><input type="checkbox" class="input-checkbox" name="agreement" id="agreement" required /> Настоящим я даю свое согласие ООО "Дом Луи" на обработку персональных данных в соответствии с <a href="/politika-privatnosti/">Политикой приватности</a> и подтверждаю ознакомление с условиями <a href="/offerta/">Публичной оферты</a></label>';
+
+    echo '</div>';
+}
+
+add_action('woocommerce_checkout_process', 'my_checkout_field_process');
+
+function my_checkout_field_process() {
+  // какая логика
+  if ( !$_POST['agreement'] ) {
+      wc_add_notice('Вы должны принять условия и положения, прежде чем оформить заказ', 'error' );
+  }
+
+}
+
 /*******************/
 /* /My Woocommerce */
 /*******************/
