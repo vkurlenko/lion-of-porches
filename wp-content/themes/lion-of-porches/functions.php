@@ -335,6 +335,7 @@ function custom_override_checkout_fields($fields ) {
     //unset($fields['billing']['billing_city']); // удаляем Населённый пункт
     unset($fields['billing']['billing_country']); // удаляем поле Страна
     unset($fields['billing']['billing_address_2']); // удаляем второе поле Адрес
+    unset($fields['shipping']['shipping_country']); ////удаляем! тут хранится значение страны доставки
 
     /*$fields['billing']['billing_address_1']['label'] = 'Номер отделения Новой Почты'; // меняем Адрес
     $fields['billing']['billing_address_1']['placeholder'] = ' '; // в поле Адрес оставляем пустым*/
