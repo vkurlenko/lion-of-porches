@@ -24,7 +24,7 @@ get_header();
                         $tag = $q[1];
 
                         if($tag) {
-                            echo do_shortcode('[products tag="new-arrival" category="'.$tag.'"]');
+                            echo do_shortcode('[products tag="new-arrival" category="'.$tag.'" orderby="date" order="DESC"]');
                         }
                     }
                 }
