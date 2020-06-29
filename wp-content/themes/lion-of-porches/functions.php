@@ -703,7 +703,7 @@ add_action( 'woocommerce_before_variations_form', 'woocommerce_single_variation'
 
 add_filter( 'woocommerce_variable_sale_price_html', 'my_variation_price_format', 10, 2 );
 
-add_filter( 'woocommerce_variable_price_html', 'my_variation_price_format', 10, 2 );
+//add_filter( 'woocommerce_variable_price_html', 'my_variation_price_format', 10, 2 );
 
 function my_variation_price_format( $price, $product ) {
 
