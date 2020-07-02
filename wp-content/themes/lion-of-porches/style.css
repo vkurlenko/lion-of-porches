@@ -1402,6 +1402,11 @@ span.art {
 .button-variable-wrapper[data-attribute_name='attribute_pa_size'] .variable-item-span-button {
   text-transform: uppercase; }
 
+.woocommerce-orders-table__cell .woocommerce-button {
+  padding: 5px !important;
+  margin: 10px !important;
+  font-size: 14px !important; }
+
 /* цвет вариации в каталоге */
 .colors-bar {
   display: inline-block;
@@ -2120,7 +2125,7 @@ span.art {
 
 .stores-qd-v1-wrapper .stores-qd-v1-locator .stores-qd-v1-subtitle {
   display: block;
-  margin: 0 90px 70px 0;
+  margin: 0 90px 14px 0;
   color: #fff;
   font-weight: bold;
   letter-spacing: 0.8px;
@@ -2153,7 +2158,7 @@ span.art {
 
 .stores-qd-v1-wrapper .stores-qd-v1-locator p {
   color: #fff;
-  font-size: 14px; }
+  font-size: 12px; }
 
 .stores-qd-v1-wrapper .stores-qd-v1-locator h3 span:last-child {
   font-size: 100px;
@@ -2184,7 +2189,7 @@ section.pitchbar .container > div h4 {
   padding-bottom: 10px; }
 
 section.pitchbar .container > div p {
-  font-size: 16px;
+  font-size: 12px;
   margin: 0;
   line-height: 1; }
 

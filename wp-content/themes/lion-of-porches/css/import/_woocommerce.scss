@@ -800,6 +800,12 @@ ul.products li.product a img {
     text-transform: uppercase;
 }
 
+.woocommerce-orders-table__cell .woocommerce-button {
+    padding: 5px !important;
+    margin: 10px !important;
+    font-size: 14px !important;
+}
+
 /* цвет вариации в каталоге */
 .colors-bar {
     display: inline-block;

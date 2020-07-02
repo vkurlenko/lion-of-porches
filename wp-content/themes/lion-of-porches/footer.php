@@ -29,9 +29,11 @@
             <div class="footer-item pagamento col-xs-6 col-md-2">
                 <h5>Способы оплаты</h5>
                 <ul class="gateways list-inline">
+                    <li><img src="/wp-content/themes/lion-of-porches/img/visa.png" alt="Visa"></li>
+                    <li><img src="/wp-content/themes/lion-of-porches/img/mastercard.png" alt="Master Card"></li>
+                    <li><img src="/wp-content/themes/lion-of-porches/img/logo-mir.png" alt="МИР"></li>
                     <li><img src="/wp-content/themes/lion-of-porches/img/icons8-apple-pay-128-2.png" alt="Apple Pay"></li>
                     <li><img src="/wp-content/themes/lion-of-porches/img/samsung-pay-2.png" alt="Samsung Pay"></li>
-                    <li><img src="/wp-content/themes/lion-of-porches/img/logo-mir.png" alt="МИР"></li>
                     <!--<li><img src="/wp-content/themes/lion-of-porches/img/paypal.png" alt="PayPal"></li>
                     <li><img src="/wp-content/themes/lion-of-porches/img/amex.png" alt="Amex"></li>-->
                 </ul>
@@ -53,10 +55,10 @@
 
             <div class="footer-item medias col-xs-12 col-md-2"><h5>Присоединяйтесь к нам</h5>
                 <ul class="list-inline">
-                    <li><a href="#" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                    <li><a href="#" target="_blank"><i class="fa fa-instagram"></i></a></li>
-                    <li><a href="#" target="_blank"><i class="fa fa-youtube"></i></a></li>
-                    <li><a href="#" target="_blank"><i class="fa fa-vk"></i></a></li>
+                    <li><a href="https://www.facebook.com/groups/lionofporches/?ref=share" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a href="https://instagram.com/lionofporches_russia_official?igshid=187kvo1awgsmb" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                    <!--<li><a href="#" target="_blank"><i class="fa fa-youtube"></i></a></li>-->
+                    <li><a href="https://vk.com/lionofporches1" target="_blank"><i class="fa fa-vk"></i></a></li>
                 </ul>
                 <!--<div class="newsletter"><a href="#"><i class="fa fa-envelope-o"></i>Subscribe our newsletter</a></div>-->
             </div>
