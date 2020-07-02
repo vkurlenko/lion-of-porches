@@ -69,7 +69,7 @@ do_action( 'woocommerce_before_edit_account_form' ); ?>
         <br>
         <label for="sms" style="display: inline-block"><input type="checkbox" class="input-checkbox" name="sms" id="sms" <?=(new Crm())->getSubscribeStatus('sms') ? 'checked' : ''?> />Согласен на SMS рассылку</label>
 
-        <label for="agreement" style="display: inline-block"><input type="checkbox" class="input-checkbox" name="agreement" id="agreement" required /> Настоящим я даю свое согласие ООО "Дом Луи" на обработку персональных данных в соответствии с <a href="/politika-privatnosti/">Политикой приватности</a> и подтверждаю ознакомление с условиями <a href="/offerta/">Публичной оферты</a></label>
+        <label for="agreement" style="display: inline-block"><input type="checkbox" class="input-checkbox" name="agreement" id="agreement" required /> Настоящим я даю свое согласие ООО "Дом Луи" на обработку персональных данных и подтверждаю принятие условий <a href="/offerta/" target="_blank">Публичной оферты</a></label>
 
     </p>
 
