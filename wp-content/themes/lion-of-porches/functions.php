@@ -760,7 +760,7 @@ add_action('woocommerce_checkout_after_terms_and_conditions', 'my_order_fields',
 function my_order_fields($checkout) {
     echo '<div id="custom_checkout_field">';
 
-    echo '<label for="agreement" style="display: inline-block"><input type="checkbox" class="input-checkbox" name="agreement" id="agreement" required />Настоящим я даю свое согласие ООО "Дом Луи" на обработку персональных данных и подтверждаю принятие условий <a href="/offerta/" target="_blank">Публичной оферты</a></label>';
+    echo '<label for="agreement" style="display: inline-block"><input type="checkbox" class="input-checkbox" name="agreement" id="agreement" required /> Настоящим я даю свое согласие ООО "Дом Луи" на обработку персональных данных и подтверждаю принятие условий <a href="/offerta/" target="_blank">Публичной оферты</a></label>';
 
     echo '</div>';
 }
