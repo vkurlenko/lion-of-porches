@@ -1044,6 +1044,23 @@ class WooHelper
         ];
     }
 
+    /**
+     * Есть ли товары, помеченные NewArrival
+     *
+     * @return bool
+     */
+    public function isNewArrivalTagProducts()
+    {
+        $args = array(
+            'product_tag' => 'new-arrival',
+            'post_type' 	 => 'product'
+        );
+
+        $recent_posts = new WP_Query( $args );
+
+        return $recent_posts->have_posts() ? true : false;
+    }
+
     public function getRelatedProducts()
     {
         $arr = array(

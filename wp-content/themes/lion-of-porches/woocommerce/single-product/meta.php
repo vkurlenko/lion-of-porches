@@ -33,7 +33,7 @@ global $product;
 
 	<?php echo wc_get_product_category_list( $product->get_id(), ', ', '<div class="posted_in">' . _n( 'Category:', 'Categories:', count( $product->get_category_ids() ), 'woocommerce' ) . ' ', '</div>' ); ?>
 
-	<?php echo wc_get_product_tag_list( $product->get_id(), ', ', '<div class="tagged_as">' . _n( 'Tag:', 'Tags:', count( $product->get_tag_ids() ), 'woocommerce' ) . ' ', '</div>' ); ?>
+	<?php /*echo wc_get_product_tag_list( $product->get_id(), ', ', '<div class="tagged_as">' . _n( 'Tag:', 'Tags:', count( $product->get_tag_ids() ), 'woocommerce' ) . ' ', '</div>' ); */?>
 
 	<?php do_action( 'woocommerce_product_meta_end' ); ?>
 

@@ -84,6 +84,7 @@ die;*/
                             //break;
                             endforeach;
 
+                            if($woo->isNewArrivalTagProducts()):
                             ?>
                             <li>
                                 <a class="btn-alt" data-subcategory="new-arrival" href="javascript: return false;">New arrival</a>
@@ -109,7 +110,7 @@ die;*/
                                 </div>
                             </li>
                             <?php
-
+                            endif;
                             ?>
                         </ul>
                     </div>
