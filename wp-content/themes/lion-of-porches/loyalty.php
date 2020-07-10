@@ -198,8 +198,14 @@ get_header(); // подключаем header.php ?>
                             </div>
 
                             <div class="col-md-6">
+
                                 <img src="/wp-content/themes/lion-of-porches/img/bg.jpg">
                             </div>
+
+                            <div class="black-bg first">* Программа лояльности LOP Russia может быть изменена или отменена в зависимости от политики компании
+                                с предварительным объявлением</div>
+                            <div class="black-bg second">** Если в течение одного года покупки не совершались, то рейтинг карты
+                                понижается на один уровень (например с 20% до 15%)</div>
 
                             <!--<div class="bg"></div>-->
 
@@ -212,7 +218,7 @@ get_header(); // подключаем header.php ?>
                                 <img src="/wp-content/themes/lion-of-porches/img/facade.jpg">
                             </div>
                             <div class="col-md-4">
-                                <p>Участникам программы привилегий отрыт доступ к участию в наших закрытых распродажах и акциях</p>
+                                <p>Участникам программы привилегий открыт доступ к участию в наших закрытых распродажах и акциях</p>
                             </div>
                         </section>
 
