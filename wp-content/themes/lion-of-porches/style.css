@@ -1916,7 +1916,7 @@ span.art {
 
 .loyalty h3 {
   font-family: Raleway;
-  font-size: 48px;
+  font-size: 30px;
   letter-spacing: 1px; }
 
 .loyalty h3.left {
@@ -1983,7 +1983,6 @@ span.art {
   z-index: -1; }
 
 .block-31 table {
-  width: 100%;
   background: #fff; }
 .block-31 th {
   text-align: center; }
@@ -1991,13 +1990,11 @@ span.art {
   background: #eaeef7;
   padding: 5px;
   font-size: 13px; }
-.block-31 tr td:first-child {
+.block-31 tr td {
   text-align: center; }
-.block-31 tr td:last-child {
-  text-align: right; }
 .block-31 .bg {
   position: absolute;
-  top: 0;
+  top: -120px;
   left: 0;
   width: 100%;
   height: 100%;
@@ -2018,9 +2015,30 @@ span.art {
   background-position: right;
   background-size: contain;
   z-index: -1; }
+.block-4 .black-bg {
+  position: absolute;
+  bottom: 20px;
+  background: #000;
+  color: #fff;
+  width: 60%;
+  right: 15px;
+  line-height: 13.5px;
+  font-size: 12px;
+  padding: 5px;
+  font-weight: 700;
+  text-align: right; }
+.block-4 .black-bg.first {
+  bottom: 70px;
+  right: 50px; }
+.block-4 ul {
+  padding-left: 15px;
+  font-size: 13px; }
 
+.block-5 > div {
+  padding-left: 0; }
 .block-5 p {
-  font-size: 30px; }
+  font-size: 30px;
+  line-height: 1em; }
 
 .block-6 * {
   color: #fff !important; }
