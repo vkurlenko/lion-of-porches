@@ -48,7 +48,7 @@
                 <ul class="gateways list-inline">
                     <li><a href="mailto:mail@lion-of-porches.ru">Email: online@lion-of-porches.ru</a></li>
                     <li>Телефон: +7 (499) 376 66 36</li>
-                    <li><a href="https://api.whatsapp.com/send?phone=74993766636%26text=%26source=%26data=">Whatsapp: +7 (499) 376 66 36</a></li>
+                    <li><a href="https://api.whatsapp.com/send?phone=79268046934%26text=%26source=%26data=">Whatsapp: +7 (926) 804 69 34</a></li>
                     <li>Рабочие дни пн-пт с 10.00 до 22.00</li>
                 </ul>
             </div>
