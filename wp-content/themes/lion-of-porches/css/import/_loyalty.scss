@@ -77,6 +77,10 @@
         background-size: contain;
         z-index: -1;
     }
+
+    > div {
+        padding-right: 0;
+    }
 }
 
 .block-3 {
@@ -138,6 +142,10 @@
         background-size: contain;
         z-index: -1;
     }
+
+    > div {
+        padding-right: 0;
+    }
 }
 
 .block-4 {
@@ -176,6 +184,10 @@
     ul {
         padding-left: 15px;
         font-size: 13px;
+    }
+
+    > div {
+        padding-right: 0;
     }
   }
 
