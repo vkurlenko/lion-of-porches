@@ -1965,6 +1965,8 @@ span.art {
     background-position: left;
     background-size: contain;
     z-index: -1; }
+  .block-2 > div {
+    padding-right: 0; }
 
 .block-3 > div {
   padding-top: 20%; }
@@ -2003,6 +2005,8 @@ span.art {
   background-position: left;
   background-size: contain;
   z-index: -1; }
+.block-31 > div {
+  padding-right: 0; }
 
 .block-4 .bg {
   position: absolute;
@@ -2033,6 +2037,8 @@ span.art {
 .block-4 ul {
   padding-left: 15px;
   font-size: 13px; }
+.block-4 > div {
+  padding-right: 0; }
 
 .block-5 > div {
   padding-left: 0; }
@@ -2426,7 +2432,10 @@ footer {
     position: relative; }
 
   .block-6 * {
-    color: #00244b !important; } }
+    color: #00244b !important; }
+
+  .black-bg.first {
+    bottom: 100px !important; } }
 @media (max-width: 991.98px) {
   .logo h1 a {
     /*left: auto;

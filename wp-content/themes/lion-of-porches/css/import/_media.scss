@@ -184,6 +184,10 @@
     .block-6 * {
         color: $color-deep-blue !important;
     }
+
+    .black-bg.first {
+        bottom: 100px !important;
+    }
 }
 
 // Medium devices (tablets, less than 992px)

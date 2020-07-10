@@ -92,7 +92,7 @@ get_header(); // подключаем header.php ?>
 
                         <section class="block-31 row">
                             <div class="col-md-6 col-md-offset-6">
-                                <table cellspacing="1" border="1">
+                                <table cellspacing="1" border="1" align="right">
                                     <tr>
                                         <th>cкидка</th>
                                         <th>категория карты</th>
@@ -177,7 +177,7 @@ get_header(); // подключаем header.php ?>
                                     </tr>
                                 </table>
 
-                                <span>*таблица 2</span>
+                                <div><span>*таблица 2</span></div>
                             </div>
                             <div class="bg"></div>
                         </section>
