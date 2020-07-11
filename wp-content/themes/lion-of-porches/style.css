@@ -2072,14 +2072,19 @@ span.art {
   right: 0;
   bottom: 0; }
 
+.concept-text {
+  max-height: 300px;
+  position: relative;
+  overflow: scroll; }
+
 .concept-qd-v1-wrapper .stores-qd-v1-locator {
   width: 550px;
   right: 30px; }
 
 .stores-qd-v1-wrapper .stores-qd-v1-locator {
   position: absolute;
-  top: -25px;
-  right: 50px;
+  top: -10px;
+  right: 10%;
   padding: 25px;
   width: 550px;
   background: rgba(0, 36, 75, 0.8); }

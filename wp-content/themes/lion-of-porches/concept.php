@@ -13,7 +13,7 @@ $content = $post->post_content;
 
 <section class="stores-qd-v1-wrapper">
     <!-- slick-slider-stores -->
-    <div class="container-fluid slider-stores concept">
+    <div class="container-fluid slider-stores concept" style="height: 2000px">
         <?php
         //$posts = query_posts('category=stores');
         $posts = query_posts('category__in=1480');
@@ -35,7 +35,10 @@ $content = $post->post_content;
                 <span>British Style</span>
             </h3>
             <p class="stores-qd-v1-subtitle">концепт</p>
-            <?=$content;?>
+            <div class="concept-text">
+                <?=$content;?>
+            </div>
+
         </div>
 
     </div>
