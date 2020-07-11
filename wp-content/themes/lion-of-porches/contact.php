@@ -37,6 +37,7 @@ get_header(); // подключаем header.php ?>
             </div>
 
             <div class="col-md-6 content carreiras-form-wrapper">
+                <h2>&nbsp;</h2>
                 <p><?=$post->post_content;?></p>
             </div>
         </div>
