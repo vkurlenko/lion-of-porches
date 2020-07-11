@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Контактная форма (contact.php)
+ * Template Name: Партнерам (forpartners.php)
  * @package WordPress
  * @subpackage LionOfPorches
  */
@@ -19,17 +19,13 @@ get_header(); // подключаем header.php ?>
 
     <div class="container">
         <div class="row  stores-qd-v1-wrapper">
-            <div class="col-md-6 content">
-                <h2><?=$post->post_title;?></h2>
 
 
+            <div class="col-md-6 offset-md-3 carreiras-form-wrapper">
 
-                <img  class="hidden-xs" src="/wp-content/themes/lion-of-porches/img/Screenshot_1.jpg">
+                <h2>Контактная форма</h2>
 
-            </div>
-
-            <div class="col-md-6 carreiras-form-wrapper">
-                <p><?=$post->post_content;?></p>
+                <?=do_shortcode('[contact-form-7 id="17259" title="Контактная форма"]');?>
             </div>
         </div>
     </div>
