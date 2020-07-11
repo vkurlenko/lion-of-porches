@@ -13,7 +13,7 @@ $content = $post->post_content;
 
 <section class="stores-qd-v1-wrapper">
     <!-- slick-slider-stores -->
-    <div class="container-fluid slider-stores concept" style="height: 2000px">
+    <div class="container-fluid slider-stores concept">
         <?php
         //$posts = query_posts('category=stores');
         $posts = query_posts('category__in=1480');
