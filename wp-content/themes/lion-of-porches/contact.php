@@ -7,7 +7,7 @@
 get_header(); // подключаем header.php ?>
 
 
-<section class="carreiras">
+<section class="">
     <div class="container-fluid">
         <div class="hidden-xs">
             <?=get_the_post_thumbnail( $post->id, 'full', array('class' => 'alignleft') )?>
@@ -36,7 +36,7 @@ get_header(); // подключаем header.php ?>
 
             </div>
 
-            <div class="col-md-6 carreiras-form-wrapper">
+            <div class="col-md-6 content carreiras-form-wrapper">
                 <p><?=$post->post_content;?></p>
             </div>
         </div>
