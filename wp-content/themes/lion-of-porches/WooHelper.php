@@ -1058,7 +1058,11 @@ class WooHelper
 
             if($tags) {
                 foreach($tags as $tag) {
-                    $arr1[$tag->slug][] = $post;
+                    if(in_array($tag->slug, $arr0)) {
+                        $arr1[$tag->slug][] = $post;
+                    } else {
+                        $arr2[] = $post;
+                    }
                 }
             } else {
                 $arr2[] = $post;
