@@ -19,10 +19,10 @@ get_header(); // подключаем header.php ?>
 
     <div class="container">
         <div class="row  stores-qd-v1-wrapper">
-            <div class="col-md-6 content">
-                <h2><?=$post->post_title;?></h2>
+            <h2><?=$post->post_title;?></h2>
 
-                <div>
+            <div class="row">
+                <div class="col-md-6 ">
                     <!-- wp:paragraph -->
                     <p> Оставайтесь с нами на связи</p>
                     <!-- /wp:paragraph -->
@@ -31,14 +31,17 @@ get_header(); // подключаем header.php ?>
                     <p>Остались вопросы? Служба  поддержки всегда готова ответить на все ваши вопросы и предоставить  информацию о продуктах и ​​/ или услугах Lion of Porches.  Мы также  открыты для получения ваших предложений для улучшения качества нашей  работы.</p>
                     <!-- /wp:paragraph -->
                 </div>
-
-                <img  class="hidden-xs" src="/wp-content/themes/lion-of-porches/img/Screenshot_1.jpg">
-
             </div>
 
-            <div class="col-md-6 content carreiras-form-wrapper">
-                <h2>&nbsp;</h2>
-                <p><?=$post->post_content;?></p>
+
+            <div class="row">
+                <div class="col-md-6 ">
+                    <img  class="hidden-xs" src="/wp-content/themes/lion-of-porches/img/Screenshot_1.jpg">
+                </div>
+
+                <div class="col-md-6  carreiras-form-wrapper">
+                    <p><?=$post->post_content;?></p>
+                </div>
             </div>
         </div>
     </div>
