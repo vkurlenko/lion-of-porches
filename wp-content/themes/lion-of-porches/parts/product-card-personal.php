@@ -25,7 +25,7 @@
         /*echo 'first name: '       . $current_user->user_firstname . '<br />';
         echo 'last name: '        . $current_user->user_lastname  . '<br />';*/
 
-        $arr['user_name'] = $current_user->user_firstname.' '.$current_user->user_lastname;
+        $arr['user_name'] = $current_user->display_name;//$current_user->user_firstname.' '.$current_user->user_lastname;
 
         $crm_user = $crm->getCrmUser();
 
