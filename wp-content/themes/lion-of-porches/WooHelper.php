@@ -1040,8 +1040,45 @@ class WooHelper
     public function getVisibleTags()
     {
         return [
-            'new-arrival'
+            'new-arrival',
+            'ss19',
+            'ss20'
         ];
+    }
+
+    public function sortProductListByTags($posts)
+    {
+        //$arr0 = ['ss19', 'ss20'];
+        $arr0 = ['ss20', 'ss19'];
+        $arr1 = [];
+        $arr2 = [];
+
+        foreach($posts as $post) {
+            $tags = get_the_terms( $post->ID, 'product_tag' );//wc_get_product_tag_list( $post->ID );
+
+            if($tags) {
+                foreach($tags as $tag) {
+                    $arr1[$tag->slug][] = $post;
+                }
+            } else {
+                $arr2[] = $post;
+            }
+        }
+
+        if(!empty($arr1)) {
+
+            $posts = [];
+
+            foreach ($arr0 as $tag_slug) {
+                if (isset($arr1[$tag_slug])) {
+                    $posts = array_merge($posts, $arr1[$tag_slug]);
+                }
+            }
+
+            $posts = array_merge($posts, $arr2);
+        }
+
+        return $posts;
     }
 
     /**
