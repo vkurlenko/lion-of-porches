@@ -12,6 +12,12 @@
                     <li><a class="btn-alt" href="<?= get_term_link($product_category) ?>"><?=$product_category->name?></a></li>
                 <?php
                 endforeach;
+
+                if((new WooHelper())->isNewArrivalTagProducts()) {
+                    ?>
+                    <li><a class="btn-alt" href="/product-tag/new-arrival/">New arrival</a></li>
+                    <?php
+                }
                 ?>
             </ul>
         <?
