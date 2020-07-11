@@ -46,9 +46,9 @@
 
             <div class="footer-item apoio col-xs-6 col-md-3"><h5>Поддержка</h5>
                 <ul class="gateways list-inline">
-                    <li><a href="mailto:mail@lion-of-porches.ru">Email: online@lion-of-porches.ru</a></li>
+                    <li>Email: <a href="mailto:online@lion-of-porches.ru">online@lion-of-porches.ru</a></li>
                     <li>Телефон: +7 (499) 376 66 36</li>
-                    <li><a href="https://api.whatsapp.com/send?phone=79268046934%26text=%26source=%26data=">Whatsapp: +7 (926) 804 69 34</a></li>
+                    <li>Whatsapp: <a href="https://api.whatsapp.com/send?phone=79268046934%26text=%26source=%26data=">+7 (926) 804 69 34</a></li>
                     <li>Рабочие дни пн-пт с 10.00 до 22.00</li>
                 </ul>
             </div>
@@ -57,7 +57,7 @@
                 <ul class="list-inline">
                     <li><a href="https://www.facebook.com/groups/lionofporches/?ref=share" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                     <li><a href="https://instagram.com/lionofporches_russia_official?igshid=187kvo1awgsmb" target="_blank"><i class="fa fa-instagram"></i></a></li>
-                    <!--<li><a href="#" target="_blank"><i class="fa fa-youtube"></i></a></li>-->
+                    <li><a href="https://www.youtube.com/c/LionOfPorchesLondon/featured" target="_blank"><i class="fa fa-youtube"></i></a></li>
                     <li><a href="https://vk.com/lionofporches1" target="_blank"><i class="fa fa-vk"></i></a></li>
                 </ul>
                 <!--<div class="newsletter"><a href="#"><i class="fa fa-envelope-o"></i>Subscribe our newsletter</a></div>-->
