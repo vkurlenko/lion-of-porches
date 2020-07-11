@@ -1417,7 +1417,8 @@ span.art {
 /* шкала доступных для заказа размеров */
 .sizes-bar {
   display: flex;
-  justify-content: center; }
+  justify-content: center;
+  min-height: 38px; }
   .sizes-bar span {
     padding: 2px;
     text-align: center;
