@@ -1041,8 +1041,8 @@ class WooHelper
     {
         return [
             'new-arrival',
-            'ss19',
-            'ss20'
+            //'ss19',
+            //'ss20'
         ];
     }
 
