@@ -83,20 +83,26 @@ get_header(); // подключаем header.php ?>
 
                         <!-- block 3 -->
                         <section class="block-3 row">
+
+                                <img src="/wp-content/themes/lion-of-porches/img/roof.png">
+
                             <div class="col-md-6 col-md-offset-6">
                                 <h3>Спасибо за лояльность</h3>
                                 <p>Для наших постоянных покупателей мы добавили дополнительную скидку, которую можно накопить во время наших распродаж и акций:</p>
                             </div>
-                            <div class="bg"></div>
+                            <!--<div class="bg"></div>-->
                         </section>
 
                         <section class="block-31 row">
-                            <div class="col-md-6 col-md-offset-6">
+                            <div class="col-md-6">
+                                <!--<img src="/wp-content/themes/lion-of-porches/img/Entrance_Braga.jpg">-->
+                            </div>
+                            <div class="col-md-6">
                                 <table cellspacing="1" border="1" align="right">
                                     <tr>
                                         <th>cкидка</th>
                                         <th>категория карты</th>
-                                        <th>дополнительная <br>скидка к цене</th>
+                                        <th>дополнительная&nbsp;скидка<br>к цене</th>
                                     </tr>
                                     <tr>
                                         <td rowspan="6">-10%</td>
@@ -176,8 +182,9 @@ get_header(); // подключаем header.php ?>
                                         <td>8%</td>
                                     </tr>
                                 </table>
+                                <div style="clear: both"></div>
 
-                                <div><span>*таблица 2</span></div>
+                                <div style="text-align: right"><span>*таблица 2</span></div>
                             </div>
                             <div class="bg"></div>
                         </section>
