@@ -18,11 +18,12 @@ get_header(); // подключаем header.php ?>
     </div>
 
     <div class="container">
-        <div class="row  stores-qd-v1-wrapper">
-            <h2><?=$post->post_title;?></h2>
+        <!--<div class="row  stores-qd-v1-wrapper">-->
+
 
             <div class="row">
                 <div class="col-md-6 ">
+                    <h2><?=$post->post_title;?></h2>
                     <!-- wp:paragraph -->
                     <p> Оставайтесь с нами на связи</p>
                     <!-- /wp:paragraph -->
@@ -43,7 +44,7 @@ get_header(); // подключаем header.php ?>
                     <p><?=$post->post_content;?></p>
                 </div>
             </div>
-        </div>
+        <!--</div>-->
     </div>
 
 
