@@ -2074,7 +2074,7 @@ span.art {
   bottom: 0; }
 
 .concept-text {
-  max-height: 300px;
+  max-height: 260px;
   position: relative;
   overflow: scroll; }
 
@@ -2189,7 +2189,8 @@ span.art {
 
 .stores-qd-v1-wrapper .stores-qd-v1-locator p {
   color: #fff;
-  font-size: 12px; }
+  font-size: 14px;
+  letter-spacing: 0; }
 
 .stores-qd-v1-wrapper .stores-qd-v1-locator h3 span:last-child {
   font-size: 90px;
