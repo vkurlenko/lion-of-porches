@@ -9,7 +9,8 @@ get_header(); // подключаем header.php ?>
 <?php
 $content = $post->post_content;
 ?>
-
+<link rel="stylesheet" href="/wp-content/themes/lion-of-porches/js/custom-scrollbar/jquery.mCustomScrollbar.css" />
+<script src="/wp-content/themes/lion-of-porches/js/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
 
 <section class="stores-qd-v1-wrapper">
     <!-- slick-slider-stores -->
@@ -45,6 +46,15 @@ $content = $post->post_content;
     <!-- /slick-slider-stores -->
 
 </section>
-
+<script>
+    (function($){
+        $(window).on("load",function(){
+            $(".concept-text").mCustomScrollbar({
+                axis:"y",
+                theme:"minimal"
+            });
+        });
+    })(jQuery);
+</script>
 
 <?php get_footer(); // подключаем footer.php ?>
