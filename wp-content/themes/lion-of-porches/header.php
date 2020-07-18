@@ -86,7 +86,7 @@ die;*/
 
                             if($woo->isNewArrivalTagProducts()):
                             ?>
-                            <li>
+                            <li class="new-arrival">
                                 <a class="btn-alt" data-subcategory="new-arrival" href="javascript: return false;">New arrival</a>
                                 <div class="container-fluid sub-menu ">
 
