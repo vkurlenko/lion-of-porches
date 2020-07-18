@@ -124,7 +124,7 @@ if (!function_exists('add_scripts')) { // если ф-я уже есть в до
 add_action('wp_print_styles', 'add_styles'); // приклеем ф-ю на добавление стилей в хедер
 if (!function_exists('add_styles')) { // если ф-я уже есть в дочерней теме - нам не надо её определять
 	function add_styles() { // добавление стилей
-        $version = '1.11';
+        $version = '2.0';
 	    if(is_admin()) return false; // если мы в админке - ничего не делаем
 	    wp_enqueue_style( 'bs', get_template_directory_uri().'/css/bootstrap.min.css' ); // бутстрап
         //wp_enqueue_style( 'fontawesome', 'https://use.fontawesome.com/releases/v5.0.13/css/all.css' );
