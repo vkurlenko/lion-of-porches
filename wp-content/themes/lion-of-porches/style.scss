@@ -462,14 +462,12 @@ a.cart-link:hover {
   margin-bottom: 0;
 }
 
-.main-menu ul li:last-child {
+//.main-menu ul li:last-child {
+.main-menu ul li.new-arrival {
   position: relative;
 
   .sub-menu {
-    /*height: 100px;*/
-    /*visibility: hidden;
-    opacity: 0;*/
-    //position: relative;
+
     width: 200px;
     left: -50px;
 
