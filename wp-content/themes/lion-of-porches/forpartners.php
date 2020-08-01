@@ -19,13 +19,15 @@ get_header(); // подключаем header.php ?>
 
     <div class="container">
         <div class="row  stores-qd-v1-wrapper">
-            <h2><?=$post->post_title;?></h2>
+            <div class="col-md-6 col-md-offset-3">
+                <h2><?=$post->post_title;?></h2>
 
-            <div class="col-md-6 carreiras-form-wrapper">
+                <div class="col-md-6 carreiras-form-wrapper">
 
-                <!--<h2>Контактная форма</h2>-->
+                    <!--<h2>Контактная форма</h2>-->
 
-                <?=do_shortcode('[contact-form-7 id="17259" title="Контактная форма"]');?>
+                    <?=do_shortcode('[contact-form-7 id="17259" title="Контактная форма"]');?>
+                </div>
             </div>
         </div>
     </div>
