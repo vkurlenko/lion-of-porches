@@ -195,6 +195,9 @@ function theme_add_scripts() {
 /* My Woocommerce */
 /******************/
 
+remove_action ( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
+add_action ( 'woocommerce_after_shop_loop', 'woocommerce_result_count', 20 );
+
 function woocommerce_template_loop_category_title($category ) {
     ?>
 	<h2 class="woocommerce-loop-category__title">
