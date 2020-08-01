@@ -209,7 +209,49 @@
 
 // Large devices (desktops, less than 1200px)
 @media (max-width: 1199.98px) {
+    .stores-qd-v1-wrapper .stores-qd-v1-locator {
+        position: relative;
+        right: unset;
+        width: auto;
+        top: auto;
+        background: #fff;
 
+        p, p.stores-qd-v1-subtitle {
+            color: #00244b;
+            //padding-bottom: 20px;
+        }
+
+        .stores-qd-v1-subtitle {
+            margin: 40px auto auto;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .stores-qd-v1-subtitle::before {
+            display: none;
+        }
+
+
+        .stores-qd-v1-border {
+            display: none;
+        }
+
+        h3 {
+            margin: auto;
+            font-size: 34px;
+            background: #00244bcc !important;
+            padding: 20px;
+
+            span:last-child {
+                font-size: 34px;
+                font-weight: normal;
+            }
+        }
+
+        .concept-text{
+            max-height: 1000px;
+        }
+    }
 }
 
 @media  (min-width: 768px) {
