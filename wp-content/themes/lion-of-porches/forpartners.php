@@ -22,7 +22,7 @@ get_header(); // подключаем header.php ?>
             <div class="col-md-6 col-md-offset-3">
                 <h2><?=$post->post_title;?></h2>
 
-                <div class="col-md-6 carreiras-form-wrapper">
+                <div class="carreiras-form-wrapper">
 
                     <!--<h2>Контактная форма</h2>-->
 
