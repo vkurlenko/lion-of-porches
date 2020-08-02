@@ -45,6 +45,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 </p>
 
 <?php
+    if( isset( $_COOKIE['just_register'] ) ) {
+        echo do_shortcode('[Modal-Window id="1"]');
+    }
 	/**
 	 * My Account dashboard.
 	 *

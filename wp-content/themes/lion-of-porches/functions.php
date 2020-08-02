@@ -195,8 +195,16 @@ function theme_add_scripts() {
 /* My Woocommerce */
 /******************/
 
+// переместил "Показ всех 3 элементов" вниз страницы
 remove_action ( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
 add_action ( 'woocommerce_after_shop_loop', 'woocommerce_result_count', 20 );
+
+add_action( 'user_register', 'my_user_registration' );
+function my_user_registration( $user_id ) {
+    // $_POST['user_sex'] проверена заранее...
+    //update_user_meta( $user_id, 'user_sex', $_POST['user_sex']);
+    setcookie( 'just_register', $user_id, time()+31556926 );
+}
 
 function woocommerce_template_loop_category_title($category ) {
     ?>
