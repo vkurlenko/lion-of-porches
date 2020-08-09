@@ -44,6 +44,9 @@
 
 
     <?php
+    // учетная запись клиента в CRM
+    $crm_user = (new Crm())->getCrmUser();
+
     // текущий уровень клиента
     $user_discount_level = isset($levels[$arr['user_level']]) ? $levels[$arr['user_level']] : 0;
 
@@ -67,6 +70,13 @@
             <div style="clear: both"></div>
         </div>-->
         <div class="status">
+            <?php
+            if($crm_user->card):
+            ?>
+                <span><?=sprintf('Номер Вашей карты: <strong>%s</strong>', sprintf("%013d", $crm_user->card))?></span>
+            <?php
+            endif;
+            ?>
             <span><?=sprintf('Ваше накопление: <span class="user-sum">%s</span>', wc_price($arr['user_sum']))?></span>
             <span><?=sprintf('Ваш статус: <span class="user-level">%s</span>', $user_discount_level)?></span>
             <div class="user-level-img">
