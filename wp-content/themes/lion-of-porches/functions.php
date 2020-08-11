@@ -353,6 +353,22 @@ function custom_override_checkout_fields($fields ) {
     return $fields;
 }
 
+add_filter('wc_order_is_editable', 'my_wc_order_is_editable', 10, 2);
+
+/**
+ * Разрешить редактировать заказ из админики
+ * @param $res
+ * @param $order
+ * @return bool
+ */
+function my_wc_order_is_editable($res, $order) {
+
+    if(in_array($order->get_status(), array('processing', 'cancelled'))) {
+        return true;
+    }
+
+    return $res;
+}
 
 
 /**
