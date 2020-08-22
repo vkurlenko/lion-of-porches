@@ -61,7 +61,7 @@ Theme Name: LionOfPorches
   /* опционально */ }
 
 body {
-  font-family: 'Raleway Light', 'DIN Pro', sans-serif;
+  font-family: 'Raleway', 'DIN Pro', sans-serif;
   letter-spacing: .1em;
   font-weight: 400;
   color: #5b7a9c;
@@ -490,8 +490,10 @@ a.cart-link:hover {
   margin-top: 30px;
   position: relative; }
 
-.big-banner img {
-  width: 100%; }
+.big-banner {
+  text-align: center; }
+  .big-banner img {
+    max-width: 100%; }
 
 .big-banner-text {
   width: 100%;
