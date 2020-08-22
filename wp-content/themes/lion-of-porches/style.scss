@@ -87,7 +87,8 @@ $color-border-product: #eaedf0;
 
 
 body {
-  font-family: 'Raleway Light', 'DIN Pro', sans-serif;
+  //font-family: 'Raleway Light', 'DIN Pro', sans-serif;
+  font-family: 'Raleway', 'DIN Pro', sans-serif;
   letter-spacing: .1em;
   font-weight: 400;
   color: $body-color;
@@ -635,10 +636,13 @@ a.cart-link:hover {
 }
 
 .big-banner {
+  text-align: center;
   img {
-    width: 100%;
+    //width: 100%;
+    max-width: 100%;
   }
 }
+
 
 .big-banner-text {
   width: 100%;
