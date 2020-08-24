@@ -782,7 +782,7 @@ class WooHelper
             //$h->dump($item); die;
             //echo $item['line_subtotal'].'<br>';
 
-            if($item_data['is_sale']) {
+            if($item_data['is_sale'] && $item_data['user_percent'] < 50) {
                 $discount_sum += $item_data['variation_price_full'] * $item_data['user_sale_percent_final'] / 100;
             } else {
                 $discount_sum += $item_data['variation_price_full'] * $discount / 100;
@@ -825,7 +825,11 @@ class WooHelper
         //$h->dump($variations); //die;
 
         // цена вариации текущая
-        $variation_price = $variations[$item['variation_id']]['display_price'];
+        if($discount == 50 && $product->is_on_sale()) {
+            $variation_price = $item['line_subtotal'] = $variations[$item['variation_id']]['display_regular_price'];
+        } else {
+            $variation_price = $variations[$item['variation_id']]['display_price'];
+        }
 
         // цена вариации обычная
         $variation_regular_price = $variations[$item['variation_id']]['display_regular_price'];
@@ -844,11 +848,19 @@ class WooHelper
         $user_sale_percent_final = is_user_logged_in() ? ($user_sale_percent) : 0;
 
         // полная стоимость вариации по текущей цене (с учетом количества)
-        $variation_price_full = (int)$item['quantity'] * $variations[$item['variation_id']]['display_price'];
+        if($discount == 50 && $product->is_on_sale()) {
+            $variation_price_full = (int)$item['quantity'] * ($variation_regular_price);
+        } else {
+            $variation_price_full = (int)$item['quantity'] * $variations[$item['variation_id']]['display_price'];
+        }
 
         // полная стоимость вариации по персональной цене (с учетом количества)
         if($is_sale) {
-            $variation_price_personal = $variation_price_full - ($variation_price_full * $user_sale_percent_final / 100);
+            if($discount == 50) {
+                $variation_price_personal = $variation_price_full - ($variation_price_full * 50 / 100);
+            } else {
+                $variation_price_personal = $variation_price_full - ($variation_price_full * $user_sale_percent_final / 100);
+            }
             //$discount_sum += $variation_price_full * $user_sale_percent_final / 100;
         } else {
             $variation_price_personal = $variation_price_full - ($variation_price_full * $discount / 100);

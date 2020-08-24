@@ -209,6 +209,9 @@ die;*/
                         </div>
                     </div>
                 </div>
+
+                <?php get_template_part( 'parts/person-info');?>
+
             </div>
             <!-- /top-right-block -->
         </div>
