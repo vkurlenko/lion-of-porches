@@ -42,12 +42,23 @@ class Crm
 
         $user_id = wp_insert_user( $userdata );
 
+        if(isset($user_id->errors)) {
+            foreach($user_id->errors as $err) {
+                foreach($err as $item) {
+                    echo '<span style="color:red">'.$item.'</span><br>';
+                }
+            }
+        }
+
+        //var_dump($user_id);
+        //die;
+
         //$this->sendRegisterInfo($POST['login'], $POST['login'], $random_password);
 
         /*$WC_API_Customers = new WC_API_Customers();
         $customer = $WC_API_Customers->get_customer( $user_id );
         $customer->set_billing_phone( $POST['phone'] );*/
-
+        echo '<span style="color:green">Отправка уведомдения для '.$POST['login'].' id '.$user_id.'</span><br>';
         wp_new_user_notification( $user_id, null, 'both' );
     }
 
@@ -67,11 +78,14 @@ class Crm
     {
         global $wpdb;
 
-        $sql = 'SELECT * FROM `data3` limit 0, 2000';
+        $sql = 'SELECT * FROM `data3` limit 0, 50';
         $res = $wpdb->get_results($sql);
 
+        $count = count($res);
         $errors = 0;
-        $i = 0;
+        $i = 1;
+
+        echo 'Всего записей '.$count.'<br>';
 
         foreach($res as $row) {
             echo $i++.'   ';
@@ -79,6 +93,11 @@ class Crm
             $row = (array)$row;
 
             if(trim($row['email']) == '') {
+
+                echo '<span style="color:red">'.$row['user_name'].' Email не указан</span><br>';
+                $errors++;
+                continue;
+
                 if(trim($row['phone']) != '') {
                     $row['login'] = $row['phone'];
                 } else {
@@ -90,7 +109,7 @@ class Crm
                 $is_exists = $this->findUserByEmail($row['email']);
 
                 if($is_exists) {
-                    echo $row['user_name'].' уже существует<br>';
+                    echo '<span style="color:red">'.$row['user_name'].' уже существует</span><br>';
                     $errors++;
                     continue;
                 }
@@ -98,7 +117,7 @@ class Crm
                 $row['login'] = $row['email'];
             }
 
-            echo 'Создадим '.$row['user_name'].' '.$row['login'].'<br>';
+            echo '<span style="color:green">Создадим '.$row['user_name'].' '.$row['login'].'</span><br>';
 
             $this->createUser($row);
 
@@ -243,6 +262,10 @@ class Crm
         }
 
         switch($sale_discount) {
+            case $sale_discount >= 50:
+                $sale_discount = 0;
+                break;
+
             case $sale_discount >= 30:
                 $sale_discount = 30;
                 break;
@@ -269,7 +292,7 @@ class Crm
                 '20' => 13,
                 '25' => 19,
                 '30' => 25,
-                '50' => 25
+                '50' => 0
             ],
             20 => [
                 '5' => 0,
@@ -278,7 +301,7 @@ class Crm
                 '20' => 4,
                 '25' => 10,
                 '30' => 18,
-                '50' => 18
+                '50' => 0
             ],
             30 => [
                 '5' => 2,
@@ -287,7 +310,7 @@ class Crm
                 '20' => 6,
                 '25' => 7,
                 '30' => 8,
-                '50' => 8
+                '50' => 0
             ]
         ];
 
@@ -312,7 +335,7 @@ class Crm
             '20' => 'Platinum',
             '25' => 'Signature',
             '30' => 'Infinity',
-            '50' => 'Infinity'
+            '50' => 'DL'
         ];
 
         return $arr;
@@ -332,7 +355,7 @@ class Crm
             '20' => 250000,
             '25' => 350000,
             '30' => 500000,
-            '50' => 500000
+            '50' => 1000000
         ];
 
         return $arr;

@@ -187,6 +187,8 @@ endif;
                                 <?php
                                 if($cart_item_data['variation_regular_price'] != $cart_item_data['variation_price']){
                                     echo '<del>'.wc_price($cart_item_data['variation_regular_price']).'</del><br>';
+                                } elseif((new Crm())->getCurrentUserDiscount() == 50) {
+                                    echo '<del>'.wc_price($cart_item_data['variation_regular_price']).'</del><br>';
                                 }
                                 ?>
 
