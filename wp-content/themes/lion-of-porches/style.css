@@ -806,7 +806,7 @@ table.tableizer-table {
   position: relative; }
   .shop_table .product-subtotal img {
     position: absolute;
-    top: -90px;
+    top: -80px;
     left: 50%;
     margin-left: -50px; }
 
@@ -1377,7 +1377,8 @@ span.art {
   .user-discount-level #user-level-label {
     width: 100px;
     display: inline-block;
-    float: right; }
+    float: right;
+    border: 1px solid #cccccc; }
 
 .product img {
   width: 100%; }
@@ -2073,6 +2074,12 @@ span.art {
     margin-right: 20px; }
   .block-6 .over p {
     font-weight: 700; }
+
+.person-info img {
+  border: 1px solid #ccc; }
+
+#user-level-label {
+  border: 1px solid #ccc; }
 
 /* */
 .stores-qd-v1-wrapper {

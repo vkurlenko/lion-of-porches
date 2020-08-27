@@ -61,7 +61,7 @@
 
         img {
             position: absolute;
-            top: -90px;
+            top: -80px;
             left: 50%;
             margin-left: -50px;
         }
@@ -766,6 +766,7 @@ ul.products li.product a img {
         width: 100px;
         display: inline-block;
         float: right;
+        border: 1px solid #cccccc;
     }
 }
 
