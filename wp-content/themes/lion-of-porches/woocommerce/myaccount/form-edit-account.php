@@ -46,7 +46,7 @@ do_action( 'woocommerce_before_edit_account_form' ); ?>
         </p>
         <p class="woocommerce-form-row woocommerce-form-row--last form-row form-row-last">
             <label for="phone">Телефон&nbsp;<!--<span class="required">*</span>--></label>
-            <input type="tel" class="woocommerce-Input woocommerce-Input--tel input-text" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="phone" id="phone" autocomplete="off" value="<?php echo esc_attr( $user->phone ); ?>" />
+            <input type="tel" class="woocommerce-Input woocommerce-Input--tel input-text" name="phone" id="phone" autocomplete="off" value="<?php echo esc_attr( $user->phone ); ?>" />
         </p>
         <div class="clear"></div>
     </fieldset>
