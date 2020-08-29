@@ -22,7 +22,7 @@ if($user_discount) {
                 endif;
                 ?>
             </div>
-            <img style="margin-left:0" id="user-level-label" src="/wp-content/themes/lion-of-porches/img/levels/<?=strtolower($user_discount_level)?>-mini.gif" title="Уровень: <?=$user_discount_level?>">
+            <img style="margin-left:5px" id="user-level-label" src="/wp-content/themes/lion-of-porches/img/levels/<?=strtolower($user_discount_level)?>-mini.gif" title="Уровень: <?=$user_discount_level?>">
 
         </div>
 
