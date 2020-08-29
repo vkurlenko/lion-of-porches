@@ -157,7 +157,7 @@ class Crm
      * @param $meta
      * @param $user
      */
-    public function insertUserToCRM($meta, $user)
+    public function insertUserToCRM($meta, $user, $post)
     {
         global $wpdb;
 
@@ -189,10 +189,15 @@ stdClass Object
     [display_name] => vkurlenko16
 )*/
 
+        //(new Helper())->dump($post); die;
+
         $data = [
             'user_name' => implode(' ', [$meta['last_name'], $meta['first_name']]),
             'activation_date' => $user->data->user_registered,
-            'email' => $user->data->user_email
+            'email' => $user->data->user_email,
+            'born_date' => $post['born_date'],
+            'gender' => $post['gender'],
+            'phone' => $post['phone']
         ];
 
         $mylink = $wpdb->get_row( "SELECT * FROM `data3` WHERE wp_id = ".$user->data->ID );

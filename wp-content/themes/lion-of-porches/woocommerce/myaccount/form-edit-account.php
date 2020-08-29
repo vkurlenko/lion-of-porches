@@ -39,10 +39,17 @@ do_action( 'woocommerce_before_edit_account_form' ); ?>
 	</p>
 	<div class="clear"></div>
 
-	<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-		<label for="account_email"><?php esc_html_e( 'Email address', 'woocommerce' ); ?>&nbsp;<span class="required">*</span></label>
-		<input type="email" class="woocommerce-Input woocommerce-Input--email input-text" name="account_email" id="account_email" autocomplete="email" value="<?php echo esc_attr( $user->user_email ); ?>" />
-	</p>
+    <fieldset>
+        <p class="woocommerce-form-row woocommerce-form-row--first form-row form-row-first">
+            <label for="account_email"><?php esc_html_e( 'Email address', 'woocommerce' ); ?>&nbsp;<span class="required">*</span></label>
+            <input type="email" class="woocommerce-Input woocommerce-Input--email input-text" name="account_email" id="account_email" autocomplete="email" value="<?php echo esc_attr( $user->user_email ); ?>" />
+        </p>
+        <p class="woocommerce-form-row woocommerce-form-row--last form-row form-row-last">
+            <label for="phone">Телефон&nbsp;<!--<span class="required">*</span>--></label>
+            <input type="tel" class="woocommerce-Input woocommerce-Input--tel input-text" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="phone" id="phone" autocomplete="off" value="<?php echo esc_attr( $user->phone ); ?>" />
+        </p>
+        <div class="clear"></div>
+    </fieldset>
 
 	<fieldset>
 		<legend><?php esc_html_e( 'Password change', 'woocommerce' ); ?></legend>
@@ -62,6 +69,21 @@ do_action( 'woocommerce_before_edit_account_form' ); ?>
 			<input type="password" class="woocommerce-Input woocommerce-Input--password input-text" name="password_2" id="password_2" autocomplete="off" />
 		</p>
 	</fieldset>
+
+
+    <fieldset>
+        <p class="woocommerce-form-row woocommerce-form-row--first form-row form-row-first">
+            <label for="born_date">Дата рождения <span class="required">*</span></label>
+            <input type="date" class="woocommerce-Input woocommerce-Input--password input-text" required name="born_date" id="born_date" autocomplete="off" value="<?php echo esc_attr( $user->born_date ); ?>" />
+        </p>
+        <p class="woocommerce-form-row woocommerce-form-row--last form-row form-row-last">
+            <label for="born_date">Пол</label>
+            <select name="gender" class="woocommerce-Input" id="gender" >
+                <option value="0" <?php echo !$user->gender ? 'selected' : '' ?>>Женский</option>
+                <option value="1" <?php echo $user->gender ? 'selected' : '' ?>>Мужской</option>
+            </select>
+        </p>
+    </fieldset>
 
     <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
     <label for="subscribe" style="display: inline-block"><input type="checkbox" class="input-checkbox" name="subscribe" id="subscribe" <?=(new Crm())->getSubscribeStatus('subscribe') ? 'checked' : ''?> />Согласен на email рассылку</label>
