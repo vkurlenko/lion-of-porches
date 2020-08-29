@@ -1001,4 +1001,47 @@ function createuser() {
     //$user_id = register_new_user( 'vkurlenko2', 'vkurlenko@ya2.ru' );
 }
 
+/*add_action( 'user_register', '____action_function_name' );
+function ____action_function_name( $user_id ) {
+    echo $user_id; die;
+}*/
+
+// предварительная проверка поля
+/*add_filter( 'registration_errors', 'my_validate_user_data' );
+
+function my_validate_user_data( $errors ){
+
+    (new Helper())->writeToFile('my_validate_user_data', 'my_validate_user_data');
+
+    $errors->add('empty_user_sex', 'Пол обязательно должен быть указан!' );
+    //var_dump($_POST); die;
+
+    if( empty($_POST['user_sex']) )
+        $errors->add('empty_user_sex', 'Пол обязательно должен быть указан!' );
+    elseif( ! in_array($_POST['user_sex'], array('male','female')) )
+        $errors->add('invalid_user_sex', 'Пол указан неверно!' );
+
+    return $errors;
+}*/
+
+add_filter( 'insert_user_meta', 'my_user_registration_meta', 10, 3 );
+
+/**
+ * Запись/обновление данных пользователя в CRM при обновлении профиля
+ *
+ * @param $meta
+ * @param $user
+ * @param $update
+ * @return mixed
+ */
+function my_user_registration_meta($meta, $user, $update ) {
+
+    if( $update ) {
+        (new Crm())->insertUserToCRM($meta, $user);
+    }
+
+    //$meta['user_sex'] = $_POST['user_sex']; // $_POST['user_sex'] проверена заранее...
+
+    return $meta;
+}
 ?>

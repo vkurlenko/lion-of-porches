@@ -152,6 +152,83 @@ class Crm
     }
 
     /**
+     * Запись/обновление данных пользователя в CRM при обновлении профиля
+     *
+     * @param $meta
+     * @param $user
+     */
+    public function insertUserToCRM($meta, $user)
+    {
+        global $wpdb;
+
+        /*stdClass Object
+    (
+        [nickname] => vkurlenko16
+    [first_name] => Виктор
+    [last_name] => Курленко
+    [description] =>
+    [rich_editing] => true
+    [syntax_highlighting] => true
+    [comment_shortcuts] => false
+    [admin_color] => fresh
+    [use_ssl] => 0
+    [show_admin_bar_front] => true
+    [locale] =>
+)
+stdClass Object
+    (
+        [ID] => 1949
+    [user_login] => vkurlenko16
+    [user_pass] => $P$BQZtnXD0FOkb4aMwdV41bCqZTc.Cxl0
+    [user_nicename] => vkurlenko16
+    [user_email] => vkurlenko16@gmail.com
+    [user_url] =>
+    [user_registered] => 2020-08-29 08:02:11
+    [user_activation_key] =>
+    [user_status] => 0
+    [display_name] => vkurlenko16
+)*/
+
+        $data = [
+            'user_name' => implode(' ', [$meta['last_name'], $meta['first_name']]),
+            'activation_date' => $user->data->user_registered,
+            'email' => $user->data->user_email
+        ];
+
+        $mylink = $wpdb->get_row( "SELECT * FROM `data3` WHERE wp_id = ".$user->data->ID );
+
+        if($mylink !== null) {
+            $wpdb->update( 'data3', $data, ['wp_id' => $user->data->ID] );
+        } else {
+            $data['card'] = $this->getNewCard();
+            $data['wp_id'] = $user->data->ID;
+            $wpdb->insert( 'data3', $data );
+        }
+
+        return;
+    }
+
+    /**
+     * Получить номер новой карты клиента
+     *
+     * @return int|null
+     */
+    public function getNewCard()
+    {
+        global $wpdb;
+
+        $sql = 'SELECT MAX(card) as max_card FROM `data3`';
+
+        $res = $wpdb->get_row($sql);
+
+        if($res && $res->max_card) {
+            return $res->max_card + 1;
+        }
+
+        return null;
+    }
+
+    /**
      * Получить размер скидки из CRM по email клиента
      *
      * @param $user_email
@@ -349,6 +426,7 @@ class Crm
     public function getLevelLimits()
     {
         $arr = [
+            '0' => 0,
             '5' => 10000,
             '10' => 70000,
             '15' => 15000,
