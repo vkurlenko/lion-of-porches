@@ -986,6 +986,9 @@ function my_save_account($user_id) {
 
     update_user_meta($user_id, 'subscribe', (int)$subscribe);
     update_user_meta($user_id, 'sms', (int)$sms);
+    update_user_meta($user_id, 'born_date', $_POST[ 'born_date' ]);
+    update_user_meta($user_id, 'gender', $_POST[ 'gender' ]);
+    update_user_meta($user_id, 'phone', $_POST[ 'phone' ]);
 
     (new Crm())->setSubscribeStatus('subscribe', (int)$subscribe);
     (new Crm())->setSubscribeStatus('sms', (int)$sms);
@@ -1024,6 +1027,8 @@ function my_validate_user_data( $errors ){
     return $errors;
 }*/
 
+
+
 add_filter( 'insert_user_meta', 'my_user_registration_meta', 10, 3 );
 
 /**
@@ -1037,7 +1042,7 @@ add_filter( 'insert_user_meta', 'my_user_registration_meta', 10, 3 );
 function my_user_registration_meta($meta, $user, $update ) {
 
     if( $update ) {
-        (new Crm())->insertUserToCRM($meta, $user);
+        (new Crm())->insertUserToCRM($meta, $user, $_POST);
     }
 
     //$meta['user_sex'] = $_POST['user_sex']; // $_POST['user_sex'] проверена заранее...
