@@ -3,12 +3,12 @@ $current_user = wp_get_current_user();
 $user_discount = (new Crm())->getUserDiscount($current_user->user_email);
 $crm_user = (new Crm())->getCrmUser();
 
-if($user_discount) {
+if($user_discount !== false) {
     $levels = (new Crm())->getUserLevel();
 
     $user_discount_level = isset($levels[$user_discount]) ? $levels[$user_discount] : 0;
 
-    if($user_discount_level):
+    //if($user_discount_level):
         ?>
 
         <div class="person-info" style="clear: both; font-size: 10px; position: absolute; top: 5px; right:5px; font-family: sans-serif; letter-spacing: 0; ">
@@ -22,11 +22,16 @@ if($user_discount) {
                 endif;
                 ?>
             </div>
-            <img style="margin-left:5px" id="user-level-label" src="/wp-content/themes/lion-of-porches/img/levels/<?=strtolower($user_discount_level)?>-mini.gif" title="Уровень: <?=$user_discount_level?>">
-
+            <?php
+            if($user_discount_level):
+            ?>
+                <img style="margin-left:5px" id="user-level-label" src="/wp-content/themes/lion-of-porches/img/levels/<?=strtolower($user_discount_level)?>-mini.gif" title="Уровень: <?=$user_discount_level?>">
+            <?php
+            endif;
+            ?>
         </div>
 
     <?php
-    endif;
+    //endif;
 }
 ?>
