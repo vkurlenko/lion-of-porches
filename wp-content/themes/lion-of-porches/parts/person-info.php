@@ -3,7 +3,7 @@ $current_user = wp_get_current_user();
 $user_discount = (new Crm())->getUserDiscount($current_user->user_email);
 $crm_user = (new Crm())->getCrmUser();
 
-if($user_discount !== false) {
+//if($user_discount !== false) {
     $levels = (new Crm())->getUserLevel();
 
     $user_discount_level = isset($levels[$user_discount]) ? $levels[$user_discount] : 0;
@@ -33,5 +33,5 @@ if($user_discount !== false) {
 
     <?php
     //endif;
-}
+//}
 ?>
