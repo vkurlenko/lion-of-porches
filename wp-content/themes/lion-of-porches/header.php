@@ -52,6 +52,43 @@ die;*/
             'https://connect.facebook.net/en_US/fbevents.js');
         fbq('init', '663993440893072');
         fbq('track', 'PageView');
+
+
+        <?php
+        $arr = [
+            'checkout' => 'InitiateCheckout', // Начало оформления заказа
+            //'' => 'AddToCart',  // Добавление в корзину
+            'product' => 'CustomizeProduct', // Персонализация товара
+            'order-received' => 'Purchase', // Покупка // fbq('track', 'Purchase', {value: 0.00, currency: 'RUB'});
+            //'' => 'Search' // Поиск
+        ];
+
+        $url = explode('/', $_SERVER['REQUEST_URI']);
+
+        $track = '';
+
+        if(in_array('order-received', $url)) {
+            $track = "'".$arr['order-received']."'";
+            $index = array_search('order-received', $url);
+            $the_order = $url[$index + 1];
+
+            if($the_order) {
+                $order = wc_get_order( $the_order );
+                $total = $order->get_total();
+
+                $track .= ", {value: ".$total.", currency: 'RUB'}";
+            }
+        } elseif(in_array('checkout', $url)) {
+            $track = "'".$arr['checkout']."'";
+        } elseif(in_array('product', $url)) {
+            $track = "'".$arr['product']."'";
+        }
+
+        if($track) {
+        ?>fbq('track', <?=$track?>);<?php
+        }
+        ?>
+
     </script>
     <noscript>
         <img height="1" width="1"
