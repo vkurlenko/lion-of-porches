@@ -15,7 +15,7 @@ $crm_user = (new Crm())->getCrmUser();
             <div style="float: left">
                 <span class="user-name"><?=$current_user->display_name?></span>&nbsp;<!--<span class="user-level"><?/*=$user_discount_level*/?></span>--><br>
                 <?php
-                if($crm_user->card):
+                if(isset($crm_user->card) && $crm_user->card):
                     ?>
                     <span class="user-name">Номер карты: <?=sprintf("%013d", $crm_user->card);?></span>
                 <?php
