@@ -150,4 +150,49 @@ class Helper
         echo "<pre>".print_r((object)$obj, true)."</pre>";
     }
 
+    public function writeToFile($filename = '', $data)
+    {
+        //if(empty($filename)) {
+            $filename = time().'.txt';
+        //}
+
+        //if(is_array($data)) {
+            $data = serialize($data);
+            //file_put_contents($filename, $data);
+        //} else {
+            $f = fopen($filename, 'w+');
+            fwrite($f, $data);
+        //}
+    }
+
+    /**
+     * Вывод дерева категорий товара по его ID
+     * в виде Категория/подкатегория/...
+     *
+     * @param $product_id
+     * @return string|WP_Error
+     */
+    public function getProductCategoriesById($product_id)
+    {
+        $category = '';
+        $taxonomy = 'product_cat' ;
+        $terms = get_the_terms( $product_id, 'product_cat', $taxonomy );
+
+        if ( !empty( $terms ) ) {
+            $links = array();
+
+            foreach ( $terms as $term ) {
+                $link = get_term_link( $term, $taxonomy );
+                if ( is_wp_error( $link ) ) {
+                    return $link;
+                }
+                $links[] = $term->name;
+            }
+
+            $category = implode('/', $links);
+        }
+
+        return $category;
+    }
+
 }
