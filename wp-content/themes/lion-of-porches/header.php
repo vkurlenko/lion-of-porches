@@ -62,36 +62,19 @@ die;*/
     <script type="text/javascript">
         <?php
         $url = explode('/', $_SERVER['REQUEST_URI']);
+
         if(in_array('product', $url)) {
 
-        global $post;
-        $id = $post->ID;
+            global $post;
+            $id = $post->ID;
 
-        $product = wc_get_product( $id );
-        $price = $product ? $product->get_variation_regular_price( 'min' ) : '';
-        $category = (new Helper())->getProductCategoriesById($id);
-        ?>
-        window.dataLayer.push({
-            "ecommerce": {
-                "detail": {
-                    "products": [
-                        {
-                            "id": "<?=$product->get_sku();?>",
-                            "name": "<?=$product->get_name()?>",
-                            "price": <?=$price?>,
-                            "brand": "Lion of Porches",
-                            "category": "<?=$category?>",
-                            //"variant": "Красный цвет"
-                        }
-                    ]
-                }
-            }
-        });
-
-        function addPush() {
-            dataLayer.push({
+            $product = wc_get_product( $id );
+            $price = $product ? $product->get_variation_regular_price( 'min' ) : '';
+            $category = (new Helper())->getProductCategoriesById($id);
+            ?>
+            window.dataLayer.push({
                 "ecommerce": {
-                    "add": {
+                    "detail": {
                         "products": [
                             {
                                 "id": "<?=$product->get_sku();?>",
@@ -99,18 +82,56 @@ die;*/
                                 "price": <?=$price?>,
                                 "brand": "Lion of Porches",
                                 "category": "<?=$category?>",
-                                "quantity": 1
+                                //"variant": "Красный цвет"
                             }
                         ]
                     }
                 }
             });
 
-            //console.log(dataLayer);
-        }
-
+            function addPush() {
+                dataLayer.push({
+                    "ecommerce": {
+                        "add": {
+                            "products": [
+                                {
+                                    "id": "<?=$product->get_sku();?>",
+                                    "name": "<?=$product->get_name()?>",
+                                    "price": <?=$price?>,
+                                    "brand": "Lion of Porches",
+                                    "category": "<?=$category?>",
+                                    "quantity": 1
+                                }
+                            ]
+                        }
+                    }
+                });
+            }
         <?php
-        }
+        } elseif(in_array('order-received', $url)) {
+
+            $index = array_search('order-received', $url);
+            $the_order = $url[$index + 1];
+
+            if($the_order) {
+                $order = wc_get_order($the_order);
+                ?>
+                dataLayer.push({
+                    "ecommerce": {
+                        "purchase": {
+                            "actionField": {
+                                "id" : "<?=$the_order?>"
+                            },
+                            "products": [
+                                <?=(new Helper())->getOrderItemsForYM($order)?>
+                            ]
+                        }
+                    }
+                });
+
+                <?php
+                }
+            }
         ?>
     </script>
     <noscript><div><img src="https://mc.yandex.ru/watch/65553346" style="position:absolute; left:-9999px;" alt="" /></div></noscript>

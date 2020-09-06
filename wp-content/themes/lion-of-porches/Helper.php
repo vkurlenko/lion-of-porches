@@ -195,4 +195,41 @@ class Helper
         return $category;
     }
 
+
+    /**
+     * Печать js-объекта для кода Яндекс.Метрики Покупка
+     *
+     * @param $order
+     * @return string
+     */
+    public function getOrderItemsForYM($order)
+    {
+        $jsObject = [];
+
+        foreach ( $order->get_items() as $item_id => $item )
+        {
+            $product = new WC_Product($item->get_product_id());
+            $item_sku = $product->get_sku();
+
+            $obj = "\r\n".'{';
+
+            $color = get_term_by('slug', $item->get_meta('pa_color'), 'pa_color' )->name;
+            $size = get_term_by('slug', $item->get_meta('pa_size'), 'pa_size' )->name;
+
+            $obj .= sprintf('"id": "%s",', $item_sku);
+            $obj .= sprintf('"name": "%s",', $item->get_name());
+            $obj .= sprintf('"price": "%s",', $item->get_subtotal());
+            $obj .= sprintf('"brand": "%s",', 'Lion of Porches');
+            $obj .= sprintf('"category": "%s",', $this->getProductCategoriesById($item->get_product_id()));
+            $obj .= sprintf('"variant": "%s",', implode(', ', [$color, $size]));
+            $obj .= sprintf('"quantity": "%s",', $item->get_quantity());
+
+            $obj .= '}';
+
+            $jsObject[] = $obj;
+        }
+
+        return implode(',', $jsObject);
+    }
+
 }
