@@ -208,8 +208,22 @@ class Helper
 
         foreach ( $order->get_items() as $item_id => $item )
         {
-            $product = new WC_Product($item->get_product_id());
+            // получим товар
+            $product = wc_get_product( $item->get_product_id() );
+
+            // получим все вариации товара
+            $variations = (new WooHelper())->getVariation($product);
+
+            $item_price = '';
             $item_sku = $product->get_sku();
+
+            foreach($variations as $key => $val) {
+                if($key == $item->get_variation_id()) {
+                    $item_price = $val['display_regular_price'];
+                    $item_sku = $val['sku'];
+                    break;
+                }
+            }
 
             $obj = "\r\n".'{';
 
@@ -218,7 +232,7 @@ class Helper
 
             $obj .= sprintf('"id": "%s",', $item_sku);
             $obj .= sprintf('"name": "%s",', $item->get_name());
-            $obj .= sprintf('"price": "%s",', $item->get_subtotal());
+            $obj .= sprintf('"price": "%s",', $item_price);
             $obj .= sprintf('"brand": "%s",', 'Lion of Porches');
             $obj .= sprintf('"category": "%s",', $this->getProductCategoriesById($item->get_product_id()));
             $obj .= sprintf('"variant": "%s",', implode(', ', [$color, $size]));
