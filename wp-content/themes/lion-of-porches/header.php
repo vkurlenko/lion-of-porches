@@ -54,6 +54,43 @@ die;*/
             ecommerce:"dataLayer"
         });
     </script>
+
+    <script type="text/javascript">
+        window.dataLayer = window.dataLayer || [];
+    </script>
+
+    <script type="text/javascript">
+        <?php
+        $url = explode('/', $_SERVER['REQUEST_URI']);
+        if(in_array('product', $url)) {
+
+        global $post;
+        $id = $post->ID;
+
+        $product = wc_get_product( $id );
+        $price = $product ? $product->get_variation_regular_price( 'min' ) : '';
+        $category = (new Helper())->getProductCategoriesById($id);
+        ?>
+        window.dataLayer.push({
+            "ecommerce": {
+                "detail": {
+                    "products": [
+                        {
+                            "id": "<?=$product->get_sku();?>",
+                            "name": "<?=$product->get_name()?>",
+                            "price": <?=$price?>,
+                            "brand": "Lion of Porches",
+                            "category": "<?=$category?>",
+                            //"variant": "Красный цвет"
+                        }
+                    ]
+                }
+            }
+        });
+        <?php
+        }
+        ?>
+    </script>
     <noscript><div><img src="https://mc.yandex.ru/watch/65553346" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
 
