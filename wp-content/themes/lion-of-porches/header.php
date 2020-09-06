@@ -87,6 +87,28 @@ die;*/
                 }
             }
         });
+
+        function addPush() {
+            dataLayer.push({
+                "ecommerce": {
+                    "add": {
+                        "products": [
+                            {
+                                "id": "<?=$product->get_sku();?>",
+                                "name": "<?=$product->get_name()?>",
+                                "price": <?=$price?>,
+                                "brand": "Lion of Porches",
+                                "category": "<?=$category?>",
+                                "quantity": 1
+                            }
+                        ]
+                    }
+                }
+            });
+
+            //console.log(dataLayer);
+        }
+
         <?php
         }
         ?>
