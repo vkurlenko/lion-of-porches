@@ -82,10 +82,26 @@ die;*/
             $track = "'".$arr['checkout']."'";
         } elseif(in_array('product', $url)) {
             $track = "'".$arr['product']."'";
+
+        global $post;
+        //global $product;
+        $id = $post->ID;
+
+        $product = wc_get_product( $id );
+        $value = $product ? $product->get_variation_regular_price( 'min' ) : '0';
+        
+        ?>
+        fbq('track', 'ViewContent', {
+            content_ids: ['<?=$id?>'],
+            content_type: 'product',
+            value: <?=$value?>,
+            currency: 'RUB'
+        });
+        <?
         }
 
         if($track) {
-        ?>fbq('track', <?=$track?>);<?php
+            ?>fbq('track', <?=$track?>);<?php
         }
         ?>
 
