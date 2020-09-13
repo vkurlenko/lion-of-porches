@@ -24,6 +24,37 @@ $has_calculated_shipping  = ! empty( $has_calculated_shipping );
 $show_shipping_calculator = ! empty( $show_shipping_calculator );
 $calculator_text          = '';
 ?>
+
+<?php
+if(is_cart()):
+?>
+    <tr>
+        <th></th>
+        <td class="alert alert-primary">
+            <p>Обращаем Ваше внимание!<br>
+            Количество товаров в заказе при условии доставки не должно превышать 5 единиц.<br>
+            Оформление Заказа свыше 5 единиц возможно при условии самовывоза из одного из наших <a href="/stores/">магазинов.</a><br>
+            В случае полного отказа от заказа Стоимость доставки составит 500 руб. <a href="/shop/delivery/">подробнее...</a></p>
+
+            <?php
+            if(WC()->cart->get_cart_contents_count() > (new WooHelper())::CART_CONTENTS_COUNT_MAX):
+            ?>
+            <span class="label label-danger">Количество товаров в Вашей корзине (<?=WC()->cart->get_cart_contents_count();?>) больше <?=(new WooHelper())::CART_CONTENTS_COUNT_MAX?>. Возможен только самовывоз</span>
+            <style>
+                .woocommerce-shipping-destination,
+                .woocommerce-shipping-calculator{
+                    display: none;
+                }
+            </style>
+            <?php
+            endif;
+            ?>
+        </td>
+    </tr>
+<?php
+endif;
+?>
+
 <tr class="woocommerce-shipping-totals shipping">
 	<th><?php echo wp_kses_post( $package_name ); ?></th>
 	<td data-title="<?php echo esc_attr( $package_name ); ?>">
