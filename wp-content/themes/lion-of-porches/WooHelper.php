@@ -1061,8 +1061,26 @@ class WooHelper
 
     public function sortProductListByTags($posts)
     {
-        //$arr0 = ['ss19', 'ss20'];
-        $arr0 = ['ss20', 'ss19'];
+        $exclude = [
+            1159, // special-offer
+            1158, // new-arrival
+        ];
+
+        $terms = get_terms(
+            array(
+                'taxonomy' => 'product_tag',
+                'hide_empty' => false,
+                'orderby' => 'menu_order',
+                'order' => 'ASC',
+                'exclude' => $exclude
+            ) );
+
+        $arr0 = [];
+        foreach($terms as $term) {
+            $arr0[] = $term->slug;
+        }
+
+        //$arr0 = ['ss20', 'ss19'];
         $arr1 = [];
         $arr2 = [];
 
