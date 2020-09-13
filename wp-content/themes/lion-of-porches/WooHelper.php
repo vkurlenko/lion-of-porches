@@ -10,6 +10,7 @@
 
 class WooHelper
 {
+    const CART_CONTENTS_COUNT_MAX = 5;
     /**
      *  Загрузка каталога товаров из текстового файла
      */

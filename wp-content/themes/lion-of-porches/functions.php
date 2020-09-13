@@ -969,6 +969,23 @@ function my_checkout_field_process() {
 
 // не проверять артикул на уникальность
 add_filter( 'wc_product_has_unique_sku', '__return_false', PHP_INT_MAX );
+
+// удаляем доставку, если количество вещей в корзине больше 5
+add_filter( 'woocommerce_package_rates', 'my_remove_shipping_method', 20, 2 );
+
+function my_remove_shipping_method( $rates, $package ) {
+
+    if ( WC()->cart->get_cart_contents_count() > (new WooHelper())::CART_CONTENTS_COUNT_MAX ) {
+        //unset( $rates[ 'flat_rate:5' ] );
+        foreach($rates as $rate) {
+            if ($rate->id != 'wc_pickup_store') {
+                unset ($rates[$rate->id]);
+            }
+        }
+    }
+
+    return $rates;
+}
 /*******************/
 /* /My Woocommerce */
 /*******************/
