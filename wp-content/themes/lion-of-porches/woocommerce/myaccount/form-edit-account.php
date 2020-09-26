@@ -85,6 +85,13 @@ do_action( 'woocommerce_before_edit_account_form' ); ?>
         </p>
     </fieldset>
 
+    <fieldset>
+        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+            <label for="account_display_name">Ваш номер карты лояльности: <?= (new Crm())->getUserCard() ?></label>
+            <input type="hidden" class="woocommerce-Input woocommerce-Input--text input-text" name="user_card" id="user_card" value="<?= (new Crm())->getUserCard() ?>" /> <span></span>
+        </p>
+    </fieldset>
+
     <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
     <label for="subscribe" style="display: inline-block"><input type="checkbox" class="input-checkbox" name="subscribe" id="subscribe" <?=(new Crm())->getSubscribeStatus('subscribe') ? 'checked' : ''?> />Согласен на email рассылку</label>
 

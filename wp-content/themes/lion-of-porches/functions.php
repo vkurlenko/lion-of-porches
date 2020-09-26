@@ -356,7 +356,7 @@ function custom_override_checkout_fields($fields ) {
 add_filter('wc_order_is_editable', 'my_wc_order_is_editable', 10, 2);
 
 /**
- * Разрешить редактировать заказ из админики
+ * Разрешить редактировать заказ из админки
  * @param $res
  * @param $order
  * @return bool
@@ -1008,6 +1008,7 @@ function my_save_account($user_id) {
     update_user_meta($user_id, 'born_date', $_POST[ 'born_date' ]);
     update_user_meta($user_id, 'gender', $_POST[ 'gender' ]);
     update_user_meta($user_id, 'phone', $_POST[ 'phone' ]);
+    update_user_meta($user_id, 'user_card', $_POST[ 'user_card' ]);
 
     (new Crm())->setSubscribeStatus('subscribe', (int)$subscribe);
     (new Crm())->setSubscribeStatus('sms', (int)$sms);
@@ -1068,4 +1069,51 @@ function my_user_registration_meta($meta, $user, $update ) {
 
     return $meta;
 }
+
+/**
+ * Добавляем номер карты лояльности в заказ
+ *
+ * my_custom_checkout_field - добаляем номер карты в профиль клиента
+ * my_custom_checkout_field_update_order_meta - пишем номер карты в заказ
+ * my_custom_checkout_field_display_admin_order_meta - показываем номер карты в деталях заказа
+ * my_custom_order_meta_keys - добавляем номер карты в email
+*/
+add_action( 'woocommerce_after_order_notes', 'my_custom_checkout_field' );
+function my_custom_checkout_field( $checkout ) {
+
+    echo '<div id="my_custom_checkout_field" style="display: none"><!--<h2>' . __('Номер карты лояльности') . '</h2>-->';
+
+    woocommerce_form_field( 'user_card', array(
+        'type'          => 'text',
+        'class'         => array('my-field-class form-row-wide'),
+        //'label'         => __('Fill in this field'),
+        //'placeholder'   => __('Enter something'),
+    //), $checkout->get_value( 'user_card' ));
+    ), (new Crm())->getUserCard());
+
+    echo '</div>';
+}
+
+add_action( 'woocommerce_checkout_update_order_meta', 'my_custom_checkout_field_update_order_meta' );
+function my_custom_checkout_field_update_order_meta( $order_id ) {
+    if ( ! empty( $_POST['user_card'] ) ) {
+        //update_post_meta( $order_id, 'user_card', sanitize_text_field( $_POST['user_card'] ) );
+        update_post_meta( $order_id, 'user_card', sanitize_text_field( (new Crm())->getUserCard() ) );
+    }
+}
+
+add_action( 'woocommerce_admin_order_data_after_billing_address', 'my_custom_checkout_field_display_admin_order_meta', 10, 1 );
+function my_custom_checkout_field_display_admin_order_meta($order){
+    echo '<p><strong>'.__('Номер карты лояльности').':</strong> ' . get_post_meta( $order->get_id(), 'user_card', true ) . '</p>';
+    //echo '<p><strong>'.__('Номер карты лояльности').':</strong> ' . (new Crm())->getUserCard() . '</p>';
+}
+
+add_filter('woocommerce_email_order_meta_keys', 'my_custom_order_meta_keys');
+function my_custom_order_meta_keys( $keys ) {
+    $keys[] = 'user_card'; // This will look for a custom field called 'Tracking Code' and add it to emails
+    return $keys;
+}
+/**
+ * /Добавляем номер карты лояльности в заказ
+*/
 ?>

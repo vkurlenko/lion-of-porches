@@ -309,6 +309,24 @@ stdClass Object
         return [];
     }
 
+    public function getUserCard()
+    {
+        $user = $this->getCrmUser();
+
+        //var_dump(); die;
+
+        if ($user) {
+            return $this->formatUserCard($user->card);
+        }
+
+        return 'Карта пользователя не зарегистрирована';
+    }
+
+    public function formatUserCard($card)
+    {
+        return sprintf("%013d", $card);
+    }
+
     /**
      * Персональная скидка текущего пользователя (%)
      *
