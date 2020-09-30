@@ -1116,4 +1116,64 @@ function my_custom_order_meta_keys( $keys ) {
 /**
  * /Добавляем номер карты лояльности в заказ
 */
+
+function wh_doctype_opengraph($output) {
+    return $output . '
+xmlns:og="http://opengraphprotocol.org/schema/"
+xmlns:fb="http://www.facebook.com/2008/fbml"';
+}
+
+add_filter('language_attributes', 'wh_doctype_opengraph');
+
+
+function wh_fb_opengraph()
+{
+    global $post;
+    if (is_product())
+    {
+        $product = wc_get_product( $post->ID );
+        $price = $product ? $product->get_variation_regular_price( 'min' ) : '';
+        $category = (new Helper())->getProductCategoriesById($post->ID);
+        //$img_url = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'woocommerce_single_image_width'); //replace it with your desired size
+        ?>
+        <meta property="og:type" content="product" />
+        <meta property="og:title" content="<?= get_the_title($post->ID); ?>"/>
+        <meta property="og:description" content="<?= $product->get_description(); ?>" />
+        <meta property="og:url" content="<?= get_the_permalink($post->ID); ?>" />
+        <meta property="product:brand" content="Lion Of Porches">
+        <meta property="product:availability" content="<?= $product->get_stock_status();?>" />
+        <meta property="product:price:amount" content="<?= $price; ?>" />
+        <meta property="product:price:currency" content="RUB" />
+        <meta property="product:retailer_item_id" content="<?= $post->ID; ?>" />
+        <meta property="product:item_group_id" content="<?= $category; ?>">
+        <meta property="og:locale" content="ru_RU" />
+        <meta property="og:site_name" content="LionOfPorchesRus" />
+        <!--<meta property="og:image" content="<?/*= $img_url[0]; */?>"/>-->
+        <?php
+    }
+    //for product cat page
+    else if (is_product_category())
+    {
+        $term = get_queried_object();
+        $img_src = wp_get_attachment_url(get_term_meta($term->term_id, 'thumbnail_id', true));
+        if (empty($img_src))
+        {
+            //$img_src = get_site_url() . '/wp-content/uploads/myproductcat.jpg'; //replace it with your static image
+        }
+        ?>
+        <meta property="og:type" content="object" />
+        <meta property="og:title" content="<?= $term->name; ?>" />
+        <meta property="og:url" content="<?= get_term_link($term->term_id, 'product_cat'); ?>" />
+        <meta property="og:image" content="<?= $img_src; ?>" />
+        <?php
+    }
+    //for shop page
+
+    else
+    {
+        return;
+    }
+}
+
+add_action('wp_head', 'wh_fb_opengraph', 5);
 ?>
