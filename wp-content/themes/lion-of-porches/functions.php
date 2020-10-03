@@ -1113,10 +1113,11 @@ function my_custom_order_meta_keys( $keys ) {
     $keys[] = 'user_card'; // This will look for a custom field called 'Tracking Code' and add it to emails
     return $keys;
 }
-/**
- * /Добавляем номер карты лояльности в заказ
-*/
+/** */
 
+/**
+ * Теги микроданных
+ */
 function wh_doctype_opengraph($output) {
     return $output . '
 xmlns:og="http://opengraphprotocol.org/schema/"
@@ -1124,8 +1125,6 @@ xmlns:fb="http://www.facebook.com/2008/fbml"';
 }
 
 add_filter('language_attributes', 'wh_doctype_opengraph');
-
-
 function wh_fb_opengraph()
 {
     global $post;
@@ -1167,8 +1166,6 @@ function wh_fb_opengraph()
         <meta property="og:image" content="<?= $img_src; ?>" />
         <?php
     }
-    //for shop page
-
     else
     {
         return;
@@ -1176,4 +1173,15 @@ function wh_fb_opengraph()
 }
 
 add_action('wp_head', 'wh_fb_opengraph', 5);
+
+
+/**
+ * Делаем поле Почтовый индекс необязательными
+*/
+add_filter( 'woocommerce_default_address_fields' , 'custom_override_default_address_fields' );
+function custom_override_default_address_fields( $address_fields ) {
+    $address_fields['postcode']['required'] = false; //почтовый индекс
+
+    return $address_fields;
+}
 ?>
