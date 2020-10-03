@@ -1134,7 +1134,7 @@ function wh_fb_opengraph()
         $product = wc_get_product( $post->ID );
         $price = $product ? $product->get_variation_regular_price( 'min' ) : '';
         $category = (new Helper())->getProductCategoriesById($post->ID);
-        //$img_url = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'woocommerce_single_image_width'); //replace it with your desired size
+        $img_url = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'woocommerce_single_image_width'); //replace it with your desired size
         ?>
         <meta property="og:type" content="product" />
         <meta property="og:title" content="<?= get_the_title($post->ID); ?>"/>
@@ -1148,7 +1148,7 @@ function wh_fb_opengraph()
         <meta property="product:item_group_id" content="<?= $category; ?>">
         <meta property="og:locale" content="ru_RU" />
         <meta property="og:site_name" content="LionOfPorchesRus" />
-        <!--<meta property="og:image" content="<?/*= $img_url[0]; */?>"/>-->
+        <meta property="og:image" content="<?= $img_url[0]; ?>"/>
         <?php
     }
     //for product cat page
