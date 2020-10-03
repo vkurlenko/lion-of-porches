@@ -1048,9 +1048,6 @@ function my_validate_user_data( $errors ){
 }*/
 
 
-
-add_filter( 'insert_user_meta', 'my_user_registration_meta', 10, 3 );
-
 /**
  * Запись/обновление данных пользователя в CRM при обновлении профиля
  *
@@ -1059,6 +1056,8 @@ add_filter( 'insert_user_meta', 'my_user_registration_meta', 10, 3 );
  * @param $update
  * @return mixed
  */
+add_filter( 'insert_user_meta', 'my_user_registration_meta', 10, 3 );
+
 function my_user_registration_meta($meta, $user, $update ) {
 
     if( $update ) {
@@ -1069,6 +1068,19 @@ function my_user_registration_meta($meta, $user, $update ) {
 
     return $meta;
 }
+
+/**
+ * Регистрация клиента в CRM сразу после оформления первого заказ
+ * TODO проверить $meta и добавить $_POST
+ */
+/*add_action( 'user_register', 'user_register_to_crm' );
+function user_register_to_crm( $user_id ) {
+
+    $user = get_user_by( 'ID', $user_id );
+    $meta = get_userdata( $user_id );
+
+    (new Crm())->insertUserToCRM($meta, $user, $_POST);
+}*/
 
 /**
  * Добавляем номер карты лояльности в заказ
@@ -1183,5 +1195,36 @@ function custom_override_default_address_fields( $address_fields ) {
     $address_fields['postcode']['required'] = false; //почтовый индекс
 
     return $address_fields;
+}
+
+/**
+ * Уберем поля адреса клиента при выборе самовывоза из магазина
+ */
+add_action( 'woocommerce_after_checkout_form', 'bbloomer_disable_shipping_local_pickup' );
+
+function bbloomer_disable_shipping_local_pickup( $available_gateways ) {
+    global $woocommerce;
+
+    $chosen_methods = WC()->session->get( 'chosen_shipping_methods' );
+    $chosen_shipping_no_ajax = $chosen_methods[0];
+    if ( 0 === strpos( $chosen_shipping_no_ajax, 'wc_pickup_store' ) ) {
+        ?>
+        <script type="text/javascript">
+            jQuery('.address-field').fadeOut();
+        </script>
+        <?php
+    }
+    ?>
+    <script type="text/javascript">
+        jQuery('form.checkout').on('change','input[name^="shipping_method"]',function() {
+            var val = jQuery( this ).val();
+            if (val.match("^wc_pickup_store")) {
+                jQuery('.address-field').fadeOut();
+            } else {
+                jQuery('.address-field').fadeIn();
+            }
+        });
+    </script>
+    <?php
 }
 ?>
