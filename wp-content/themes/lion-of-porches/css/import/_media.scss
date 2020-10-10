@@ -137,6 +137,15 @@
         justify-content: center;
     }
 
+    .woocommerce ul.products li.product,
+    .woocommerce-page ul.products li.product {
+        margin: unset;
+    }
+
+    .btn-quickview {
+        display: none;
+    }
+
     .aws-container {
         margin: 10px;
     }
