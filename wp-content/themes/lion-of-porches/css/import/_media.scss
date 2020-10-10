@@ -97,7 +97,7 @@
     }
 
     li.product {
-        width: 100% !important;
+        /*width: 100% !important;*/
     }
 
     .woocommerce form .form-row-first,
@@ -188,6 +188,10 @@
 
     .black-bg.first {
         bottom: 100px !important;
+    }
+
+    .lwpcngNotice_message {
+        font-size: 10px;
     }
 }
 

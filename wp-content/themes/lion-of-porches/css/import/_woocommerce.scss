@@ -20,7 +20,7 @@
 
 .woocommerce ul.products li.product,
 .woocommerce-page ul.products li.product {
-    margin: 1% !important;
+    /*margin: 1% !important;*/
 }
 
 .woocommerce ul.products li.product h3,
@@ -94,6 +94,7 @@
 
     .special-price {
         margin: 20px 0;
+        clear: both;
 
         div {
             margin: 5px 0;
@@ -123,6 +124,7 @@
     .user-level-img {
         max-width: 100px;
         margin: 10px auto;
+        display: none;
     }
 
     .data-personal-price {
@@ -919,5 +921,9 @@ ul.products li.product a img {
     font-size: 16px;
 }
 
+.woocommerce-shipping-fields,
+.woocommerce-additional-fields {
+    display: none !important;
+}
 
 
