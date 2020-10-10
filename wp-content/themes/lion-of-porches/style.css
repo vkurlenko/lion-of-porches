@@ -779,7 +779,7 @@ table.tableizer-table {
 
 .woocommerce ul.products li.product,
 .woocommerce-page ul.products li.product {
-  /*margin: 1% !important;*/ }
+  margin: 1% !important; }
 
 .woocommerce ul.products li.product h3,
 .woocommerce ul.products li.product .woocommerce-loop-product__title,
@@ -2429,6 +2429,13 @@ footer {
 
   .woo-variation-swatches-stylesheet-enabled .variable-items-wrapper {
     justify-content: center; }
+
+  .woocommerce ul.products li.product,
+  .woocommerce-page ul.products li.product {
+    margin: unset; }
+
+  .btn-quickview {
+    display: none; }
 
   .aws-container {
     margin: 10px; }
