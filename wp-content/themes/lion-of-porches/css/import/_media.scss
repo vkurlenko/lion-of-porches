@@ -139,11 +139,11 @@
 
     .woocommerce ul.products li.product,
     .woocommerce-page ul.products li.product {
-        margin: unset;
+        margin: 0 !important;
     }
 
     .btn-quickview {
-        display: none;
+        display: none !important;
     }
 
     .aws-container {
