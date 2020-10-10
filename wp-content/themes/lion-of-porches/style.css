@@ -2356,6 +2356,9 @@ footer {
     float: left;
     margin-left: 5px; } }
 @media (max-width: 767.98px) {
+  h1 {
+    font-size: 40px; }
+
   .main-menu ul li {
     display: block; }
 
@@ -2400,6 +2403,9 @@ footer {
   li.product {
     /*width: 100% !important;*/ }
 
+  .woocommerce .woocommerce-ordering {
+    display: none; }
+
   .woocommerce form .form-row-first,
   .woocommerce form .form-row-last,
   .woocommerce-page form .form-row-first,
@@ -2416,6 +2422,13 @@ footer {
       float: none !important;
       margin-bottom: 10px;
       border: 0 !important; }
+
+  .summary.entry-summary .sku_wrapper,
+  .woocommerce-cart-form__cart-item .sku_wrapper {
+    float: right; }
+
+  .woo-variation-swatches-stylesheet-enabled .variable-items-wrapper {
+    justify-content: center; }
 
   .aws-container {
     margin: 10px; }

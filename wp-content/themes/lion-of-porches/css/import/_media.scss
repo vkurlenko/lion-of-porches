@@ -43,6 +43,10 @@
 
 // Small devices (landscape phones, less than 768px)
 @media (max-width: 767.98px) {
+    h1 {
+        font-size: 40px;
+    }
+
     .main-menu ul li {
         display: block;
     }
@@ -100,6 +104,10 @@
         /*width: 100% !important;*/
     }
 
+    .woocommerce .woocommerce-ordering {
+        display: none;
+    }
+
     .woocommerce form .form-row-first,
     .woocommerce form .form-row-last,
     .woocommerce-page form .form-row-first,
@@ -118,6 +126,15 @@
             margin-bottom: 10px;
             border: 0 !important;
         }
+    }
+
+    .summary.entry-summary .sku_wrapper,
+    .woocommerce-cart-form__cart-item .sku_wrapper {
+        float: right;
+    }
+
+    .woo-variation-swatches-stylesheet-enabled .variable-items-wrapper {
+        justify-content: center;
     }
 
     .aws-container {
