@@ -191,6 +191,15 @@
         line-height: 3;
         font-size: 10px;
     }
+    .related .visible-xs {
+        clear: none !important;
+    }
+
+    .woocommerce-page .related ul.products li.product
+     {
+        clear: none !important;
+        margin: 1% !important;
+    }
 
     .sizes-bar span {
         padding: 0px;
