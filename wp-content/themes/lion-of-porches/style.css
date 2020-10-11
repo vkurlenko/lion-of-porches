@@ -2438,7 +2438,7 @@ footer {
 
   .woocommerce ul.products li.product,
   .woocommerce-page ul.products li.product {
-    margin: 0 !important; }
+    /*margin: 0 !important;*/ }
 
   .btn-quickview {
     display: none !important; }
