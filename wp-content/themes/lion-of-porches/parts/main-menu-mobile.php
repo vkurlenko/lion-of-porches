@@ -57,7 +57,7 @@
             </div>
             <div class="col-xs-6">
                 <ul>
-                    <li><a href="/shop/">Каталоги</a></li><li><a href="/forpartners/">Партнерам</a></li><li><?php get_template_part( 'parts/login-link');?></li>
+                    <li><a href="/forpartners/">Партнерам</a></li><li><?php get_template_part( 'parts/login-link');?></li>
                 </ul>
             </div>
         </div>
