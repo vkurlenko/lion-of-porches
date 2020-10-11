@@ -978,7 +978,7 @@ table.tableizer-table {
   font-weight: 400; }
   .woocommerce div.product span.price ins,
   .woocommerce div.product p.price ins {
-    font-weight: 400; }
+    font-weight: 400 !important; }
 
 .woocommerce .price del.inline {
   display: inline-block !important;
@@ -2487,6 +2487,9 @@ footer {
   .woocommerce-page .related ul.products li.product {
     clear: none !important;
     margin: 1% !important; }
+
+  .woocommerce div.product form.cart .button {
+    float: unset; }
 
   .sizes-bar span {
     padding: 0px;
