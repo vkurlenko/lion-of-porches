@@ -201,6 +201,10 @@
         margin: 1% !important;
     }
 
+    .woocommerce div.product form.cart .button {
+        float: unset;
+    }
+
     .sizes-bar span {
         padding: 0px;
         min-width: 20px;
