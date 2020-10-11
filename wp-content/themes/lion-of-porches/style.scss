@@ -410,11 +410,23 @@ textarea {
   -moz-box-shadow:    0px 10px 10px 0px rgba(50, 50, 50, 0.23);
   box-shadow:         0px 10px 10px 0px rgba(50, 50, 50, 0.23);
 
-  ul {
+  > ul {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-flow: row wrap;
+  }
+
+  .mobile-submenu {
+    ul, li {
+      display: unset;
+    }
+
+    li {
+      display: block;
+      text-align: center;
+      padding: 10px 0;
+    }
   }
 }
 
