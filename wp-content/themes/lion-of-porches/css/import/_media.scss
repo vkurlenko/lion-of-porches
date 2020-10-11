@@ -139,7 +139,7 @@
 
     .woocommerce ul.products li.product,
     .woocommerce-page ul.products li.product {
-        margin: 0 !important;
+        /*margin: 0 !important;*/
     }
 
     .btn-quickview {
@@ -204,7 +204,7 @@
     .woocommerce-variation-add-to-cart.variations_button {
         text-align: center;
     }
-    
+
     .woocommerce div.product form.cart .button {
         float: unset;
     }
