@@ -2440,6 +2440,13 @@ footer {
   .woocommerce-page ul.products li.product {
     /*margin: 0 !important;*/ }
 
+  #lp-cart_totals table {
+    max-width: 100%; }
+    #lp-cart_totals table .alert {
+      text-align: left !important; }
+      #lp-cart_totals table .alert p {
+        font-size: 12px; }
+
   .personal-discount {
     top: 5px;
     left: 10px; }
@@ -2452,6 +2459,12 @@ footer {
 
   #submit_wc_robokassa_payment_form {
     margin: 10px; }
+
+  .woocommerce ul#shipping_method {
+    padding: 15px 0 0 0;
+    display: block;
+    clear: both;
+    text-align: left; }
 
   .user-discount-level {
     position: absolute;
