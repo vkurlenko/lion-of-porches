@@ -2440,6 +2440,10 @@ footer {
   .woocommerce-page ul.products li.product {
     /*margin: 0 !important;*/ }
 
+  .personal-discount {
+    top: 5px;
+    left: 10px; }
+
   .btn-quickview {
     display: none !important; }
 
