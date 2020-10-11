@@ -21,6 +21,24 @@ function toggleMobileMenu() {
 }
 /* /Мобильное меню (гамбургер) */
 
+$(document).on('click', '.mobile > ul > li > a', function () {
+    var _this = $(this);
+    var category = $(_this).data('category');
+
+    $('.mobile-submenu div').each(function () {
+        if($(this).data('category') === category) {
+            $('div.'+category).fadeToggle(500);
+        } else {
+            if($(this).css('display') === 'block') {
+                $(this).css('display', 'none');
+            }
+        }
+
+    });
+
+    return false;
+});
+
 
 /* Фиксация главного меню при прокрутке страницы */
 $(window).on("scroll", function() {

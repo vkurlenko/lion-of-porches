@@ -25,7 +25,7 @@ class Helper
         return $product_categories;
     }
 
-    public function getSabCategoryTree($parent = 0)
+    public function getSabCategoryTree($parent = 0, $depth = 0)
     {
         $args = array(
             'show_option_all'    => '',
@@ -47,7 +47,7 @@ class Helper
             'title_li'           => '',
             'number'             => NULL,
             'echo'               => 1,
-            'depth'              => 0,
+            'depth'              => $depth,
             'current_category'   => 0,
             'pad_counts'         => 0,
             'taxonomy'           => 'product_cat',

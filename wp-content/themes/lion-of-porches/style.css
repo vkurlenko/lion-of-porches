@@ -312,11 +312,17 @@ textarea {
   -webkit-box-shadow: 0px 10px 10px 0px rgba(50, 50, 50, 0.23);
   -moz-box-shadow: 0px 10px 10px 0px rgba(50, 50, 50, 0.23);
   box-shadow: 0px 10px 10px 0px rgba(50, 50, 50, 0.23); }
-  .main-menu.mobile ul {
+  .main-menu.mobile > ul {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-flow: row wrap; }
+  .main-menu.mobile .mobile-submenu ul, .main-menu.mobile .mobile-submenu li {
+    display: unset; }
+  .main-menu.mobile .mobile-submenu li {
+    display: block;
+    text-align: center;
+    padding: 10px 0; }
 
 .main-menu.mobile > ul {
   padding: 15px 20px;

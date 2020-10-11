@@ -9,7 +9,7 @@
             <ul>
                 <?php
                 foreach ( $product_categories as $product_category ):?>
-                    <li><a class="btn-alt" href="<?= get_term_link($product_category) ?>"><?=$product_category->name?></a></li>
+                    <li><a class="btn-alt" href="<?= get_term_link($product_category) ?>" data-category="<?=$product_category->slug?>"><?=$product_category->name?></a></li>
                 <?php
                 endforeach;
 
@@ -20,6 +20,19 @@
                 }
                 ?>
             </ul>
+
+            <div class="mobile-submenu">
+                <?php
+                foreach ( $product_categories as $product_category ):?>
+                    <div class="<?=$product_category->slug?> container" style="display: none" data-category="<?=$product_category->slug?>">
+                        <?php
+                        $helper->getSabCategoryTree($product_category->term_id, 1);
+                        ?>
+                    </div>
+                <?php
+                endforeach;
+                ?>
+            </div>
         <?
         endif;
         ?>
