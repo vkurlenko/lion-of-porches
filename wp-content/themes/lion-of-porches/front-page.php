@@ -108,7 +108,7 @@ $product_categories = $helper->getTopCategory();
                 //$helper->dump($product_category);
                 $image = $helper->getCategoryImage($product_category, [500, 750]);
                 ?>
-                <div class="col-md-6 col-xs-12">
+                <div class="col-md-6 col-xs-6">
                     <a href="<?= get_term_link($product_category) ?>"><?= $image ?></a>
                     <p class="category-name">
                         <a href="<?= get_term_link($product_category) ?>"><?= $product_category->name ?></a>
