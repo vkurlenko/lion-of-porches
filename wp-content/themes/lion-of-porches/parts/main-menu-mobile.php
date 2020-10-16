@@ -15,7 +15,7 @@
 
                 if((new WooHelper())->isNewArrivalTagProducts()) {
                     ?>
-                    <li><a class="btn-alt" href="/product-tag/new-arrival/">New arrival</a></li>
+                    <li><a class="btn-alt" href="/product-tag/new-arrival/"  data-category="new-arrival">New arrival</a></li>
                     <?php
                 }
                 ?>
@@ -31,6 +31,28 @@
                     </div>
                 <?php
                 endforeach;
+                ?>
+                <?php
+                if((new WooHelper())->isNewArrivalTagProducts()):
+                ?>
+                <div class="new-arrival container" style="display: none" data-category="new-arrival">
+                    <ul>
+                        <li class="cat-item">
+                            <a href="/shop/new-arrival/?tag=woman">Женщины</a>
+                            <!--<ul class="children">
+                                <li class="cat-item"></li>
+                            </ul>-->
+                        </li>
+                        <li class="cat-item">
+                            <a href="/shop/new-arrival/?tag=man">Мужчины</a>
+                            <!--<ul class="children">
+                                <li class="cat-item"></li>
+                            </ul>-->
+                        </li>
+                    </ul>
+                </div>
+                <?php
+                endif;
                 ?>
             </div>
         <?
