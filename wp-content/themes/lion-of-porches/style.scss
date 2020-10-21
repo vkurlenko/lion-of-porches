@@ -426,6 +426,19 @@ textarea {
       display: block;
       text-align: center;
       padding: 10px 0;
+
+      > a {
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+    }
+
+    ul.children {
+      display: none;
+      li a{
+        text-transform: unset;
+        font-weight: normal;
+      }
     }
   }
 }
