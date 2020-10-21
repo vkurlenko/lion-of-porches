@@ -11,15 +11,23 @@
 class WooHelper
 {
     public $attr;
+    public $index_article;
+
     /**
      *  Загрузка каталога товаров из текстового файла
      */
-    public function createVarProductsFromFile($filename)
+    public function createVarProductsFromFile($filename, $num = 5)
     {
-        //$filename = $_SERVER['DOCUMENT_ROOT'].'/temp/import6.csv';
+        $this->index_article = 6;
+
         $f = file($filename);
-        $num = count($f);
-        echo sprintf('%s (%s строк)', $filename, $num).'<br>';
+        $num_articles = count($this->getAllArticles($f));
+        //$num = count($f);
+
+        echo sprintf('<p class="alert alert-primary">Найдено %s строк, %s артикулов</p>', count($f), $num_articles);
+
+        $completed = [];
+        $process = [];
 
         // создадим массив артикулов
         $arr = [];
@@ -34,10 +42,6 @@ class WooHelper
                 $i++;
                 continue;
             }
-
-            /*if($i > 10) {
-                //break;
-            }*/
 
             // пропустим пустые строки
             if(trim($str) == '') {
@@ -91,11 +95,16 @@ class WooHelper
             $parent_cats = $this->createCategoryTree($item_tree, 0);
 
             if($this->get_product_by_sku($item[6])) {
+                if (!in_array($item[6], $completed)) {
+                    $completed[] = $item[6];
+                }
+
                 continue;
             }
 
             if (!in_array($item[6], $articles)) {
                 $articles[] = $item[6];
+                $process[] = $item[6];
             }
 
             // добавим позицию в массив с привязкой к артикулу
@@ -131,8 +140,7 @@ class WooHelper
                 $arr[$item[6]]['color'][] = $item[16];
             }
 
-            if (count($articles) > 9) {
-
+            if (count($articles) > ($num - 1)) {
                 break;
             }
         }
@@ -141,12 +149,28 @@ class WooHelper
 
         $this->attr = $this->getAttributes();
 
+        //echo sprintf('<p class="alert alert-secondary">Загружены ранее: %s</p>', implode(', ', $complited));
+        echo sprintf('<p class="alert alert-secondary">Загружены ранее: %s</p>', implode(', ', $this->completedLinks($completed)));
+        echo sprintf('<p class="alert alert-success">Обработаны: %s</p>', implode(', ', $process));
+
+
+        echo '<table class="table table-striped table-sm table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">ID товара</th>
+                  <th scope="col">Артикул</th>
+                  <th scope="col">Цвет</th>
+                  <th scope="col">Размер</th>
+                  <th scope="col">Цена</th>
+                </tr>
+              </thead>
+              <tbody>';
+
         // создадим вариативные товары
         foreach($arr as $sku) {
             $this->createVarProduct($sku); //die;
         }
-
-
+        echo '</tbody></table>';
     }
 
     //public function createVarProduct($cats = [25], $data = [])
@@ -176,11 +200,6 @@ class WooHelper
             //'post_name'    => $data['post_name'],//"test_prod_vars2", //name/slug
             'post_type'    => "product"
         );
-
-        echo '<strong>'.$data['sku'].'</strong><br>';
-        /*flush();
-        ob_flush();
-        sleep(1);*/
 
         if(!$this->get_product_by_sku($data['sku'])) {
             //Create product/post:
@@ -273,7 +292,7 @@ class WooHelper
             $variation_descr = sprintf ('Страна производства: %s<br>Материал: %s<br>%s', $variation['vendor'], $variation['material'], $variation['post_content']);
             $variation_stock = $variation['stock'];
 
-            echo sprintf('post_id: %s, SKU %s: color %s, size %s, price %s <br> %s', $new_post_id, $variation_sku, $variation_color, $variation_size, $variation['price'], $variation_descr);/* вариация 1 */
+            echo sprintf('<tr><th scope="row"><a href="%s" target="_blank">%s</a></th><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>', get_permalink( $new_post_id ), $new_post_id, $variation_sku, $variation_color, $variation_size, $variation['price']);/* вариация 1 */
 
             $my_post = array(
                 'post_title'=> 'Variation #' . time() . ' for prdct#'. $new_post_id,
@@ -324,6 +343,8 @@ class WooHelper
 
             $variation_id++;
         }
+
+
     }
 
     /**
@@ -636,7 +657,7 @@ class WooHelper
                                     continue;
                                 }
                                 ?>
-                                <?php echo apply_filters( 'woocommerce_sale_flash', '<a href="/product-tag/'.$tag->slug.'/"><span class="prod-tag '.$tag->slug.'">'.$tag->name.'</span></a>', $post, $product ); ?>
+                                <?php echo apply_filters( 'woocommerce_sale_flash', '<span class="prod-tag '.$tag->slug.'">'.$tag->name.'</span>', $post, $product ); ?>
                                 <?php
                             }
                         }
@@ -1134,7 +1155,7 @@ class WooHelper
     public function sortProductListByTags($posts)
     {
         //$arr0 = ['ss19', 'ss20'];
-        $arr0 = ['ss20', 'ss19'];
+        $arr0 = ['fw21', 'fw20', 'fw19', 'fw18', 'fw17', 'fw16', 'ss20', 'ss19', 'ss18', 'ss17', 'ss16'];
         $arr1 = [];
         $arr2 = [];
 
@@ -1260,9 +1281,13 @@ class WooHelper
         echo "<pre>".print_r((object)$obj, true)."</pre>";
     }
 
-
-
-    public function get_product_by_sku( $sku ) {
+    /**
+     * Найти ID продукта по его артикулу
+     *
+     * @param $sku
+     * @return null|string
+     */
+    public function get_product_by_sku($sku) {
 
         global $wpdb;
 
@@ -1271,5 +1296,44 @@ class WooHelper
         if ( $product_id ) return $product_id;
 
         return null;
+    }
+
+    /**
+     * Выбор всех уникальных артикулов из файла импорта
+     *
+     * @param $f
+     * @return array
+     */
+    public function getAllArticles($f)
+    {
+        $arr = [];
+
+        foreach ($f as $str) {
+            $item = explode(';', $str);
+
+            foreach ($item as &$v) {
+                $v = trim($v);
+            }
+
+            if (!in_array($item[$this->index_article], $arr)) {
+                $arr[] = $item[$this->index_article];
+            }
+        }
+
+        return $arr;
+    }
+
+    public function completedLinks($completed)
+    {
+        $s = [];
+
+        foreach ($completed as $article) {
+            $id = $this->get_product_by_sku($article);
+            $link = $id ? '<a href="'.get_permalink( $id ).'" target="_blank">'.$article.'</a>'  : $article;
+
+            $s[] = $link;
+        }
+
+        return $s;
     }
 }
