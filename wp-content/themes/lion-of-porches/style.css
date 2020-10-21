@@ -323,6 +323,14 @@ textarea {
     display: block;
     text-align: center;
     padding: 10px 0; }
+    .main-menu.mobile .mobile-submenu li > a {
+      text-transform: uppercase;
+      font-weight: bold; }
+  .main-menu.mobile .mobile-submenu ul.children {
+    display: none; }
+    .main-menu.mobile .mobile-submenu ul.children li a {
+      text-transform: unset;
+      font-weight: normal; }
 
 .main-menu.mobile > ul {
   padding: 15px 20px;

@@ -26,7 +26,7 @@
                 foreach ( $product_categories as $product_category ):?>
                     <div class="<?=$product_category->slug?> container" style="display: none" data-category="<?=$product_category->slug?>">
                         <?php
-                        $helper->getSabCategoryTree($product_category->term_id, 1);
+                        $helper->getSabCategoryTree($product_category->term_id, 2);
                         ?>
                     </div>
                 <?php

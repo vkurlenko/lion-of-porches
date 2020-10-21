@@ -21,6 +21,7 @@ function toggleMobileMenu() {
 }
 /* /Мобильное меню (гамбургер) */
 
+/* Дерево категорий в моб. меню */
 $(document).on('click', '.mobile > ul > li > a', function () {
     var _this = $(this);
     var category = $(_this).data('category');
@@ -33,12 +34,24 @@ $(document).on('click', '.mobile > ul > li > a', function () {
                 $(this).css('display', 'none');
             }
         }
-
     });
 
     return false;
 });
+/* /Дерево категорий в моб. меню */
 
+$(document).on('click', '.mobile-submenu > div > ul > li > a', function () {
+    $('.children').each(function() {
+        if($(this).css('display') === 'block') {
+            $(this).css('display', 'none');
+        }
+    });
+
+    if ($(this).next('.children').length) {
+        $(this).next('.children').fadeToggle(500);
+        return false;
+    }
+});
 
 /* Фиксация главного меню при прокрутке страницы */
 $(window).on("scroll", function() {
