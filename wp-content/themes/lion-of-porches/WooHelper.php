@@ -10,91 +10,168 @@
 
 class WooHelper
 {
+    public $attr;
+    public $index_article;
     const CART_CONTENTS_COUNT_MAX = 5;
+
     /**
      *  Загрузка каталога товаров из текстового файла
      */
-    public function createVarProductsFromFile()
+    public function createVarProductsFromFile($filename, $num = 5)
     {
-       /* $this->create_attribute( $raw_name = 'pa_color', $terms = array( 'хаки' ) );
-        return;*/
+        $this->index_article = 6;
 
-        //$f = file($_SERVER['DOCUMENT_ROOT'].'/temp/catalog_full.txt');
-        //$f = file($_SERVER['DOCUMENT_ROOT'].'/temp/catalog_mini.txt');
-        $f = file($_SERVER['DOCUMENT_ROOT'].'/temp/Nomenklatura3.csv');
-        echo $_SERVER['DOCUMENT_ROOT'].'/temp/Nomenclatura3.csv';
-        //$f = file($_SERVER['DOCUMENT_ROOT'].'/temp/catalog_full_2.txt');
+        $f = file($filename);
+        $num_articles = count($this->getAllArticles($f));
+        //$num = count($f);
+
+        echo sprintf('<p class="alert alert-primary">Найдено %s строк, %s артикулов</p>', count($f), $num_articles);
+
+        $completed = [];
+        $process = [];
 
         // создадим массив артикулов
         $arr = [];
 
+        $i = 0;
+
+        $articles = [];
+
         foreach($f as $str) {
+
+            if($i == 0) {
+                $i++;
+                continue;
+            }
 
             // пропустим пустые строки
             if(trim($str) == '') {
                 continue;
             }
 
-            echo $str.'<br>';
-            //continue;
 
             // разберем строку на элементы массива
             //Женщины|Верхняя одежда|Блейзеры||5604205986388|L101052038|Blazer|Blazer|Блейзер|L101052038 M 580 SS20|M|синий|62% полиэстер 37% иск. шелк 1% эластан|Португалия|L101052038_580_1 (2)|23 290|Джинсовый .||
-            $item = explode(';', $str);
-            $item_data = explode(',', $item[9]); // L101052038	 M	 580	 SS20
+            /*
+            0           1                       2               3               4                   5                   6           7           8               9                   10                              11          12      13          14                                      15                      16              17      18          19
+            Коллекция	НоменклатурнаяГруппа	ГруппаТоваров	Подлинии	    ТоварнаяКатегория	Штрихкод	        Артикул	    Ссылка	    Наименование	НаименованиеПолное	Характеристика				    Код цвета	Размер	ЦветРус	    Состав	                                Страна происхождения	ФайлКартинки	price   description	Остаток
 
-            // с 0 по 3 элемент - дерево названий категорий
-            $item_tree = array_slice($item, 0, 4);
+            FW20	    Женщины	                Верхняя одежда	Блейзеры		                    5604206041611	    L101054013	Outerwear	Blazer	        Блейзер	            L101054013	 L	 560	 FW20	560	        L	    голубой	    64% полиэстер 33% вискоза 3% эластан	Португалия		                        22590
+
+            0	FW20;
+            1 	Женщины;
+            2 	Верхняя одежда;
+            3 	Блейзеры;
+            4 	;
+            5 	5604206041611;
+            6 	L101054013;
+            7 	Outerwear;
+            8 	Blazer;
+            9 	Блейзер;
+            10 	L101054013;
+            11 	L;
+            12 	560;
+            13 	FW20;
+            14 	560;
+            15 	L;
+            16 	голубой;
+            17	64% полиэстер 33% вискоза 3% эластан;
+            18	Португалия;
+            19	;
+            20 	22590;
+            21	;
+            */
+
+
+            $item = explode(';', $str);
+
+            foreach ($item as &$v) {
+                $v = trim($v);
+            }
+
+            // с 1 по 4 элемент - дерево названий категорий
+            $item_tree = array_slice($item, 1, 4);
 
             // создадим дерево категорий и получим массив ID категорий товара
             $parent_cats = $this->createCategoryTree($item_tree, 0);
-            //$this->dump($parent_cats);
-            //die;
+
+            if($this->get_product_by_sku($item[6])) {
+                if (!in_array($item[6], $completed)) {
+                    $completed[] = $item[6];
+                }
+
+                continue;
+            }
+
+            if (!in_array($item[6], $articles)) {
+                $articles[] = $item[6];
+                $process[] = $item[6];
+            }
 
             // добавим позицию в массив с привязкой к артикулу
-            $arr[$item[5]][] = [
+            $arr[$item[6]][] = [
+                'tag'           => $item[0],  // метка
                 'cat'           => $parent_cats,//$item_tree,
-                //'sku'           => $item[5].'.'.$item_data[2],
-                'sku'           => $item[5],
-                'post_title'    => $item[8],
-                'post_excerpt'  => $item[8],
-                'size'          => $item[10], // размер
-                'color'         => $item[11], // цвет (рус.)
-                'material'      => $item[12], // материал
-                'vendor'        => $item[13], // страна
-                'price'         => $item[15], // цена
-                'post_content'  => $item[16], // описание
-                'stock'         => $item[17], // остатки
-                'data'          => $item_data
+                'sku'           => $item[6],  // артикул
+                'post_title'    => $item[9],  // название
+                'post_excerpt'  => $item[9],  // полное название
+                'size'          => $item[11], // размер
+                'color'         => $item[16], // цвет (рус.)
+                'material'      => $item[17], // материал
+                'vendor'        => $item[18], // страна
+                'price'         => $item[20], // цена
+                'post_content'  => $item[21], // описание
+                'stock'         => $item[22], // остатки
+                'data'          => [$item[6], $item[11], $item[14], $item[13]]
             ];
 
-            if(!isset($arr[$item[5]]['size'])) {
-                $arr[$item[5]]['size'] = [];
+            if(!isset($arr[$item[6]]['size'])) {
+                $arr[$item[6]]['size'] = [];
             }
 
-            if(!in_array($item[10], $arr[$item[5]]['size'])) {
-                $arr[$item[5]]['size'][] = $item[10];
+            if(!in_array($item[11], $arr[$item[6]]['size'])) {
+                $arr[$item[6]]['size'][] = $item[11];
             }
 
-            if(!isset($arr[$item[5]]['color'])) {
-                $arr[$item[5]]['color'] = [];
+            if(!isset($arr[$item[6]]['color'])) {
+                $arr[$item[6]]['color'] = [];
             }
 
-            if(!in_array($item[11], $arr[$item[5]]['color'])) {
-                $arr[$item[5]]['color'][] = $item[11];
+            if(!in_array($item[16], $arr[$item[6]]['color'])) {
+                $arr[$item[6]]['color'][] = $item[16];
             }
 
-            //$this->dump($arr); //die;
+            if (count($articles) > ($num - 1)) {
+                break;
+            }
         }
 
-        //$this->dump($arr); //die;
+        //echo sprintf('Осталось %s строк<br>', $i);
+
+        $this->attr = $this->getAttributes();
+
+        //echo sprintf('<p class="alert alert-secondary">Загружены ранее: %s</p>', implode(', ', $complited));
+        echo sprintf('<p class="alert alert-secondary">Загружены ранее: %s</p>', implode(', ', $this->completedLinks($completed)));
+        echo sprintf('<p class="alert alert-success">Обработаны: %s</p>', implode(', ', $process));
+
+
+        echo '<table class="table table-striped table-sm table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">ID товара</th>
+                  <th scope="col">Артикул</th>
+                  <th scope="col">Цвет</th>
+                  <th scope="col">Размер</th>
+                  <th scope="col">Цена</th>
+                </tr>
+              </thead>
+              <tbody>';
 
         // создадим вариативные товары
         foreach($arr as $sku) {
             $this->createVarProduct($sku); //die;
         }
-
-        //$this->dump($arr); die;
+        echo '</tbody></table>';
     }
 
     //public function createVarProduct($cats = [25], $data = [])
@@ -112,7 +189,9 @@ class WooHelper
         $description = sprintf ('Страна производства: %s<br>Материал: %s<br>%s', $data['vendor'], $data['material'], $data['post_content']);
         //echo $color_code.'<br>';
 
-        $attr = $this->getAttributes();
+        $attr = $this->attr;//$this->getAttributes();
+
+        //$this->dump($attr); die;
 
         $post = array(
             'post_title'   => $data['post_title'],//"Product with Variations2",
@@ -123,12 +202,7 @@ class WooHelper
             'post_type'    => "product"
         );
 
-        echo $data['sku'];
-
-        //var_dump(wc_get_product_id_by_sku('L101052038'));// попробуем найти товар по его артикулу
-
-
-        if(!wc_get_product_id_by_sku($data['sku'])) {
+        if(!$this->get_product_by_sku($data['sku'])) {
             //Create product/post:
             $new_post_id = wp_insert_post( $post, false );
         } else {
@@ -148,6 +222,9 @@ class WooHelper
         // цвета
         $avail_attributes2 = $color;
         wp_set_object_terms($new_post_id, $avail_attributes2, 'pa_color');
+
+        // метка товара (сезон)
+        wp_set_object_terms( $new_post_id, $data['tag'], 'product_tag');
 
         $thedata = Array(
             'pa_size'=>Array(
@@ -179,31 +256,44 @@ class WooHelper
                 continue;
             }
 
+            if(!isset($attr['size'][mb_strtolower($variation['size'])])) {
+                $new_attr_size = mb_strtolower($variation['size']);
+
+                echo 'нет атрибута '.$new_attr_size.'<br>';
+
+                if(!term_exists( $new_attr_size, 'pa_size' ) ){
+                    wp_insert_term( $new_attr_size, 'pa_size' );
+                } else {
+                    $term   = get_term_by( 'name', $new_attr_size, 'pa_size' );
+                    $variation['size'] = $term->name;
+                }
+
+                $attr = $this->getAttributes();
+            }
+
             $variation_size = $attr['size'][mb_strtolower($variation['size'])];
 
-            /*if(!isset($attr['color'][mb_strtolower($variation['color'])])) {
+            if(!isset($attr['color'][mb_strtolower($variation['color'])])) {
                 $new_attr_color = mb_strtolower($variation['color']);
 
                 echo 'нет атрибута '.$new_attr_color.'<br>';
 
-                //$this->create_attribute( $raw_name = 'pa_color', $terms = array( $new_attr_color ) );
-
-                $args = [
-                    'name' => $new_attr_color,
-                    'slug' => (new Helper())->translit($new_attr_color)
-                ];
-
-                wc_create_attribute( $args );
+                if(!term_exists( $new_attr_color, 'pa_color' ) ){
+                    wp_insert_term( $new_attr_color, 'pa_color' );
+                } else {
+                    $term   = get_term_by( 'name', $new_attr_color, 'pa_color' );
+                    $variation['color'] = $term->name;
+                }
 
                 $attr = $this->getAttributes();
-            }*/
+            }
 
             $variation_color = $attr['color'][mb_strtolower($variation['color'])];
             $variation_sku = $variation['sku'].'.'.$variation['data'][2];
             $variation_descr = sprintf ('Страна производства: %s<br>Материал: %s<br>%s', $variation['vendor'], $variation['material'], $variation['post_content']);
             $variation_stock = $variation['stock'];
 
-            echo sprintf('post_id: %s, SKU %s: color %s, size %s, price %s <br> %s', $new_post_id, $variation_sku, $variation_color, $variation_size, $variation['price'], $variation_descr);/* вариация 1 */
+            echo sprintf('<tr><th scope="row"><a href="%s" target="_blank">%s</a></th><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>', get_permalink( $new_post_id ), $new_post_id, $variation_sku, $variation_color, $variation_size, $variation['price']);/* вариация 1 */
 
             $my_post = array(
                 'post_title'=> 'Variation #' . time() . ' for prdct#'. $new_post_id,
@@ -214,12 +304,12 @@ class WooHelper
                 'guid'=>home_url() . '/?product_variation=product-' . $new_post_id . '-variation-' . time()
             );
 
-            if(!wc_get_product_id_by_sku($variation_sku)) {
-                //Create product/post:
-                $attID = wp_insert_post( $my_post );
-            } else {
-                $variation_id = wc_get_product_id_by_sku($variation_sku);
-            }
+            //if(!$this->get_product_by_sku($variation_sku)) {
+            //Create product/post:
+            wp_insert_post( $my_post );
+            /*} else {
+                $variation_id = $this->get_product_by_sku($variation_sku);
+            }*/
 
             update_post_meta($variation_id, 'attribute_pa_size', $variation_size);
             update_post_meta($variation_id, 'attribute_pa_color',  $variation_color);
@@ -254,6 +344,8 @@ class WooHelper
 
             $variation_id++;
         }
+
+
     }
 
     /**
@@ -368,6 +460,8 @@ class WooHelper
 
         $attr = wc_get_attribute_taxonomies();
 
+        //$this->dump($attr); die;
+
         foreach($attr as $a) {
             $arr[$a->attribute_name] = [];
 
@@ -479,7 +573,7 @@ class WooHelper
         foreach($sort as $item) {
 
             if(in_array(strtolower($item), $arr)) {
-               //echo $item;
+                //echo $item;
                 $newArr[] = $item;
             }
         }
@@ -564,7 +658,6 @@ class WooHelper
                                     continue;
                                 }
                                 ?>
-                                <?php /*echo apply_filters( 'woocommerce_sale_flash', '<a href="/product-tag/'.$tag->slug.'/"><span class="prod-tag '.$tag->slug.'">'.$tag->name.'</span></a>', $post, $product ); */?>
                                 <?php echo apply_filters( 'woocommerce_sale_flash', '<span class="prod-tag '.$tag->slug.'">'.$tag->name.'</span>', $post, $product ); ?>
                                 <?php
                             }
@@ -589,56 +682,56 @@ class WooHelper
 
                     <h1 class="woocommerce-loop-product__title"><?=$product->get_name()?></h1>
 
+                    <?php
+                    // $p = $this->getPriceFromHtml($product);
+
+                    ?>
+                    <span class="price"><?=wc_price( $value['display_price'] )?>
+
                         <?php
-                       // $p = $this->getPriceFromHtml($product);
+                        /************************************************/
+                        /* указание на карточке общей скидки */
+                        /************************************************/
+                        $discount = '';
+                        if($value['display_price'] != $value['display_regular_price']) {
+                            $discount = $this->getSalePercent($value['display_price'], $value['display_regular_price']);
+                            $discount = sprintf('-%s%%', $discount);
 
-                            ?>
-                            <span class="price"><?=wc_price( $value['display_price'] )?>
-
-                                <?php
-                                /************************************************/
-                                /* указание на карточке общей скидки */
-                                /************************************************/
-                                $discount = '';
-                                if($value['display_price'] != $value['display_regular_price']) {
-                                    $discount = $this->getSalePercent($value['display_price'], $value['display_regular_price']);
-                                    $discount = sprintf('-%s%%', $discount);
-
-                                    ?><del class="inline"><?=wc_price($value['display_regular_price'])?></del><?php
-                                }
-                                /************************************************/
-                                ?>
+                            ?><del class="inline"><?=wc_price($value['display_regular_price'])?></del><?php
+                        }
+                        /************************************************/
+                        ?>
 
                             </span>
-                            <?php
-                            /************************************************/
-                            /*  указание на карточке персональной скидки */
-                            /************************************************/
+                    <?php
+                    /************************************************/
+                    /*  указание на карточке персональной скидки */
+                    /************************************************/
 
-                            /*
-                            $personal_price = $this->getPersonalPrice($value['display_price']);
+                    /*
+                    $personal_price = $this->getPersonalPrice($value['display_price']);
 
-                            if($personal_price && ($personal_price != $value['display_price'])):*/?><!--
+                    if($personal_price && ($personal_price != $value['display_price'])):*/?><!--
                             <span class="price"><?/*=wc_price( $personal_price )*/?>
                                 <del class="inline"><?/*=wc_price($value['display_price'])*/?></del>
                             </span>
                             <?php
-                            /* else:*/?>
+                    /* else:*/?>
                                 <span class="price"><?/*=wc_price( $value['display_price'] )*/?></span>
                             --><?php /*endif;
                             */?>
 
-                            <?php
-                            /*if((new Crm())->getCurrentUserDiscount()) {
-                                $discount = sprintf('-%s%%', (new Crm())->getCurrentUserDiscount());
-                            } else {
-                                $discount = '';
-                            }
-                            */
-                            /************************************************/
-                            ?>
+                    <?php
+                    /*if((new Crm())->getCurrentUserDiscount()) {
+                        $discount = sprintf('-%s%%', (new Crm())->getCurrentUserDiscount());
+                    } else {
+                        $discount = '';
+                    }
+                    */
+                    /************************************************/
+                    ?>
 
-                            <span class="personal-discount"><?=$discount?></span>
+                    <span class="personal-discount"><?=$discount?></span>
 
                 </a>
 
@@ -909,11 +1002,11 @@ class WooHelper
     {
         $percent = 0;
 
-       /*
-        200 = 100%
-        70 = x%$cart->subtotal
-        x = 70 * 100 / 200
-       */
+        /*
+         200 = 100%
+         70 = x%$cart->subtotal
+         x = 70 * 100 / 200
+        */
 
         if($sale_price <  $regular_price) {
             $percent = floor( 100 - ($sale_price * 100 / $regular_price));
@@ -1062,6 +1155,45 @@ class WooHelper
 
     public function sortProductListByTags($posts)
     {
+        //$arr0 = ['ss19', 'ss20'];
+        $arr0 = ['fw21', 'fw20', 'fw19', 'fw18', 'fw17', 'fw16', 'ss20', 'ss19', 'ss18', 'ss17', 'ss16'];
+        $arr1 = [];
+        $arr2 = [];
+
+        foreach($posts as $post) {
+            $tags = get_the_terms( $post->ID, 'product_tag' );//wc_get_product_tag_list( $post->ID );
+
+            if($tags) {
+                foreach($tags as $tag) {
+                    if(in_array($tag->slug, $arr0)) {
+                        $arr1[$tag->slug][] = $post;
+                    } else {
+                        $arr2[] = $post;
+                    }
+                }
+            } else {
+                $arr2[] = $post;
+            }
+        }
+
+        if(!empty($arr1)) {
+
+            $posts = [];
+
+            foreach ($arr0 as $tag_slug) {
+                if (isset($arr1[$tag_slug])) {
+                    $posts = array_merge($posts, $arr1[$tag_slug]);
+                }
+            }
+
+            $posts = array_merge($posts, $arr2);
+        }
+
+        return $posts;
+    }
+
+    /*public function sortProductListByTags($posts)
+    {
         $exclude = [
             1159, // special-offer
             1158, // new-arrival
@@ -1115,7 +1247,7 @@ class WooHelper
         }
 
         return $posts;
-    }
+    }*/
 
     /**
      * Есть ли товары, помеченные NewArrival
@@ -1200,5 +1332,66 @@ class WooHelper
 
 
         return $arr;
+    }
+
+    public function dump($obj)
+    {
+        echo "<pre>".print_r((object)$obj, true)."</pre>";
+    }
+
+    /**
+     * Найти ID продукта по его артикулу
+     *
+     * @param $sku
+     * @return null|string
+     */
+    public function get_product_by_sku($sku) {
+
+        global $wpdb;
+
+        $product_id = $wpdb->get_var( $wpdb->prepare( "SELECT post_id FROM $wpdb->postmeta WHERE meta_key='_sku' AND meta_value='%s' LIMIT 1", $sku ) );
+
+        if ( $product_id ) return $product_id;
+
+        return null;
+    }
+
+    /**
+     * Выбор всех уникальных артикулов из файла импорта
+     *
+     * @param $f
+     * @return array
+     */
+    public function getAllArticles($f)
+    {
+        $arr = [];
+
+        foreach ($f as $str) {
+            $item = explode(';', $str);
+
+            foreach ($item as &$v) {
+                $v = trim($v);
+            }
+
+            if (!in_array($item[$this->index_article], $arr)) {
+                $arr[] = $item[$this->index_article];
+            }
+        }
+
+        return $arr;
+    }
+
+    public function completedLinks($completed)
+    {
+        $s = [];
+
+        foreach ($completed as $article) {
+            $id = $this->get_product_by_sku($article);
+            $link = $id ? '<a href="'.get_permalink( $id ).'" target="_blank">'.$article.'</a>'  : $article;
+
+            $s[] = $link;
+        }
+
+        return $s;
     }
 }
