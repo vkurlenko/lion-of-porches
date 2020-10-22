@@ -441,6 +441,27 @@ textarea {
       }
     }
   }
+
+  .close-menu {
+    //border: 1px solid red;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    display: none;
+  }
+}
+
+.main-menu.mobile.show {
+  display: block !important;
+
+  > ul, > div.aws-container, > div.row {
+    display: none;
+  }
+
+  .close-menu {
+    display: inline-block;
+  }
 }
 
 .main-menu.mobile > ul {
