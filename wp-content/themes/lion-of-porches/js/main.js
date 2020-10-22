@@ -65,6 +65,7 @@ $(document).on('click', '.big-banner-text .list-inline > li > a', function () {
         var category = $(this).data('category');
         $('.mobile-submenu .container').hide();
 
+        $('.threebar').fadeToggle(500);
         $('.main-menu.mobile').addClass('show');
         $('.mobile-submenu .'+category).show();
 
@@ -74,6 +75,7 @@ $(document).on('click', '.big-banner-text .list-inline > li > a', function () {
 
 $(document).on('click', '.close-menu', function () {
     $('.main-menu.mobile').removeClass('show');
+    $('.threebar').fadeToggle(500);
     $('.mobile-submenu .container').hide();
 });
 
