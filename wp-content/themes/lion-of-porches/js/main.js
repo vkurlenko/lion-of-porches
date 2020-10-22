@@ -58,9 +58,32 @@ $(document).on('click', '.mobile-submenu > div > ul > li > a', function () {
             return false;
         }
     }
-
-
 });
+
+$(document).on('click', '.big-banner-text .list-inline > li > a', function () {
+    if (isMobile()) {
+        var category = $(this).data('category');
+        $('.mobile-submenu .container').hide();
+
+        $('.main-menu.mobile').addClass('show');
+        $('.mobile-submenu .'+category).show();
+
+        return false;
+    }
+});
+
+$(document).on('click', '.close-menu', function () {
+    $('.main-menu.mobile').removeClass('show');
+    $('.mobile-submenu .container').hide();
+});
+
+function isMobile() {
+    if ($(document).width() <= 768 ) {
+        return true;
+    }
+
+    return false;
+}
 /* /Дерево категорий в моб. меню */
 
 /* Фиксация главного меню при прокрутке страницы */
@@ -73,6 +96,7 @@ $(window).on("scroll", function() {
     }
 });
 /* /Фиксация главного меню при прокрутке страницы */
+
 
 
 $(document).ready(function() {

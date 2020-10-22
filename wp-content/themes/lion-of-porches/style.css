@@ -331,6 +331,19 @@ textarea {
     .main-menu.mobile .mobile-submenu ul.children li a {
       text-transform: unset;
       font-weight: normal; }
+  .main-menu.mobile .close-menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    display: none; }
+
+.main-menu.mobile.show {
+  display: block !important; }
+  .main-menu.mobile.show > ul, .main-menu.mobile.show > div.aws-container, .main-menu.mobile.show > div.row {
+    display: none; }
+  .main-menu.mobile.show .close-menu {
+    display: inline-block; }
 
 .main-menu.mobile > ul {
   padding: 15px 20px;
@@ -477,24 +490,24 @@ a.cart-link:hover {
 
 /** /форма поиска */
 /* hamburger */
-.threebar {
+.threebar, .close-menu {
   cursor: pointer;
   padding: 15px; }
-  .threebar .bar {
+  .threebar .bar, .close-menu .bar {
     width: 20px;
     height: 2px;
     background: #5b7a9c;
     margin-bottom: 4px;
     transition: all 0.5s ease; }
-    .threebar .bar:nth-child(1) {
+    .threebar .bar:nth-child(1), .close-menu .bar:nth-child(1) {
       transform-origin: 16%; }
-    .threebar .bar:nth-child(3) {
+    .threebar .bar:nth-child(3), .close-menu .bar:nth-child(3) {
       transform-origin: 21%; }
-  .threebar.cross .bar:nth-child(1) {
+  .threebar.cross .bar:nth-child(1), .threebar.close-menu-cross .bar:nth-child(1), .close-menu.cross .bar:nth-child(1), .close-menu.close-menu-cross .bar:nth-child(1) {
     transform: translateY(75%) rotate(45deg); }
-  .threebar.cross .bar:nth-child(2) {
+  .threebar.cross .bar:nth-child(2), .threebar.close-menu-cross .bar:nth-child(2), .close-menu.cross .bar:nth-child(2), .close-menu.close-menu-cross .bar:nth-child(2) {
     opacity: 0; }
-  .threebar.cross .bar:nth-child(3) {
+  .threebar.cross .bar:nth-child(3), .threebar.close-menu-cross .bar:nth-child(3), .close-menu.cross .bar:nth-child(3), .close-menu.close-menu-cross .bar:nth-child(3) {
     transform: translateY(-75%) rotate(-45deg); }
 
 /*****************/

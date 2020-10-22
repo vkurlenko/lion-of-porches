@@ -84,5 +84,11 @@
             </div>
         </div>
 
+        <div class="close-menu close-menu-cross">
+            <div class='bar'></div>
+            <div class='bar'></div>
+            <div class='bar'></div>
+        </div>
+
     </div>
 </div>

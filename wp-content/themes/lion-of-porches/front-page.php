@@ -33,7 +33,7 @@ $product_categories = $helper->getTopCategory();
                     <ul class="btn-list list-inline">
                         <?php
                         foreach ( $product_categories as $product_category ):?>
-                        <li><a class="btn-alt" href="<?= get_term_link($product_category) ?>"><?=$product_category->name?></a></li>
+                        <li><a class="btn-alt" data-category="<?=$product_category->slug?>" href="<?= get_term_link($product_category) ?>"><?=$product_category->name?></a></li>
                         <?php
                         endforeach;
                         ?>
