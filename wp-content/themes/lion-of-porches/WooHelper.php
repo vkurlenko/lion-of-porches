@@ -291,7 +291,7 @@ class WooHelper
             $variation_color = $attr['color'][mb_strtolower($variation['color'])];
             $variation_sku = trim($variation['sku']).'.'.trim($variation['data'][2]);
             $variation_descr = sprintf ('Страна производства: %s<br>Материал: %s<br>%s', $variation['vendor'], $variation['material'], $variation['post_content']);
-            $variation_stock = $variation['stock'];
+            $variation_stock = intval($variation['stock']) ? intval($variation['stock']) : 0;
 
             echo sprintf('<tr><th scope="row"><a href="%s" target="_blank">%s</a></th><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>', get_permalink( $new_post_id ), $new_post_id, $variation_sku, $variation_color, $variation_size, $variation['price']);/* вариация 1 */
 
@@ -318,7 +318,7 @@ class WooHelper
             update_post_meta($variation_id, '_sale_price', '');
             update_post_meta($variation_id, '_variation_description', $variation_descr);
             update_post_meta($variation_id, '_sku', $variation_sku);
-            update_post_meta($variation_id, '_stock_status', 'instock');
+            update_post_meta($variation_id, '_stock_status', $variation_stock ? 'instock' : 'outofstock');
             update_post_meta($variation_id, '_stock', $variation_stock);
             update_post_meta($variation_id, '_manage_stock', 'yes');
 
@@ -589,6 +589,9 @@ class WooHelper
      */
     public function getVariationsAsProduct($product, $post)
     {
+        if(!$product->is_in_stock()) {
+            return;
+        }
         $terms = get_the_terms( $product->get_id(), 'product_cat' );
         foreach ($terms as $term) {
             $product_cat[] = 'product_cat-'.$term->slug;
