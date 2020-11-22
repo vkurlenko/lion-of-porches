@@ -163,6 +163,7 @@ class WooHelper
                   <th scope="col">Цвет</th>
                   <th scope="col">Размер</th>
                   <th scope="col">Цена</th>
+                  <th scope="col">Остаток</th>
                 </tr>
               </thead>
               <tbody>';
@@ -293,7 +294,19 @@ class WooHelper
             $variation_descr = sprintf ('Страна производства: %s<br>Материал: %s<br>%s', $variation['vendor'], $variation['material'], $variation['post_content']);
             $variation_stock = intval($variation['stock']) ? intval($variation['stock']) : 0;
 
-            echo sprintf('<tr><th scope="row"><a href="%s" target="_blank">%s</a></th><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>', get_permalink( $new_post_id ), $new_post_id, $variation_sku, $variation_color, $variation_size, $variation['price']);/* вариация 1 */
+            echo sprintf('<tr><th scope="row"><a href="%s" target="_blank">%s</a></th><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>', get_permalink( $new_post_id ), $new_post_id, $variation_sku, $variation_color, $variation_size, $variation['price'], $variation_stock);/* вариация 1 */
+
+            $log = [
+                get_permalink( $new_post_id ),
+                $new_post_id,
+                $variation_sku,
+                $variation_color,
+                $variation_size,
+                $variation['price'],
+                $variation_stock
+            ];
+
+            $this->log($log);
 
             $my_post = array(
                 'post_title'=> 'Variation #' . time() . ' for prdct#'. $new_post_id,
@@ -345,8 +358,22 @@ class WooHelper
 
             $variation_id++;
         }
+    }
 
+    public function log($row)
+    {
+        $today = date('Y-m-d');
+        $dir = $_SERVER['DOCUMENT_ROOT'].'/import/';
 
+        if(!is_dir($dir)) {
+            mkdir($dir);
+        }
+
+        $f = fopen($dir.$today.'.csv', 'a+');
+
+        $str = sprintf("%s;%s%s", date('Y-m-d H:i:s'), implode(";", $row), "\n");
+
+        fwrite($f, $str);
     }
 
     /**
