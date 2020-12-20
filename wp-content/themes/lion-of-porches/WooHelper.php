@@ -711,7 +711,7 @@ class WooHelper
                         <!--<span class="color <?/*=$value['attributes']['attribute_pa_color']*/?>" title="<?/*=$this->getColorTitles()[$value['attributes']['attribute_pa_color']]*/?>"></span>-->
                     </div>
 
-                    <h1 class="woocommerce-loop-product__title"><?=$product->get_name()?></h1>
+                    <h3 class="woocommerce-loop-product__title"><?=$product->get_name()?></h3>
 
                     <?php
                     // $p = $this->getPriceFromHtml($product);
