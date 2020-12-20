@@ -404,7 +404,7 @@ a.cart-link:hover {
   color: #00244b;
   padding: 3px 12px;
   display: block;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 700;
   text-transform: uppercase;
   font-family: 'DIN Pro', sans-serif;
@@ -439,7 +439,7 @@ a.cart-link:hover {
   font-family: 'DIN Pro', sans-serif; }
   .top-menu-2 ul li a {
     padding: 0 10px;
-    font-size: 12px; }
+    font-size: 16px; }
   .top-menu-2 ul li:last-child {
     border-left: 1px solid #ccc; }
 
