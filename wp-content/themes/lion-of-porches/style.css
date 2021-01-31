@@ -1545,6 +1545,9 @@ span.art {
 .woocommerce-additional-fields {
   display: none !important; }
 
+.term-description * {
+  font-size: 14px; }
+
 /* instagram gallery */
 .lifestyle h2 {
   font-family: 'Raleway', sans-serif;

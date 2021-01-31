@@ -141,9 +141,9 @@ class WooHelper
                 $arr[$item[6]]['color'][] = $item[16];
             }
 
-            if (count($articles) > ($num - 1)) {
+            /*if (count($articles) > ($num - 1)) {
                 break;
-            }
+            }*/
         }
 
         //echo sprintf('Осталось %s строк<br>', $i);
