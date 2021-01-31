@@ -196,6 +196,7 @@ if ( $current_screen->is_block_editor() ) {
 }
 
 ?>
+    <link rel="stylesheet" href="/wp-admin/css/select2.css">
 </head>
 <?php
 /**
