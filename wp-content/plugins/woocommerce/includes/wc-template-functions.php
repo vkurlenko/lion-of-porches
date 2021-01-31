@@ -1212,7 +1212,7 @@ if ( ! function_exists( 'woocommerce_taxonomy_archive_description' ) ) {
 			$term = get_queried_object();
 
 			if ( $term && ! empty( $term->description ) ) {
-				echo '<div class="term-description">111' . wc_format_content( $term->description ) . '</div>'; // WPCS: XSS ok.
+				echo '<div class="term-description">' . wc_format_content( $term->description ) . '</div>';
 			}
 		}
 	}
