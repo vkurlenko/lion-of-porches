@@ -404,7 +404,7 @@ a.cart-link:hover {
   color: #00244b;
   padding: 3px 12px;
   display: block;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 700;
   text-transform: uppercase;
   font-family: 'DIN Pro', sans-serif;
@@ -439,7 +439,7 @@ a.cart-link:hover {
   font-family: 'DIN Pro', sans-serif; }
   .top-menu-2 ul li a {
     padding: 0 10px;
-    font-size: 12px; }
+    font-size: 16px; }
   .top-menu-2 ul li:last-child {
     border-left: 1px solid #ccc; }
 
@@ -1346,14 +1346,15 @@ ul.products li.product a img {
   border-top: 0 !important;
   border-bottom: 0 !important; }
 
-#lp-cart_totals table {
-  width: max-content; }
-
 #lp-cart_totals table,
 #lp-cart_totals table tr,
 #lp-cart_totals table tr th,
 #lp-cart_totals table tr td {
   border-color: #fff !important; }
+
+.woocommerce .cart-collaterals .cart_totals,
+.woocommerce-page .cart-collaterals .cart_totals {
+  width: 100%; }
 
 /* артикул на карточке товара */
 /*.woocommerce-LoopProduct-link */
@@ -1543,6 +1544,9 @@ span.art {
 .woocommerce-shipping-fields,
 .woocommerce-additional-fields {
   display: none !important; }
+
+.term-description * {
+  font-size: 14px; }
 
 /* instagram gallery */
 .lifestyle h2 {

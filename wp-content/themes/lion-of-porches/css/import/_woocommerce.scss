@@ -694,7 +694,7 @@ ul.products li.product a img {
 }
 
 #lp-cart_totals table {
-    width: max-content;
+    //width: max-content;
 }
 
 #lp-cart_totals table,
@@ -703,6 +703,11 @@ ul.products li.product a img {
 #lp-cart_totals table tr td{
     //border: 0 !important;
     border-color: #fff !important;
+}
+
+.woocommerce .cart-collaterals .cart_totals,
+.woocommerce-page .cart-collaterals .cart_totals {
+    width: 100%;
 }
 
 /* артикул на карточке товара */
@@ -924,6 +929,10 @@ ul.products li.product a img {
 .woocommerce-shipping-fields,
 .woocommerce-additional-fields {
     display: none !important;
+}
+
+.term-description * {
+    font-size: 14px;
 }
 
 

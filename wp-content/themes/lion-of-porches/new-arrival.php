@@ -17,16 +17,18 @@ get_header();
                 <?php
                 $url = parse_url ( $_SERVER['REQUEST_URI']);
 
+                $tag = 'woman';
+
                 if(isset($url['query'])) {
                     $q = explode('=', $url['query']);
 
                     if(!empty($q)) {
                         $tag = $q[1];
-
-                        if($tag) {
-                            echo do_shortcode('[products tag="new-arrival" category="'.$tag.'" orderby="date" order="DESC"]');
-                        }
                     }
+                }
+
+                if($tag) {
+                    echo do_shortcode('[products tag="new-arrival" category="'.$tag.'" orderby="date" order="DESC"]');
                 }
                 ?>
 
