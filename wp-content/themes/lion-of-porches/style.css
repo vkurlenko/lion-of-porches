@@ -1547,6 +1547,11 @@ span.art {
 
 .term-description * {
   font-size: 14px; }
+  .term-description * li {
+    list-style: none; }
+  .term-description * li::before {
+    content: '✪';
+    margin-right: 20px; }
 
 /* instagram gallery */
 .lifestyle h2 {
