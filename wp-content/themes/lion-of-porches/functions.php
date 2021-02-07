@@ -1326,4 +1326,47 @@ add_action( 'init', 'my_init' );
 add_filter('woocommerce_registration_redirect', 'wc_registration_redirect');
 add_filter('wp_authenticate_user', 'wp_authenticate_user',10,2);
 add_action('user_register', 'my_user_register',10,2);*/
+
+/*
+* Сниппет предназначен для добавления вызова курьера при экспорте заявки в ЛК СДЭК.
+* Ссылка на плагин https://woodev.ru/downloads/wc-edostavka-integration
+* Пример кода работает для тарифа СДЭК "Посылка дверь-склад" и "Посылка дверь-дверь".
+* По вопросам обращайтесь на емайл maksim@martirosoff.ru или через контактную форму https://woodev.ru/support
+* Нижеприведённый код необходимо вставить в файл functions.php вашей активной темы.
+* Автор кода не несёт отвественности в случае возникновеня каких либо проблем при использовании данного кода.
+* Любые изменения которые вы вносите в код вашего сайта, вы делаете это на свой страх и риск.
+* Код представлен для ознакомления как есть. Вы должны понимать что с этим кодом нужно делать. Если нет то обатитесь к профессионалам.
+*/
+
+add_filter( 'woocommerce_edostavka_order_delivery_request', 'edostavka_order_add_call_courier', 10, 2 );
+function edostavka_order_add_call_courier( $atts, $order ) {
+
+    $tariff_id = $order->get_meta( '_shipping_delivery_tariff' );
+    $from_door_tariffs = array( 138, 139 ); //Массив тарифов нужные для вызова курера
+
+    if( in_array( $tariff_id, $from_door_tariffs, true ) ) {
+
+        /*$atts['CallCourier']['Call']['@attributes'] = array(
+            'Date' => date('Y-m-d'), //Дата ожидания курьера
+            'SendCityCode' => apply_filters( 'woocommerce_edostavka_city_origin', 0 ), //Код города отправителя из базы СДЭК
+            'SendPhone' => '+79009009090', //Контактный телефон отправителя
+            'SenderName' => 'Иванов Иван Иванович', //Отправитель (ФИО)
+            'Comment' => 'Вход со двора' //Комментарий для курьера
+        );*/
+        $atts['CallCourier']['Call']['@attributes'] = array(
+            'cdek_number'=>$order->get_id(),
+            'intake_date' => date('yyyy-MM-dd'), //Дата ожидания курьера
+            'intake_time_from'=>'10:00',
+            'intake_time_to'=>'22:00',
+            'name'=>'',
+            'phones'=>[
+                [
+                'number' => '+74993766636'
+                ]
+            ]
+        );
+    }
+
+    return $atts;
+}
 ?>
