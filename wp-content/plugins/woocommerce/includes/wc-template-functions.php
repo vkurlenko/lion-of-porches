@@ -978,7 +978,9 @@ if ( ! function_exists( 'woocommerce_content' ) ) {
             $isMobile = $detect->isMobile();
 
             if (!$isMobile) {
+                echo '<div class="row"><div class="col-md-6 col-md-offset-3 col-sm-12">';
                 do_action( 'woocommerce_archive_description' );
+                echo '</div></div>';
             }
 		}
 	}
