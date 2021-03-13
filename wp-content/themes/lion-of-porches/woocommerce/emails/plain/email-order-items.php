@@ -35,7 +35,8 @@ foreach ( $items as $item_id => $item ) :
 			echo ' (#' . $sku . ')';
 		}
 		echo ' X ' . apply_filters( 'woocommerce_email_order_item_quantity', $item->get_quantity(), $item );
-		echo ' = ' . $order->get_formatted_line_subtotal( $item ) . "\n";
+		//echo ' = ' . $order->get_formatted_line_subtotal( $item ) . (new WooHelper())->getCouponDiscount($order, $item). "\n";
+        echo ' = ' . (new WooHelper())->getCouponDiscount($order, $item). "\n";
 
 		// allow other plugins to add additional product information here
 		do_action( 'woocommerce_order_item_meta_start', $item_id, $item, $order, $plain_text );

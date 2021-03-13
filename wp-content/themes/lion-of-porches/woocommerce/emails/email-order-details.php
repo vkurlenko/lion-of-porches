@@ -42,6 +42,7 @@ do_action( 'woocommerce_email_before_order_table', $order, $sent_to_admin, $plai
 				<th class="td" scope="col" style="text-align:<?php echo esc_attr( $text_align ); ?>;"><?php esc_html_e( 'Product', 'woocommerce' ); ?></th>
 				<th class="td" scope="col" style="text-align:<?php echo esc_attr( $text_align ); ?>;"><?php esc_html_e( 'Quantity', 'woocommerce' ); ?></th>
 				<th class="td" scope="col" style="text-align:<?php echo esc_attr( $text_align ); ?>;"><?php esc_html_e( 'Price', 'woocommerce' ); ?></th>
+                <th class="td" scope="col" style="text-align:<?php echo esc_attr( $text_align ); ?>;">Купон</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -62,23 +63,53 @@ do_action( 'woocommerce_email_before_order_table', $order, $sent_to_admin, $plai
 			<?php
 			$item_totals = $order->get_order_item_totals();
 
+            $discount = '';
+            foreach ( $item_totals as $total ) {
+                if ($total['label'] == 'Скидка:') {
+                    $discount = $total['value'];
+                    break;
+                }
+            }
+
 			if ( $item_totals ) {
 				$i = 0;
 				foreach ( $item_totals as $total ) {
-					$i++;
-					?>
-					<tr>
-						<th class="td" scope="row" colspan="2" style="text-align:<?php echo esc_attr( $text_align ); ?>; <?php echo ( 1 === $i ) ? 'border-top-width: 4px;' : ''; ?>"><?php echo wp_kses_post( $total['label'] ); ?></th>
-						<td class="td" style="text-align:<?php echo esc_attr( $text_align ); ?>; <?php echo ( 1 === $i ) ? 'border-top-width: 4px;' : ''; ?>"><?php echo wp_kses_post( $total['value'] ); ?></td>
-					</tr>
-					<?php
+					if ($total['label'] == 'Скидка:') {
+					    continue;
+                    }
+				    $i++;
+
+					if ($total['label'] == 'Подытог:') {
+					    ?>
+                        <tr>
+                            <th class="td" scope="row" colspan="2" style="text-align:<?php echo esc_attr( $text_align ); ?>; <?php echo ( 1 === $i ) ? 'border-top-width: 4px;' : ''; ?>"><?php echo wp_kses_post( $total['label'] ); ?></th>
+                            <td class="td"  style="text-align:<?php echo esc_attr( $text_align ); ?>; <?php echo ( 1 === $i ) ? 'border-top-width: 4px;' : ''; ?>"><?php echo wp_kses_post( $total['value'] ); ?></td>
+                            <td class="td"  style="text-align:<?php echo esc_attr( $text_align ); ?>; <?php echo ( 1 === $i ) ? 'border-top-width: 4px;' : ''; ?>"><?php echo $discount; ?></td>
+                        </tr>
+                        <?php
+                    } else {
+
+                        if ($total['label'] == 'Всего:') {
+                            $value = '<strong>'.wp_kses_post( $total['value'] ).'</strong>';
+                        } else {
+                            $value = wp_kses_post( $total['value'] );
+                        }
+
+                        ?>
+                        <tr>
+                            <th class="td" scope="row" colspan="2" style="text-align:<?php echo esc_attr( $text_align ); ?>; <?php echo ( 1 === $i ) ? 'border-top-width: 4px;' : ''; ?>"><?php echo wp_kses_post( $total['label'] ); ?></th>
+                            <td class="td" colspan="2" style="text-align:<?php echo esc_attr( $text_align ); ?>; <?php echo ( 1 === $i ) ? 'border-top-width: 4px;' : ''; ?>"><?php echo $value; ?></td>
+                        </tr>
+                        <?php
+                    }
+
 				}
 			}
 			if ( $order->get_customer_note() ) {
 				?>
 				<tr>
 					<th class="td" scope="row" colspan="2" style="text-align:<?php echo esc_attr( $text_align ); ?>;"><?php esc_html_e( 'Note:', 'woocommerce' ); ?></th>
-					<td class="td" style="text-align:<?php echo esc_attr( $text_align ); ?>;"><?php echo wp_kses_post( nl2br( wptexturize( $order->get_customer_note() ) ) ); ?></td>
+					<td class="td" colspan="2" style="text-align:<?php echo esc_attr( $text_align ); ?>;"><?php echo wp_kses_post( nl2br( wptexturize( $order->get_customer_note() ) ) ); ?></td>
 				</tr>
 				<?php
 			}
