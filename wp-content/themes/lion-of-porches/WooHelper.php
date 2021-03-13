@@ -6,6 +6,8 @@
  * Time: 21:45
  */
 
+ini_set('max_execution_time', '600');
+
 //use Helper;
 
 class WooHelper
@@ -17,7 +19,7 @@ class WooHelper
     /**
      *  Загрузка каталога товаров из текстового файла
      */
-    public function createVarProductsFromFile($filename, $num = 5)
+    public function createVarProductsFromFile($filename, $num = 1000)
     {
         $this->index_article = 6;
 
@@ -1437,5 +1439,116 @@ class WooHelper
         foreach ($arr as $post_id) {
             echo $i++.') post_id = '.$post_id.' = '.update_post_meta( $post_id,'_sale_price', '').'<br>';
         }
+    }
+
+    /**
+     * Генератор индивидуального купона за подписку на новости
+     *
+     * @return bool|string
+     */
+    public static function generateCoupon()
+    {
+        $current_user = wp_get_current_user();
+
+        if (self::isCouponExists($current_user->ID)) {
+            return false;
+        }
+
+        $coupon_code = self::generateCouponCode(); // Код купона
+
+        $settings = self::getCouponByCode('00xxxxxx');
+
+        $coupon = array(
+            'post_title' => $coupon_code,
+            'post_content' => 'werwer',
+            'post_status' => 'publish',
+            'post_author' => 1,
+            'post_type'		=> 'shop_coupon',
+            'post_excerpt' => 'Купон за подписку на новости'
+        );
+        $new_coupon_id = wp_insert_post( $coupon );
+
+        //(new Helper())->dump($settings); die;
+
+        update_post_meta( $new_coupon_id, 'user_id',        $current_user->ID );
+        update_post_meta( $new_coupon_id, 'discount_type',  isset($settings['discount_type'])    ? $settings['discount_type'] : 'fixed_cart');
+        update_post_meta( $new_coupon_id, 'coupon_amount',  isset($settings['coupon_amount'])    ? $settings['coupon_amount'] : '0');
+        update_post_meta( $new_coupon_id, 'individual_use', isset($settings['individual_use'])   ? $settings['individual_use'] : 'yes');
+        update_post_meta( $new_coupon_id, 'product_ids',    isset($settings['product_ids'])      ? $settings['product_ids'] :  '');
+        update_post_meta( $new_coupon_id, 'exclude_product_ids', isset($settings['exclude_product_ids']) ? $settings['exclude_product_ids'] :  '');
+        update_post_meta( $new_coupon_id, 'usage_limit',    isset($settings['usage_limit'])      ? $settings['usage_limit'] :  '');
+        update_post_meta( $new_coupon_id, 'usage_limit_per_user',    isset($settings['usage_limit_per_user']) ? $settings['usage_limit_per_user'] :  '');
+        update_post_meta( $new_coupon_id, 'expiry_date',    isset($settings['expiry_date'])      ? $settings['expiry_date'] :  '');
+        update_post_meta( $new_coupon_id, 'apply_before_tax',isset($settings['apply_before_tax']) ? $settings['apply_before_tax'] :  'yes');
+        update_post_meta( $new_coupon_id, 'free_shipping',  isset($settings['free_shipping'])    ? $settings['free_shipping'] :  'no');
+
+        return $coupon_code;
+    }
+
+    public static function isCouponExists($user_id)
+    {
+        $args = array(
+            'posts_per_page'   => -1,
+            'orderby'          => 'title',
+            'order'            => 'asc',
+            'post_type'        => 'shop_coupon',
+            'post_status'      => 'publish',
+        );
+
+        $coupons = get_posts( $args );
+        //(new Helper())->dump($coupons); die;
+
+        foreach ($coupons as $coupon) {
+            if (isset($coupon->user_id) && $coupon->user_id == $user_id) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static function generateCouponCode($strength = 6)
+    {
+        $input = '0123456789ABCDEF';
+
+        $input_length = strlen($input);
+        $random_string = '';
+        for($i = 0; $i < $strength; $i++) {
+            $random_character = $input[mt_rand(0, $input_length - 1)];
+            $random_string .= $random_character;
+        }
+
+        $random_string = '00'.strtoupper($random_string);
+
+        return $random_string;
+    }
+
+    public static function getCouponByCode($code = '')
+    {
+        if ($code == '') {
+            return [];
+        }
+
+        $arr = [];
+
+        global $wpdb;
+        $coupon = $wpdb->get_results( "SELECT ID FROM $wpdb->posts WHERE post_title='".$code."' LIMIT 1");
+
+        //(new Helper())->dump($coupon); //die;
+
+        if(count($coupon) > 0) {
+            $coupon_id = $coupon[0]->ID;
+
+
+            $coupon_settings = $wpdb->get_results( "SELECT * FROM $wpdb->postmeta WHERE post_id='".$coupon_id."'");
+
+
+            foreach ($coupon_settings as $post) {
+                $arr[$post->meta_key] = $post->meta_value;
+            }
+            //(new Helper())->dump($arr); die;
+        }
+
+        return $arr;
     }
 }
