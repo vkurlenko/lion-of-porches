@@ -397,7 +397,7 @@ function woo_discount_total(WC_Cart $cart) {
             $discount_price = (new WooHelper())->getCartSubTotal($cart);
 
             //$cart->add_fee("Персональная скидка в ".$discount."% ", -$discount_price);
-            $cart->add_fee("Ваша&nbsp;экономия", -$discount_price);
+            $cart->add_fee("Ваша&nbsp;экономия по&nbsp;программе&nbsp;привилегии", -$discount_price);
         }
     }
 }
@@ -480,22 +480,32 @@ function filter_function_name_2924( $array_merge, $cart_item_key ){
     return $array_merge;
 }*/
 
-/*add_action( 'woocommerce_checkout_create_order', 'action_function_name_8842', 10, 2 );
+add_action( 'woocommerce_checkout_create_order', 'action_function_name_8842', 10, 2 );
 function action_function_name_8842( $order, $data ){
 
+    $coupon_amounts = 0;
+
+    foreach( $order->get_coupon_codes() as $coupon_code ) {
+        // Get the WC_Coupon object
+        $coupon = new WC_Coupon($coupon_code);
+
+        $discount_type = $coupon->get_discount_type(); // Get coupon discount type
+        $coupon_amount = $coupon->get_amount(); // Get coupon amount
+
+        if ($discount_type == 'fixed_cart') {
+            $coupon_amounts += $coupon_amount;
+        }
+    }
 
     $items = $order->get_items(['line_item']);
 
-    foreach($items as $item) {
-        echo $item->get_total();
-        $order_id = $item->get_order_id();
-        echo $order_id;
-        //wc_update_order_item_meta( $order_id, '_line_total', 30 );
-        //wc_update_order_item_meta( $order_id, '_line_total', 555 );
-    }
+    $coupon_discount_percent = 100 - ($order->get_total() * 100 / $order->get_subtotal());
 
-    //(new Helper())->dump($order->get_items()); die;
-}*/
+    foreach($items as $item) {
+        $new_total = $item->get_subtotal() - ($item->get_subtotal() * $coupon_discount_percent / 100);
+        $item->set_total($new_total);
+    }
+}
 
 add_action( 'woocommerce_add_order_item_meta', 'order_item_meta', 10, 2 );
 
