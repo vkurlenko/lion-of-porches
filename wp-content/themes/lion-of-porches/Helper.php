@@ -35,7 +35,7 @@ class Helper
             'style'              => 'list',
             'show_count'         => 0,
             'hide_empty'         => 1,
-            'use_desc_for_title' => 1,
+            'use_desc_for_title' => 0,
             'child_of'           => $parent,
             'feed'               => '',
             'feed_type'          => '',
