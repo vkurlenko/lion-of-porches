@@ -16,6 +16,35 @@ class WooHelper
     public $index_article;
     const CART_CONTENTS_COUNT_MAX = 5;
 
+    public function getCouponDiscount($order, $item)
+    {
+        $coupon_amounts = 0;
+
+        if (!count($order->get_coupon_codes())) {
+            return ''; //$order->get_formatted_line_subtotal( $item );
+        } else {
+            foreach( $order->get_coupon_codes() as $coupon_code ) {
+
+                // Get the WC_Coupon object
+                $coupon = new WC_Coupon($coupon_code);
+
+                $discount_type = $coupon->get_discount_type(); // Get coupon discount type
+                $coupon_amount = $coupon->get_amount(); // Get coupon amount
+
+                if ($discount_type == 'fixed_cart') {
+                    $coupon_amounts += $coupon_amount;
+                }
+            }
+
+            $coupon_discount_percent = 100 - ($order->get_total() * 100 / $order->get_subtotal());
+            $coupon_discount =  $item->get_subtotal() * $coupon_discount_percent / 100;
+            $new_subtotal =  $item->get_subtotal() - $coupon_discount;
+
+            //return sprintf(' %s (скидка по купону составила %s руб.)', round($new_subtotal), round($coupon_discount));
+            return sprintf('-₽%s', round($coupon_discount));
+        }
+    }
+
     /**
      *  Загрузка каталога товаров из текстового файла
      */
