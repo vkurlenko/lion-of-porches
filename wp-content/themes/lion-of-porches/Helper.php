@@ -8,6 +8,11 @@
 
 class Helper
 {
+    public static function isAdmin()
+    {
+        return current_user_can('manage_options');
+    }
+
     public function getTopCategory($parent = 0)
     {
         $args = array(

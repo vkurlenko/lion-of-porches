@@ -688,6 +688,18 @@ class WooHelper
             /*(new Helper())->dump($value); //die;
             continue;*/
 
+            /*$variation_id = $value['variation_id'];
+            $variation_obj = new WC_Product_variation($variation_id);
+            $stock = $variation_obj->get_stock_quantity();*/
+
+            $stock = $this->getVariationStock($product, $value['attributes']['attribute_pa_color']);
+
+            if (!$stock) {
+                if (!Helper::isAdmin()) {
+                    continue;
+                }
+            }
+
             /* пропускаем повторяющиеся цвета товара */
             if(!in_array($value['attributes']['attribute_pa_color'], $arr_pa_color)) {
                 $arr_pa_color[] = (new Helper())->translit($value['attributes']['attribute_pa_color']);
@@ -815,6 +827,20 @@ class WooHelper
 
             <?php
         }
+    }
+
+    /**
+     * Наличие вариации товара определим по кол-ву доступных размеров данного цвета
+     *
+     * @param $product
+     * @param $color
+     * @return int
+     */
+    public function getVariationStock($product, $color)
+    {
+        $sizes = $this->getVariationSizesByColor($product, $color);
+
+        return count($sizes);
     }
 
     /**
