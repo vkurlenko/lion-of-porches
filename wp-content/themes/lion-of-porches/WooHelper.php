@@ -820,6 +820,10 @@ class WooHelper
                         echo '<span>'.$size.'</span>';
                     }
 
+                    if (!$stock) {
+                        echo 'Нет в наличии';
+                    }
+
                     ?>
                 </div>
                 <!-- /доступные для заказа размеры -->
