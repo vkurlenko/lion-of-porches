@@ -648,7 +648,7 @@ class WooHelper
     public function getVariationsAsProduct($product, $post)
     {
         if(!$product->is_in_stock()) {
-            return;
+            //return;
         }
         $terms = get_the_terms( $product->get_id(), 'product_cat' );
         foreach ($terms as $term) {
@@ -1211,14 +1211,14 @@ class WooHelper
         return [
             'new-arrival',
             //'ss19',
-            //'ss20'
+            //'ss21'
         ];
     }
 
     public function sortProductListByTags($posts)
     {
         //$arr0 = ['ss19', 'ss20'];
-        $arr0 = ['fw21', 'fw20', 'fw19', 'fw18', 'fw17', 'fw16', 'ss20', 'ss19', 'ss18', 'ss17', 'ss16'];
+        $arr0 = ['fw21', 'fw20', 'fw19', 'fw18', 'fw17', 'fw16', 'ss21', 'ss20', 'ss19', 'ss18', 'ss17', 'ss16'];
         $arr1 = [];
         $arr2 = [];
 
