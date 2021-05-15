@@ -1356,14 +1356,14 @@ function edostavka_order_add_call_courier( $atts, $order ) {
 
     if( in_array( $tariff_id, $from_door_tariffs, true ) ) {
 
-        /*$atts['CallCourier']['Call']['@attributes'] = array(
+        $atts['CallCourier']['Call']['@attributes'] = array(
             'Date' => date('Y-m-d'), //Дата ожидания курьера
             'SendCityCode' => apply_filters( 'woocommerce_edostavka_city_origin', 0 ), //Код города отправителя из базы СДЭК
             'SendPhone' => '+79009009090', //Контактный телефон отправителя
             'SenderName' => 'Иванов Иван Иванович', //Отправитель (ФИО)
             'Comment' => 'Вход со двора' //Комментарий для курьера
-        );*/
-        $atts['CallCourier']['Call']['@attributes'] = array(
+        );
+        /*$atts['CallCourier']['Call']['@attributes'] = array(
             'cdek_number'=>$order->get_id(),
             'intake_date' => date('yyyy-MM-dd'), //Дата ожидания курьера
             'intake_time_from'=>'10:00',
@@ -1374,9 +1374,29 @@ function edostavka_order_add_call_courier( $atts, $order ) {
                 'number' => '+74993766636'
                 ]
             ]
-        );
+        );*/
     }
 
     return $atts;
 }
+
+
+add_action( 'template_redirect', function(){
+    ob_start( function( $buffer ){
+        $buffer = preg_replace(
+        	array(
+        		'/<link.+?cdnjs.cloudflare.com\/ajax\/libs\/font-awesome\/4.7.0.+?\/>/',
+        		'/<link.+?maxcdn.bootstrapcdn.com\/bootstrap\/3.3.7.+?\/>/',
+        		'/<script.+?google.com\/recaptcha\/api.js\?render=(.+?)\'><\/script>/',
+        		),
+        	array(
+        		'',
+        		'',
+        		'<script>function initGR() {(function(u){var s=document.createElement("script");s.type="text/javascript";s.async=true;s.src=u;var x=document.getElementsByTagName("script")[0];x.parentNode.insertBefore(s,x);})("https://www.google.com/recaptcha/api.js?render=$1");}var grpired = false;if(supportsTouch){window.addEventListener("touchstart",()=>{if(grpired===false){grpired=true;setTimeout(()=>{initGR();},0)}});} else {window.addEventListener("scroll",()=>{if(grpired===false){grpired=true;setTimeout(()=>{initGR();},0)}});}window.addEventListener("mousemove",()=>{if(grpired===false){grpired=true;setTimeout(()=>{initGR();},0)}});</script>',
+        	),
+        	$buffer);
+        return $buffer;
+    });
+});
+
 ?>
