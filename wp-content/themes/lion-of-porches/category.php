@@ -16,7 +16,7 @@ get_header(); // подключаем header.php ?>
 				else: echo '<p>Нет записей.</p>'; endif; // если записей нет, напишим "простите" ?>	 
 				<?php pagination(); // пагинация, функция нах-ся в function.php ?>
 			</div>
-			<?php get_sidebar(); // подключаем sidebar.php ?>
+			<?php //get_sidebar(); // подключаем sidebar.php ?>
 		</div>
 	</div>
 </section>
