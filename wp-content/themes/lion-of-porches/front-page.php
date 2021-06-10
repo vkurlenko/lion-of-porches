@@ -23,8 +23,8 @@ $product_categories = $helper->getTopCategory();
                     $mob_banner = $helper->wp_get_post_by_slug( 'banner-dlya-mob-versii' );
                     ?>
 
-                    <?=get_the_post_thumbnail( $full_banner->ID, 'full', array('class' => 'hidden-xs') )?>
-                    <?=get_the_post_thumbnail( $mob_banner->ID, 'full', array('class' => 'visible-xs') )?>
+                    <img src="<?=get_the_post_thumbnail_url( $full_banner->ID, 'full')?>" class="hidden-xs">
+                    <img src="<?=get_the_post_thumbnail_url( $mob_banner->ID, 'full')?>" class="visible-xs">
                 </div>
 
                 <?php
@@ -58,8 +58,8 @@ $product_categories = $helper->getTopCategory();
                     $mob_banner = $helper->wp_get_post_by_slug( 'banner-na-glavnuju-2-mobile' );
                     ?>
 
-                    <?=get_the_post_thumbnail( $full_banner->ID, 'full', array('class' => 'hidden-xs') )?>
-                    <?=get_the_post_thumbnail( $mob_banner->ID, 'full', array('class' => 'visible-xs') )?>
+                    <img src="<?=get_the_post_thumbnail_url( $full_banner->ID, 'full')?>" class="hidden-xs">
+                    <img src="<?=get_the_post_thumbnail_url( $mob_banner->ID, 'full')?>" class="visible-xs">
                 </div>
 
                 <?php

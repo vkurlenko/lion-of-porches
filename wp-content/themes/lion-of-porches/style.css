@@ -8,51 +8,60 @@ Theme Name: LionOfPorches
   /*src: url('/wp-content/themes/lion-of-porches/fonts/raleway-cyrillic/fonts/Raleway-v4020-Medium.ttf') format('woff');*/
   src: url("/wp-content/themes/lion-of-porches/fonts/raleway-cyrillic/fonts/Raleway-v4020-Regular.ttf") format("woff");
   font-weight: normal;
-  font-style: normal; }
+  font-style: normal;
+  font-display: swap; }
 @font-face {
   font-family: 'Raleway Light';
   /*src: url('/wp-content/themes/lion-of-porches/fonts/raleway-cyrillic/fonts/Raleway-v4020-Black.ttf') format('woff');*/
   /*src: url('/wp-content/themes/lion-of-porches/fonts/raleway-cyrillic/fonts/Raleway-v4020-Medium.ttf') format('woff');*/
   src: url("/wp-content/themes/lion-of-porches/fonts/raleway-cyrillic/fonts/Raleway-v4020-Light.ttf") format("woff");
   font-weight: normal;
-  font-style: normal; }
+  font-style: normal;
+  font-display: swap; }
 @font-face {
   font-family: 'Raleway Black';
   /*src: url('/wp-content/themes/lion-of-porches/fonts/raleway-cyrillic/fonts/Raleway-v4020-Black.ttf') format('woff');*/
   /*src: url('/wp-content/themes/lion-of-porches/fonts/raleway-cyrillic/fonts/Raleway-v4020-Medium.ttf') format('woff');*/
   src: url("/wp-content/themes/lion-of-porches/fonts/raleway-cyrillic/fonts/Raleway-v4020-Black.ttf") format("woff");
   font-weight: normal;
-  font-style: normal; }
+  font-style: normal;
+  font-display: swap; }
 @font-face {
   font-family: 'DIN Pro';
   src: url("/wp-content/themes/lion-of-porches/fonts/din-pro/DINPro-CondensedRegular.ttf") format("woff");
   font-weight: normal;
-  font-style: normal; }
+  font-style: normal;
+  font-display: swap; }
 @font-face {
   font-family: 'DIN Pro Bold';
   src: url("/wp-content/themes/lion-of-porches/fonts/din-pro/DINPro-Bold.ttf") format("woff");
   font-weight: bold;
-  font-style: normal; }
+  font-style: normal;
+  font-display: swap; }
 @font-face {
   font-family: 'DIN Pro Light';
   src: url("/wp-content/themes/lion-of-porches/fonts/din-pro/DINPro-CondensedLight.ttf") format("woff");
   font-weight: bold;
-  font-style: normal; }
+  font-style: normal;
+  font-display: swap; }
 @font-face {
   font-family: 'Butik Sans Bold';
   src: url("/wp-content/themes/lion-of-porches/fonts/butik-sans/ButikSans-Bold.ttf") format("woff");
   font-weight: bold;
-  font-style: normal; }
+  font-style: normal;
+  font-display: swap; }
 @font-face {
   font-family: 'Butik Sans Medium';
   src: url("/wp-content/themes/lion-of-porches/fonts/butik-sans/ButikSans-Medium.ttf") format("woff");
   font-weight: normal;
-  font-style: normal; }
+  font-style: normal;
+  font-display: swap; }
 @font-face {
   font-family: 'Butik Sans Regular';
   src: url("/wp-content/themes/lion-of-porches/fonts/butik-sans/ButikSans-Regular.ttf") format("woff");
   font-weight: normal;
-  font-style: normal; }
+  font-style: normal;
+  font-display: swap; }
 ::-webkit-scrollbar {
   /* chrome based */
   width: 0px;

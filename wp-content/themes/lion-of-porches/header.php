@@ -16,11 +16,11 @@ $crm = new Crm();
 die;*/
 
 
-?>
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html <?php language_attributes(); // вывод атрибутов языка ?>>
 <head>
     <meta charset="<?php bloginfo( 'charset' ); // кодировка ?>">
+		<script data-skip-moving="true">const supportsTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints;</script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="/favicon.png">
@@ -30,9 +30,10 @@ die;*/
     <link rel="alternate" type="application/rss+xml" title="Comments RSS" href="<?php bloginfo('comments_rss2_url'); ?>">
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 
-    <link rel="stylesheet" href="/wp-content/themes/lion-of-porches/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@1,700&display=swap" rel="stylesheet">
-    <?php /* Все скрипты и стили теперь подключаются в functions.php */ ?>
+<?php /*
+<!--    <link rel="stylesheet" href="/wp-content/themes/lion-of-porches/fonts/font-awesome-4.7.0/css/font-awesome.min.css">-->
+    <!--<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@1,700&display=swap" rel="stylesheet">-->
+     Все скрипты и стили теперь подключаются в functions.php */ ?>
 
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -40,12 +41,12 @@ die;*/
 
     <?php wp_head(); // необходимо для работы плагинов и функционала ?>
 
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript" >
+		<script>
+			function initCounters() {
+			  /* Yandex Metrika counter */
         (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
             m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
         (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
         ym(65553346, "init", {
             clickmap:true,
             trackLinks:true,
@@ -53,8 +54,91 @@ die;*/
             webvisor:true,
             ecommerce:"dataLayer"
         });
-    </script>
+			  /* End Yandex Metrika counter */
 
+			  /* Facebook pixel */
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window,document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '663993440893072');
+        fbq('track', 'PageView');
+
+
+        <?php
+        $arr = [
+            'checkout' => 'InitiateCheckout', // Начало оформления заказа
+            //'' => 'AddToCart',  // Добавление в корзину
+            'product' => 'CustomizeProduct', // Персонализация товара
+            'order-received' => 'Purchase', // Покупка // fbq('track', 'Purchase', {value: 0.00, currency: 'RUB'});
+            //'' => 'Search' // Поиск
+        ];
+
+        $url = explode('/', $_SERVER['REQUEST_URI']);
+
+        $track = '';
+
+        if(in_array('order-received', $url)) {
+            $track = "'".$arr['order-received']."'";
+            $index = array_search('order-received', $url);
+            $the_order = $url[$index + 1];
+
+            if($the_order) {
+                $order = wc_get_order( $the_order );
+                $total = $order->get_total();
+
+                $track .= ", {value: ".$total.", currency: 'RUB'}";
+            }
+        } elseif(in_array('checkout', $url)) {
+            $track = "'".$arr['checkout']."'";
+        } elseif(in_array('product', $url)) {
+            $track = "'".$arr['product']."'";
+
+        global $post;
+        //global $product;
+        $id = $post->ID;
+
+        $product = wc_get_product( $id );
+        $value = $product ? $product->get_variation_regular_price( 'min' ) : '0';
+
+        ?>
+        fbq('track', 'ViewContent', {
+            content_ids: ['<?=$id?>'],
+            content_type: 'product',
+            value: <?=$value?>,
+            currency: 'RUB'
+        });
+        <?
+        }
+
+        if($track) {
+            ?>fbq('track', <?=$track?>);<?php
+        }
+        ?>
+			  /* End Facebook pixel */
+			}
+
+			var fired = false;
+			if(supportsTouch){
+				window.addEventListener('touchstart',()=>{if(fired===false){fired=true;setTimeout(()=>{initCounters();},0)}});
+			} else {
+				window.addEventListener('scroll',()=>{if(fired===false){fired=true;setTimeout(()=>{initCounters();},0)}});
+			}
+			window.addEventListener('mousemove',()=>{if(fired===false){fired=true;setTimeout(()=>{initCounters();},0)}});
+		</script>
+
+		<?php
+			/* Не удалять - обычная вставка счетчика для работы вебвизора */
+			if(strpos($_SERVER['HTTP_USER_AGENT'],'YandexMetrika')):
+				echo '<!-- Yandex.Metrika counter --> <script type="text/javascript" > (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");ym(65553346, "init", {clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true,ecommerce:"dataLayer"}); </script> <noscript><div><img src="https://mc.yandex.ru/watch/65553346" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->';
+			endif;
+		?>
+
+    <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
         window.dataLayer = window.dataLayer || [];
     </script>
@@ -134,84 +218,13 @@ die;*/
             }
         ?>
     </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/65553346" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
 
-    <!-- Facebook Pixel Code -->
-    <script>
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-            n.queue=[];t=b.createElement(e);t.async=!0;
-            t.src=v;s=b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t,s)}(window,document,'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '663993440893072');
-        fbq('track', 'PageView');
-
-
-        <?php
-        $arr = [
-            'checkout' => 'InitiateCheckout', // Начало оформления заказа
-            //'' => 'AddToCart',  // Добавление в корзину
-            'product' => 'CustomizeProduct', // Персонализация товара
-            'order-received' => 'Purchase', // Покупка // fbq('track', 'Purchase', {value: 0.00, currency: 'RUB'});
-            //'' => 'Search' // Поиск
-        ];
-
-        $url = explode('/', $_SERVER['REQUEST_URI']);
-
-        $track = '';
-
-        if(in_array('order-received', $url)) {
-            $track = "'".$arr['order-received']."'";
-            $index = array_search('order-received', $url);
-            $the_order = $url[$index + 1];
-
-            if($the_order) {
-                $order = wc_get_order( $the_order );
-                $total = $order->get_total();
-
-                $track .= ", {value: ".$total.", currency: 'RUB'}";
-            }
-        } elseif(in_array('checkout', $url)) {
-            $track = "'".$arr['checkout']."'";
-        } elseif(in_array('product', $url)) {
-            $track = "'".$arr['product']."'";
-
-        global $post;
-        //global $product;
-        $id = $post->ID;
-
-        $product = wc_get_product( $id );
-        $value = $product ? $product->get_variation_regular_price( 'min' ) : '0';
-
-        ?>
-        fbq('track', 'ViewContent', {
-            content_ids: ['<?=$id?>'],
-            content_type: 'product',
-            value: <?=$value?>,
-            currency: 'RUB'
-        });
-        <?
-        }
-
-        if($track) {
-            ?>fbq('track', <?=$track?>);<?php
-        }
-        ?>
-
-    </script>
-    <noscript>
-        <img height="1" width="1"
-             src="https://www.facebook.com/tr?id=663993440893072&ev=PageView
-&noscript=1"/>
-    </noscript>
-    <!-- End Facebook Pixel Code -->
 </head>
 
 <body <?php body_class(); // все классы для body ?>>
+<!-- Yandex.Metrika counter --><noscript><div><img src="https://mc.yandex.ru/watch/65553346" style="position:absolute; left:-9999px;" alt="" /></div></noscript><!-- /Yandex.Metrika counter -->
+<!-- Facebook Pixel Code --><noscript><img height="1" width="1" src="https://www.facebook.com/tr?id=663993440893072&ev=PageView&noscript=1"/></noscript><!-- End Facebook Pixel Code -->
 <header>
     <div class="container">
         <div class="row">

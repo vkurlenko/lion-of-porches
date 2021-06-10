@@ -97,6 +97,8 @@
 			</div>
 		</div>
 	</footer>-->
+<link  href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@1,700&display=swap"  as="style">
+<link  href="/wp-content/themes/lion-of-porches/fonts/font-awesome-4.7.0/css/font-awesome.min.css" as="style">
 <?php wp_footer(); // необходимо для работы плагинов и функционала  ?>
 </body>
 </html>

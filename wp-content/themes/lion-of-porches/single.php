@@ -11,6 +11,11 @@ get_header(); // подключаем header.php ?>
 	<div class="container">
 		<div class="row">
             <div class="col-md-12  content">
+                <div class="row">
+                    <div class="col-md-12 woocommerce-breadcrumb" >
+                        <?php if( function_exists('kama_breadcrumbs') ) kama_breadcrumbs('<span class="breadcrumb-delimiter">|</span>'); ?>
+                    </div>
+                </div>
                 <?php get_template_part( 'parts/user-level-block');?>
                 <?php
                /* $post = get_post();
@@ -19,7 +24,7 @@ get_header(); // подключаем header.php ?>
 
                 <div class="row">
                     <div class="col-md-6 col-md-offset-3">
-                        <h2><?=$post->post_title;?></h2>
+                        <h1><?=$post->post_title;?></h1>
                         <?=$post->post_content;?>
                     </div>
                 </div>

@@ -49,7 +49,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<button class="pswp__button pswp__button--arrow--left" aria-label="<?php esc_attr_e( 'Previous (arrow left)', 'woocommerce' ); ?>"></button>
 			<button class="pswp__button pswp__button--arrow--right" aria-label="<?php esc_attr_e( 'Next (arrow right)', 'woocommerce' ); ?>"></button>
 			<div class="pswp__caption">
-				<div class="pswp__caption__center"></div>
+				<div class="pswp__caption__center" style="display: none"></div>
 			</div>
 		</div>
 	</div>
