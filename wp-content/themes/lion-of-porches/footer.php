@@ -56,7 +56,7 @@
             <div class="footer-item medias col-xs-12 col-md-2"><h5>Присоединяйтесь к нам</h5>
                 <ul class="list-inline">
                     <li><a href="https://www.facebook.com/groups/lionofporches/?ref=share" target="_blank" rel="nofollow"><!--<i class="fa fa-facebook" aria-hidden="true"></i>--><img src="/wp-content/themes/lion-of-porches/img/fb.png" alt="facebook"></a></li>
-                    <li><a href="https://instagram.com/lionofporches_russia_official?igshid=187kvo1awgsmb" target="_blank" rel="nofollow"><!--<i class="fa fa-instagram"></i>--><img src="/wp-content/themes/lion-of-porches/img/insta.png" alt="instagram"></a></li>
+                    <li><a href="https://www.instagram.com/lionofporches_russia/" target="_blank" rel="nofollow"><!--<i class="fa fa-instagram"></i>--><img src="/wp-content/themes/lion-of-porches/img/insta.png" alt="instagram"></a></li>
                     <li><a href="https://www.youtube.com/c/LionOfPorchesLondon/featured" target="_blank" rel="nofollow"><!--<i class="fa fa-youtube"></i>--><img src="/wp-content/themes/lion-of-porches/img/you.png" alt="youtube"></a></li>
                     <li><a href="https://vk.com/lionofporches1" target="_blank" rel="nofollow"><!--<i class="fa fa-vk"></i>--><img src="/wp-content/themes/lion-of-porches/img/vk.png" alt="vk"></a></li>
                 </ul>
@@ -66,7 +66,7 @@
     </div>
     <div class="copyright">
         <div class="container"><p class="pull-left">
-                2020 © Lion of Porches <span>|</span>All rights reserved
+                <?=date('Y')?> © Lion of Porches <span>|</span>All rights reserved
             </p>
             <div class="pull-right">
                 <ul class="list-inline">
