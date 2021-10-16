@@ -61,8 +61,25 @@ $product_categories = $helper->getTopCategory();
                     $mob_banner = $helper->wp_get_post_by_slug( 'banner-na-glavnuju-2-mobile' );
                     ?>
 
+                    <?php
+                    $custom_fields = get_post_custom($full_banner->ID);
+                    $active_link = (key_exists('active_link', $custom_fields)) ? $custom_fields['active_link'][0] : null;
+
+                    if ($active_link):
+                    ?>
+                        <a href="<?=$active_link?>">
+                    <?php
+                    endif;
+                    ?>
                     <img src="<?=get_the_post_thumbnail_url( $full_banner->ID, 'full')?>" class="hidden-xs">
                     <img src="<?=get_the_post_thumbnail_url( $mob_banner->ID, 'full')?>" class="visible-xs">
+                    <?php
+                    if ($active_link):
+                    ?>
+                        </a>
+                    <?php
+                    endif;
+                    ?>
                 </div>
 
                 <?php
