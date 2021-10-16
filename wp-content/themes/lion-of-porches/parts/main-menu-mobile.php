@@ -8,7 +8,10 @@
         if($product_categories):?>
             <ul>
                 <?php
-                foreach ( $product_categories as $product_category ):?>
+                foreach ( $product_categories as $product_category ):
+                    if (WooHelper::isSkippedCategory($product_category)) {
+                        continue;
+                    }?>
                     <li><a class="btn-alt" href="<?= get_term_link($product_category) ?>" data-category="<?=$product_category->slug?>"><?=$product_category->name?></a></li>
                 <?php
                 endforeach;
