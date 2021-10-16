@@ -37,7 +37,7 @@ if ( is_user_logged_in() ) {
     // персональная скидка клиента (%)
     $discount = (int)(new Crm())->getUserDiscount($current_user->user_email);
     //$discount = false;
-    if($discount) {
+    if($discount && $available_variations) {
 
         // персональная скидка клиента (коэффициент)
         $p = $discount / 100;

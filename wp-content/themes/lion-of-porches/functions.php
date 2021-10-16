@@ -1180,7 +1180,11 @@ function wh_fb_opengraph()
     if (is_product())
     {
         $product = wc_get_product( $post->ID );
-        $price = $product ? $product->get_variation_regular_price( 'min' ) : '';
+        if ($product->is_type('varaible')) {
+            $price = $product ? $product->get_variation_regular_price( 'min' ) : '';
+        } else {
+            $price = $product ? $product->get_regular_price() : '';
+        }
         $category = (new Helper())->getProductCategoriesById($post->ID);
         $img_url = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'woocommerce_single_image_width'); //replace it with your desired size
         ?>

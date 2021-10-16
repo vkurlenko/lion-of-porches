@@ -103,7 +103,11 @@ die;*/
         $id = $post->ID;
 
         $product = wc_get_product( $id );
-        $value = $product ? $product->get_variation_regular_price( 'min' ) : '0';
+        if ($product->is_type('varaible')) {
+            $value = $product ? $product->get_variation_regular_price( 'min' ) : '0';
+        } else {
+            $value = $product ? $product->get_regular_price() : '0';
+        }
 
         ?>
         fbq('track', 'ViewContent', {
@@ -153,7 +157,12 @@ die;*/
             $id = $post->ID;
 
             $product = wc_get_product( $id );
-            $price = $product ? $product->get_variation_regular_price( 'min' ) : '';
+            if ($product->is_type('varaible')) {
+                $price = $product ? $product->get_variation_regular_price( 'min' ) : '';
+            } else {
+                $price = $product ? $product->get_regular_price() : '';
+            }
+
             $category = (new Helper())->getProductCategoriesById($id);
             ?>
             window.dataLayer.push({
@@ -239,7 +248,11 @@ die;*/
                     <div class="main-menu">
                         <ul>
                             <?php
-                            foreach ( $product_categories as $product_category ):?>
+                            foreach ( $product_categories as $product_category ):
+                                if (WooHelper::isSkippedCategory($product_category)) {
+                                    continue;
+                                }
+                                ?>
                                 <li><a class="btn-alt" data-subcategory="<?=$product_category->slug?>"  href="<?=get_term_link($product_category) ?>"><?=$product_category->name?></a>
 
                                     <div class="container-fluid sub-menu ">
@@ -328,27 +341,10 @@ die;*/
                 <div class="top-menu-1 hidden-xs">
                     <?
                     $args = array(
-                        //'theme_location'  => , // область темы
                         'menu'            => 'top-menu-1', // какое меню нужно вставить (по порядку: id, ярлык, имя)
-                        /*'container'       => 'div', // блок, в который нужно поместить меню, укажите false, чтобы не помещать в блок
-                        'container_class' => 'menu-{menu slug}-container', // css-класс блока
-                        'container_id'    => , // id блока
-                        'menu_class'      => 'menu', // css-класс меню
-                        'menu_id'         => , // id меню
-                        'echo'            => true, // вывести или записать в переменную
-                        'fallback_cb'     => 'wp_page_menu', // какую функцию использовать если меню не существует, укажите false, чтобы не использовать ничего
-                        'before'          => , // текст или html-код, который нужно вставить перед каждым <a>
-                        'after'           => , // после </a>
-                        'link_before'     => , // текст перед анкором ссылки
-                        'link_after'      => , // после анкора и перед </a>
-                        'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>', // HTML-шаблон
-                        'depth'           => 0 // количество уровней вложенности*/
+
                     );
                     //wp_nav_menu($args);?>
-
-                    <!--<ul>
-                        <li><a href="#">Доставка</a></li><li><a href="#">О компании</a> </li>
-                    </ul>-->
                 </div>
                 <div class="top-menu-2 hidden-xs">
 
@@ -357,29 +353,10 @@ die;*/
                     $login = '<a href="'.get_permalink( get_option('woocommerce_myaccount_page_id')).'">'.(is_user_logged_in() ? 'Личный кабинет' : 'Личный кабинет').'</a>';
 
                     $args = array(
-                        //'theme_location'  => , // область темы
                         'menu'            => 'top-menu-2', // какое меню нужно вставить (по порядку: id, ярлык, имя)
-                        /*'container'       => 'div', // блок, в который нужно поместить меню, укажите false, чтобы не помещать в блок
-                        'container_class' => 'menu-{menu slug}-container', // css-класс блока
-                        'container_id'    => , // id блока
-                        'menu_class'      => 'menu', // css-класс меню
-                        'menu_id'         => , // id меню
-                        'echo'            => true, // вывести или записать в переменную
-                        'fallback_cb'     => 'wp_page_menu', // какую функцию использовать если меню не существует, укажите false, чтобы не использовать ничего
-                        'before'          => , // текст или html-код, который нужно вставить перед каждым <a>
-                        'after'           => , // после </a>
-                        'link_before'     => , // текст перед анкором ссылки
-                        'link_after'      => , // после анкора и перед </a>
-                        'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>', // HTML-шаблон
-                        'depth'           => 0 // количество уровней вложенности*/
                         'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s<li class="menu-item">'.$login.'</li><li><a class="cart-link" href="'.wc_get_cart_url().'"><i class="fa fa-shopping-bag" aria-hidden="true"></i>&nbsp;<span class="count">('.count(WC()->cart->cart_contents).')</span></a></li></ul>', // HTML-шаблон
                     );
                     wp_nav_menu($args);?>
-
-
-                    <!--<ul>
-                        <li><a href="/shop/">Доставка</a></li><li><a href="/shop/">О бренде</a></li><li><a href="/shop/">Каталоги</a></li><li><a href="/forpartners/">Партнерам</a></li><li><?php /*get_template_part( 'parts/login-link');*/?></li><li><a class="cart-link" href="<?/*=wc_get_cart_url();*/?>"><i class="fa fa-shopping-bag" aria-hidden="true"></i>&nbsp;<span class="count">(<?/*=count(WC()->cart->cart_contents)*/?>)</span></a></li>
-                    </ul>-->
                 </div>
 
                 <div class="cart-mobile visible-xs">
@@ -404,17 +381,6 @@ die;*/
         <!-- /mobile menu -->
     </div>
 </header>
-
-    <div style="font-size: 10px; font-family: arial">
-    <?php
-    //$woo->createVarProductsFromFile(); die;
-    /*include 'Crm.php';
-
-    $crm = new Crm();
-
-    $crm->createUser();*/
-    ?>
-    </div>
 
 
 
