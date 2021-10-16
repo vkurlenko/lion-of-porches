@@ -32,7 +32,10 @@ $product_categories = $helper->getTopCategory();
                     <div class="big-banner-text">
                     <ul class="btn-list list-inline">
                         <?php
-                        foreach ( $product_categories as $product_category ):?>
+                        foreach ( $product_categories as $product_category ):
+                            if ($product_category->slug == 'gifts') {
+                                continue;
+                            }?>
                         <li><a class="btn-alt" data-category="<?=$product_category->slug?>" href="<?= get_term_link($product_category) ?>"><?=$product_category->name?></a></li>
                         <?php
                         endforeach;
@@ -105,6 +108,9 @@ $product_categories = $helper->getTopCategory();
             $i = 0;
 
             foreach ( $product_categories as $product_category ) {
+                if (WooHelper::isSkippedCategory($product_category)) {
+                    continue;
+                }
                 //$helper->dump($product_category);
                 $image = $helper->getCategoryImage($product_category, [500, 750]);
                 ?>

@@ -18,6 +18,9 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+if ($category->slug == 'gifts') {
+    return;
+};
 ?>
 <li <?php wc_product_cat_class( '', $category ); ?>>
 	<?php

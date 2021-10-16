@@ -88,11 +88,17 @@
             <span><?/*=sprintf('Сумма покупок до следующего уровня <span class="level-name">%s (-%s%%)</span>: %s', $next_level_name, $next_level_discount, wc_price($next_level_up_sum));*/?></span>
         </div>-->
 
+        <?php
+        if ($product->is_type('variable')):
+        ?>
         <div class="special-price">
             <div><?=sprintf('Ваша дополнительная скидка: <span class="level-name">-<span class="data-personal-discount">%s</span>%%</span>', '' )?></div>
             <div><?=sprintf('Итого для Вас: <span class="level-name"><span class="data-personal-price">'.$price_tpl.'</span></span>', '' )?></div>
             <!--<div><?/*=sprintf('Ваша экономия <span class="level-name"><span class="data-personal-economy">'.$price_tpl.'</span></span>', '' )*/?></div>-->
         </div>
+        <?php
+        endif;
+        ?>
 
 
     <?php

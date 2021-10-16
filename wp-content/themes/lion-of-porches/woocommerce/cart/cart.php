@@ -100,7 +100,7 @@ endif;
                 foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 
                     $wh = new WooHelper();
-                    $cart_item_data = $wh->getCartItemData($cart_item);
+                    $cart_item_data = WooHelper::isNoDiscountProduct($cart_item['product_id']) ? [] : $wh->getCartItemData($cart_item);
 
                     //(new Helper())->dump($wh->getCartItemData($cart_item)); //die;
 
@@ -185,10 +185,12 @@ endif;
 
                             <td class="product-price" data-title="<?php esc_attr_e( 'Price', 'woocommerce' ); ?>">
                                 <?php
-                                if($cart_item_data['variation_regular_price'] != $cart_item_data['variation_price']){
-                                    echo '<del>'.wc_price($cart_item_data['variation_regular_price']).'</del><br>';
-                                } elseif((new Crm())->getCurrentUserDiscount() == 50) {
-                                    echo '<del>'.wc_price($cart_item_data['variation_regular_price']).'</del><br>';
+                                if (count($cart_item_data)) {
+                                    if($cart_item_data['variation_regular_price'] != $cart_item_data['variation_price']){
+                                        echo '<del>'.wc_price($cart_item_data['variation_regular_price']).'</del><br>';
+                                    } elseif((new Crm())->getCurrentUserDiscount() == 50) {
+                                        echo '<del>'.wc_price($cart_item_data['variation_regular_price']).'</del><br>';
+                                    }
                                 }
                                 ?>
 
@@ -204,7 +206,7 @@ endif;
                             <?php if($card_exists):?>
                             <td class="product-price">
                                 <?php
-                                if($cart_item_data['user_percent']):?>
+                                if(count($cart_item_data) && $cart_item_data['user_percent']):?>
                                     <span>-<?=$cart_item_data['user_sale_percent_final'] ? ''.$cart_item_data['user_sale_percent_html'].'' : $cart_item_data['user_percent']?>%</span>
                                 <?php
                                 endif;
@@ -213,12 +215,12 @@ endif;
 
                             <td class="product-subtotal" data-title="<?php esc_attr_e( 'Subtotal', 'woocommerce' ); ?>">
                                 <?php
-                                if($cart_item_data['is_discount_price']){
+                                if(count($cart_item_data) && $cart_item_data['is_discount_price']){
                                     echo '<del>';
                                 }
                                 echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
 
-                                if($cart_item_data['is_discount_price']){
+                                if(count($cart_item_data) && $cart_item_data['is_discount_price']){
                                     echo '</del>';
                                     echo '<br>'.wc_price($cart_item_data['price_personal']);
                                 }

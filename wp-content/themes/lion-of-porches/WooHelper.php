@@ -217,7 +217,7 @@ class WooHelper
         $cats = $data['cat'];
         $size = $sku['size'];
         $color = $sku['color'];
-        $color_code = $data['data'][2];
+        $color_code = sprintf("%'.03d\n", $data['data'][2]);
         $description = sprintf ('Страна производства: %s<br>Материал: %s<br>%s', $data['vendor'], $data['material'], $data['post_content']);
         //echo $color_code.'<br>';
 
@@ -321,7 +321,7 @@ class WooHelper
             }
 
             $variation_color = $attr['color'][mb_strtolower($variation['color'])];
-            $variation_sku = trim($variation['sku']).'.'.trim($variation['data'][2]);
+            $variation_sku = trim($variation['sku']).'.'.sprintf("%'.03d\n", trim($variation['data'][2]));
             $variation_descr = sprintf ('Страна производства: %s<br>Материал: %s<br>%s', $variation['vendor'], $variation['material'], $variation['post_content']);
             $variation_stock = intval($variation['stock']) ? intval($variation['stock']) : 0;
 
@@ -548,7 +548,7 @@ class WooHelper
     {
         $arr = [];
 
-        if($product) {
+        if($product && $product->is_type( 'variable' )) {
             $variations = $product->get_available_variations();
 
             foreach($variations as $v) {
@@ -728,8 +728,10 @@ class WooHelper
 
                         if($posttags) {
                             foreach($posttags as $tag) {
-                                if(!in_array($tag->slug, (new WooHelper())->getVisibleTags())) {
-                                    continue;
+                                if(!in_array(strtolower($tag->slug), (new WooHelper())->getVisibleTags())) {
+                                    if (!Helper::isAdmin()) {
+                                        continue;
+                                    }
                                 }
                                 ?>
                                 <?php echo apply_filters( 'woocommerce_sale_flash', '<span class="prod-tag '.$tag->slug.'">'.$tag->name.'</span>', $post, $product ); ?>
@@ -912,67 +914,12 @@ class WooHelper
 
             $item_data = $this->getCartItemData($item);
 
-            /*// получим товар
-            $product = wc_get_product( $item['product_id'] );
-
-            // получим все вариации товара
-            $variations = $this->getVariation($product);
-
-            //$h->dump($variations); //die;
-
-            // цена вариации текущая
-            $variation_price = $variations[$item['variation_id']]['display_price'];
-
-            // цена вариации обычная
-            $variation_regular_price = $variations[$item['variation_id']]['display_regular_price'];
-
-            // является ли вариация распродажей
-            $is_sale = $variations[$item['variation_id']]['display_price'] != $variations[$item['variation_id']]['display_regular_price'] ? true : false;
-
-            // процент скидки по распродаже
-            $sale_percent = $this->getSalePercent($variation_price, $variation_regular_price);
-
-            // процент скидки по распродаже персональный
-            $user_sale_percent = $crm->getUserSaleDiscount($sale_percent, $discount);
-
-            $user_sale_percent_final = $sale_percent + $user_sale_percent;
-
-            // полная стоимость вариации по текущей цене (с учетом количества)
-            $variation_price_full = (int)$item['quantity'] * $variations[$item['variation_id']]['display_price'];
-
-            // полная стоимость вариации по персональной цене (с учетом количества)
-            if($is_sale) {
-                $variation_price_personal = $variation_price_full - ($variation_price_full * $user_sale_percent_final / 100);
-                $discount_sum += $variation_price_full * $user_sale_percent_final / 100;
-            } else {
-                $variation_price_personal = $variation_price_full - ($variation_price_full * $discount / 100);
-                $discount_sum += $variation_price_full * $discount / 100;
-            }*/
-
-            /*$h->dump([
-                'product_id'        => $item['product_id'],
-                'product_type'      => $product->get_type(),
-                'is_on_sale'        => $product->is_on_sale(),
-                'variation_id'      => $item['variation_id'],
-                'quantity'          => $item['quantity'],
-                'line_subtotal'     => $item['line_subtotal'],
-                'variation_price'   => $variation_price,
-                'variation_regular_price' => $variation_regular_price,
-                'is_sale'           => $is_sale,
-                'sale_percent'      => $sale_percent,
-                'user_sale_percent' => $user_sale_percent,
-                'user_sale_percent_final' => $user_sale_percent_final,
-                'price_full'        => $variation_price_full,
-                'price_personal'    => $variation_price_personal
-            ]);*/
-
-            //$h->dump($item); die;
-            //echo $item['line_subtotal'].'<br>';
-
-            if($item_data['is_sale'] && $item_data['user_percent'] < 50) {
-                $discount_sum += $item_data['variation_price_full'] * $item_data['user_sale_percent_final'] / 100;
-            } else {
-                $discount_sum += $item_data['variation_price_full'] * $discount / 100;
+            if (!WooHelper::isNoDiscountProduct($item_data['product_id'])) {
+                if($item_data['is_sale'] && $item_data['user_percent'] < 50) {
+                    $discount_sum += $item_data['variation_price_full'] * $item_data['user_sale_percent_final'] / 100;
+                } else {
+                    $discount_sum += $item_data['variation_price_full'] * $discount / 100;
+                }
             }
         }
 
@@ -992,6 +939,10 @@ class WooHelper
      */
     public function getCartItemData($item)
     {
+        if (WooHelper::isNoDiscountProduct($item['product_id'])) {
+            return $item;
+        }
+
         /*if(!is_user_logged_in()) {
             //return [];
         }*/
@@ -1147,7 +1098,7 @@ class WooHelper
         //echo $user_discount;
 
         if($user_discount) {
-            $personal_price = $regular_price - ($regular_price * $user_discount / 100);
+            $personal_price = intval($regular_price) - (intval($regular_price) * $user_discount / 100);
         }
 
         return $personal_price;
@@ -1227,6 +1178,10 @@ class WooHelper
      */
     public function getVariation($product)
     {
+        if ($product->is_type( 'variable' )) {
+            return [];
+        }
+
         $variations = [];
 
         foreach($product->get_available_variations() as $variation) {
@@ -1247,8 +1202,33 @@ class WooHelper
 
     public function sortProductListByTags($posts)
     {
+        // ss 15.03 - 15.09
+        // fw 16.09 - 14.03
         //$arr0 = ['ss19', 'ss20'];
-        $arr0 = ['fw21', 'fw20', 'fw19', 'fw18', 'fw17', 'fw16', 'ss21', 'ss20', 'ss19', 'ss18', 'ss17', 'ss16'];
+
+        //$arr0 = ['ss21', 'ss20', 'ss19', 'ss18', 'ss17', 'ss16', 'fw21', 'fw20', 'fw19', 'fw18', 'fw17', 'fw16', ];
+
+        /*for ($i = 16; $i <= date('y') + 1; $i++) {
+            $ss[] = sprintf('ss%s', $i);
+            $fw[] = sprintf('fw%s', $i);
+        }
+
+        $ss = array_reverse($ss);
+        $fw = array_reverse($fw);*/
+
+        $ss = ['ss22', 'ss21', 'ss20', 'ss19', 'ss18', 'ss17', 'ss16'];
+        $fw = ['fw22', 'fw21', 'fw20', 'fw19', 'fw18', 'fw17', 'fw16'];
+
+        $today = strtotime(date('Y-m-d'));
+        $ss_start = strtotime(date('Y-03-15'));
+        $ss_stop = strtotime(date('Y-09-15'));
+
+        if ($today >= $ss_start && $today < $ss_stop) {
+            $arr0 = array_merge($ss, $fw);
+        } else {
+            $arr0 = array_merge($fw, $ss);
+        }
+
         $arr1 = [];
         $arr2 = [];
 
@@ -1609,5 +1589,37 @@ class WooHelper
         }
 
         return $arr;
+    }
+
+
+    /**
+     * На продукт не распространияется индивидуальная скидка (например, сертификаты)
+     *
+     * @param $product_id
+     * @return bool
+     */
+    public static function isNoDiscountProduct($product_id)
+    {
+        $product = wc_get_product( $product_id );
+
+        $terms = get_the_terms( $product_id, 'product_cat' );
+        $product_categories_slugs = [];
+
+        foreach ($terms as $term) {
+            $product_categories_slugs[] = $term->slug;
+        }
+
+        return !$product->is_type( 'variable' ) || in_array('gifts', $product_categories_slugs);
+    }
+
+    /**
+     * Не выводить категорию на главной странице магазина
+     *
+     * @param $category
+     * @return bool
+     */
+    public static function isSkippedCategory($category)
+    {
+        return $category->slug == 'gifts';
     }
 }

@@ -25,7 +25,7 @@ global $product;
 (new Helper())->dump($product->get_tag_ids()); //die;*/
 //echo $product->get_id();
 
-$featured_products = get_featured_custom($product);
+$featured_products = $product->is_type( 'variable' ) ? get_featured_custom($product) : [];
 
 
 if ( $featured_products ) : ?>
