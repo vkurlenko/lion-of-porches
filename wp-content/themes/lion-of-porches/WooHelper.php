@@ -1178,7 +1178,7 @@ class WooHelper
      */
     public function getVariation($product)
     {
-        if ($product->is_type( 'variable' )) {
+        if (!$product->is_type( 'variable' )) {
             return [];
         }
 
