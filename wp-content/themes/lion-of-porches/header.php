@@ -137,7 +137,7 @@ die;*/
 
 		<?php
 			/* Не удалять - обычная вставка счетчика для работы вебвизора */
-			if(strpos($_SERVER['HTTP_USER_AGENT'],'YandexMetrika')):
+			if(key_exists('HTTP_USER_AGENT', $_SERVER) && strpos($_SERVER['HTTP_USER_AGENT'],'YandexMetrika')):
 				echo '<!-- Yandex.Metrika counter --> <script type="text/javascript" > (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");ym(65553346, "init", {clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true,ecommerce:"dataLayer"}); </script> <noscript><div><img src="https://mc.yandex.ru/watch/65553346" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->';
 			endif;
 		?>
@@ -331,7 +331,10 @@ die;*/
             <!-- logo -->
             <div class="col-md-2 col-sm-4 col-xs-6 logo">
                 <h1>
-                    <a href="/"><img class="logo-red hidden-xs" src="/wp-content/themes/lion-of-porches/img/lion-of-porches-red.png"><img class="logo-blue visible-xs" src="/wp-content/themes/lion-of-porches/img/lion-of-porches-blue.png"></a>
+                    <a href="/">
+                        <img class="logo-red hidden-xs" src="/wp-content/themes/lion-of-porches/img/lion-of-porches-red.png">
+                        <img class="logo-blue visible-xs" src="/wp-content/themes/lion-of-porches/img/lion-of-porches-blue.png">
+                    </a>
                 </h1>
             </div>
             <!-- /logo -->
@@ -339,29 +342,41 @@ die;*/
             <!-- top-right-block -->
             <div class="col-md-5  col-sm-4  col-xs-6 header-right"  style="/*background: #00ff00*/">
                 <div class="top-menu-1 hidden-xs">
-                    <?
+                    <?php
                     $args = array(
-                        'menu'            => 'top-menu-1', // какое меню нужно вставить (по порядку: id, ярлык, имя)
-
+                        'menu' => 'top-menu-1', // какое меню нужно вставить (по порядку: id, ярлык, имя)
                     );
-                    //wp_nav_menu($args);?>
+                    //wp_nav_menu($args);
+                    ?>
                 </div>
                 <div class="top-menu-2 hidden-xs">
-
-                    <?
+                    <?php
                     //$login = '<a href="'.get_permalink( get_option('woocommerce_myaccount_page_id')).'">'.(is_user_logged_in() ? 'Личный кабинет' : 'Вход').'</a>';
                     $login = '<a href="'.get_permalink( get_option('woocommerce_myaccount_page_id')).'">'.(is_user_logged_in() ? 'Личный кабинет' : 'Личный кабинет').'</a>';
 
+                    $items_wrap = '<ul id="%1$s" class="%2$s">%3$s<li class="menu-item">'.$login.'</li>';
+                    if (count(WC()->cart->cart_contents)) {
+                        $items_wrap .= '<li><a class="cart-link" href="'.wc_get_cart_url().'"><i class="fa fa-shopping-bag" aria-hidden="true"></i>&nbsp;<span class="count">('.count(WC()->cart->cart_contents).')</span></a></li>';
+                    }
+                    $items_wrap .= '</ul>';
+
                     $args = array(
                         'menu'            => 'top-menu-2', // какое меню нужно вставить (по порядку: id, ярлык, имя)
-                        'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s<li class="menu-item">'.$login.'</li><li><a class="cart-link" href="'.wc_get_cart_url().'"><i class="fa fa-shopping-bag" aria-hidden="true"></i>&nbsp;<span class="count">('.count(WC()->cart->cart_contents).')</span></a></li></ul>', // HTML-шаблон
+                        'items_wrap'      => $items_wrap //'<ul id="%1$s" class="%2$s">%3$s<li class="menu-item">'.$login.'</li><li><a class="cart-link" href="'.wc_get_cart_url().'"><i class="fa fa-shopping-bag" aria-hidden="true"></i>&nbsp;<span class="count">('.count(WC()->cart->cart_contents).')</span></a></li></ul>', // HTML-шаблон
                     );
-                    wp_nav_menu($args);?>
+                    wp_nav_menu($args);
+                    ?>
                 </div>
 
                 <div class="cart-mobile visible-xs">
                     <div>
-                        <a class="cart-link" href="<?=wc_get_cart_url();?>" ><i class="fa fa-shopping-bag" aria-hidden="true"></i>&nbsp;<span class="count">(<?=count(WC()->cart->cart_contents)?>)</span></a>
+                        <?php
+                        if (count(WC()->cart->cart_contents)) {
+                            ?>
+                            <a class="cart-link" href="<?=wc_get_cart_url();?>" ><i class="fa fa-shopping-bag" aria-hidden="true"></i>&nbsp;<span class="count">(<?=count(WC()->cart->cart_contents)?>)</span></a>
+                            <?php
+                        }
+                        ?>
                         <div class='threebar hamburger'>
                             <div class='bar'></div>
                             <div class='bar'></div>

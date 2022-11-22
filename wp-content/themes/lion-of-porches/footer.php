@@ -47,16 +47,16 @@
             <div class="footer-item apoio col-xs-6 col-md-3"><h5>Поддержка</h5>
                 <ul class="gateways list-inline">
                     <li>Email: <a href="mailto:online@lion-of-porches.ru">online@lion-of-porches.ru</a></li>
-                    <li>Телефон: <a href="tel:+74993766636" rel="nofollow">+7 (499) 376 66 36</a></li>
-                    <li>Whatsapp: <a href="https://api.whatsapp.com/send?phone=79268046934%26text=%26source=%26data=" rel="nofollow">+7 (926) 804 69 34</a></li>
+                    <li>Телефон: <a href="tel:+74993766696" rel="nofollow">+7 (499) 376 66 96</a></li>
+                    <li>Whatsapp: <a href="https://api.whatsapp.com/send?phone=79268039512%26text=%26source=%26data=" rel="nofollow">+7 (926) 803 95 12</a></li>
                     <li>Рабочие дни пн-пт с 10.00 до 22.00</li>
                 </ul>
             </div>
 
             <div class="footer-item medias col-xs-12 col-md-2"><h5>Присоединяйтесь к нам</h5>
                 <ul class="list-inline">
-                    <li><a href="https://www.facebook.com/groups/lionofporches/?ref=share" target="_blank" rel="nofollow"><!--<i class="fa fa-facebook" aria-hidden="true"></i>--><img src="/wp-content/themes/lion-of-porches/img/fb.png" alt="facebook"></a></li>
-                    <li><a href="https://www.instagram.com/lionofporches_russia/" target="_blank" rel="nofollow"><!--<i class="fa fa-instagram"></i>--><img src="/wp-content/themes/lion-of-porches/img/insta.png" alt="instagram"></a></li>
+<!--                    <li><a href="https://www.facebook.com/groups/lionofporches/?ref=share" target="_blank" rel="nofollow"><img src="/wp-content/themes/lion-of-porches/img/fb.png" alt="facebook"></a></li>-->
+<!--                    <li><a href="https://www.instagram.com/lionofporches_russia/" target="_blank" rel="nofollow"><img src="/wp-content/themes/lion-of-porches/img/insta.png" alt="instagram"></a></li>-->
                     <li><a href="https://www.youtube.com/c/LionOfPorchesLondon/featured" target="_blank" rel="nofollow"><!--<i class="fa fa-youtube"></i>--><img src="/wp-content/themes/lion-of-porches/img/you.png" alt="youtube"></a></li>
                     <li><a href="https://vk.com/lionofporches1" target="_blank" rel="nofollow"><!--<i class="fa fa-vk"></i>--><img src="/wp-content/themes/lion-of-porches/img/vk.png" alt="vk"></a></li>
                 </ul>

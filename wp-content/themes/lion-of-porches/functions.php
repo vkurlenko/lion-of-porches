@@ -5,6 +5,12 @@
  * @subpackage LionOfPorches
  */
 
+/*add_filter( 'http_request_args', function( $parsed_args ) {
+    $parsed_args[ 'sslcertificates' ] = __DIR__ . '/ca-bundle.crt';
+    return $parsed_args;
+} );*/
+add_filter( 'woodev_sl_api_request_verify_ssl', '__return_false' );
+
 include 'Helper.php';
 //include_once 'Crm.php';
 //include_once 'WooHelper.php';

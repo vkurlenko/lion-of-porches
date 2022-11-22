@@ -1052,7 +1052,7 @@ class WooHelper
         */
 
         if($sale_price <  $regular_price) {
-            $percent = floor( 100 - ($sale_price * 100 / $regular_price));
+            $percent = ceil( 100 - ($sale_price * 100 / $regular_price));
         }
 
         return $percent;
@@ -1216,8 +1216,8 @@ class WooHelper
         $ss = array_reverse($ss);
         $fw = array_reverse($fw);*/
 
-        $ss = ['ss22', 'ss21', 'ss20', 'ss19', 'ss18', 'ss17', 'ss16'];
-        $fw = ['fw22', 'fw21', 'fw20', 'fw19', 'fw18', 'fw17', 'fw16'];
+        $ss = ['ss25', 'ss24', 'ss23', 'ss22', 'ss21', 'ss20', 'ss19', 'ss18', 'ss17', 'ss16'];
+        $fw = ['fw25', 'fw24', 'fw23', 'fw22', 'fw21', 'fw20', 'fw19', 'fw18', 'fw17', 'fw16'];
 
         $today = strtotime(date('Y-m-d'));
         $ss_start = strtotime(date('Y-03-15'));
@@ -1331,6 +1331,18 @@ class WooHelper
         $args = array(
             'product_tag' => 'new-arrival',
             'post_type' 	 => 'product'
+        );
+
+        $recent_posts = new WP_Query( $args );
+
+        return $recent_posts->have_posts() ? true : false;
+    }
+
+    public function isStockTagProducts()
+    {
+        $args = array(
+            'product_tag'   => 'stock',
+            'post_type'     => 'product'
         );
 
         $recent_posts = new WP_Query( $args );
@@ -1602,6 +1614,12 @@ class WooHelper
     {
         $product = wc_get_product( $product_id );
 
+        $product_tag_slugs = [];
+
+        foreach (get_the_terms( $product_id, 'product_tag' ) as $tag) {
+            $product_tag_slugs[] = $tag->slug;
+        }
+
         $terms = get_the_terms( $product_id, 'product_cat' );
         $product_categories_slugs = [];
 
@@ -1609,7 +1627,9 @@ class WooHelper
             $product_categories_slugs[] = $term->slug;
         }
 
-        return !$product->is_type( 'variable' ) || in_array('gifts', $product_categories_slugs);
+        return ! $product->is_type( 'variable' ) ||
+            in_array('gifts', $product_categories_slugs) ||
+            in_array('stock', $product_tag_slugs);
     }
 
     /**
