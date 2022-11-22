@@ -71,8 +71,17 @@ $product_categories = $helper->getTopCategory();
                     <?php
                     endif;
                     ?>
-                    <img src="<?=get_the_post_thumbnail_url( $full_banner->ID, 'full')?>" class="hidden-xs">
-                    <img src="<?=get_the_post_thumbnail_url( $mob_banner->ID, 'full')?>" class="visible-xs">
+
+                    <?php
+                    if (get_the_post_thumbnail_url( $full_banner->ID, 'full')) {
+                        ?><img src="<?=get_the_post_thumbnail_url( $full_banner->ID, 'full')?>" class="hidden-xs"><?php
+                    }
+
+                    if (get_the_post_thumbnail_url( $mob_banner->ID, 'full')) {
+                        ?><img src="<?=get_the_post_thumbnail_url( $mob_banner->ID, 'full')?>" class="visible-xs"><?php
+                    }
+                    ?>
+
                     <?php
                     if ($active_link):
                     ?>
@@ -166,7 +175,7 @@ $product_categories = $helper->getTopCategory();
                 </div>
             </div>
 
-            <?php echo do_shortcode('[instagram-feed]'); ?>
+<!--            --><?php //echo do_shortcode('[instagram-feed]'); ?>
 
         </div>
 

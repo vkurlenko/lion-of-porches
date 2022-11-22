@@ -30,35 +30,35 @@ class Helper
         return $product_categories;
     }
 
-    public function getSabCategoryTree($parent = 0, $depth = 0)
+    public function getSabCategoryTree($parent = 0, $depth = 0) // new
     {
         $args = array(
-            'show_option_all'    => '',
-            'show_option_none'   => __('No categories'),
-            'orderby'            => 'name',
-            'order'              => 'ASC',
-            'style'              => 'list',
-            'show_count'         => 0,
-            'hide_empty'         => 1,
-            'use_desc_for_title' => 0,
             'child_of'           => $parent,
-            'feed'               => '',
-            'feed_type'          => '',
-            'feed_image'         => '',
+            'current_category'   => 0,
+            'depth'              => $depth,
+            'echo'               => 1,
             'exclude'            => '',
             'exclude_tree'       => '',
-            'include'            => '',
-            'hierarchical'       => true,
-            'title_li'           => '',
-            'number'             => NULL,
-            'echo'               => 1,
-            'depth'              => $depth,
-            'current_category'   => 0,
-            'pad_counts'         => 0,
-            'taxonomy'           => 'product_cat',
-            'walker'             => 'Walker_Category',
+            'feed'               => '',
+            'feed_image'         => '',
+            'feed_type'          => '',
+            'hide_empty'         => 1,
             'hide_title_if_empty' => true,
+            'hierarchical'       => true,
+            'include'            => '',
+            'number'             => NULL,
+            'order'              => 'ASC',
+            'orderby'            => 'name',
+            'pad_counts'         => 0,
             'separator'          => '<br />',
+            'show_count'         => 0,
+            'show_option_all'    => '',
+            'show_option_none'   => __('No categories'),
+            'style'              => 'list',
+            'taxonomy'           => 'product_cat',
+            'title_li'           => '',
+            'use_desc_for_title' => 0,
+            'walker'             => 'Walker_Category',
         );
 
         echo '<ul>';

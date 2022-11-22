@@ -59,7 +59,7 @@
     // название следующего уровня
     $next_level_name = $levels[$next_level_discount];
 
-    $price_tpl = '<span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">₽</span><span class="val">%s</span></span>';
+    $price_tpl = '<span class="woocommerce-Price-amount amount"><span class="val">%s</span>&nbsp;<span class="woocommerce-Price-currencySymbol">₽</span></span>';
 
     if($user_discount_level):
         ?>
@@ -89,12 +89,13 @@
         </div>-->
 
         <?php
-        if ($product->is_type('variable')):
+        if (! WooHelper::isNoDiscountProduct($product->get_id())):
         ?>
         <div class="special-price">
             <div><?=sprintf('Ваша дополнительная скидка: <span class="level-name">-<span class="data-personal-discount">%s</span>%%</span>', '' )?></div>
             <div><?=sprintf('Итого для Вас: <span class="level-name"><span class="data-personal-price">'.$price_tpl.'</span></span>', '' )?></div>
             <!--<div><?/*=sprintf('Ваша экономия <span class="level-name"><span class="data-personal-economy">'.$price_tpl.'</span></span>', '' )*/?></div>-->
+<!--            <div>--><?//=do_shortcode( '[viewBuyButtonCustom id="21821" name="ваше имя (строка)" count="1" price="555"]' );?><!--</div>-->
         </div>
         <?php
         endif;

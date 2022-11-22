@@ -583,7 +583,7 @@ function wc_price( $price, $args = array() ) {
 		$price = wc_trim_zeros( $price );
 	}
 
-	$formatted_price = ( $negative ? '-' : '' ) . sprintf( $args['price_format'], '<span class="woocommerce-Price-currencySymbol">' . get_woocommerce_currency_symbol( $args['currency'] ) . '</span>', $price );
+	$formatted_price = ( $negative ? '-' : '' ) . sprintf( $args['price_format'], $price.' ', '<span class="woocommerce-Price-currencySymbol">' . get_woocommerce_currency_symbol( $args['currency'] ) . '</span>' );
 	$return          = '<span class="woocommerce-Price-amount amount">' . $formatted_price . '</span>';
 
 	if ( $args['ex_tax_label'] && wc_tax_enabled() ) {
